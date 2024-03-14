@@ -1,0 +1,121 @@
+.root {
+  width: 1200px;
+  height: 1000px;
+  margin: 0;
+}
+
+.header {
+  height: 818px;
+  width: 1200px;
+  background-repeat: no-repeat;
+  background-image: url('../src/assets/headerback.svg');
+  background-position: 50%;
+  background-size: cover;
+  background-attachment: scroll;
+  background-origin: padding-box;
+  background-clip: border-box;
+}
+
+.header-big {
+  width: 644px;
+  height: 128px;
+  color: white;
+  font-size: 78px;
+  font-family: Inria Serif;
+  font-weight: 700;
+  line-height: 73px;
+  word-wrap: break-word;
+  position: absolute;
+  top: 252px;
+}
+
+.header-big1 {
+  width: 496px;
+  height: 92px;
+  color: white;
+  font-size: 28px;
+  font-family: Inria Serif;
+  font-weight: 400;
+  line-height: 33px;
+  letter-spacing: 1.12px;
+  word-wrap: break-word;
+  position: absolute;
+  left: 101px;
+  top: 390px;
+}
+
+.header-btn1 {
+  width: 211px;
+  height: 68px;
+  padding-top: 21px;
+  padding-bottom: 21px;
+  padding-left: 49px;
+  padding-right: 50px;
+  background: #d9d9d9;
+  box-shadow: 0px 0px 1px rgba(23, 26, 31, 0.19);
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  text-align: center;
+  color: black;
+  font-size: 24px;
+  font-family: Inria Serif;
+  font-weight: 400;
+  line-height: 26px;
+  word-wrap: break-word;
+  position: absolute;
+  left: 107px;
+  top: 510px;
+}
+
+.header-btn2 {
+  width: 216px;
+  height: 68px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 21px;
+  padding-bottom: 21px;
+  background: black;
+  box-shadow: 0px 0px 1px rgba(23, 26, 31, 0.19);
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-family: Inria Serif;
+  font-weight: 400;
+  line-height: 26px;
+  word-wrap: break-word;
+  position: absolute;
+  left: 362px;
+  top: 510px;
+}
+.feature-prod {
+  position: relative;
+  left: 11px;
+  width: 1000px;
+  height: 210px;
+  display: flex;
+  margin: 1px;
+  padding: 1px;
+  bottom: 110px;
+  background-color: rgba(255, 255, 255, 0);
+}
+.featured-text {
+  width: 192px;
+  height: 32px;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+  color: #5d6665;
+  font-size: 40px;
+  font-family: Inria Serif;
+  font-weight: 400;
+  line-height: 26px;
+  word-wrap: break-word;
+  position: relative;
+  top: 300px;
+  left: 125px;
+}

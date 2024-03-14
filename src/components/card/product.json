@@ -1,0 +1,23 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Kast",
+        "image": "../src/assets/product image/Kast.png",
+        "featured": true
+      },
+      {
+        "id": 2,
+        "name": "Badkamermeubel",
+        "image": "../src/assets/product image/Badkamermeubel.png",
+        "featured": true
+
+      },
+      {
+        "id": 3,
+        "name": "Garderobe",
+        "image": "../src/assets/product image/Garderobe.png",
+        "featured": true
+      }
+    ]
+  }

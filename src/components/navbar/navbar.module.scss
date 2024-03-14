@@ -1,0 +1,72 @@
+.root {
+  position: relative;
+}
+p {
+  margin: 0;
+}
+.navbar {
+  width: 1200px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 1);
+  position: relative;
+}
+.logo {
+  position: absolute;
+  bottom: 30px;
+  height: 70px;
+  top: 2px;
+  left: 10px;
+}
+.navmenu {
+  color: #171a1f;
+  transform: rotate(-1deg);
+  text-align: left;
+  vertical-align: text-top;
+  font-size: 32px;
+  font-family: Inria Serif;
+  line-height: 26px;
+  border-style: hidden;
+  outline: none;
+  width: 106px;
+  position: relative;
+  left: 630px;
+  top: 38px;
+}
+.navicon {
+  height: 57px;
+  width: 92px;
+  border-radius: 2px;
+  left: 1100px;
+  top: 28px;
+  position: absolute;
+}
+.navmenu1 {
+  color: #171a1f;
+  transform: rotate(-1deg);
+  text-align: left;
+  vertical-align: text-top;
+  font-size: 32px;
+  font-family: Inria Serif;
+  line-height: 26px;
+  border-style: hidden;
+  outline: none;
+  width: 165px;
+  top: 38px;
+  position: absolute;
+  left: 730px;
+}
+.navmenu2 {
+  color: #171a1f;
+  transform: rotate(-1deg);
+  text-align: left;
+  vertical-align: text-top;
+  font-size: 32px;
+  font-family: Inria Serif;
+  line-height: 26px;
+  border-style: hidden;
+  outline: none;
+  width: 153px;
+  position: absolute;
+  left: 900px;
+  top: 38px;
+}
