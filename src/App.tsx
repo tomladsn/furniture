@@ -7,14 +7,15 @@ import { ReactComponent as ScssLogo } from './assets/scss.svg';
 import styles from './App.module.scss';
 import { Navbar } from './components/navbar/navbar';
 import { Header } from './components/header/header';
-function App() {
-   
+import { Favoriteslider } from './components/favoriteslider/favoriteslider';
 
+function App() {
     return (
         <div className={styles.App}>
             <Navbar />
             <Header />
-               </div>
+            <Favoriteslider className={styles['fav-slider']} />
+        </div>
     );
 }
 

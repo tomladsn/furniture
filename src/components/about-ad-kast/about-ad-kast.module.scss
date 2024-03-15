@@ -1,0 +1,50 @@
+.root {
+  width: 1200px;
+  background-color: F5F5F7;
+}
+.about-block {
+  background-color: #ffffff;
+  width: 1200px;
+  height: 550px;
+}
+.line {
+  width: 70px;
+}
+.kast {
+  position: relative;
+  width: 1200px;
+  height: 720px;
+  background-color: F5F5F7;
+}
+.imgabout1 {
+  position: absolute;
+}
+.imgabout2 {
+  position: absolute;
+}
+.ad {
+  width: 1200px;
+  height: 200px;
+  background-color: rgb(191, 195, 207);
+}
+.newsletterDiv {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background-color: rgb(245, 245, 247);
+}
+.newsletter-subdiv {
+  width: 800px;
+  height: 150px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.newslettersubsubdiv {
+  width: 760px;
+  height: 120px;
+}

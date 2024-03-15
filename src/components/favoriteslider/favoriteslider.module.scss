@@ -1,2 +1,65 @@
 .root {
+  height: 458px;
+  width: 1200px;
+}
+.fav-prod {
+  overflow-x: hidden; // Hide overflow for horizontal scrolling
+  position: relative;
+  grid-auto-flow: column;
+  width: 1200px;
+  display: flex;
+  overflow: hidden;
+  align-items: stretch;
+}
+.fav-prod1 {
+  display: flex;
+  transition: transform 0.5s ease; // Smooth transition for sliding effect
+}
+.left-arrow {
+  transform: scaleX(-1); /* Flip the arrow horizontally */
+  position: relative;
+  left: 30px;
+}
+.favorite-heading {
+  width: 559px;
+  height: 41px;
+  color: #5d6665;
+  font-size: 64px;
+  font-family: Inria Serif;
+  font-weight: 700;
+  line-height: 36px;
+  word-wrap: break-word;
+  position: relative;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  left: 359px;
+  margin: 20px;
+}
+.fav-sub {
+  width: 402px;
+  height: 22px;
+  color: black;
+  font-size: 24px;
+  font-family: Inria Serif;
+  font-weight: 400;
+  line-height: 22px;
+  word-wrap: break-word;
+  position: relative;
+  left: 450px;
+  margin: 20px;
+}
+.favorite-card {
+  width: 1000px;
+  height: 325px;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 1px;
+  padding: 1px;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+  left: -10px;
 }

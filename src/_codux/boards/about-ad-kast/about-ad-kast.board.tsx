@@ -1,13 +1,12 @@
 import { createBoard } from '@wixc3/react-board';
-import { Favoriteslider } from '../../../components/favoriteslider/favoriteslider';
+import { AboutAdKast } from '../../../components/about-ad-kast/about-ad-kast';
 
 export default createBoard({
-    name: 'Favoriteslider',
-    Board: () => <Favoriteslider />,
+    name: 'AboutAdKast',
+    Board: () => <AboutAdKast />,
     isSnippet: true,
     environmentProps: {
         windowWidth: 1920,
         windowHeight: 1080,
-        canvasWidth: 1466,
     },
 });
