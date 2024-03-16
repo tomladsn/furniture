@@ -12,19 +12,33 @@ export interface ContactFormProps {
 export const ContactForm = ({ className }: ContactFormProps) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <img
-                src="https://wixplosives.github.io/codux-assets-storage/add-panel/image-placeholder.jpg"
-                alt=""
-                className={styles['contact-img']}
-            />
+            <img src="/src/assets/Rectangle 3.png" className={styles['contact-img']} />
             <div className={styles['contact-div']}>
-                <p>This is a paragraph.</p>
+                <p className={styles['contact-form-title']}>Neem contact met ons op</p>
+                <p className={styles['belons-txt']}>Bel ons</p>
+                <p className={styles['belons-subtxt']}>
+                    We zijn van Ma tm Vr van 8:00 tot 18:00 ook telefonisch bereikbaar
+                </p>
+                <p className={styles['belons-number']}>+31 6 14118713</p>
+                <p className={styles.Mailons}>Mail ons </p>
+                <p className={styles['mail-address']}>Info@meubelsoettwente.nl</p>
+                <p className={styles['waar-alles']}> Waar alles gebeurt</p>
+                <p className={styles['sub-waar-alles']}>
+                    VI InterieursHandelsweg 137461 JJ Rijssen
+                </p>
                 <div className={styles['contact-form']}>
-                    <input />
-                    <input />
-                    <input />
-                    <textarea />
-                    <button>Button</button>
+                    <div className={styles['div-name-input']}>
+                        <input className={styles['name-input']} placeholder="Name:*" />
+                    </div>
+
+                    <div className={styles['div-email-input']}>
+                        <input className={styles['email-input']} placeholder="Email" />
+                    </div>
+                    <input className={styles.subject} placeholder="Subject" />
+                    <textarea className={styles['message-input']} placeholder="Message" />
+                    <button className={styles['submit-btn']}>
+                        <p className={styles['submit-btn-txt']}>SEND MESSAGE</p>
+                    </button>
                 </div>
             </div>
         </div>

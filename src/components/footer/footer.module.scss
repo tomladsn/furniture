@@ -1,4 +1,122 @@
 .root {
   width: 1200px;
   height: 400px;
+  position: relative;
+  top: 2110px;
+  background-color: #ffffff;
+}
+.footer-txtunderlogo {
+  width: 247px;
+  color: black;
+  font-size: 20px;
+  font-family: Inria Serif;
+  font-weight: 400;
+  position: absolute;
+  line-height: 22px;
+  left: 90px;
+  word-wrap: break-word;
+  top: 114px;
+  text-align: left;
+}
+.div-fr2 {
+  width: 169px;
+  height: 53px;
+  position: absolute;
+  left: 390px;
+  top: 70px;
+}
+.div-fr3 {
+  width: 207px;
+  height: 99px;
+  position: absolute;
+  left: 684px;
+  top: 70px;
+}
+.div-fr4 {
+  width: 202px;
+  position: absolute;
+  height: 80px;
+  left: 977px;
+  top: 72px;
+}
+.footer-logo {
+  width: 336px;
+  height: 71px;
+  left: 35px;
+  top: 10px;
+  position: absolute;
+}
+.studio-footer {
+  color: #171a1f;
+  font-size: 24px;
+  font-family: Inria Serif;
+  font-weight: 700;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+.foote-fr2-subtext {
+  color: black;
+  font-size: 20px;
+  font-family: Inria Serif;
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin-top: 20px;
+}
+.footer-fr3-heading {
+  color: #171a1f;
+  font-size: 24px;
+  font-family: Inria Serif;
+  font-weight: 700;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+
+.footer-fr3-subtext {
+  width: 207px;
+  color: black;
+  font-size: 20px;
+  font-family: Inria Serif;
+  font-weight: 400;
+  margin-top: 20px;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.footer-fr4-heading {
+  color: #171a1f;
+  font-size: 24px;
+  font-family: Inria Serif;
+  font-weight: 700;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+.footer-firstimg {
+  width: 38px;
+  height: 25px;
+  border-radius: 2px;
+  left: 1px;
+  position: absolute;
+  top: 44px;
+}
+
+.text-payment {
+  color: #171a1f;
+  font-size: 20px;
+  font-family: Alegreya Sans;
+  width: 56px;
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+  position: absolute;
+  left: 110px;
+  top: 45px;
+}
+.footer-secondimg {
+  width: 25px;
+    height: 23px;
+    border-radius: 2px;
+    position: relative;
+    left: -30px;
+    top: 20px;
 }
