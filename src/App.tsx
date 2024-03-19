@@ -20,7 +20,7 @@ function App() {
             <Favoriteslider className={styles['fav-slider']} />
             <AboutAdKast />
             <ContactForm />
-            <Footer />
+            <Footer className={styles.footer11} />
         </div>
     );
 }

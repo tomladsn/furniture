@@ -1,5 +1,13 @@
 .root {
+  width: 1200px;
 }
 .shop-div {
   display: flex;
+  width: 1200px;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 40px;
+}
+.nav-shop {
+  width: 1200px;
 }

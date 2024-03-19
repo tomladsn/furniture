@@ -1,12 +1,17 @@
 .root {
   position: relative;
+  box-shadow:
+    3px 3px 2px rgba(0, 0, 0, 0.45),
+    0.71px 0.71px #000000;
+  background-color: rgba(243, 243, 243, 1);
+  top: 0px;
 }
 p {
   margin: 0;
 }
 .navbar {
   width: 1200px;
-  height: 100px;
+  height: 85px;
   background-color: F3F3F3;
   position: relative;
 }

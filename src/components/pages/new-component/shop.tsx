@@ -23,7 +23,21 @@ const favoriteItems: favoriteProducts = products.products;
 export const Shop = ({ className }: ShopProps) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <Navbar />
+            <Navbar className={styles['nav-shop']} />
+            <p
+                style={{
+                    color: 'black',
+                    fontSize: 48,
+                    fontFamily: 'Inria Serif',
+                    fontWeight: '700',
+                    wordWrap: 'break-word',
+                    width: '700',
+                    marginLeft: 39,
+                    marginTop: 30,
+                }}
+            >
+                Choose any of the product to customise
+            </p>
             <div className={styles['shop-div']}>
                 {favoriteItems?.length > 0 &&
                     favoriteItems.map((item) => (

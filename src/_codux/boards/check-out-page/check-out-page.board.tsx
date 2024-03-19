@@ -1,9 +1,9 @@
 import { createBoard } from '@wixc3/react-board';
-import { Shop } from '../../../components/pages/new-component/shop';
+import { CheckOutPage } from '../../../components/pages/check-out-page/check-out-page';
 
 export default createBoard({
-    name: 'Shop',
-    Board: () => <Shop />,
+    name: 'CheckOutPage',
+    Board: () => <CheckOutPage />,
     isSnippet: true,
     environmentProps: {
         windowWidth: 1920,

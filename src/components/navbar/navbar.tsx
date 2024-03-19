@@ -19,11 +19,12 @@ export const Navbar = ({ className }: NavbarProps) => {
                     className={styles.logo}
                 />
                 <p className={styles.navmenu}>Home</p>
-                <p className={styles.navmenu1}>Aanpassen</p>
-                <p className={styles.navmenu2}>Producten</p>
-                <img src="../src/assets/Image6.svg" alt="" className={styles.navicon} />
+                <a href="/configurator"><p className={styles.navmenu1}>Aanpassen</p></a>
+                <a href="/shop">
+                    <p className={styles.navmenu2}>Producten</p>
+                </a>
+                <a href="/checkout"> <img src="../src/assets/Image6.svg" alt="" className={styles.navicon} /></a>
             </nav>
-            
         </div>
     );
 };

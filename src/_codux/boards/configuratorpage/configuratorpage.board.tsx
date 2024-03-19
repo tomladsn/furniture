@@ -1,9 +1,9 @@
 import { createBoard } from '@wixc3/react-board';
-import { Shop } from '../../../components/pages/new-component/shop';
+import { Configuratorpage } from '../../../components/pages/configurator/configuratorpage';
 
 export default createBoard({
-    name: 'Shop',
-    Board: () => <Shop />,
+    name: 'Configuratorpage',
+    Board: () => <Configuratorpage />,
     isSnippet: true,
     environmentProps: {
         windowWidth: 1920,
