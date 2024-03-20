@@ -9,7 +9,7 @@ interface ProductItem {
     id: number;
     name: string;
     image: string;
-    featured: boolean;
+    featured?: boolean;
 }
 type FeaturedProducts = Array<ProductItem>;
 
