@@ -1,8 +1,8 @@
 .App {
-  max-width: 1280px;
+  max-width: 1350px;
   margin: 0 auto;
   text-align: center;
-  width: 1200px;
+  width: 1300px;
   background-color: rgba(245, 245, 247, 1);
 }
 
@@ -57,4 +57,11 @@
 .footer11 {
   position: relative;
   top: 2080px;
+  width: 1200px;
+}
+
+@media (max-width: 770px) {
+  .App{
+    overflow-x: hidden; /* Show the element on screens smaller than 768px */
+  }
 }

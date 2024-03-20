@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import styles from './navbar.module.scss';
-
+import { IoMenuOutline } from 'react-icons/io5';
 export interface NavbarProps {
     className?: string;
 }
@@ -18,12 +18,18 @@ export const Navbar = ({ className }: NavbarProps) => {
                     alt=""
                     className={styles.logo}
                 />
+                <IoMenuOutline className={styles['menu-mod-icon']} />
                 <p className={styles.navmenu}>Home</p>
-                <a href="/configurator"><p className={styles.navmenu1}>Aanpassen</p></a>
+                <a href="/configurator">
+                    <p className={styles.navmenu1}>Aanpassen</p>
+                </a>
                 <a href="/shop">
                     <p className={styles.navmenu2}>Producten</p>
                 </a>
-                <a href="/checkout"> <img src="../src/assets/Image6.svg" alt="" className={styles.navicon} /></a>
+                <a href="/checkout">
+                    {' '}
+                    <img src="../src/assets/Image6.svg" alt="" className={styles.navicon} />
+                </a>
             </nav>
         </div>
     );

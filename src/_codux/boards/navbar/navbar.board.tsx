@@ -5,4 +5,8 @@ export default createBoard({
     name: 'Navbar',
     Board: () => <Navbar />,
     isSnippet: true,
+    environmentProps: {
+        windowWidth: 1920,
+        windowHeight: 1080,
+    },
 });
