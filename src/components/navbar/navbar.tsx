@@ -19,7 +19,7 @@ export const Navbar = ({ className }: NavbarProps) => {
                     className={styles.logo}
                 />
                 <IoMenuOutline className={styles['menu-mod-icon']} />
-                <p className={styles.navmenu}>Home</p>
+                <a href="/"><p  className={styles.navmenu}>Home</p></a>
                 <a href="/configurator">
                     <p className={styles.navmenu1}>Aanpassen</p>
                 </a>

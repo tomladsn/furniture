@@ -3,6 +3,14 @@
   width: 1200px;
   background-color: rgba(245, 245, 247, 1);
 }
+@media (max-width: 768px) {
+  .root {
+    height: 698px;
+    width: 430px;
+    position: absolute;
+    top: 1933px;
+  }
+}
 .fav-prod {
   overflow-x: hidden; // Hide overflow for horizontal scrolling
   position: relative;
@@ -12,6 +20,13 @@
   overflow: hidden;
   align-items: stretch;
 }
+@media (max-width: 768px) {
+  .fav-prod {
+    position: absolute;
+    top: 309px;
+
+  }
+}
 .fav-prod1 {
   display: flex;
   transition: transform 0.5s ease; // Smooth transition for sliding effect
@@ -20,6 +35,13 @@
   transform: scaleX(-1); /* Flip the arrow horizontally */
   position: relative;
   left: 30px;
+}
+@media (max-width: 768px) {
+  .left-arrow {
+    position: absolute;
+    left: 350px;
+    top: 120px;
+  }
 }
 .favorite-heading {
   width: 559px;
@@ -38,6 +60,21 @@
   left: 359px;
   margin: 20px;
 }
+@media (max-width: 768px) {
+  .favorite-heading {
+    width: 435px;
+    height: 63px;
+    color: #5d6665;
+    font-size: 64px;
+    font-family: Inria Serif;
+    font-weight: 700;
+    line-height: 64px;
+    word-wrap: break-word;
+    position: relative;
+    left: 53px;
+    text-align: left;
+  }
+}
 .fav-sub {
   width: 402px;
   height: 22px;
@@ -51,6 +88,22 @@
   left: 450px;
   margin: 20px;
 }
+@media (max-width: 768px) {
+  .fav-sub {
+    width: 293px;
+    height: 49px;
+    color: black;
+    font-size: 22px;
+    font-family: Inria Serif;
+    font-weight: 400;
+    line-height: 25px;
+    word-wrap: break-word;
+    text-align: left;
+    position: absolute;
+    top: 163px;
+    left: 53px;
+  }
+}
 .favorite-card {
   width: 1000px;
   height: 325px;
@@ -63,4 +116,14 @@
   align-items: center;
   gap: 60px;
   left: -10px;
+}
+
+@media (max-width: 768px) {
+  .favorite-card{
+    width: 260px;
+    height: 330px;
+    display: flex;
+    flex-wrap: wrap;
+    left: 7px;
+  }
 }

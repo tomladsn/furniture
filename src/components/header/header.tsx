@@ -35,7 +35,7 @@ export const Header = ({ className }: HeaderProps) => {
                 <p className={styles['featured-text']}>Uitgelicht</p>
                 {filteredFeaturedItems?.length > 0 &&
                     filteredFeaturedItems.map((item) => (
-                        <Card key={item.id} imageUrl={item.image} title={item.name} />
+                        <Card className={styles['featured-card']} key={item.id} imageUrl={item.image} title={item.name} />
                     ))}
             </div>
         </div>

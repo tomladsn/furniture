@@ -35,6 +35,7 @@ export const Footer = ({ className }: FooterProps) => {
                 <img src="/src/assets/Image122.png" className={styles['footer-secondimg']} />
                 <p className={styles['text-payment']}>VISA</p>
             </div>
+            <p className={styles['copyright-1']}>2024@ VI Interieur AllRights Reserved</p>
         </div>
     );
 };

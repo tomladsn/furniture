@@ -76,5 +76,34 @@ p {
   top: 38px;
 }
 .menu-mod-icon {
-  display: none;
+  display: block;
+  position: absolute;
+  left: 367px;
+  top: 25px;
+}
+
+@media (min-width: 768px) {
+  .menu-mod-icon {
+    display: none; /* Hide the menu icon on screens wider than 768px (desktop view) */
+  }
+}
+@media (max-width: 768px) {
+  .root {
+    width: 430px;
+    height: 70px;
+    background-color: rgba(243, 243, 243, 1);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+}
+@media (max-width: 768px) {
+  .logo {
+    position: absolute;
+    bottom: 30px;
+    top: 2px;
+    width: 245px;
+    height: 45px;
+  }
 }

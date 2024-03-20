@@ -3,7 +3,13 @@
   height: 1000px;
   margin: 0;
 }
-
+@media (max-width: 768px) {
+  .root {
+    width: 430px;
+    height: 800px;
+    margin: 0;
+  }
+}
 .header {
   height: 818px;
   width: 1300px;
@@ -14,6 +20,21 @@
   background-attachment: scroll;
   background-origin: padding-box;
   background-clip: border-box;
+}
+@media (max-width: 768px) {
+  .header {
+    height: 800px;
+    width: 430px;
+    background-repeat: no-repeat;
+    background-image: url('../src/assets/headerback.svg');
+    background-position: 50%;
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: padding-box;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 .header-big {
@@ -29,6 +50,21 @@
   top: 252px;
   left: 98px;
   text-align: left;
+}
+@media (max-width: 768px) {
+  .header-big {
+    width: 420px;
+    height: 37px;
+    color: white;
+    font-size: 70px;
+    font-family: Inria Serif;
+    font-weight: 700;
+    line-height: 73px;
+    word-wrap: break-word;
+    position: absolute;
+    left: 26px;
+    top: 156px;
+  }
 }
 
 .header-big1 {
@@ -46,7 +82,25 @@
   top: 400px;
   text-align: left;
 }
+@media (max-width: 768px) {
+  .header-big1 {
+    width: 380px;
+    height: 84px;
+    color: white;
+    font-size: 28px;
+    font-family: Inria Serif;
+    font-weight: 400;
+    line-height: 33px;
+    letter-spacing: 1.12px;
+    position: absolute;
+    word-wrap: break-word;
+    left: 28px;
+    top: 380px;
+  }
+}
+@media (max-width: 768px) {
 
+}
 .header-btn1 {
   width: 211px;
   height: 68px;
@@ -70,6 +124,13 @@
   position: absolute;
   left: 107px;
   top: 510px;
+}
+@media (max-width: 768px) {
+  .header-btn1{
+    position: absolute;
+    left: 96px;
+    top: 554px;
+  }
 }
 
 .header-btn2 {
@@ -96,6 +157,13 @@
   left: 362px;
   top: 510px;
 }
+@media (max-width: 768px) {
+  .header-btn2{
+    position: absolute;
+    top: 666px;
+    left: 91px;
+  }
+}
 .feature-prod {
   position: relative;
   left: 11px;
@@ -106,6 +174,16 @@
   padding: 1px;
   bottom: 110px;
   background-color: rgba(245, 245, 247, 0);
+}
+@media (max-width: 768px) {
+  .feature-prod{
+    position: absolute;
+    top: 750px;
+    left: 67px;
+    flex-wrap: wrap;
+    width: 307px;
+    height: 1000px;
+  }
 }
 .featured-text {
   width: 192px;
@@ -121,4 +199,12 @@
   position: relative;
   top: 300px;
   left: 125px;
+}
+
+@media (max-width: 768px) {
+  .featured-text {
+    position: relative;
+    top: 300px;
+    left: -30px;
+  }
 }
