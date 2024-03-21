@@ -8845,7 +8845,7 @@ const Em = ({ className: n }) =>
                 className: so.navbar,
                 children: [
                     X.jsx('img', {
-                        src: '/Capture-removebg-preview 2.png',
+                        src: '/assets/Capture-removebg-preview 2.png',
                         alt: '',
                         className: so.logo,
                     }),
@@ -8867,7 +8867,7 @@ const Em = ({ className: n }) =>
                         children: [
                             ' ',
                             X.jsx('img', {
-                                src: '/Image6.svg',
+                                src: '/assets/Image6.svg',
                                 alt: '',
                                 className: so.navicon,
                             }),
@@ -8892,7 +8892,7 @@ const Em = ({ className: n }) =>
         {
             id: 1,
             name: 'Kast',
-            image: '/product image/Kast.png',
+            image: '/assets/product image/Kast.png',
             featured: !0,
             favorite: !0,
             discount: ' ',
@@ -8900,7 +8900,7 @@ const Em = ({ className: n }) =>
         {
             id: 2,
             name: 'Badkamermeubel',
-            image: '/product image/Badkamermeubel.png',
+            image: '/assets/product image/Badkamermeubel.png',
             featured: !0,
             favorite: !0,
             discount: '-35%OFF',
@@ -8908,7 +8908,7 @@ const Em = ({ className: n }) =>
         {
             id: 3,
             name: 'Garderobe',
-            image: '/product image/Garderobe.png',
+            image: '/assets/product image/Garderobe.png',
             featured: !0,
             favorite: !0,
             discount: '-20%OFF',
@@ -8916,14 +8916,14 @@ const Em = ({ className: n }) =>
         {
             id: 4,
             name: 'TV-meubel',
-            image: '/product image/Tvmeubel.svg',
+            image: '/assets/product image/Tvmeubel.svg',
             favorite: !0,
             discount: ' ',
         },
         {
             id: 5,
             name: 'Wasruimtekast',
-            image: '/product image/whiteKast.svg',
+            image: '/assets/product image/whiteKast.svg',
             favorite: !0,
             discount: ' ',
         },
