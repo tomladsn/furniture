@@ -9044,7 +9044,7 @@ const Em = ({ className: n }) =>
                     className: dl['fav-prod'],
                     children: [
                         X.jsx('img', {
-                            src: '/src/assets/product image/arrowleft.svg',
+                            src: '/assets/product image/arrowleft.svg',
                             onClick: i,
                         }),
                         X.jsx('div', {
@@ -9066,7 +9066,7 @@ const Em = ({ className: n }) =>
                                     ),
                         }),
                         X.jsx('img', {
-                            src: '/src/assets/product image/arrowleft.svg',
+                            src: '/assets/product image/arrowleft.svg',
                             className: dl['left-arrow'],
                             onClick: r,
                         }),
@@ -9133,11 +9133,11 @@ const Em = ({ className: n }) =>
                         X.jsx('p', { className: Vt['about-us-btn'], children: 'Lees meer' }),
                         X.jsx('div', { className: Vt.line }),
                         X.jsx('img', {
-                            src: '/src/assets/product image/Image 129about2.png',
+                            src: '/assets/product image/Image 129about2.png',
                             className: Vt.imgabout1,
                         }),
                         X.jsx('img', {
-                            src: '/src/assets/product image/Image 130about1.png',
+                            src: '/assets/product image/Image 130about1.png',
                             className: Vt.imgabout2,
                         }),
                     ],
@@ -9146,7 +9146,7 @@ const Em = ({ className: n }) =>
                     className: Vt.kast,
                     children: [
                         X.jsx('img', {
-                            src: '/src/assets/product image/Image 152Kast.png',
+                            src: '/assets/product image/Image 152Kast.png',
                             className: Vt['kast-img'],
                         }),
                         X.jsx('p', { className: Vt['kast-heading'], children: 'Kast' }),
@@ -9167,7 +9167,7 @@ const Em = ({ className: n }) =>
                         }),
                         X.jsx('p', { className: Vt['ad-sub'], children: '35% KORTING' }),
                         X.jsx('img', {
-                            src: '/src/assets/product image/Image 96ad.png',
+                            src: '/assets/product image/Image 96ad.png',
                             className: Vt['ad-img'],
                         }),
                     ],
@@ -9180,7 +9180,7 @@ const Em = ({ className: n }) =>
                             className: Vt.newslettersubsubdiv,
                             children: [
                                 X.jsx('img', {
-                                    src: '/src/assets/product image/Image 85deliverynewsletter.png',
+                                    src: '/assets/product image/Image 85deliverynewsletter.png',
                                     className: Vt['delivery-img'],
                                 }),
                                 X.jsx('p', {
@@ -9192,7 +9192,7 @@ const Em = ({ className: n }) =>
                                     children: 'Levering binnen minder dan 20 dagen',
                                 }),
                                 X.jsx('img', {
-                                    src: '/src/assets/product image/Image 87newsletter.png',
+                                    src: '/assets/product image/Image 87newsletter.png',
                                     className: Vt['fast-del'],
                                 }),
                                 X.jsx('p', { className: Vt.verdenzing, children: 'Verzending' }),
@@ -9249,7 +9249,7 @@ const Em = ({ className: n }) =>
         X.jsxs('div', {
             className: Tr(Nn.root, n),
             children: [
-                X.jsx('img', { src: '/src/assets/Rectangle 3.png', className: Nn['contact-img'] }),
+                X.jsx('img', { src: '/assets/Rectangle 3.png', className: Nn['contact-img'] }),
                 X.jsxs('div', {
                     className: Nn['contact-div'],
                     children: [
@@ -9335,7 +9335,7 @@ const Em = ({ className: n }) =>
             className: Tr(yi.root, n),
             children: [
                 X.jsx('img', {
-                    src: '/src/assets/Capture-removebg-preview 2.png',
+                    src: '/assets/Capture-removebg-preview 2.png',
                     className: yi['footer-logo'],
                 }),
                 X.jsx('p', {
@@ -9370,11 +9370,11 @@ const Em = ({ className: n }) =>
                             children: 'Payment Methods',
                         }),
                         X.jsx('img', {
-                            src: '/src/assets/Image 120.svg',
+                            src: '/assets/Image 120.svg',
                             className: yi['footer-firstimg'],
                         }),
                         X.jsx('img', {
-                            src: '/src/assets/Image122.png',
+                            src: '/assets/Image122.png',
                             className: yi['footer-secondimg'],
                         }),
                         X.jsx('p', { className: yi['text-payment'], children: 'VISA' }),
@@ -9586,7 +9586,7 @@ const WI = ({ className: n }) =>
                                                         height: 70,
                                                         borderRadius: 10,
                                                     },
-                                                    src: '/src/assets/product image/Garderobe.png',
+                                                    src: '/assets/product image/Garderobe.png',
                                                 }),
                                                 X.jsx('p', {
                                                     className: Bt['text--1'],
@@ -9604,7 +9604,7 @@ const WI = ({ className: n }) =>
                                                         height: '80px',
                                                         borderRadius: 10,
                                                     },
-                                                    src: '/src/assets/product image/Badkamermeubel.png',
+                                                    src: '/assets/product image/Badkamermeubel.png',
                                                 }),
                                                 X.jsx('p', {
                                                     className: Bt['text--2'],
@@ -9622,7 +9622,7 @@ const WI = ({ className: n }) =>
                                                         height: '80px',
                                                         borderRadius: 65,
                                                     },
-                                                    src: '/src/assets/product image/Kast.png',
+                                                    src: '/assets/product image/Kast.png',
                                                 }),
                                                 X.jsx('p', {
                                                     className: Bt['text--3'],
@@ -9641,7 +9641,7 @@ const WI = ({ className: n }) =>
                                                         borderRadius: 2,
                                                         marginLeft: '10px',
                                                     },
-                                                    src: '/src/assets/product image/Image 50.png',
+                                                    src: '/assets/product image/Image 50.png',
                                                 }),
                                                 X.jsx('p', {
                                                     className: Bt['text--4'],
@@ -48923,7 +48923,7 @@ const e5 = ({ className: n }) =>
                     X.jsx('img', {
                         className: 'Chevron',
                         style: { width: '66px', height: '45px', position: 'relative', top: '30px' },
-                        src: '/src/assets/product image/arrowleft.svg',
+                        src: '/assets/product image/arrowleft.svg',
                     }),
                     X.jsxs('div', {
                         className: Zt['first-slide-block'],
@@ -48931,7 +48931,7 @@ const e5 = ({ className: n }) =>
                             X.jsx('img', {
                                 className: 'Image50',
                                 style: { borderRadius: 2, height: '110px', width: '130px' },
-                                src: '/src/assets/product image/Garderobe.png',
+                                src: '/assets/product image/Garderobe.png',
                             }),
                             X.jsx('p', {
                                 className: 'Lamp',
@@ -48956,7 +48956,7 @@ const e5 = ({ className: n }) =>
                             X.jsx('img', {
                                 className: 'meubel',
                                 style: { width: '120px', height: '112px' },
-                                src: '/src/assets/product image/Tvmeubel.svg',
+                                src: '/assets/product image/Tvmeubel.svg',
                             }),
                             X.jsx('p', {
                                 className: 'LivingRoom',
@@ -48986,7 +48986,7 @@ const e5 = ({ className: n }) =>
                                     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
                                     borderRadius: 2,
                                 },
-                                src: '/src/assets/product image/Kast.png',
+                                src: '/assets/product image/Kast.png',
                             }),
                             X.jsx('p', {
                                 className: 'NewNow',
@@ -49015,7 +49015,7 @@ const e5 = ({ className: n }) =>
                             transform: 'rotate(180deg)',
                             transformOrigin: '0px 0px',
                         },
-                        src: '/src/assets/product image/arrowleft.svg',
+                        src: '/assets/product image/arrowleft.svg',
                     }),
                 ],
             }),
