@@ -1,7 +1,10 @@
 import classNames from 'classnames';
+import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
 import { Navbar } from '../../navbar/navbar';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import { useRef, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { LuFrame } from 'react-icons/lu';
 import { MdDoorSliding, MdShelves } from 'react-icons/md';
@@ -12,10 +15,55 @@ export interface ConfiguratorpageProps {
     className?: string;
 }
 
+interface TorusKnotProps {
+    radius?: number;
+    tube?: number;
+    tubularSegments?: number;
+    radialSegments?: number;
+    p?: number;
+    q?: number;
+    position?: [number, number, number]; 
+  }
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
+// Extend THREE with TorusKnotGeometry
+extend({ TorusKnotGeometry: THREE.TorusKnotGeometry });
+
+function TorusKnot(props: TorusKnotProps) {
+    const mesh = useRef<THREE.Mesh>(null); 
+
+  // Rotate mesh every frame
+  useFrame((state, delta) => {
+    if (mesh.current) {
+      mesh.current.rotation.x += 0.01;
+    }
+  });
+
+  return (
+    <mesh {...props} ref={mesh}>
+      <torusKnotGeometry args={[10.184, 5.8608, 220, 16, 9, 12]} />
+      <meshBasicMaterial color={0xffff00} />
+    </mesh>
+  );
+}
+
+function Scene() {
+     const { camera } = useThree();
+
+    // Adjust camera FOV
+    camera.zoom = 0.005; // Adjust as needed// 
+    camera.updateProjectionMatrix(); // Update the camera's projection matrix after changing its properties
+
+  return (
+    <>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <TorusKnot position={[-1.2, 0, 0]} />
+    </>
+  );
+}
 export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     return (
         <div className={classNames(styles.root, className)}>
@@ -137,12 +185,14 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             </div>
             <div className={styles['configurator-section']}>
                 <div className={styles['canva-div']}>
-                    <Canvas>
-                        <mesh>
-                            <boxGeometry args={[1, 1, 1]} />
-                            <meshStandardMaterial color="hotpink" />
-                        </mesh>
-                    </Canvas>
+                <Canvas
+      style={{ background: 'black' }} // Set the background color to black
+    >
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <OrbitControls />
+      <Scene />
+    </Canvas>
                 </div>
                 <div className={styles['configurator-listing']}>
                     <div

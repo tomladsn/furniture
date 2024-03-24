@@ -1,6 +1,6 @@
 .root {
   height: 458px;
-  width: 1200px;
+  width: auto;
   background-color: rgba(245, 245, 247, 1);
 }
 @media (max-width: 768px) {
@@ -15,7 +15,7 @@
   overflow-x: hidden; // Hide overflow for horizontal scrolling
   position: relative;
   grid-auto-flow: column;
-  width: 1200px;
+  width: auto;
   display: flex;
   overflow: hidden;
   align-items: stretch;

@@ -8,12 +8,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  height: 10%;
 
 }
 
 @media (max-width: 768px) {
-  .root {
+  :root {
     max-width: 450px;
     overflow-x: hidden;
     width: 100%;

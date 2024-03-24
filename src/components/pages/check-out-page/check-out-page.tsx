@@ -16,7 +16,7 @@ export interface CheckOutPageProps {
 export const CheckOutPage = ({ className }: CheckOutPageProps) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <Navbar />
+            <Navbar className={styles['navbar-checkout']}/>
             <div className={styles['checkout-div']}>
                 <div className={styles['form-div']}>
                     <p className={styles['left-heading']}>Bestellen</p>

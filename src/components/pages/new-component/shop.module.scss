@@ -1,13 +1,46 @@
 .root {
-  width: 1200px;
+  width: auto;
+}
+@media (max-width: 768px) {
+  .root {
+    width: 430px;
+  }
 }
 .shop-div {
   display: flex;
-  width: 1200px;
+  width: auto;
   flex-wrap: wrap;
   position: relative;
   margin: 40px;
 }
+@media (max-width: 768px) {
+  .shop-div {
+    display: flex;
+    width: 430px;
+    flex-wrap: wrap;
+    position: relative;
+    left: 50px;
+  }
+}
 .nav-shop {
-  width: 1200px;
+  width: auto;
+}
+
+.text-shop{
+  color: black;
+  font-Size: 48px;
+  font-Family: Inria Serif;
+  font-Weight: 700px;
+  word-Wrap: break-word;
+  width: 700px;
+  margin-Left: 39px;
+  margin-Top: 30px;
+}
+@media (max-width: 768px) {
+  .text-shop {
+    width: 420px;
+    margin-left: 3px;
+    font-size: 48px;
+
+  }
 }

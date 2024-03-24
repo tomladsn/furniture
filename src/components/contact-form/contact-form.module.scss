@@ -9,13 +9,15 @@
   .root{
     position: absolute;
     width: 430px;
-    height: 1300px;
+    height: auto;
     top: 5650px;
 }
  }
 .contact-img {
-  width: 1300px;
+  width: auto;
   height: 450px;
+  max-width: 2000px;
+ 
 }
 @media (max-width: 768px) {
   .contact-img {

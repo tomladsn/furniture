@@ -25,16 +25,8 @@ export const Shop = ({ className }: ShopProps) => {
         <div className={classNames(styles.root, className)}>
             <Navbar className={styles['nav-shop']} />
             <p
-                style={{
-                    color: 'black',
-                    fontSize: 48,
-                    fontFamily: 'Inria Serif',
-                    fontWeight: '700',
-                    wordWrap: 'break-word',
-                    width: '700',
-                    marginLeft: 39,
-                    marginTop: 30,
-                }}
+            className={styles['text-shop']}
+
             >
                 Choose any of the product to customise
             </p>

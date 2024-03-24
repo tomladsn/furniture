@@ -10,10 +10,16 @@ p {
   margin: 0;
 }
 .navbar {
-  width: 1200px;
+  width: auto;
   height: 85px;
   background-color: F3F3F3;
   position: relative;
+}
+@media (max-width: 768px) {
+  .navbar {
+    min-width: 430px;
+
+  }
 }
 .logo {
   position: absolute;
@@ -89,13 +95,14 @@ p {
 }
 @media (max-width: 768px) {
   .root {
-    width: 430px;
+    min-width: 430px;
     height: 70px;
     background-color: rgba(243, 243, 243, 1);
     position: relative;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
+    width: inherit;
   }
 }
 @media (max-width: 768px) {

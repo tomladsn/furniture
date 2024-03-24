@@ -11,7 +11,6 @@ import { Favoriteslider } from './components/favoriteslider/favoriteslider';
 import { AboutAdKast } from './components/about-ad-kast/about-ad-kast';
 import { ContactForm } from './components/contact-form/contact-form';
 import { Footer } from './components/footer/footer';
-
 function App() {
     return (
         <div className={styles.App}>
