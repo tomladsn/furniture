@@ -1,5 +1,6 @@
 .root {
-  width: auto;
+  width: 132vw;
+  
 }
 @media (max-width: 768px) {
   .root {
@@ -30,6 +31,13 @@
   height: 443px;
   margin-left: 35px;
 }
+@media (max-width: 768px) {
+  .form-div {
+    width: 400px;
+    height: 443px;
+    margin-left: 3px;
+  }
+}
 .listingdiv {
   width: 568px;
   align-items: center;
@@ -45,7 +53,8 @@
   .listingdiv {
     width: 390px;
     position: relative;
-  }
+    left: -45px;
+}
 }
 .container-checkout {
   display: flex;

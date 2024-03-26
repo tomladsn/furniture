@@ -5,19 +5,20 @@
     0.71px 0.71px #000000;
   background-color: rgba(243, 243, 243, 1);
   top: 0px;
+  overflow-x: hidden;
 }
 p {
   margin: 0;
 }
 .navbar {
-  width: auto;
+  width: 132vw;
   height: 85px;
   background-color: F3F3F3;
   position: relative;
 }
 @media (max-width: 768px) {
   .navbar {
-    min-width: 430px;
+   width: 430px;
 
   }
 }

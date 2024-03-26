@@ -1,18 +1,23 @@
 .root {
-  width: auto;
-  background-color: F5F5F7;
+  width: 100%;
+  background-color: #F5F5F7;
   position: absolute;
-  top: 1901px;
+  top: 1751px;
 }
-@media (max-width: 768px) {
+
+/* For screens larger than 1920px */
+@media (min-width: 1920px) {
   .root {
+    max-width: 1920px;
+    width: 100%;
     position: absolute;
-    top: 2735px;
+    top: 2000px;
   }
 }
+
 .about-block {
   background-color: #ffffff;
-  min-width: 1300px;
+  min-width: vw;
   height: 550px;
   background-size: cover;
   max-width: 2000px;
@@ -22,9 +27,9 @@
 }
 @media (max-width: 768px) {
   .about-block {
-    width: 430px;
+    width: 100vw;
     height: 1422px;
-  }
+}
 }
 .line {
   width: 115px;
@@ -36,15 +41,15 @@
 }
 .kast {
   position: relative;
-  width: auto;
+  width: 132vw;
   height: 720px;
-  background-color: rgba(243, 243, 243, 1);
+  background-color: rgb(243, 243, 243);
 }
 @media (max-width: 768px)  {
   .kast {
-    width: 430px;
+    max-width: 430px;
     height: 800px;
-  }
+}
 }
 .imgabout1 {
   position: absolute;
@@ -92,11 +97,11 @@
 }
 @media (max-width: 768px) { 
   .ad {
-    width: 430px;
-    height:371px;
+    width: 132vw;
+    height: 371px;
     position: relative;
     top: px;
-  }
+}
 }
 .newsletterDiv {
   height: 400px;
@@ -111,7 +116,7 @@
 }
 @media (max-width: 768px) { 
   .newsletterDiv {
-    width: 430px;
+    width: 132vw;
    height: 425px;
     display: flex;
   }
