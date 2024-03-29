@@ -3,7 +3,7 @@
   height: 300px;
   background-color: #ffffff;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .root {
     width: 430px;
     height: 667px;
@@ -31,11 +31,18 @@
   left: 390px;
   top: 70px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .div-fr2 {
     position: absolute;
     left: 100px;
     top: 260px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .div-fr2 {
+    position: absolute;
+    left: 700px;
+     
   }
 }
 .div-fr3 {
@@ -45,7 +52,16 @@
   left: 684px;
   top: 70px;
 }
-@media (max-width: 768px) {
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .div-fr3 {
+    position: relative;
+    bottom: 50px;
+    left: 1200px;
+     
+  }
+}
+@media (max-width: 450px) {
   .div-fr3 {
     position: absolute;
     left: 90px;
@@ -59,7 +75,16 @@
   left: 977px;
   top: 72px;
 }
-@media (max-width: 768px) {
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .div-fr4 {
+      position: relative;
+      top: -25px;
+      left: 1673px;
+     
+  }
+}
+@media (max-width: 450px) {
   .div-fr4 {
     position: absolute;
     left: 90px;
@@ -153,10 +178,18 @@
   top: 255px;
   left: 400px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .copyright-1 {
     position: absolute;
-    left: 100px;
+    left: 50px;
     top: 700px;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .copyright-1 {
+    position: absolute;
+    left: 700px;
+     
   }
 }

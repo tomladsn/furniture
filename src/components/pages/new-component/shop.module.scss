@@ -1,7 +1,7 @@
 .root {
   width: auto;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .root {
     width: 430px;
   }
@@ -13,7 +13,7 @@
   position: relative;
   margin: 40px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .shop-div {
     display: flex;
     width: 430px;
@@ -22,8 +22,20 @@
     left: 50px;
   }
 }
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .shop-div {
+    min-width: 1900px;
+  }
+}
 .nav-shop {
-  width: auto;
+  width: 100%;
+}
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .nav-shop {
+    min-width: 1800px;
+  }
 }
 
 .text-shop{
@@ -36,7 +48,7 @@
   margin-Left: 39px;
   margin-Top: 30px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .text-shop {
     width: 420px;
     margin-left: 3px;

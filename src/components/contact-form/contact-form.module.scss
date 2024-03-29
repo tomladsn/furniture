@@ -5,7 +5,13 @@
   position: relative;
   top: 2100px;
 }
-@media (max-width: 768px) {
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .root {
+    min-width: 2000px;
+  }
+}
+@media (max-width: 450px) {
   .root{
     position: absolute;
     width: 430px;
@@ -19,9 +25,17 @@
   max-width: 2000px;
  
 }
-@media (max-width: 768px) {
+
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .contact-img {
-    width: 430px;
+    min-width: 1950px;
+    height: 500px;
+  }
+}
+@media (max-width: 450px) {
+  .contact-img {
+    width: 530px;
     height: 440px;
     top: 0px;
     position: relative;
@@ -38,9 +52,17 @@
   bottom: 250px;
   border: 1px #d9d9d9 solid;
 }
-@media (max-width: 768px) {
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .contact-div {
-    width: 430px;
+    min-width: 1050px;
+    position: relative;
+    left: 500px;
+  }
+}
+@media (max-width: 450px) {
+  .contact-div {
+    width: 530px;
     height: 1000px;
     top: 160px;
     position: absolute;
@@ -54,7 +76,7 @@
   left: 370px;
   top: 172px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .contact-form {
     
     top: 560px;
@@ -86,7 +108,7 @@
   width: 487px;
   height: 50px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .subject {
     top: 130px;
     position: absolute;
@@ -102,13 +124,14 @@
   width: 489px;
   left: -5.5px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .message-input {
     top: 200px;
     width: 420px;
     left: 11px;
     position: absolute;
     left: -10px;
+    border: 1px solid black;
   }
  }
 .div-name-input {
@@ -146,7 +169,7 @@
   align-items: center;
   display: inline-flex;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .div-email-input {
     top: 60px;
    
@@ -210,7 +233,7 @@
   top: 302px;
   left: 3px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .submit-btn {
     top: 390px;
  
@@ -243,7 +266,7 @@
   left: 35px;
   word-wrap: break-word;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .contact-form-title {
 
     top: 0px;

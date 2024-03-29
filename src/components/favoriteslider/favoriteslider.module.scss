@@ -3,12 +3,20 @@
   width: auto;
   background-color: rgba(245, 245, 247, 1);
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .root {
     height: 698px;
-    width: 430px;
+    width: 530px;
     position: absolute;
     top: 1933px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .root {
+    width: 1500px;
+    position: relative;
+    left: 450px;
   }
 }
 .fav-prod {
@@ -20,7 +28,7 @@
   overflow: hidden;
   align-items: stretch;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .fav-prod {
     position: absolute;
     top: 309px;
@@ -36,10 +44,10 @@
   position: relative;
   left: 30px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .left-arrow {
     position: absolute;
-    left: 350px;
+    left: 420px;
     top: 120px;
   }
 }
@@ -60,7 +68,7 @@
   left: 359px;
   margin: 20px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .favorite-heading {
     width: 435px;
     height: 63px;
@@ -88,7 +96,7 @@
   left: 450px;
   margin: 20px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .fav-sub {
     width: 293px;
     height: 49px;
@@ -118,12 +126,12 @@
   left: -10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .favorite-card{
-    width: 260px;
+    width: 400px;
     height: 330px;
     display: flex;
     flex-wrap: wrap;
-    left: 7px;
+    left: 37px;
   }
 }

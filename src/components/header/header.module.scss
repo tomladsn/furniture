@@ -3,11 +3,17 @@
   height: 1000px;
   margin: 0;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .root {
-    width: 430px;
+    width: 530px;
     height: 800px;
     margin: 0;
+  }
+}
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .root {
+    min-width: 2000px;
   }
 }
 .header {
@@ -21,10 +27,10 @@
   background-origin: padding-box;
   background-clip: border-box;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .header {
     height: 800px;
-    width: 430px;
+    width: 530px;
     background-repeat: no-repeat;
     background-image: url('../src/assets/headerback.svg');
     background-position: 50%;
@@ -51,9 +57,9 @@
   left: 98px;
   text-align: left;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .header-big {
-    width: 420px;
+    width: 510px;
     height: 37px;
     color: white;
     font-size: 70px;
@@ -62,8 +68,9 @@
     line-height: 73px;
     word-wrap: break-word;
     position: absolute;
-    left: 26px;
-    top: 156px;
+    left: 10px;
+    top: 196px;
+    text-align: center;
   }
 }
 
@@ -82,7 +89,7 @@
   top: 400px;
   text-align: left;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .header-big1 {
     width: 380px;
     height: 84px;
@@ -94,11 +101,11 @@
     letter-spacing: 1.12px;
     position: absolute;
     word-wrap: break-word;
-    left: 28px;
+    left: 90px;
     top: 380px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
 
 }
 .header-btn1 {
@@ -125,10 +132,10 @@
   left: 107px;
   top: 510px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .header-btn1{
     position: absolute;
-    left: 96px;
+    left: 170px;
     top: 554px;
   }
 }
@@ -157,11 +164,11 @@
   left: 362px;
   top: 510px;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .header-btn2{
     position: absolute;
     top: 666px;
-    left: 91px;
+    left: 170px;
   }
 }
 .feature-prod {
@@ -175,11 +182,18 @@
   bottom: 110px;
   background-color: rgba(245, 245, 247, 0);
 }
-@media (max-width: 768px) {
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .feature-prod {
+    position: relative;
+    left: 400px;
+  }
+}
+@media (max-width: 450px) {
   .feature-prod{
     position: absolute;
     top: 750px;
-    left: 67px;
+    left: 117px;
     flex-wrap: wrap;
     width: 307px;
     height: 1000px;
@@ -201,7 +215,7 @@
   left: 125px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .featured-text {
     position: relative;
     top: 300px;

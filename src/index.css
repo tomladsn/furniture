@@ -8,14 +8,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
+    position: absolute;
 }
-
-@media (max-width: 768px) {
+@media screen and (min-width: 1800px) {
   :root {
-    max-width: 450px;
+    position: absolute;
     overflow-x: hidden;
-    width: 100%;
+     
+  }
+}
+@media (max-width: 450px) {
+  :root {
+   position: absolute;
+   overflow-x: clip;
   }
 }
 
@@ -35,7 +40,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   max-width: 1400px;
-    overflow-x: hidden;
 }
 
 h1 {
