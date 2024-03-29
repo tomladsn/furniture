@@ -16,10 +16,10 @@
 @media (max-width: 450px) {
   .shop-div {
     display: flex;
-    width: 430px;
+    width: 130px;
     flex-wrap: wrap;
     position: relative;
-    left: 50px;
+    left: 80px;
   }
 }
 @media screen and (min-width: 1800px) {
@@ -30,6 +30,13 @@
 }
 .nav-shop {
   width: 100%;
+}
+@media (max-width: 450px) {
+  .nav-shop {
+
+    width: 530px;
+
+  }
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
