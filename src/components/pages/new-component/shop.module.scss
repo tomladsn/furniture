@@ -1,5 +1,6 @@
 .root {
-  width: auto;
+  width: 100%;
+  overflow-x: hidden;
 }
 @media (max-width: 450px) {
   .root {
