@@ -1,3 +1,4 @@
+
 :root {
   
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -13,14 +14,13 @@
 @media screen and (min-width: 1800px) {
   :root {
     position: absolute;
-    overflow-x: hidden;
+
      
   }
 }
 @media (max-width: 450px) {
   :root {
    position: absolute;
-   overflow-x: clip;
   }
 }
 
@@ -36,7 +36,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  overflow-x: hidden;
+
   min-width: 320px;
   min-height: 100vh;
   max-width: 1400px;

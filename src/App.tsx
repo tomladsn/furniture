@@ -11,10 +11,11 @@ import { Favoriteslider } from './components/favoriteslider/favoriteslider';
 import { AboutAdKast } from './components/about-ad-kast/about-ad-kast';
 import { ContactForm } from './components/contact-form/contact-form';
 import { Footer } from './components/footer/footer';
+import Navbar_module from './components/navbar/navbar.module.scss';
 function App() {
     return (
         <div className={styles.App}>
-            <Navbar />
+            <Navbar className={Navbar_module.navbar} />
             <Header />
             <Favoriteslider className={styles['fav-slider']} />
             <AboutAdKast />

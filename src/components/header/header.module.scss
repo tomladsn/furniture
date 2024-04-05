@@ -30,7 +30,7 @@
 @media (max-width: 450px) {
   .header {
     height: 800px;
-    width: 530px;
+    width: 390px;
     background-repeat: no-repeat;
     background-image: url('../src/assets/headerback.svg');
     background-position: 50%;
@@ -106,7 +106,6 @@
   }
 }
 @media (max-width: 450px) {
-
 }
 .header-btn1 {
   width: 211px;
@@ -133,7 +132,7 @@
   top: 510px;
 }
 @media (max-width: 450px) {
-  .header-btn1{
+  .header-btn1 {
     position: absolute;
     left: 170px;
     top: 554px;
@@ -165,7 +164,7 @@
   top: 510px;
 }
 @media (max-width: 450px) {
-  .header-btn2{
+  .header-btn2 {
     position: absolute;
     top: 666px;
     left: 170px;
@@ -190,7 +189,7 @@
   }
 }
 @media (max-width: 450px) {
-  .feature-prod{
+  .feature-prod {
     position: absolute;
     top: 750px;
     left: 117px;
