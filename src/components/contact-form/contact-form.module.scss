@@ -1,6 +1,6 @@
 .root {
   background-color: rgb(245, 245, 247);
-  width: 1250px;
+  width: 100vw;
   height: 800px;
   position: relative;
   top: 2100px;
@@ -8,10 +8,16 @@
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .root {
-    min-width: 2000px;
+    min-width: 100vw;
   }
 }
-@media (max-width: 450px) {
+
+@media (min-width: 2501px) {
+  .root {
+    width: 100vw;
+  }
+}
+@media (min-width: 325px) and (max-width: 425px) {
   .root{
     position: absolute;
     width: 430px;
@@ -20,7 +26,7 @@
 }
  }
 .contact-img {
-  width: auto;
+  width: 98vw;
   height: 450px;
   max-width: 2000px;
  
@@ -29,13 +35,19 @@
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .contact-img {
-    min-width: 1950px;
+    min-width:  98vw;
     height: 500px;
   }
 }
-@media (max-width: 450px) {
+@media (min-width: 2501px) {
   .contact-img {
-    width: 530px;
+    width: 98vw;
+    height: 600px;
+  }
+}
+@media (min-width: 325px) and (max-width: 425px) {
+  .contact-img {
+    width: 100vw;
     height: 440px;
     top: 0px;
     position: relative;
@@ -45,12 +57,19 @@
   width: 900px;
   height: 600px;
   position: relative;
-  left: 140px;
+  left: 20vw;
   background-color: #ffffff;
   box-shadow: 0px 0px 1px rgba(23, 26, 31, 0.19);
   border-radius: 4px;
   bottom: 250px;
   border: 1px #d9d9d9 solid;
+}
+@media (min-width: 1024px) {
+  .contact-div {
+    position: absolute;
+    left: 6vw;
+    top: 20vw;
+  }
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
@@ -60,9 +79,17 @@
     left: 500px;
   }
 }
-@media (max-width: 450px) {
+
+@media (min-width: 2501px) {
   .contact-div {
-    width: 530px;
+    left: 30vw;
+    position: absolute;
+    top: 8vw;
+  }
+}
+@media (min-width: 325px) and (max-width: 425px) {
+  .contact-div {
+    width: 100vw;
     height: 1000px;
     top: 160px;
     position: absolute;
@@ -76,7 +103,7 @@
   left: 370px;
   top: 172px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .contact-form {
     
     top: 560px;
@@ -108,7 +135,7 @@
   width: 487px;
   height: 50px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .subject {
     top: 130px;
     position: absolute;
@@ -124,7 +151,7 @@
   width: 489px;
   left: -5.5px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .message-input {
     top: 200px;
     width: 420px;
@@ -169,7 +196,7 @@
   align-items: center;
   display: inline-flex;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .div-email-input {
     top: 60px;
    
@@ -233,7 +260,7 @@
   top: 302px;
   left: 3px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .submit-btn {
     top: 390px;
  
@@ -266,7 +293,7 @@
   left: 35px;
   word-wrap: break-word;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .contact-form-title {
 
     top: 0px;

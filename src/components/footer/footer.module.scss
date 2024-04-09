@@ -3,7 +3,7 @@
   height: 300px;
   background-color: #ffffff;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .root {
     width: 430px;
     height: 667px;
@@ -31,7 +31,7 @@
   left: 390px;
   top: 70px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .div-fr2 {
     position: absolute;
     left: 100px;
@@ -61,11 +61,18 @@
      
   }
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .div-fr3 {
     position: absolute;
     left: 90px;
     top: 380px;
+  }
+}
+@media (min-width: 1024px) {
+  .div-fr3 {
+    position: absolute;
+    left: 55vw;
+    top: 65px;
   }
 }
 .div-fr4 {
@@ -75,22 +82,29 @@
   left: 977px;
   top: 72px;
 }
+@media (min-width: 1024px) {
+  .div-fr4 {
+    position: absolute;
+    left: 76vw;
+  }
+}
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .div-fr4 {
       position: relative;
       top: -25px;
-      left: 1673px;
+      left: 87vw;
      
   }
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .div-fr4 {
     position: absolute;
     left: 90px;
     top: 580px;
   }
 }
+
 .footer-logo {
   width: 336px;
   height: 71px;
@@ -178,7 +192,7 @@
   top: 255px;
   left: 400px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .copyright-1 {
     position: absolute;
     left: 50px;

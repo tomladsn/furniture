@@ -3,36 +3,70 @@
   width: auto;
   background-color: rgba(245, 245, 247, 1);
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .root {
     height: 698px;
-    width: 530px;
+    width: 100vw;
     position: absolute;
     top: 1933px;
+  }
+}
+@media (min-width: 1024px) {
+  .root {
+    width: 80vw;
+    position: relative;
+
+
+    flex-direction: row;
   }
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .root {
-    width: 1500px;
+    width: 60vw;
     position: relative;
-    left: 450px;
+    left: 20vw;
+  }
+}
+@media (min-width: 2501px) {
+  .root {
+    width: 60vw;
+    left: 25vw;
   }
 }
 .fav-prod {
-  overflow-x: hidden; // Hide overflow for horizontal scrolling
   position: relative;
   grid-auto-flow: column;
-  width: auto;
+  width: 85vw;
   display: flex;
   overflow: hidden;
   align-items: stretch;
+  left: 9vw;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .fav-prod {
     position: absolute;
     top: 309px;
 
+  }
+}
+@media (min-width: 1024px) {
+  .fav-prod {
+    width: 80vw;
+    position: relative;
+    left: 10vw;
+  }
+}
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .fav-prod {
+    width: 70vw;
+  }
+}
+@media (min-width: 2501px) {
+  .fav-prod {
+    overflow-x: visible;
+    width: 60vw;
   }
 }
 .fav-prod1 {
@@ -44,11 +78,25 @@
   position: relative;
   left: 30px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .left-arrow {
     position: absolute;
     left: 420px;
     top: 120px;
+  }
+}
+@media (min-width: 1024px) {
+  .left-arrow {
+    position: absolute;
+    left: 68vw;
+    top: 110px;
+  }
+}
+@media (min-width: 2501px) {
+  .left-arrow {
+    position: absolute;
+    top: 100px;
+    left: 50vw;
   }
 }
 .favorite-heading {
@@ -68,7 +116,7 @@
   left: 359px;
   margin: 20px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .favorite-heading {
     width: 435px;
     height: 63px;
@@ -81,6 +129,12 @@
     position: relative;
     left: 53px;
     text-align: left;
+  }
+}
+@media (min-width: 1024px) {
+  .favorite-heading {
+    position: relative;
+    left: 20vw;
   }
 }
 .fav-sub {
@@ -96,7 +150,7 @@
   left: 450px;
   margin: 20px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .fav-sub {
     width: 293px;
     height: 49px;
@@ -110,6 +164,12 @@
     position: absolute;
     top: 163px;
     left: 53px;
+  }
+}
+@media (min-width: 1024px) {
+  .fav-sub {
+    position: relative;
+    left: 27vw;
   }
 }
 .favorite-card {
@@ -126,12 +186,26 @@
   left: -10px;
 }
 
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .favorite-card{
     width: 400px;
     height: 330px;
     display: flex;
     flex-wrap: wrap;
     left: 37px;
+  }
+}
+@media (min-width: 1024px) {
+  .favorite-card{
+    position: relative;
+    left: 1vw;
+    flex-wrap: wrap;
+  }
+}
+@media (min-width: 2501px) {
+  .favorite-card{
+    overflow-x: visible;
+    width: 50vw;
+    gap: 2vw;
   }
 }

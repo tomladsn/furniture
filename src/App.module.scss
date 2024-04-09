@@ -2,13 +2,18 @@
   margin: 0 auto;
   text-align: center;
   background-color: rgba(245, 245, 247, 1);
-  width: 1275px;
+  width: 100vw;
 }
 
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .App {
-    min-width: 2000px;
+    width: 100vw;
+  }
+}
+@media (min-width: 2501px) {
+  .App {
+width: 100vw;
   }
 }
 .logo {

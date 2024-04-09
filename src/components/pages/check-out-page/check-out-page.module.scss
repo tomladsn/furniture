@@ -2,13 +2,13 @@
   width: auto;
   
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .root {
     width: 450px;
     overflow-x: hidden;
   }
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .navbar-checkout {
     width: 450px;
   }
@@ -18,7 +18,7 @@
   position: absolute;
   top: 155px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .checkout-div {
     display: flex;
     width: 430px;
@@ -31,7 +31,7 @@
   height: 443px;
   margin-left: 35px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .form-div {
     width: 400px;
     height: 443px;
@@ -49,7 +49,7 @@
   border-radius: 12px;
   margin-left: 60px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .listingdiv {
     width: 390px;
     position: relative;
@@ -69,7 +69,7 @@
   margin: 30px;
   margin-top: -2px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .container-checkout {
     width: 400px;
     position: relative;
@@ -84,7 +84,7 @@
   background: white;
   border-radius: 10px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .listing1 {
     width: 350px;
     left: -40px;
@@ -120,7 +120,7 @@
   line-height: 14px;
   word-wrap: break-word;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .button-listing {
     width: 350px;
     left: -10px;
@@ -275,7 +275,7 @@
   left: 164px;
   top: 65px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .text--1 {
     top: 25px;
     left: 114px;
@@ -296,7 +296,7 @@
   left: 164px;
   top: 167px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .text--2 {
     top: 35px;
     left: 134px;
@@ -317,7 +317,7 @@
   top: 244px;
   left: 163px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .text--3 {
     top: 25px;
     left: 134px;
@@ -338,7 +338,7 @@
   left: 164px;
   top: 331px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .text--4 {
     top: 25px;
     left: 134px;
@@ -352,7 +352,7 @@
   left: 510px;
   top: 65px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .close-icon-circle {
     top: 30px;
     left: 314px;
@@ -366,7 +366,7 @@
   left: 510px;
   top: 154px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .icon-circle2 {
     top: 30px;
     left: 314px;
@@ -380,7 +380,7 @@
   left: 509px;
   top: 240px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .circle-icon3 {
     top: 30px;
     left: 314px;
@@ -394,7 +394,7 @@
   left: 510px;
   top: 333px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .class-circle-4 {
     top: 30px;
     left: 314px;

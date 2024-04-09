@@ -3,9 +3,9 @@
   height: 1000px;
   margin: 0;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .root {
-    width: 530px;
+    width: 100vw;
     height: 800px;
     margin: 0;
   }
@@ -13,33 +13,34 @@
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .root {
-    min-width: 2000px;
+    min-width: 100vw;
   }
 }
 .header {
   height: 818px;
   width: auto;
   background-repeat: no-repeat;
-  background-image: url('../src/assets/headerback.svg');
+  background-image: url(../src/assets/headerback.svg);
   background-position: 50%;
   background-size: cover;
   background-attachment: scroll;
   background-origin: padding-box;
   background-clip: border-box;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .header {
     height: 800px;
-    width: 390px;
-    background-repeat: no-repeat;
-    background-image: url('../src/assets/headerback.svg');
+    width: auto;
+    background-image: url(../src/assets/headerback.svg);
     background-position: 50%;
     background-size: cover;
-    background-attachment: scroll;
-    background-origin: padding-box;
-    background-clip: border-box;
     background-repeat: no-repeat;
     background-position: center;
+  }
+}
+@media (min-width: 1800px) {
+  .header {
+    width: 100vw;
   }
 }
 
@@ -57,7 +58,7 @@
   left: 98px;
   text-align: left;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .header-big {
     width: 510px;
     height: 37px;
@@ -71,6 +72,13 @@
     left: 10px;
     top: 196px;
     text-align: center;
+  }
+}
+@media (min-width: 2501px) {
+  .header-big {
+    width: 50vw;
+    font-size: min(10vw, 100px);
+    left: 5vw;
   }
 }
 
@@ -89,7 +97,7 @@
   top: 400px;
   text-align: left;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .header-big1 {
     width: 380px;
     height: 84px;
@@ -105,8 +113,14 @@
     top: 380px;
   }
 }
-@media (max-width: 450px) {
+@media (min-width: 2501px) {
+  .header-big1 {
+    width: 40vw;
+    font-size: min(10vw, 40px);
+    left: 5vw;
+  }
 }
+
 .header-btn1 {
   width: 211px;
   height: 68px;
@@ -131,11 +145,19 @@
   left: 107px;
   top: 510px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .header-btn1 {
     position: absolute;
     left: 170px;
     top: 554px;
+  }
+}
+@media (min-width: 2501px) {
+  .header-btn1 {
+    width: 11vw;
+    height: 5vh;
+    left: 5vw;
+    font-size: min(10vw, 40px);
   }
 }
 
@@ -163,11 +185,19 @@
   left: 362px;
   top: 510px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .header-btn2 {
     position: absolute;
     top: 666px;
     left: 170px;
+  }
+}
+@media (min-width: 2501px) {
+  .header-btn2 {
+    width: 10vw;
+    height: 5vh;
+    left: 20vw;
+    font-size: min(10vw, 40px);
   }
 }
 .feature-prod {
@@ -181,14 +211,19 @@
   bottom: 110px;
   background-color: rgba(245, 245, 247, 0);
 }
-@media screen and (min-width: 1800px) {
-  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+@media (min-width: 1024px) {
   .feature-prod {
+    width: 96vw;
     position: relative;
-    left: 400px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    height: 401px;
+    flex-direction: row;
+    overflow-x: hidden;
+    left: 1vw;
   }
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .feature-prod {
     position: absolute;
     top: 750px;
@@ -196,6 +231,19 @@
     flex-wrap: wrap;
     width: 307px;
     height: 1000px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .feature-prod {
+    position: relative;
+    left: 400px;
+  }
+}
+@media (min-width: 2501px) {
+  .feature-prod {
+    width: 50vw;
+    left: 25vw;
   }
 }
 .featured-text {
@@ -214,7 +262,7 @@
   left: 125px;
 }
 
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .featured-text {
     position: relative;
     top: 300px;

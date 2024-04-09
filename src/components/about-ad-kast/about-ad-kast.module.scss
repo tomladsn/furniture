@@ -1,11 +1,11 @@
 .root {
-  width: 100%;
+  width: 100vw;
   background-color: #F5F5F7;
   position: absolute;
   top: 1751px;
 }
 
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .root {
     position: absolute;
     top: 2720px;
@@ -14,12 +14,12 @@
 /* For screens larger than 1920px */
 @media (min-width: 1920px) {
   .root {
-    max-width: 1920px;
-    width: 100%;
+    width: 100vw;
     position: absolute;
     top: 2000px;
   }
 }
+
 
 .about-block {
   background-color: #ffffff;
@@ -31,20 +31,30 @@
   position: relative;
   box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
 }
-@media screen and (min-width: 1800px) {
-  /* Your CSS rules for devices with a minimum width of 1800 pixels */
-  .about-block {
-    min-width:  2000px;
-    position: relative;
-    align-items: center;
-  }
-}
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .about-block {
     min-width: 460px;
     height: 1422px;
 }
 }
+
+
+
+@media screen and (min-width: 1800px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .about-block {
+    min-width:  100vw;
+    position: relative;
+    align-items: center;
+  }
+}
+@media (min-width: 2501px) {
+  .about-block {
+    width: 100vw;
+
+  }
+}
+
 .line {
   width: 115px;
   height: 0px;
@@ -53,13 +63,21 @@
   top: 430px;
   left: 110px;
 }
+@media (min-width: 2501px) {
+  .line {
+    position: absolute;
+    left: 10vw;
+    top: 400px;
+    width: 8vw;
+  }
+}
 .kast {
   position: relative;
   height: 720px;
   background-color: rgb(243, 243, 243);
   width: initial;
 }
-@media (max-width: 450px)  {
+@media (min-width: 325px) and (max-width: 425px)  {
   .kast {
     max-width: 430px;
     height: 800px;
@@ -68,8 +86,7 @@
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .kast {
-    min-width:  2000px;
-
+    min-width:  100vw;
     position: relative;
 
 
@@ -89,18 +106,36 @@
     min-width:  450px;
     height: 450px;
     position: relative;
-    left: 40px;
+    left: 15vw;
 
   }
 }
 
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .imgabout1 {
     width: 405px;
     height: 474px;
     position: absolute;
     top: 500px;
     left: 68px;
+  }
+}
+@media (min-width: 1024px) {
+  .imgabout1 {
+    position: absolute;
+    width: 30vw;
+    height: 35vw;
+    top: 130px;
+    left: 43vw;
+  }
+}
+@media (min-width: 2501px) {
+  .imgabout1 {
+    width: 20vw;
+    height: vw;
+    position: absolute;
+    left: 50vw;
+
   }
 }
 .imgabout2 {
@@ -111,22 +146,40 @@
   top: 188px;
   left: 950px;
 }
+@media (min-width: 1024px) {
+  .imgabout2 {
+    position: absolute;
+    width: 23vw;
+    height: 25vw;
+    top: 180px;
+    left: 75vw;
+  }
+}
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .imgabout2 {
       width: 300px;
       height: 258px;
       position: absolute;
-      left: 1400px;
+      left: 80vw;
   }
 }
 
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .imgabout2 {
     width: 330px; height: 318px;
     position: absolute;
     top: 1029px;
     left: 105px;
+  }
+}
+@media (min-width: 2501px) {
+  .imgabout2 {
+    width: 15vw;
+    height: 12vw;
+    position: absolute;
+    left: 80vw;
+
   }
 }
 .ad {
@@ -142,11 +195,24 @@
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .ad {
-      width: 2000px
+      min-width: 100vw
      
   }
 }
-@media (max-width: 450px) { 
+@media (min-width: 2501px) {
+  .ad {
+    width: 100vw;
+   
+  }
+}
+@media (min-width: 2501px) {
+  .kast-img {
+    position: absolute;
+    left: 10vw;
+   
+  }
+}
+@media (min-width: 325px) and (max-width: 425px) { 
   .ad {
     width: auto;
     height: 371px;
@@ -168,12 +234,12 @@
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .newsletterDiv {
-      min-width:  2000px;
+      min-width:  100vw;
      
   }
 }
 
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .newsletterDiv {
     width: auto;
    height: 425px;
@@ -199,7 +265,7 @@
      
   }
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .newsletter-subdiv {
     width: 430px;
     height: 405px;
@@ -212,7 +278,7 @@
   box-shadow: 2px 2px 2px rgba(23, 26, 31, 0.19);
   border-radius: 4px;
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .newslettersubsubdiv {
     width: 403px;
     height: 335px;
@@ -231,12 +297,20 @@
   top: 40px;
   left: 151px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .about_title {
     width: 264px;
     font-size: 64px;
     position: absolute;
     left: 120px;
+  }
+}
+@media (min-width: 2501px) {
+  .about_title {
+    font-size: max(3vw, 64px);
+    position: absolute;
+    width: 15vw;
+    left: 10vw;
   }
 }
 .about-us {
@@ -252,13 +326,28 @@
   left: 60px;
   text-align: left;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .about-us {
     width: 350px;
     width: 350px;
     position: absolute;
     top: 130px;
     left: 113px;
+  }
+}
+@media (min-width: 1024px) {
+  .about-us {
+    position: relative;
+    font-size: 2.5vw;
+    width: 35vw;
+  }
+}
+@media (min-width: 2501px) {
+  .about-us {
+    font-size: max(1.5vw, 28px);
+    position: absolute;
+    width: 30vw;
+    left: 10vw;
   }
 }
 .about-us-btn {
@@ -275,8 +364,17 @@
   left: 93px;
 }
 
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .about-us-btn {
+  }
+}
+@media (min-width: 2501px) {
+  .about-us-btn {
+    font-size: max(2vw, 21px);
+    position: absolute;
+    width: 30vw;
+    left: -1vw;
+    top: 350px;
   }
 }
 .kast-img {
@@ -286,13 +384,20 @@
   left: 8px;
   border-radius: 2px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .kast-img {
     position: absolute;
     top: 275px;
     left: 0px;
     width: 500px;
     height: 500px;
+  }
+}
+@media (min-width: 2501px) {
+  .kast-img {
+    position: absolute;
+    left: 10vw;
+   
   }
 }
 .kast-heading {
@@ -306,11 +411,18 @@
   top: 110px;
   left: 723px;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .kast-heading {
     position: absolute;
     left: 179px;
     top: 10px;
+  }
+}
+@media (min-width: 2501px) {
+  .kast-heading {
+    position: absolute;
+    left: 50vw;
+    font-size: max(1.5vw, 64px);
   }
 }
 .kast-desc {
@@ -326,13 +438,31 @@
   top: 200px;
   word-wrap: break-word;
 }
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .kast-desc {
     position: absolute;
     left: 64px;
     top: 100px;
     width: 389px;
     text-align: center;
+  }
+}
+@media (min-width: 1024px) {
+  .kast-desc {
+    position: relative;
+    font-size: 2vw;
+    width: 34vw;
+    left: 65vw;
+    top: 170px;
+  }
+}
+@media (min-width: 2501px) {
+  .kast-desc {
+    position: absolute;
+    line-height: 40px;
+    left: 50vw;
+    font-size: max(1.5vw, 16px);
+    width: 38vw;
   }
 }
 .kast-btn {
@@ -360,11 +490,21 @@
   word-wrap: break-word;
 }
 
-@media (max-width: 450px) {
+@media (min-width: 325px) and (max-width: 425px) {
   .kast-btn {
     position: absolute;
     left: 155px;
     top: 300px;
+  }
+}
+@media (min-width: 2501px) {
+  .kast-btn {
+    position: absolute;
+    height: 4vh;
+    top: 380px;
+    left: 50vw;
+    font-size: max(1.5vw, 30px);
+    width: 10vw;
   }
 }
 .ad-head {
@@ -381,12 +521,20 @@
   word-wrap: break-word;
 }
 
-@media (max-width: 450px) {  
+@media (min-width: 325px) and (max-width: 425px) {  
   .ad-head { 
     width: 287px; height: 63px;
     position: absolute;
     top: 20px;
     left: 107px;
+  }
+}
+@media (min-width: 2501px) {
+  .ad-head { 
+    width: max(387px, 40vw);
+    position: absolute;
+    left: 27vw;
+    font-size: max(2vw, 26px);
   }
 }
 .ad-sub {
@@ -401,7 +549,7 @@
   top: 67px;
 }
 
-@media (max-width: 450px) {  
+@media (min-width: 325px) and (max-width: 425px) {  
   .ad-sub { 
     width: 287px; height: 63px;
     position: absolute;
@@ -409,27 +557,42 @@
     left: 107px;
   }
 }
+@media (min-width: 2501px) {
+  .ad-sub { 
+    width: max(287px, 40vw);
+    position: absolute;
+    left: 27vw;
+    font-size: max(2vw, 26px);
+  }
+}
 .ad-img {
-  width: 456px;
+  width: 26vw;
   height: 200px;
   border-radius: 2px;
-  left: 779px;
+  left: 74vw;
   position: absolute;
 }
 
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .ad-img {
-    width: 600px;
-    position: absolute;
-    left: 1400px;
+    width: 25vw;
+    position: relative;
+    left: 37vw;
      
   }
 }
 
-@media (max-width: 450px) {  
+@media (min-width: 2501px) {
+  .ad-img {
+    width:23vw;
+    position: absolute;
+    left: 77vw;
+  }
+}
+@media (min-width: 325px) and (max-width: 425px) {  
   .ad-img { 
-    width: 530px; height: 236px;
+    width: 100vw; height: 236px;
     position: absolute;
     top: 138px;
     left: 0px;
@@ -443,7 +606,7 @@
   left: -390px;
   top: 40px;
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .delivery-img {
     width: 76px;
     height: 76px;
@@ -465,7 +628,13 @@
   top: 160px;
 }
 
-
+@media (min-width: 1024px) {
+  .delivery-head-txt {
+    position: relative;
+    left: -27vw;
+    top: -10px;
+  }
+}
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .delivery-head-txt {
@@ -475,7 +644,7 @@
     top: 60px;
   }
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .delivery-head-txt {
     width: 163px;
     height: 26px;
@@ -500,7 +669,7 @@
   top: -10px;
   text-align: left;
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .delivery-sub-sub-txt {
     width: 208px;
     height: 26px;
@@ -517,7 +686,7 @@
   top: -64px;
   left: -150px;
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .fast-del {
     border-radius: 2px;
     position: absolute;
@@ -536,7 +705,7 @@
   top: -145px;
   left: -55px;
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .verdenzing {
     width: 125px;
     height: 26px;
@@ -545,6 +714,7 @@
     left: 142px;
   }
 }
+
 .sub-fast-del {
   width: 200px;
   height: 30px;
@@ -558,7 +728,7 @@
   left: 289px;
   word-wrap: break-word;
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .sub-fast-del {
     width: 155px;
     height: 26px;
@@ -579,7 +749,7 @@
   top: -209px;
   left: 430px;
 }
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .newsletter-subscribe {
     width: 355px;
     height: 26px;
@@ -601,7 +771,7 @@
   word-wrap: break-word;
 }
 .field-div-newsletter {
-  width: 537px;
+  width: 24vw;
   height: 40.54px;
   position: relative;
   flex-direction: row;
@@ -611,7 +781,7 @@
   left: 460px;
 }
 
-@media (max-width: 450px) { 
+@media (min-width: 325px) and (max-width: 425px) { 
   .field-div-newsletter {
     width: 430px;
     height: 40.54px;
