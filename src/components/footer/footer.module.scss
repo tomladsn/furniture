@@ -99,9 +99,16 @@
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .div-fr4 {
       position: relative;
-      top: -25px;
+
       left: 87vw;
      
+  }
+}
+@media (min-width: 2501px) {
+  .div-fr4 {
+    position: relative;
+
+    left: 87vw;
   }
 }
 @media (max-width: 435px) {

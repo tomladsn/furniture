@@ -23,9 +23,9 @@
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .root {
-    width: 60vw;
+    width: 80vw;
     position: relative;
-    left: 20vw;
+    left: 10vw;
   }
 }
 @media (min-width: 2501px) {
@@ -100,7 +100,14 @@
 @media (min-width: 1024px) {
   .left-arrow {
     position: absolute;
-    left: 68vw;
+    left: 72vw;
+    top: 120px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .left-arrow {
+    position: absolute;
+    left: 58vw;
     top: 110px;
   }
 }

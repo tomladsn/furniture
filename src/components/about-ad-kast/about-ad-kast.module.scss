@@ -634,9 +634,9 @@
 
 @media (min-width: 1024px) {
   .delivery-head-txt {
-    position: relative;
-    left: -27vw;
-    top: -10px;
+    position: absolute;
+    left: 26vw;
+    top: 11vw;
   }
 }
 @media screen and (min-width: 1800px) {
@@ -782,7 +782,7 @@
   align-items: start;
   display: block;
   top: -210px;
-  left: 460px;
+  left: 490px;
 }
 
 @media (max-width: 435px) { 
@@ -797,7 +797,7 @@
   }
 }
 .newsletter-input {
-  width: 45vw;
+  width: 155px;
   height: 30px;
   border-radius: 8px;
   border: 1px black solid;
