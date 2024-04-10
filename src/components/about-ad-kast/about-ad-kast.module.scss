@@ -5,7 +5,7 @@
   top: 1751px;
 }
 
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .root {
     position: absolute;
     top: 2720px;
@@ -31,9 +31,9 @@
   position: relative;
   box-shadow: 0px 3px 6px rgba(18, 15, 40, 0.12);
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .about-block {
-    min-width: 460px;
+    min-width: 100vw;
     height: 1422px;
 }
 }
@@ -77,7 +77,7 @@
   background-color: rgb(243, 243, 243);
   width: initial;
 }
-@media (min-width: 325px) and (max-width: 425px)  {
+@media (max-width: 435px)  {
   .kast {
     max-width: 430px;
     height: 800px;
@@ -111,13 +111,13 @@
   }
 }
 
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .imgabout1 {
-    width: 405px;
-    height: 474px;
+    width: 90vw;
+    height: 60vh;
     position: absolute;
     top: 500px;
-    left: 68px;
+    left: 5vw;
   }
 }
 @media (min-width: 1024px) {
@@ -165,12 +165,13 @@
   }
 }
 
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .imgabout2 {
-    width: 330px; height: 318px;
+    width: 70vw;
+    height: 50vh;
     position: absolute;
-    top: 1029px;
-    left: 105px;
+    top: 909px;
+    left: 15vw;
   }
 }
 @media (min-width: 2501px) {
@@ -212,7 +213,7 @@
    
   }
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .ad {
     width: auto;
     height: 371px;
@@ -239,9 +240,9 @@
   }
 }
 
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .newsletterDiv {
-    width: auto;
+    width: 100vw;
    height: 425px;
     display: flex;
   }
@@ -265,9 +266,9 @@
      
   }
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .newsletter-subdiv {
-    width: 430px;
+    width: 100vw;
     height: 405px;
    
   }
@@ -278,9 +279,9 @@
   box-shadow: 2px 2px 2px rgba(23, 26, 31, 0.19);
   border-radius: 4px;
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .newslettersubsubdiv {
-    width: 403px;
+    width: 90vw;
     height: 335px;
    
   }
@@ -297,12 +298,12 @@
   top: 40px;
   left: 151px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .about_title {
-    width: 264px;
-    font-size: 64px;
+    width: 50vw;
+    font-size: min(13vw, 60px);
     position: absolute;
-    left: 120px;
+    left: 14vw;
   }
 }
 @media (min-width: 2501px) {
@@ -326,13 +327,13 @@
   left: 60px;
   text-align: left;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .about-us {
-    width: 350px;
-    width: 350px;
+    width: 80vw;
     position: absolute;
     top: 130px;
-    left: 113px;
+    left: 15vw;
+    font-size: min(6vw, 28px);
   }
 }
 @media (min-width: 1024px) {
@@ -364,7 +365,7 @@
   left: 93px;
 }
 
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .about-us-btn {
   }
 }
@@ -384,13 +385,12 @@
   left: 8px;
   border-radius: 2px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .kast-img {
     position: absolute;
-    top: 275px;
-    left: 0px;
-    width: 500px;
-    height: 500px;
+    top: 305px;
+    width: 90vw;
+    height: 80vh;
   }
 }
 @media (min-width: 2501px) {
@@ -411,10 +411,10 @@
   top: 110px;
   left: 723px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .kast-heading {
     position: absolute;
-    left: 179px;
+    left: 30vw;
     top: 10px;
   }
 }
@@ -438,12 +438,12 @@
   top: 200px;
   word-wrap: break-word;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .kast-desc {
     position: absolute;
-    left: 64px;
-    top: 100px;
-    width: 389px;
+    left: 10vw;
+    top: 80px;
+    width: 80vw;
     text-align: center;
   }
 }
@@ -490,10 +490,10 @@
   word-wrap: break-word;
 }
 
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .kast-btn {
     position: absolute;
-    left: 155px;
+    left: 25vw;
     top: 300px;
   }
 }
@@ -521,12 +521,14 @@
   word-wrap: break-word;
 }
 
-@media (min-width: 325px) and (max-width: 425px) {  
+@media (max-width: 435px) {  
   .ad-head { 
-    width: 287px; height: 63px;
+    width: 70vw;
+    height: 63px;
     position: absolute;
-    top: 20px;
-    left: 107px;
+    top: 10px;
+    font-size: min(10vw, 24px);
+    left: 15vw;
   }
 }
 @media (min-width: 2501px) {
@@ -549,12 +551,14 @@
   top: 67px;
 }
 
-@media (min-width: 325px) and (max-width: 425px) {  
+@media (max-width: 435px) {  
   .ad-sub { 
-    width: 287px; height: 63px;
+    width: 70vw;
+    height: 63px;
     position: absolute;
-    top: 65px;
-    left: 107px;
+    font-size: min(8vw, 30px);
+    top: 75px;
+    left: 15vw;
   }
 }
 @media (min-width: 2501px) {
@@ -590,7 +594,7 @@
     left: 77vw;
   }
 }
-@media (min-width: 325px) and (max-width: 425px) {  
+@media (max-width: 435px) {  
   .ad-img { 
     width: 100vw; height: 236px;
     position: absolute;
@@ -606,14 +610,14 @@
   left: -390px;
   top: 40px;
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .delivery-img {
     width: 76px;
     height: 76px;
     border-radius: 38px;
     position: absolute;
     top: 47px;
-    left: 70px;
+    left: 10vw;
   }
 }
 .delivery-head-txt {
@@ -644,7 +648,7 @@
     top: 60px;
   }
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .delivery-head-txt {
     width: 163px;
     height: 26px;
@@ -652,7 +656,7 @@
     font-size: 24px;
     position: absolute;
     top: 44px;
-    left: 154px;
+    left: 30vw;
   }
 }
 .delivery-sub-sub-txt {
@@ -669,15 +673,15 @@
   top: -10px;
   text-align: left;
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .delivery-sub-sub-txt {
-    width: 208px;
+    width: 158px;
     height: 26px;
     border-radius: 38px;
     font-size: 16px;
     position: absolute;
     top: 75px;
-    left: 154px;
+    left: 34vw;
   }
 }
 .fast-del {
@@ -686,12 +690,12 @@
   top: -64px;
   left: -150px;
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .fast-del {
     border-radius: 2px;
     position: absolute;
     top: 139px;
-    left: 68px;
+    left: 10vw;
   }
 }
 .verdenzing {
@@ -705,13 +709,13 @@
   top: -145px;
   left: -55px;
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .verdenzing {
     width: 125px;
     height: 26px;
     position: absolute;
     top: 139px;
-    left: 142px;
+    left: 30vw;
   }
 }
 
@@ -728,13 +732,13 @@
   left: 289px;
   word-wrap: break-word;
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .sub-fast-del {
     width: 155px;
     height: 26px;
     position: absolute;
     top: 179px;
-    left: 142px;
+    left: 30vw;
   }
 }
 .newsletter-subscribe {
@@ -749,13 +753,13 @@
   top: -209px;
   left: 430px;
 }
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .newsletter-subscribe {
-    width: 355px;
+    width: 255px;
     height: 26px;
     position: absolute;
     top: 219px;
-    left: 80px;
+    left: 15vw;
     text-align: left;
   }
 }
@@ -781,19 +785,19 @@
   left: 460px;
 }
 
-@media (min-width: 325px) and (max-width: 425px) { 
+@media (max-width: 435px) { 
   .field-div-newsletter {
-    width: 430px;
+    width: 10vw;
     height: 40.54px;
     flex-direction: row;
     position: absolute;
     display: block;
     top: 326px;
-    left: 80px;
+    left: 10vw;
   }
 }
 .newsletter-input {
-  width: 270px;
+  width: 45vw;
   height: 30px;
   border-radius: 8px;
   border: 1px black solid;

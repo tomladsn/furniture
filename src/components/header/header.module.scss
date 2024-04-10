@@ -3,7 +3,7 @@
   height: 1000px;
   margin: 0;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .root {
     width: 100vw;
     height: 800px;
@@ -27,7 +27,7 @@
   background-origin: padding-box;
   background-clip: border-box;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .header {
     height: 800px;
     width: auto;
@@ -58,19 +58,19 @@
   left: 98px;
   text-align: left;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .header-big {
-    width: 510px;
+    width: 80vw;
     height: 37px;
     color: white;
-    font-size: 70px;
     font-family: Inria Serif;
     font-weight: 700;
     line-height: 73px;
     word-wrap: break-word;
     position: absolute;
-    left: 10px;
-    top: 196px;
+    left: 10vw;
+    top: 20vw;
+    font-size: min(15vw, 70px);
     text-align: center;
   }
 }
@@ -97,20 +97,20 @@
   top: 400px;
   text-align: left;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .header-big1 {
-    width: 380px;
+    width: 80vw;
     height: 84px;
     color: white;
-    font-size: 28px;
     font-family: Inria Serif;
     font-weight: 400;
     line-height: 33px;
     letter-spacing: 1.12px;
     position: absolute;
     word-wrap: break-word;
-    left: 90px;
-    top: 380px;
+    left: 15vw;
+    font-size: min(7vw, 28px);
+    top: 60vh;
   }
 }
 @media (min-width: 2501px) {
@@ -145,11 +145,13 @@
   left: 107px;
   top: 510px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .header-btn1 {
     position: absolute;
-    left: 170px;
-    top: 554px;
+    font-size: min(6vw, 24px);
+    left: 20vw;
+    top: 450px;
+    width: 57vw;
   }
 }
 @media (min-width: 2501px) {
@@ -185,11 +187,13 @@
   left: 362px;
   top: 510px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .header-btn2 {
     position: absolute;
-    top: 666px;
-    left: 170px;
+    font-size: min(6vw, 24px);
+    left: 20vw;
+    top: 550px;
+    width: 57vw;
   }
 }
 @media (min-width: 2501px) {
@@ -223,13 +227,13 @@
     left: 1vw;
   }
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .feature-prod {
     position: absolute;
     top: 750px;
-    left: 117px;
+    left: 13vw;
     flex-wrap: wrap;
-    width: 307px;
+    width: 40vw;
     height: 1000px;
   }
 }
@@ -262,7 +266,7 @@
   left: 125px;
 }
 
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .featured-text {
     position: relative;
     top: 300px;

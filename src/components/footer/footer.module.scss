@@ -3,9 +3,9 @@
   height: 300px;
   background-color: #ffffff;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .root {
-    width: 430px;
+    width: 100vw;
     height: 667px;
     position: absolute;
     top: 6900px;
@@ -24,6 +24,13 @@
   top: 114px;
   text-align: left;
 }
+@media (max-width: 435px) {
+  .footer-txtunderlogo {
+    position: absolute;
+    left: 10vw;
+    width: 80vw;
+  }
+}
 .div-fr2 {
   width: 169px;
   height: 53px;
@@ -31,10 +38,10 @@
   left: 390px;
   top: 70px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .div-fr2 {
     position: absolute;
-    left: 100px;
+    left: 20vw;
     top: 260px;
   }
 }
@@ -61,10 +68,10 @@
      
   }
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .div-fr3 {
     position: absolute;
-    left: 90px;
+    left: 20vw;
     top: 380px;
   }
 }
@@ -97,10 +104,10 @@
      
   }
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .div-fr4 {
     position: absolute;
-    left: 90px;
+    left: 20vw;
     top: 580px;
   }
 }
@@ -111,6 +118,11 @@
   left: 35px;
   top: 10px;
   position: absolute;
+}
+@media (max-width: 435px) {
+  .footer-logo {
+    width: 80vw;
+  }
 }
 .studio-footer {
   color: #171a1f;
@@ -192,11 +204,12 @@
   top: 255px;
   left: 400px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .copyright-1 {
     position: absolute;
-    left: 50px;
+    left: 5vw;
     top: 700px;
+    width: 90vw;
   }
 }
 

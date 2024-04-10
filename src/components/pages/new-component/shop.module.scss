@@ -2,7 +2,7 @@
   width: 100%;
   overflow-x: hidden;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .root {
     width: 430px;
   }
@@ -14,7 +14,7 @@
   position: relative;
   margin: 40px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .shop-div {
     display: flex;
     width: 130px;
@@ -32,7 +32,7 @@
 .nav-shop {
   width: 100%;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .nav-shop {
 
     width: 100vw;
@@ -56,7 +56,7 @@
   margin-Left: 39px;
   margin-Top: 30px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .text-shop {
     width: 420px;
     margin-left: 3px;

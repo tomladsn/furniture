@@ -3,7 +3,7 @@
   width: auto;
   background-color: rgba(245, 245, 247, 1);
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .root {
     height: 698px;
     width: 100vw;
@@ -43,11 +43,12 @@
   align-items: stretch;
   left: 9vw;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .fav-prod {
     position: absolute;
-    top: 309px;
-
+    top: 279px;
+    width: 100vw;
+    left: 0vw;
   }
 }
 @media (min-width: 1024px) {
@@ -63,10 +64,20 @@
     width: 70vw;
   }
 }
+
 @media (min-width: 2501px) {
   .fav-prod {
     overflow-x: visible;
     width: 60vw;
+  }
+}
+
+@media (max-width: 435px) {
+  .right-arrow {
+    position: absolute;
+    left: vw;
+    width: 15vw;
+    top: 40vw;
   }
 }
 .fav-prod1 {
@@ -78,11 +89,12 @@
   position: relative;
   left: 30px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .left-arrow {
     position: absolute;
-    left: 420px;
-    top: 120px;
+    left: 85vw;
+    top: 39vw;
+    width: 15vw;
   }
 }
 @media (min-width: 1024px) {
@@ -116,19 +128,19 @@
   left: 359px;
   margin: 20px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .favorite-heading {
-    width: 435px;
+    width: 70vw;
     height: 63px;
     color: #5d6665;
-    font-size: 64px;
     font-family: Inria Serif;
     font-weight: 700;
     line-height: 64px;
     word-wrap: break-word;
     position: relative;
-    left: 53px;
+    left: 7vw;
     text-align: left;
+    font-size: min(15vw, 60px);
   }
 }
 @media (min-width: 1024px) {
@@ -150,9 +162,9 @@
   left: 450px;
   margin: 20px;
 }
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .fav-sub {
-    width: 293px;
+    width: 60vw;
     height: 49px;
     color: black;
     font-size: 22px;
@@ -162,8 +174,8 @@
     word-wrap: break-word;
     text-align: left;
     position: absolute;
-    top: 163px;
-    left: 53px;
+    top: 143px;
+    left: 10vw;
   }
 }
 @media (min-width: 1024px) {
@@ -186,13 +198,13 @@
   left: -10px;
 }
 
-@media (min-width: 325px) and (max-width: 425px) {
+@media (max-width: 435px) {
   .favorite-card{
-    width: 400px;
+    width: 70vw;
     height: 330px;
     display: flex;
     flex-wrap: wrap;
-    left: 37px;
+    left: 14vw;
   }
 }
 @media (min-width: 1024px) {
