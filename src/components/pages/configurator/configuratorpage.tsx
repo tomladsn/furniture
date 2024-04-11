@@ -69,20 +69,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         <div className={classNames(styles.root, className)}>
             <Navbar />
             <div
-                className="Container90"
-                style={{
-                    width: 1440,
-                    height: 118,
-                    position: 'relative',
-                    background: 'white',
-                    boxShadow: '0px 0px 1px rgba(23, 26, 31, 0.19)',
-                    borderRadius: 2,
-                    flexDirection: 'row',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                }}
+                className={styles['Container90']}
             >
                 <img
                     className="Chevron"
@@ -117,7 +104,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         Garderobe
                     </p>
                 </div>
-                <div style={{ position: 'absolute', left: 480 }} className="tv-meubel-div">
+                <div style={{ position: 'absolute', left: '40vw' }} className="tv-meubel-div">
                     <img
                         className="meubel"
                         style={{ width: '120px', height: '112px' }}
@@ -140,7 +127,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     </p>
                 </div>
                 <div
-                    style={{ position: 'absolute', left: '880px', height: '120px' }}
+                    style={{ position: 'absolute', left: '75vw', height: '120px' }}
                     className="Kast"
                 >
                     <img
@@ -173,8 +160,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     className="ChevronLeft"
                     style={{
                         width: 42,
-                        position: 'relative',
-                        left: 1000,
+                        position: 'absolute',
+                        left: '98vw',
                         top: 75,
                         height: 38,
                         transform: 'rotate(180deg)',
@@ -194,7 +181,10 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       <Scene />
     </Canvas>
                 </div>
-                <div className={styles['configurator-listing']}>
+                <div style={{
+                       
+                    
+                    }} className={styles['configurator-listing']}>
                     <div
                         className="Container110"
                         style={{

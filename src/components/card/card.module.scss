@@ -24,10 +24,20 @@
   display: inline-flex;
   margin: 10px;
 }
-
+@media (max-width: 770px) {
+  .card-div {
+    width: 150px;
+  }
+}
 .prod-img {
   width: 266px;
   height: 218px;
+}
+@media (max-width: 770px) {
+  .prod-img {
+   height: 190px;
+    width: 140px;
+  }
 }
 
 .product-title {

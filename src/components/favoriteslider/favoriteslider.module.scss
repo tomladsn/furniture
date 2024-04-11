@@ -51,6 +51,13 @@
     left: 0vw;
   }
 }
+@media (max-width: 770px) {
+  .fav-prod {
+    position: absolute;
+    left: -1vw;
+    width: 100vw;
+  }
+}
 @media (min-width: 1024px) {
   .fav-prod {
     width: 80vw;
@@ -212,6 +219,17 @@
     display: flex;
     flex-wrap: wrap;
     left: 14vw;
+  }
+}
+@media (max-width: 770px) {
+  .favorite-card{
+    position: relative;
+    width: 70vw;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: hidden;
+    gap: 10px;
+    left: 20px;
   }
 }
 @media (min-width: 1024px) {

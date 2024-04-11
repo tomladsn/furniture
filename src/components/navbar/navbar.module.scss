@@ -7,6 +7,7 @@
   top: 0px;
  
 }
+
 @media (min-width: 2501px) {
   .root {
     width: 100vw;
@@ -51,6 +52,14 @@ p {
   top: 2px;
   left: 10px;
 }
+@media (max-width: 770px) {
+  .logo {
+    width: 30vw;
+    height: 9vh;
+    position: absolute;
+    top: 10px;
+  }
+}
 .navmenu {
   color: #171a1f;
   transform: rotate(-1deg);
@@ -65,6 +74,13 @@ p {
   position: relative;
   left: 48vw;
   top: 38px;
+}
+@media (max-width: 770px) {
+  .navmenu {
+    font-size: min(4vw, 32px);
+    position: absolute;
+    left: 42vw;
+  }
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
@@ -86,6 +102,13 @@ p {
   left: 90vw;
   top: 28px;
   position: absolute;
+}
+@media (max-width: 770px) {
+  .navicon {
+    width: 9vw;
+    position: absolute;
+    top: 22px;
+  }
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
@@ -115,6 +138,13 @@ p {
   position: absolute;
   left: 60vw;
 }
+@media (max-width: 770px) {
+  .navmenu1 {
+    font-size: min(4vw, 32px);
+    position: absolute;
+    left: 55vw;
+  }
+}
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .navmenu1 {
@@ -142,6 +172,13 @@ p {
   position: absolute;
   left: 76vw;
   top: 38px;
+}
+@media (max-width: 770px) {
+  .navmenu2 {
+    font-size: min(4vw, 32px);
+    position: absolute;
+    left: 75vw;
+  }
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
@@ -179,6 +216,12 @@ p {
     flex-wrap: wrap;
     overflow: hidden;
     width: inherit;
+  }
+}
+@media (max-width: 770px) {
+  .root {
+    width: 100vw;
+    margin: 0;
   }
 }
 @media (max-width: 435px) {

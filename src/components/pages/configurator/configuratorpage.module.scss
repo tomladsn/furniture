@@ -6,18 +6,20 @@
 .configurator-section {
 }
 .configurator-section {
-  width: auto;
-  height: 500px;
+  width: 70vw;
+  height: 50vh;
   display: flex;
   flex-wrap: wrap;
 }
 .canva-div {
-  width: 800px;
-  height: 500px;
+  width: 84vw;
+  height: 70vh;
 }
 .configurator-listing {
-  height: 500px;
+  height: 70vh;
   width: 400px;
+  position: absolute;
+  left: 84vw;
   margin-top: 0px;
   box-shadow: 1.41px 1.41px 24px -11px black;
 }
@@ -141,4 +143,24 @@
   top: 10px;
   width: 25px;
   height: 22px;
+}
+.Container90 { 
+  width: 100vw;
+  height: 118px;
+  position: relative;
+  background-color: white;
+  box-Shadow: 0px 0px 1px rgba(23, 26, 31, 0.19);
+  border-Radius: 2;
+  flex-Direction: row;
+  justify-Content: flex-start;
+  align-Items: flex-start;
+  display: flex;
+  flex-Wrap: wrap;
+}
+@media (min-width: 1024px) {
+  .Container90 {
+    width: 100vw;
+    position: relative;
+    flex-wrap: nowrap;
+  }
 }
