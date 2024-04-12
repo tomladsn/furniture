@@ -10,6 +10,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
     position: absolute;
+    overflow-x: hidden;
 }
 @media screen and (min-width: 1800px) {
   :root {
