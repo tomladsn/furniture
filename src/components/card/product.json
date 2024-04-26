@@ -3,7 +3,7 @@
       {
         "id": 1,
         "name": "Kast",
-        "image": "../src/assets/product image/Kast.png",
+        "image": "/product image/Kast.png",
         "featured": true,
         "favorite": true,
         "discount": " "
@@ -11,7 +11,7 @@
       {
         "id": 2,
         "name": "Badkamermeubel",
-        "image": "../src/assets/product image/Badkamermeubel.png",
+        "image": "/product image/Badkamermeubel.png",
         "featured": true,
         "favorite": true,
         "discount": "-35%OFF"
@@ -20,7 +20,7 @@
       {
         "id": 3,
         "name": "Garderobe",
-        "image": "../src/assets/product image/Garderobe.png",
+        "image": "/product image/Garderobe.png",
         "featured": true,
         "favorite":true,
         "discount": "-20%OFF"
@@ -28,14 +28,14 @@
       {
         "id": 4,
         "name": "TV-meubel",
-        "image": "../src/assets/product image/Tvmeubel.svg",
+        "image": "/product image/Tvmeubel.svg",
         "favorite":true,
         "discount": " "
       },
       {
         "id": 5,
         "name": "Wasruimtekast",
-        "image": "../src/assets/product image/whiteKast.svg",
+        "image": "/product image/whiteKast.svg",
         "favorite":true,
         "discount": " "
       }

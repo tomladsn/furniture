@@ -15,7 +15,7 @@ export const Navbar = ({ className }: NavbarProps) => {
         <div className={classNames(styles.root, className)}>
             <nav className={styles.navbar}>
                 <img
-                    src="../src/assets/Capture-removebg-preview 2.png"
+                    src="/Capture-removebg-preview 2.png"
                     alt=""
                     className={styles.logo}
                 />
@@ -30,7 +30,7 @@ export const Navbar = ({ className }: NavbarProps) => {
         <p className={styles.navmenu2}>Producten</p>
       </Link>
       <Link to="/checkout">
-        <img src="../src/assets/Image6.svg" alt="" className={styles.navicon} />
+      <img src="/Image6.svg" alt="" className={styles.navicon} />
       </Link>
                 </div>
             </nav>

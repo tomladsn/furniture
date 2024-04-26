@@ -14,11 +14,9 @@ export const Card = ({ className, imageUrl, title }: CardProps) => {
     return (
         <div className={classNames(styles.root, className)}>
             <div className={styles['card-div']}>
-                <img
-                    src={imageUrl}
+                <img src={imageUrl}
                     alt=""
-                    className={styles['prod-img']}
-                />
+                    className={styles['prod-img']} />
                 <p className={styles['product-title']}>{title}</p>
             </div>
         </div>

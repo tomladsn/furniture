@@ -20,18 +20,19 @@
   height: 818px;
   width: auto;
   background-repeat: no-repeat;
-  background-image: url(../src/assets/headerback.svg);
+  background-image: url(/headerback.svg);
   background-position: 50%;
   background-size: cover;
   background-attachment: scroll;
   background-origin: padding-box;
   background-clip: border-box;
 }
+
 @media (max-width: 435px) {
   .header {
     height: 800px;
     width: auto;
-    background-image: url(../src/assets/headerback.svg);
+    background-image: url(/headerback.svg);
     background-position: 50%;
     background-size: cover;
     background-repeat: no-repeat;
