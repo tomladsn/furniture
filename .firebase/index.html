@@ -1,0 +1,147 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <style>
+    .faq-section {
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    .faq1 {
+      border-radius: 5px;
+    }
+
+    .question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px;
+      font-family: Roboto;
+      margin: 30px;
+      font-size: 18px;
+    }
+
+    .toggle-btn {
+      background-color: transparent;
+      border: none;
+      color: #333;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .answer {
+      padding: 10px;
+      background-color: #01485B;
+      color: #fff;
+      display: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin: 30px;
+      font-family: Roboto;
+      max-width: 900px;
+      font-size: 18px;
+    }
+
+    .answer.show {
+        display: block;
+    position: relative;
+    bottom: 20px;
+    
+    }
+
+    .toggle-btn.minus {
+      color: yellow;
+    }
+
+    .faq1.active {
+      background-color: #01485B;
+      margin: 10px;
+    }
+
+    .question.active {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-section">
+    <div class="faq1">
+      <div class="question">
+        <h3>Lorum Ipsum?</h3>
+        <button class="toggle-btn">+</button>
+      </div>
+      <div class="answer">
+        Lorem ipsum dolor sit amet consectetur. Id a diam odio ultricies tellus vitae amet vulputate. Lorem a diam odio ul ipsum dolor sit amet consectetur.
+      </div>
+    </div>
+
+    <div class="faq1">
+      <div class="question">
+        <h3>what does chiropractic care consist of?</h3>
+        <button class="toggle-btn">+</button>
+      </div>
+      <div class="answer">
+        Lorem ipsum dolor sit amet consectetur. Id a diam odio ultricies tellus vitae amet vulputate. Lorem a diam odio ul ipsum dolor sit amet consectetur.
+      </div>
+    </div>
+
+    <div class="faq1">
+        <div class="question">
+          <h3>Can chiropractic care help my current condition?</h3>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="answer">
+          Lorem ipsum dolor sit amet consectetur. Id a diam odio ultricies tellus vitae amet vulputate. Lorem a diam odio ul ipsum dolor sit amet consectetur.
+        </div>
+      </div>
+
+      <div class="faq1">
+        <div class="question">
+          <h3>how long will it take?</h3>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="answer">
+          Lorem ipsum dolor sit amet consectetur. Id a diam odio ultricies tellus vitae amet vulputate. Lorem a diam odio ul ipsum dolor sit amet consectetur.
+        </div>
+      </div>
+      <div class="faq1">
+        <div class="question">
+          <h3>Why chiropractic care over other treatment options, such as PT or MD?</h3>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="answer">
+          Lorem ipsum dolor sit amet consectetur. Id a diam odio ultricies tellus vitae amet vulputate. Lorem a diam odio ul ipsum dolor sit amet consectetur.
+        </div>
+      </div>
+  
+  </div>
+
+  <script>
+    const faqItems = document.querySelectorAll('.faq1');
+
+    faqItems.forEach(faqItem => {
+      const question = faqItem.querySelector('.question');
+      const answer = faqItem.querySelector('.answer');
+      const toggleBtn = faqItem.querySelector('.toggle-btn');
+
+      toggleBtn.addEventListener('click', () => {
+        answer.classList.toggle('show');
+        toggleBtn.classList.toggle('minus');
+        faqItem.classList.toggle('active');
+        question.classList.toggle('active');
+        if (answer.classList.contains('show')) {
+          answer.style.display = 'block';
+          toggleBtn.textContent = '-';
+        } else {
+          answer.style.display = 'none';
+          toggleBtn.textContent = '+';
+        }
+      });
+    });
+  </script>
+    </html>
+    <style>

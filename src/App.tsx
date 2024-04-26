@@ -1,9 +1,5 @@
 import { useState } from 'react';
 import classNames from 'classnames';
-import { ReactComponent as ReactLogo } from './assets/react.svg';
-import { ReactComponent as ViteLogo } from './assets/vite.svg';
-import { ReactComponent as TypescriptLogo } from './assets/typescript.svg';
-import { ReactComponent as ScssLogo } from './assets/scss.svg';
 import styles from './App.module.scss';
 import { Navbar } from './components/navbar/navbar';
 import { Header } from './components/header/header';
@@ -15,12 +11,11 @@ import Navbar_module from './components/navbar/navbar.module.scss';
 function App() {
     return (
         <div className={styles.App}>
-            <Navbar className={Navbar_module.navbar} />
             <Header />
             <Favoriteslider className={styles['fav-slider']} />
             <AboutAdKast />
             <ContactForm />
-            <Footer className={styles.footer11} />
+            <Footer  className={styles['footer11']}/>
         </div>
     );
 }

@@ -16,7 +16,7 @@ export interface CheckOutPageProps {
 export const CheckOutPage = ({ className }: CheckOutPageProps) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <Navbar className={styles['navbar-checkout']}/>
+            
             <div className={styles['checkout-div']}>
                 <div className={styles['form-div']}>
                     <p className={styles['left-heading']}>Bestellen</p>
@@ -87,7 +87,7 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                     <button className={styles['button-listing']}>Opslaan voor later</button>
                 </div>
             </div>
-            <Footer className={styles['footer-checkout']} />
+            <Footer  className={styles['footer11']}/>
         </div>
     );
 };

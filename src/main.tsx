@@ -5,12 +5,10 @@ import './index.css';
 import { Shop } from './components/pages/new-component/shop';
 import{ CheckOutPage } from './components/pages/check-out-page/check-out-page';
 import { Configuratorpage } from './components/pages/configurator/configuratorpage'
-import {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { Layout } from './components/layout/layout';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,21 +27,28 @@ const firebaseConfig = {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <App />,
-    },
-    {
-      path: "/shop",
-      element: <Shop />,
-    },
-    {
-      path: "/configurator",
-      element: <Configuratorpage />,
-    },
-    {
-      path: "/checkout",
-      element: <CheckOutPage />,
+      element: <Layout />, // Wrap the Layout component around the routes
+      children: [
+        {
+          index: true,
+          element: <App />
+        },
+        {
+          path: "/shop",
+          element: <Shop />,
+        },
+        {
+          path: "/configurator",
+          element: <Configuratorpage />,
+        },
+        {
+          path: "/checkout",
+          element: <CheckOutPage />,
+        },
+      ],
     },
   ]);
+  
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <React.StrictMode>

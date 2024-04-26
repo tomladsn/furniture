@@ -67,7 +67,7 @@ function Scene() {
 export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <Navbar />
+        
             <div
                 className={styles['Container90']}
             >

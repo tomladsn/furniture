@@ -3,6 +3,7 @@ import styles from './shop.module.scss';
 import { Navbar } from '../../navbar/navbar';
 import { Shopcard } from '../../shopcard/shopcard';
 import products from '../../card/product.json';
+import { Footer } from '../../footer/footer';
 export interface ShopProps {
     className?: string;
 }
@@ -23,7 +24,6 @@ const favoriteItems: favoriteProducts = products.products;
 export const Shop = ({ className }: ShopProps) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <Navbar className={styles['nav-shop']} />
             <p
             className={styles['text-shop']}
 
@@ -36,6 +36,7 @@ export const Shop = ({ className }: ShopProps) => {
                         <Shopcard key={item.id} imageUrl={item.image} title={item.name} />
                     ))}
             </div>
+            <Footer  className={styles['footer11']}/>
         </div>
     );
 };
