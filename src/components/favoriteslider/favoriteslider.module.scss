@@ -240,12 +240,12 @@ width: 100vw;
   height: 325px;
   position: relative;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   margin: 1px;
   padding: 1px;
   flex-direction: row;
   align-items: center;
-  gap: 60px;
+  gap: 30px;
   left: -10px;
 }
 
