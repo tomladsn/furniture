@@ -190,9 +190,9 @@ display: none;
 @media (max-width: 500px) {
   .imgabout2 {
     width: 70vw;
-    height: 50vh;
+    height: 300px;
     position: absolute;
-    top: 909px;
+    top: 1109px;
     left: 15vw;
   }
 }
@@ -444,7 +444,7 @@ position: absolute;
     position: absolute;
     top: 305px;
     width: 90vw;
-    height: 80vh;
+    height: 330px;
   }
 }
 @media (min-width: 1380px) and (max-width: 1500px) {
@@ -456,7 +456,7 @@ width: 50vw;
  }
 }
 
-.kast-heading {
+.-heading {
   color: #5d6665;
   font-size: 64px;
   font-family: Inria Serif;
