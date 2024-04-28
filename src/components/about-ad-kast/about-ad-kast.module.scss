@@ -63,6 +63,14 @@
   top: 430px;
   left: 110px;
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .line {
+width: 150px;
+position: absolute;
+top: 300px;
+left:15vw;
+  }
+}
 @media (min-width: 2501px) {
   .line {
     position: absolute;
@@ -83,6 +91,7 @@
     height: 800px;
 }
 }
+
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .kast {
@@ -120,6 +129,14 @@
     left: 5vw;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .imgabout1 {
+ width: 40vw;
+ height: 300px;
+ position: absolute;
+ left: 56vw;
+  }
+}
 @media (min-width: 1024px) {
   .imgabout1 {
     position: absolute;
@@ -145,6 +162,11 @@
   border-radius: 2px;
   top: 188px;
   left: 950px;
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .imgabout2 {
+display: none;
+  }
 }
 @media (min-width: 1024px) {
   .imgabout2 {
@@ -274,7 +296,7 @@
   }
 }
 .newslettersubsubdiv {
-  width: 860px;
+  width: 100vw;
   height: 160px;
   box-shadow: 2px 2px 2px rgba(23, 26, 31, 0.19);
   border-radius: 4px;
@@ -285,6 +307,12 @@
     height: 335px;
    
   }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .newslettersubsubdiv {
+width: 98vw;
+position: absolute;
+ }
 }
 .about_title {
   width: 264px;
@@ -304,6 +332,14 @@
     font-size: min(13vw, 60px);
     position: absolute;
     left: 14vw;
+  }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .about_title {
+    font-size: 3em;
+    position: absolute;
+    width: 30vw;
+    left: 5vw;
   }
 }
 @media (min-width: 2501px) {
@@ -334,6 +370,15 @@
     top: 130px;
     left: 15vw;
     font-size: min(6vw, 28px);
+  }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .about-us {
+    font-size: 1.2em;
+    position: absolute;
+    width: 50vw;
+    left: 5vw;
+    top: 100px;
   }
 }
 @media (min-width: 1024px) {
@@ -369,6 +414,15 @@
   .about-us-btn {
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .about-us-btn {
+    font-size: 2em;
+    position: absolute;
+    width: 50vw;
+    left: 0.1vw;
+    top: 270px;
+  }
+}
 @media (min-width: 2501px) {
   .about-us-btn {
     font-size: max(2vw, 21px);
@@ -379,7 +433,7 @@
   }
 }
 .kast-img {
-  width: 653px;
+  width: 60vw;
   height: 559px;
   position: absolute;
   left: 8px;
@@ -392,6 +446,14 @@
     width: 90vw;
     height: 80vh;
   }
+}
+@media (min-width: 1380px) and (max-width: 1500px) {
+  .kast-img {
+position: absolute;
+left: 0vw;
+width: 50vw;
+
+ }
 }
 @media (min-width: 2501px) {
   .kast-img {
@@ -416,6 +478,19 @@
     position: absolute;
     left: 30vw;
     top: 10px;
+  }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .kast-heading {
+position: absolute;
+left:60vw;
+ }
+}
+@media (min-width: 1904px) and (max-width: 2600px)  {
+  .kast-heading {
+   
+    position: absolute;
+    left: 60vw;
   }
 }
 @media (min-width: 2501px) {
@@ -447,13 +522,28 @@
     text-align: center;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 700px) and (max-width: 900px) {
+  .kast-desc {
+position: absolute;
+left:60vw;
+width: 35vw;
+ }
+}
+@media (min-width: 1004px)  and (max-width: 1200px) {
   .kast-desc {
     position: relative;
     font-size: 2vw;
     width: 34vw;
     left: 65vw;
     top: 170px;
+  }
+}
+@media (min-width: 1904px) and (max-width: 2600px)  {
+  .kast-desc {
+    font-size: 2em;
+    position: absolute;
+    left: 60vw;
+    width: 30vw;
   }
 }
 @media (min-width: 2501px) {
@@ -497,6 +587,22 @@
     top: 300px;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .kast-btn {
+position: absolute;
+left:60vw;
+top: 420px;
+ }
+}
+@media (min-width: 1904px) and (max-width: 2600px)  {
+  .kast-btn {
+
+    position: absolute;
+    left: 60vw;
+    top: 400px;
+
+  }
+}
 @media (min-width: 2501px) {
   .kast-btn {
     position: absolute;
@@ -531,6 +637,14 @@
     left: 15vw;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .ad-head { 
+position: absolute;
+left: 4vw;
+text-align: center;
+width: 62vw;
+ }
+}
 @media (min-width: 2501px) {
   .ad-head { 
     width: max(387px, 40vw);
@@ -560,6 +674,14 @@
     top: 75px;
     left: 15vw;
   }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .ad-sub { 
+position: absolute;
+left: 1vw;
+text-align: center;
+width: 58vw;
+ }
 }
 @media (min-width: 2501px) {
   .ad-sub { 
@@ -620,6 +742,12 @@
     left: 10vw;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .delivery-img {
+ position: relative;
+  left: -330px;
+ }
+}
 .delivery-head-txt {
   color: #171a1f;
   font-size: 24px;
@@ -631,12 +759,29 @@
   left: 255px;
   top: 160px;
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .delivery-head-txt {
+    
+ position: relative;
+ left: -220px;
+ top: -50px;
 
-@media (min-width: 1024px) {
+
+ }
+}
+@media (min-width: 1000px) and (max-width: 1200px) {
   .delivery-head-txt {
     position: absolute;
-    left: 26vw;
-    top: 11vw;
+    left: 14vw;
+    top: 150px;
+  }
+}
+@media (min-width: 1380px) and (max-width: 1500px) {
+  .delivery-head-txt {
+    position:absolute;
+    font-size: 1.8em;
+    left: 25vw; 
+    
   }
 }
 @media screen and (min-width: 1800px) {
@@ -684,6 +829,22 @@
     left: 34vw;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .delivery-sub-sub-txt {
+ position: relative;
+ right: 10px;
+ top: -50px;
+
+
+ }
+}
+@media (min-width: 1000px) and (max-width: 1200px) {
+  .delivery-sub-sub-txt {
+    position: relative;
+    left: 100px;
+    
+  }
+}
 .fast-del {
   border-radius: 2px;
   position: relative;
@@ -697,6 +858,15 @@
     top: 139px;
     left: 10vw;
   }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .fast-del {
+ position: relative;
+
+ top: -90px;
+left: -90px;
+
+ }
 }
 .verdenzing {
   color: #171a1f;
@@ -717,6 +887,16 @@
     top: 139px;
     left: 30vw;
   }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .verdenzing {
+    width: 110px;
+ position: relative;
+ left: 350px;
+ top: -180px;
+ bottom: 40px;
+
+ }
 }
 
 .sub-fast-del {
@@ -741,6 +921,26 @@
     left: 30vw;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .sub-fast-del {
+ position: relative;
+ left: 300px;
+top: -160px;
+    width: 200px;
+
+ }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .newsletter-subscribe {
+  font-size: 1.7em;
+ position: relative;
+ left: 530px;
+
+    width: 200px;
+
+ }
+}
+
 .newsletter-subscribe {
   width: 444px;
   color: #5d6665;
@@ -761,6 +961,24 @@
     top: 219px;
     left: 15vw;
     text-align: left;
+  }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .newsletter-subscribe {
+    font-size: 1.7em;
+    position: relative;
+    left: 530px;
+    top: -260px;
+    width: 200px;
+
+ }
+}
+@media (min-width: 1000px) and (max-width: 1200px) {
+  .newsletter-subscribe {
+    position: relative;
+    font-size: 1.8em;
+    left: 45vw; 
+    
   }
 }
 .input-email {
@@ -795,6 +1013,16 @@
     top: 326px;
     left: 10vw;
   }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .field-div-newsletter {
+
+    position: relative;
+
+    top: -260px;
+
+
+ }
 }
 .newsletter-input {
   width: 155px;

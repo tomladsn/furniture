@@ -38,7 +38,6 @@ export const Favoriteslider = ({ className }: FavoritesliderProps) => {
             <p className={styles['favorite-heading']}>Onze favorieten</p>
             <p className={styles['fav-sub']}>Onze wekelijkse keuzes vind je hier.</p>
             <div className={styles['fav-prod']}>
-                <img className={styles['right-arrow']} src="/src/assets/product image/arrowleft.svg" onClick={handleSlideLeft} />
                 <div className={styles['favorite-card']}>
                     {favoriteItems?.length > 0 &&
                         favoriteItems
@@ -52,12 +51,6 @@ export const Favoriteslider = ({ className }: FavoritesliderProps) => {
                                 />
                             ))}
                 </div>
-
-                <img
-                    src="/src/assets/product image/arrowleft.svg"
-                    className={styles['left-arrow']}
-                    onClick={handleSlideRight}
-                />
             </div>
         </div>
     );

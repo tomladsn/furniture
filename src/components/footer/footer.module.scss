@@ -32,6 +32,14 @@
     width: 80vw;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .footer-txtunderlogo {
+ position: absolute;
+ width: 30vw;
+ left: 4vw;
+
+ }
+}
 .div-fr2 {
   width: 169px;
   height: 53px;
@@ -46,6 +54,14 @@
     top: 260px;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .div-fr2 {
+ position: absolute;
+
+ left: 40vw;
+
+ }
+}
 @media screen and (min-width: 1800px) {
   .div-fr2 {
     position: absolute;
@@ -59,6 +75,14 @@
   position: absolute;
   left: 684px;
   top: 70px;
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .div-fr3 {
+ position: absolute;
+ display: none;
+ left: 60vw;
+
+ }
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
@@ -89,6 +113,13 @@
   height: 80px;
   left: 977px;
   top: 72px;
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .div-fr4 {
+
+position: absolute;
+left: 66vw;
+ }
 }
 @media (min-width: 1024px) {
   .div-fr4 {
@@ -131,6 +162,14 @@
   .footer-logo {
     width: 80vw;
   }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .footer-logo {
+ position: absolute;
+ width: 40vw;
+ left: 4vw;
+
+ }
 }
 .studio-footer {
   color: #171a1f;
@@ -220,7 +259,14 @@
     width: 90vw;
   }
 }
-
+@media (min-width: 700px) and (max-width: 900px) {
+  .copyright-1 {
+position: absolute;
+left: 1vw;
+text-align: center;
+width: 98vw;
+ }
+}
 @media screen and (min-width: 1800px) {
   .copyright-1 {
     position: absolute;

@@ -209,7 +209,7 @@
   bottom: 110px;
   background-color: rgba(245, 245, 247, 0);
 }
-@media (min-width: 1024px) {
+@media (min-width: 1004px) and (max-width: 1300px)  {
   .feature-prod {
     width: 96vw;
     position: relative;
@@ -219,6 +219,18 @@
     flex-direction: row;
     overflow-x: hidden;
     left: 1vw;
+  }
+}
+@media (min-width: 1404px) and (max-width: 1500px)  {
+  .feature-prod {
+    width: 90vw;
+    position: relative;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    height: 401px;
+    flex-direction: row;
+    overflow-x: hidden;
+    left: 5vw;
   }
 }
 @media (min-width: 2501px) {
@@ -232,14 +244,14 @@
 @media (max-width: 435px) {
   .feature-prod {
     position: absolute;
+    margin-left: 20vw;
     top: 750px;
-    left: 13vw;
     flex-wrap: wrap;
     width: 40vw;
     height: 1000px;
   }
 }
-@media (max-width: 770px) {
+@media (min-width: 700px) and (max-width: 900px) {
   .feature-prod {
     width: 40vw;
     top: 750px;

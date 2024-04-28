@@ -12,7 +12,7 @@ export interface ContactFormProps {
 export const ContactForm = ({ className }: ContactFormProps) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <img src="/src/assets/Rectangle 3.png" className={styles['contact-img']} />
+            <img src="/Rectangle 3.png" className={styles['contact-img']} />
             <div className={styles['contact-div']}>
                 <p className={styles['contact-form-title']}>Neem contact met ons op</p>
                 <p className={styles['belons-txt']}>Bel ons</p>

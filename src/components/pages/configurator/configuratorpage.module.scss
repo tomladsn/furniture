@@ -1,5 +1,6 @@
 .root {
   width: auto;
+  height: auto;
 }
 .first-slide-block {
 }
@@ -12,8 +13,31 @@
   flex-wrap: wrap;
 }
 .canva-div {
-  width: 84vw;
+  width: 80vw;
   height: 70vh;
+}
+@media (min-width: 1004px) and (max-width: 1300px)  {
+  .canva-div {
+width: 61vw;
+
+  }
+}
+@media (min-width: 1304px) and (max-width: 1700px)  {
+  .canva-div {
+width: 80vw;
+
+
+  }
+}
+@media (min-width: 1924px) and (max-width: 2700px)  {
+  .canva-div {
+width: 60vw;
+position: absolute;
+
+
+
+
+  }
 }
 .configurator-listing {
   height: 70vh;
@@ -22,6 +46,30 @@
   left: 84vw;
   margin-top: 0px;
   box-shadow: 1.41px 1.41px 24px -11px black;
+}
+@media (min-width: 1004px) and (max-width: 1300px)  {
+  .configurator-listing {
+position: absolute;
+left: 61vw;
+
+
+  }
+}
+@media (min-width: 1304px) and (max-width: 1700px)  {
+  .configurator-listing {
+position: absolute;
+left: 71vw;
+
+
+  }
+}
+@media (min-width: 1904px) and (max-width: 2700px)  {
+  .configurator-listing {
+    position: absolute;
+    left: 77vw;
+
+
+  }
 }
 
 .Lamp {

@@ -64,13 +64,23 @@
   bottom: 250px;
   border: 1px #d9d9d9 solid;
 }
-@media (min-width: 1024px) {
+@media (min-width: 700px) and (max-width: 900px) {
+  .contact-div {
+
+position: absolute;
+left: 0vw;
+width: 100vw;
+top: 200px;
+ }
+}
+@media (min-width: 1004px) and (max-width: 1300px) {
   .contact-div {
     position: absolute;
     left: 6vw;
     top: 15vw;
   }
 }
+
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .contact-div {
@@ -114,7 +124,13 @@
     width: 100vw;
   }
  }
+ @media (min-width: 700px) and (max-width: 900px) {
+  .contact-form {
+ position: absolute;
+ left: 34vw;
 
+ }
+}
 .name-input {
   width: 280px;
   position: relative;
@@ -322,6 +338,19 @@
   position: absolute;
   word-wrap: break-word;
 }
+@media (max-width: 435px) {
+  .belons-txt {
+    position: absolute;
+    left: 4vw;
+  }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .belons-txt {
+ position: absolute;
+ left: 2vw;
+
+ }
+}
 .belons-subtxt {
   width: 254px;
   height: 50px;
@@ -339,9 +368,17 @@
 @media (max-width: 435px) {
   .belons-subtxt {
     position: absolute;
-    left: 10vw;
+    left: 4vw;
   }
  }
+ @media (min-width: 700px) and (max-width: 900px) {
+  .belons-subtxt {
+ position: absolute;
+ font-size: 1.2em;
+ left: 2vw;
+
+ }
+}
 .belons-number {
   color: black;
   font-size: 20px;
@@ -356,9 +393,16 @@
 @media (max-width: 435px) {
   .belons-number {
     position: absolute;
-    left: 10vw;
+    left: 4vw;
   }
  }
+ @media (min-width: 700px) and (max-width: 900px) {
+  .belons-number {
+ position: absolute;
+ left: 2vw;
+
+ }
+}
 .Mailons {
   width: 181px;
   color: #171a1f;
@@ -370,6 +414,19 @@
   left: 45px;
   top: 330px;
   word-wrap: break-word;
+}
+@media (max-width: 435px) {
+  .Mailons {
+    position: absolute;
+    left: 0.1vw;
+  }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .Mailons {
+ position: absolute;
+ left: 2vw;
+
+ }
 }
 .mail-address {
   width: 259px;
@@ -387,9 +444,16 @@
 @media (max-width: 435px) {
   .mail-address {
     position: absolute;
-    left: 15vw;
+    left: 4vw;
   }
  }
+ @media (min-width: 700px) and (max-width: 900px) {
+  .mail-address {
+ position: absolute;
+ left: 2vw;
+
+ }
+}
 .waar-alles {
   color: #171a1f;
   font-size: 32px;
@@ -406,9 +470,17 @@
 @media (max-width: 435px) {
   .waar-alles {
     position: absolute;
-    left: 10vw;
+    left: 4vw;
   }
  }
+ @media (min-width: 700px) and (max-width: 900px) {
+  .waar-alles {
+ position: absolute;
+ width: 30vw;
+ left: 2vw;
+
+ }
+}
 .sub-waar-alles {
   width: 208px;
   color: black;
@@ -425,6 +497,15 @@
 @media (max-width: 435px) {
   .sub-waar-alles {
     position: absolute;
-    left: 20vw;
+    left: 4vw;
+    width: 90vw;
   }
  }
+ @media (min-width: 700px) and (max-width: 900px) {
+  .sub-waar-alles {
+ position: absolute;
+ left: 2vw;
+ top: 480px;
+
+ }
+}

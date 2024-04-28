@@ -21,6 +21,14 @@
  
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .favoritecard{
+position: absolute;
+left: 0vw;
+width: 200px;
+
+ }
+}
 .card-img {
   width: 230px;
   height: 230px;
@@ -35,6 +43,13 @@
     width: 60vw;
    
   }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .card-img {
+
+width: 170px;
+
+ }
 }
 .card-title {
   width: 174px;

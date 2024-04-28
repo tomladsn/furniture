@@ -4,13 +4,12 @@
 }
 @media (max-width: 435px) {
   .root {
-    width: 450px;
-    overflow-x: hidden;
+    width: 100vw;
   }
 }
 @media (max-width: 435px) {
   .navbar-checkout {
-    width: 450px;
+    width: 100vw;
   }
 }
 .checkout-div {
@@ -21,7 +20,7 @@
 @media (max-width: 435px) {
   .checkout-div {
     display: flex;
-    width: 430px;
+    width: 100vw;
     position: relative;
     flex-wrap: wrap;
   }
@@ -35,9 +34,10 @@
 }
 @media (max-width: 435px) {
   .form-div {
-    width: 400px;
+    width: 70vw;
     height: 443px;
     margin-left: 3px;
+   margin-top: -90px;
   }
 }
 .listingdiv {
@@ -54,15 +54,13 @@
 }
 @media (max-width: 435px) {
   .listingdiv {
-    width: 390px;
+    width:80vw;
     position: relative;
     left: -45px;
+    top: 350px;
 }
 }
-.footer11 {
-  position: absolute;
-  top: 80vh
-}
+
 .container-checkout {
   display: flex;
   align-items: center;
@@ -78,7 +76,7 @@
 }
 @media (max-width: 435px) {
   .container-checkout {
-    width: 400px;
+    width: 70vw;
     position: relative;
   }
 }
@@ -93,8 +91,8 @@
 }
 @media (max-width: 435px) {
   .listing1 {
-    width: 350px;
-    left: -40px;
+    width: 70vw;
+   margin-right: 30px;
     position: relative;
   }
 }
@@ -129,8 +127,8 @@
 }
 @media (max-width: 435px) {
   .button-listing {
-    width: 350px;
-    left: -10px;
+    width: 70vw;
+    left: -15px;
     position: relative;
   }
 }
@@ -185,6 +183,12 @@
   position: relative;
   bottom: 20px;
 }
+@media (max-width: 435px) {
+  .city-label {
+    position: absolute;
+top: 255px;
+  }
+}
 .postcode {
   color: black;
   font-size: 20px;
@@ -197,6 +201,13 @@
   position: relative;
   left: 210px;
   bottom: 85px;
+}
+@media (max-width: 435px) {
+  .postcode {
+    position: absolute;
+    top: 300px;
+    left: -15px;
+  }
 }
 .button-checkout {
   width: 120px;
@@ -223,6 +234,13 @@
   right: 100px;
   bottom: 50px;
 }
+@media (max-width: 435px) {
+  .button-checkout {
+   position: absolute;
+   top: 350px;
+   left: 10px;
+  }
+}
 .first-name-input {
   width: 200px;
   height: 29px;
@@ -248,6 +266,11 @@
   border: 1px #9095a0 solid;
   bottom: 55px;
 }
+@media (max-width: 435px) {
+  .street-input {
+    width: 80vw;
+  }
+}
 .city-input {
   width: 106.12px;
   height: 29px;
@@ -258,6 +281,14 @@
   bottom: 50px;
   left: 60px;
 }
+@media (max-width: 435px) {
+  .city-input {
+    position: absolute;
+top: 255px;
+  }
+}
+
+
 .postcode-input {
   width: 108px;
   height: 29px;
@@ -267,6 +298,13 @@
   border: 1px #9095a0 solid;
   bottom: 122px;
   left: 300px;
+}
+@media (max-width: 435px) {
+  .postcode-input {
+    position: absolute;
+    top: 300px;
+    left: 60px;
+  }
 }
 .text--1 {
   position: absolute;
@@ -362,7 +400,7 @@
 @media (max-width: 435px) {
   .close-icon-circle {
     top: 30px;
-    left: 314px;
+    left: 190px;
     position: absolute;
   }
 }
@@ -376,7 +414,7 @@
 @media (max-width: 435px) {
   .icon-circle2 {
     top: 30px;
-    left: 314px;
+    left: 190px;
     position: absolute;
   }
 }
@@ -390,7 +428,7 @@
 @media (max-width: 435px) {
   .circle-icon3 {
     top: 30px;
-    left: 314px;
+    left: 190px;
     position: absolute;
   }
 }
@@ -404,11 +442,20 @@
 @media (max-width: 435px) {
   .class-circle-4 {
     top: 30px;
-    left: 314px;
+    left: 190px;
     position: absolute;
   }
 }
 .footer-checkout {
   position: relative;
   top: 580px;
+}
+
+.last-div {
+  margin-bottom: 50px;
+}
+@media (max-width: 435px) {
+.last-div {
+width: 70vw;
+  }
 }

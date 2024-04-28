@@ -13,7 +13,7 @@ export const Footer = ({ className }: FooterProps) => {
     return (
         <div className={classNames(styles.root, className)}>
             <img
-                src="/src/assets/Capture-removebg-preview 2.png"
+                src="/Capture-removebg-preview 2.png"
                 className={styles['footer-logo']}
             />
             <p className={styles['footer-txtunderlogo']}>
@@ -31,8 +31,8 @@ export const Footer = ({ className }: FooterProps) => {
             </div>
             <div className={styles['div-fr4']}>
                 <p className={styles['footer-fr4-heading']}>Payment Methods</p>
-                <img src="/src/assets/Image 120.svg" className={styles['footer-firstimg']} />
-                <img src="/src/assets/Image122.png" className={styles['footer-secondimg']} />
+                <img src="/Image 120.svg" className={styles['footer-firstimg']} />
+                <img src="/Image122.png" className={styles['footer-secondimg']} />
                 <p className={styles['text-payment']}>VISA</p>
             </div>
             <p className={styles['copyright-1']}>2024@ VI Interieur AllRights Reserved</p>

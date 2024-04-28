@@ -1,15 +1,15 @@
 .root {
-  width: 100%;
-  overflow-x: hidden;
+  width: 100vw;
 }
 @media (max-width: 435px) {
   .root {
-    width: 430px;
+    width: 100vw;
   }
 }
 .shop-div {
   display: flex;
-  width: 1200px;
+  width: 100vw;
+  flex-direction: row;
   flex-wrap: wrap;
   position: relative;
   margin: 40px;
@@ -19,8 +19,9 @@
     display: flex;
     width: 130px;
     flex-wrap: wrap;
-    position: relative;
-    left: 80px;
+    position: absolute;
+ align-self: center;
+   align-items: center;
   }
 }
 @media screen and (min-width: 1800px) {
@@ -58,7 +59,7 @@
 }
 @media (max-width: 435px) {
   .text-shop {
-    width: 420px;
+    width: 100vw;
     margin-left: 3px;
     font-size: 48px;
 
@@ -67,4 +68,18 @@
 .footer11 {
   position: absolute;
   top: 100vh
+}
+@media (max-width: 435px) {
+  .footer11 {
+position: absolute;
+top: 2300px;
+
+  }
+}
+@media (min-width: 700px) and (max-width: 1000px) {
+  .footer11 {
+position: absolute;
+top: 1400px;
+
+  }
 }

@@ -23,17 +23,17 @@ export const AboutAdKast = ({ className }: AboutAdKastProps) => {
                 <div className={styles.line} />
 
                 <img
-                    src="/src/assets/product image/Image 129about2.png"
+                    src="/product image/Image 129about2.png"
                     className={styles.imgabout1}
                 />
                 <img
-                    src="/src/assets/product image/Image 130about1.png"
+                    src="/product image/Image 130about1.png"
                     className={styles.imgabout2}
                 />
             </div>
             <div className={styles.kast}>
                 <img
-                    src="/src/assets/product image/Image 152Kast.png"
+                    src="/product image/Image 152Kast.png"
                     className={styles['kast-img']}
                 />
                 <p className={styles['kast-heading']}>Kast</p>
@@ -47,13 +47,13 @@ export const AboutAdKast = ({ className }: AboutAdKastProps) => {
             <div className={styles.ad}>
                 <p className={styles['ad-head']}>EINDE VAN HET SEIZOEN UITVERKOOP</p>
                 <p className={styles['ad-sub']}>35% KORTING</p>
-                <img src="/src/assets/product image/Image 96ad.png" className={styles['ad-img']} />
+                <img src="/product image/Image 96ad.png" className={styles['ad-img']} />
             </div>
             <div className={styles.newsletterDiv}>
                 <div className={styles['newsletter-subdiv']}>
                     <div className={styles.newslettersubsubdiv}>
                         <img
-                            src="/src/assets/product image/Image 85deliverynewsletter.png"
+                            src="/product image/Image 85deliverynewsletter.png"
                             className={styles['delivery-img']}
                         />
                         <p className={styles['delivery-head-txt']}>Snelle levering</p>
@@ -61,7 +61,7 @@ export const AboutAdKast = ({ className }: AboutAdKastProps) => {
                             Levering binnen minder dan 20 dagen
                         </p>
                         <img
-                            src="/src/assets/product image/Image 87newsletter.png"
+                            src="/product image/Image 87newsletter.png"
                             className={styles['fast-del']}
                         />
                         <p className={styles.verdenzing}>Verzending</p>

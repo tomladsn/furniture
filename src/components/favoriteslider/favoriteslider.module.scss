@@ -58,6 +58,14 @@
     width: 100vw;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .fav-prod {
+position: absolute;
+left: 0vw;
+width: 100vw;
+
+ }
+}
 @media (min-width: 1024px) {
   .fav-prod {
     width: 80vw;
@@ -157,6 +165,26 @@
     font-size: min(15vw, 60px);
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .favorite-heading {
+
+ position: relative;
+ left: 1px;
+    width: auto;
+
+ }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+  .favorite-card{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    left: 1vw;
+    gap: 1px;
+    width: 100vw;
+
+ }
+}
 @media (min-width: 1024px) {
   .favorite-heading {
     position: relative;
@@ -192,6 +220,15 @@
     left: 10vw;
   }
 }
+@media (min-width: 700px) and (max-width: 900px) {
+  .fav-sub {
+
+ position: relative;
+ left: 1px;
+    width: auto;
+
+ }
+}
 @media (min-width: 1024px) {
   .fav-sub {
     position: relative;
@@ -214,29 +251,33 @@
 
 @media (max-width: 435px) {
   .favorite-card{
-    width: 70vw;
+    width: 200px;
     height: 330px;
     display: flex;
     flex-wrap: wrap;
-    left: 14vw;
-  }
-}
-@media (max-width: 770px) {
-  .favorite-card{
-    position: relative;
-    width: 70vw;
-    flex-wrap: wrap;
-    flex-direction: column;
-    overflow-x: hidden;
     gap: 10px;
-    left: 20px;
+    left: 16vw;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 700px) and (max-width: 900px) {
+  .favorite-card{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    left: 1vw;
+    gap: 1px;
+    width: 100vw;
+
+ }
+}
+@media (min-width: 1000px) and (max-width: 1200px) {
   .favorite-card{
     position: relative;
+    width: 80vw;
     left: 1vw;
     flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.4vw;
   }
 }
 @media (min-width: 2501px) {

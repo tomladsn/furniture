@@ -24,12 +24,9 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                     <p className={styles['first-name']}>Voornaam</p>
                     <input className={styles['first-name-input']} />
                     <div
+                    className={styles['last-div']}
                         style={{
-                            width: 208,
-                            height: 50,
-                            position: 'relative',
-                            left: '230px',
-                            bottom: '66px',
+                            
                         }}
                     >
                         <p className={styles['second-name']}>Achternaam</p>
@@ -40,8 +37,10 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                     <p className={styles['city-label']}>Plaats</p>
                     <input className={styles['city-input']} />
                     <p className={styles.postcode}>Postcode</p>
+                    <div className={styles['post-code-div']}>
                     <input className={styles['postcode-input']} />
                     <button className={styles['button-checkout']}>Bestellen</button>
+                    </div>
                 </div>
                 <div className={styles.listingdiv}>
                     <p className={styles['heading-checkout']}>Winkelwagen</p>
@@ -49,7 +48,7 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                         <div className={styles.listing1}>
                             <img
                                 style={{ width: '80px', height: 70, borderRadius: 10 }}
-                                src="/src/assets/product image/Garderobe.png"
+                                src="/product image/Garderobe.png"
                             />
                             <p className={styles['text--1']}>Garderobe</p>
                             <IoMdCloseCircle className={styles['close-icon-circle']} />
@@ -57,7 +56,7 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                         <div className={styles.listing1}>
                             <img
                                 style={{ width: 94, height: '80px', borderRadius: 10 }}
-                                src="/src/assets/product image/Badkamermeubel.png"
+                                src="/product image/Badkamermeubel.png"
                             />
                             <p className={styles['text--2']}>Kast</p>
                             <IoMdCloseCircle className={styles['icon-circle2']} />
@@ -65,7 +64,7 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                         <div className={styles.listing1}>
                             <img
                                 style={{ width: 95, height: '80px', borderRadius: 65 }}
-                                src="/src/assets/product image/Kast.png"
+                                src="/product image/Kast.png"
                             />
                             <p className={styles['text--3']}>Kast</p>
                             <IoMdCloseCircle className={styles['circle-icon3']} />
@@ -78,7 +77,7 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                                     borderRadius: 2,
                                     marginLeft: '10px',
                                 }}
-                                src="/src/assets/product image/Image 50.png"
+                                src="/product image/Image 50.png"
                             />
                             <p className={styles['text--4']}>Kast</p>
                             <IoMdCloseCircle className={styles['class-circle-4']} />
@@ -87,7 +86,7 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                     <button className={styles['button-listing']}>Opslaan voor later</button>
                 </div>
             </div>
-            <Footer  className={styles['footer11']}/>
+            <Footer  className={styles['footer-checkout']}/>
         </div>
     );
 };

@@ -79,14 +79,14 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         position: 'relative',
                         top: '30px',
                     }}
-                    src="/src/assets/product image/arrowleft.svg"
+                    src="/product image/arrowleft.svg"
                 />
 
                 <div className={styles['first-slide-block']}>
                     <img
                         className="Image50"
                         style={{ borderRadius: 2, height: '110px', width: '130px' }}
-                        src="/src/assets/product image/Garderobe.png"
+                        src="/product image/Garderobe.png"
                     />
                     <p
                         className="Lamp"
@@ -108,7 +108,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     <img
                         className="meubel"
                         style={{ width: '120px', height: '112px' }}
-                        src="/src/assets/product image/Tvmeubel.svg"
+                        src="/product image/Tvmeubel.svg"
                     />
                     <p
                         className="LivingRoom"
@@ -138,7 +138,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                             boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
                             borderRadius: 2,
                         }}
-                        src="/src/assets/product image/Kast.png"
+                        src="/product image/Kast.png"
                     />
                     <p
                         className="NewNow"
@@ -149,8 +149,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                             fontWeight: 400,
                             overflowWrap: 'break-word',
                             position: 'relative',
-                            left: '150px',
+                            left: '140px',
                             bottom: '70px',
+                            width: 50
                         }}
                     >
                         Kast
@@ -167,7 +168,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         transform: 'rotate(180deg)',
                         transformOrigin: '0px 0px',
                     }}
-                    src="/src/assets/product image/arrowleft.svg"
+                    src="/product image/arrowleft.svg"
                 />
             </div>
             <div className={styles['configurator-section']}>
