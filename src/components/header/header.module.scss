@@ -3,7 +3,7 @@
   height: 1000px;
   margin: 0;
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .root {
     width: 100vw;
     height: 800px;
@@ -28,7 +28,7 @@
   background-clip: border-box;
 }
 
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .header {
     height: 800px;
     width: auto;
@@ -59,7 +59,7 @@
   left: 98px;
   text-align: left;
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .header-big {
     width: 80vw;
     height: 37px;
@@ -98,7 +98,7 @@
   top: 400px;
   text-align: left;
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .header-big1 {
     width: 80vw;
     height: 84px;
@@ -111,7 +111,7 @@
     word-wrap: break-word;
     left: 15vw;
     font-size: min(7vw, 28px);
-    top: 60vh;
+    top: 300px;
   }
 }
 @media (min-width: 2501px) {
@@ -146,7 +146,7 @@
   left: 107px;
   top: 510px;
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .header-btn1 {
     position: absolute;
     font-size: min(6vw, 24px);
@@ -188,7 +188,7 @@
   left: 362px;
   top: 510px;
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .header-btn2 {
     position: absolute;
     font-size: min(6vw, 24px);
@@ -241,7 +241,7 @@
     font-size: min(10vw, 40px);
   }
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .feature-prod {
     position: absolute;
     margin-left: 20vw;
@@ -289,7 +289,7 @@
   left: 125px;
 }
 
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .featured-text {
     position: relative;
     top: 300px;

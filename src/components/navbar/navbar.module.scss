@@ -29,12 +29,12 @@ p {
   position: relative;
   width: 100vw;
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .navbar {
     width: 100vw;
   }
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .navmen {
     display: none;
   }
@@ -206,7 +206,7 @@ p {
     display: none; /* Hide the menu icon on screens wider than 450px (desktop view) */
   }
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .root {
     width: 100vw;
     height: 70px;
@@ -224,7 +224,7 @@ p {
     margin: 0;
   }
 }
-@media (max-width: 435px) {
+@media (max-width: 500px) {
   .logo {
     position: absolute;
     bottom: 30px;
