@@ -24,7 +24,7 @@ width: 61vw;
 }
 @media (min-width: 1304px) and (max-width: 1700px)  {
   .canva-div {
-width: 80vw;
+width: 60vw;
 
 
   }
@@ -40,6 +40,7 @@ position: absolute;
   }
 }
 .configurator-listing {
+  z-index: 999;
   height: 70vh;
   width: 400px;
   position: absolute;

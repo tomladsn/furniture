@@ -174,7 +174,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             <div className={styles['configurator-section']}>
                 <div className={styles['canva-div']}>
                 <Canvas
-      style={{ background: 'black' }} // Set the background color to black
+      style={{ background: 'black', width: '70vw' }} // Set the background color to black
     >
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
