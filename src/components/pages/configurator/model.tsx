@@ -1,9 +1,22 @@
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { Group, Mesh } from 'three';
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF('../../../assets/living room_furniture.glb')
+interface ModelProps {
+  position?: [number, number, number];
+}
+
+interface CustomNode {
+  geometry?: any; // Adjust this type to match your actual geometry type
+}
+
+
+interface CustomNodes {
+  [nodeName: string]: CustomNode;
+}
+export function Model(props: ModelProps) {
+  const { nodes, materials } = useGLTF('src/components/pages/configurator/model.glb') as { nodes: CustomNodes, materials: { [name: string]: any } };
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -82,4 +95,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('../../../assets/living room_furniture.glb')
+useGLTF.preload('src/components/pages/configurator/model.glb')
