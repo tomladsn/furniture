@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+
 .root {
   height: 458px;
   width: auto;
@@ -79,13 +82,16 @@ width: 100vw;
   }
 }
 
-@media screen and (min-width: 1800px) {
-  /* Your CSS rules for devices with a minimum width of 1800 pixels */
-  .fav-prod {
-    width: 70vw;
-  }
-}
 
+@media (min-width: 1500px) and (max-width: 2400px) {
+  .fav-prod {
+
+width: 60vw;
+position: relative;
+left: 20vw;
+
+ }
+}
 @media (min-width: 2501px) {
   .fav-prod {
     overflow-x: visible;
