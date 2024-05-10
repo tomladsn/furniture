@@ -139,13 +139,21 @@ left:15vw;
  left: 56vw;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1500px) {
   .imgabout1 {
     position: absolute;
     width: 30vw;
     height: 35vw;
     top: 130px;
     left: 43vw;
+  }
+}
+@media (min-width: 1800px) and (max-width: 2000px) {
+  .imgabout1 {
+
+    position: absolute;
+    left: 46vw;
+    top: 60px;
   }
 }
 @media (min-width: 2501px) {
@@ -179,13 +187,14 @@ display: none;
     left: 75vw;
   }
 }
-@media screen and (min-width: 1800px) {
+@media (min-width: 1800px) and (max-width: 2000px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .imgabout2 {
-      width: 300px;
-      height: 258px;
-      position: absolute;
-      left: 80vw;
+    width: 20vw;
+    position: absolute;
+    left: 75vw;
+    top: 130px;
+    height: 300px;
   }
 }
 
@@ -286,7 +295,7 @@ display: none;
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .newsletter-subdiv {
       position: relative;
-      bottom: 50px;
+
      
   }
 }
@@ -844,6 +853,15 @@ width: 58vw;
     
   }
 }
+@media (min-width: 1800px) and (max-width: 2000px) {
+  /* Your CSS rules for devices with a minimum width of 1800 pixels */
+  .delivery-sub-sub-txt {
+    position: relative;
+    left: 110px;
+    
+  }
+}
+
 .fast-del {
   border-radius: 2px;
   position: relative;
@@ -929,6 +947,12 @@ top: -160px;
 
  }
 }
+@media (min-width: 1800px) and (max-width: 2000px) {
+  .sub-fast-del {
+    position: relative;
+left: 310px;
+ }
+}
 @media (min-width: 700px) and (max-width: 900px) {
   .newsletter-subscribe {
   font-size: 1.7em;
@@ -980,6 +1004,13 @@ top: -160px;
     
   }
 }
+@media (min-width: 1800px) and (max-width: 2000px) {
+  .newsletter-subscribe {
+    position: relative;
+
+    left: 460px; 
+ }
+}
 .input-email {
   width: 109.54px;
   height: 28.74px;
@@ -1019,6 +1050,16 @@ top: -160px;
     position: relative;
 
     top: -260px;
+
+
+ }
+}
+@media (min-width: 1800px) and (max-width: 2000px) {
+  .field-div-newsletter {
+
+    position: relative;
+ left: 550px;
+ 
 
 
  }

@@ -197,10 +197,16 @@ left: 20vw;
 
  }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1500px)  {
   .favorite-heading {
     position: relative;
     left: 20vw;
+  }
+}
+@media (min-width: 1824px) and (max-width: 2500px)  {
+  .favorite-heading {
+    position: relative;
+    left: 440px;
   }
 }
 .fav-sub {
