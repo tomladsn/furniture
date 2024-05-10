@@ -54,16 +54,9 @@
 @media (max-width: 500px) {
   .fav-prod {
     position: absolute;
-    top: 279px;
+    top: 209px;
     width: 100vw;
     left: 0vw;
-  }
-}
-@media (max-width: 770px) {
-  .fav-prod {
-    position: absolute;
-    left: -1vw;
-    width: 100vw;
   }
 }
 @media (min-width: 700px) and (max-width: 900px) {
@@ -164,17 +157,17 @@ left: 20vw;
 }
 @media (max-width: 500px) {
   .favorite-heading {
-    width: 70vw;
+    width: 80vw;
     height: 63px;
     color: #5d6665;
     font-family: Inria Serif;
     font-weight: 700;
+    position: absolute;
     line-height: 64px;
     word-wrap: break-word;
-    position: relative;
-    left: 7vw;
-    text-align: left;
-    font-size: min(15vw, 60px);
+    text-align: center;
+    font-size: min(10vw, 60px);
+    left: 4vw;
   }
 }
 @media (min-width: 700px) and (max-width: 900px) {
@@ -224,7 +217,7 @@ left: 20vw;
 }
 @media (max-width: 500px) {
   .fav-sub {
-    width: 60vw;
+    width: 90vw;
     height: 49px;
     color: black;
     font-size: 22px;
@@ -234,8 +227,8 @@ left: 20vw;
     word-wrap: break-word;
     text-align: left;
     position: absolute;
-    top: 143px;
-    left: 10vw;
+    top: 83px;
+    left: 3vw;
   }
 }
 @media (min-width: 700px) and (max-width: 900px) {

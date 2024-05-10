@@ -22,7 +22,7 @@
     position: absolute;
     width: 100vw;
     height: auto;
-    top: 5650px;
+    top: 5350px;
 }
  }
 .contact-img {
@@ -48,7 +48,7 @@
 @media (max-width: 500px) {
   .contact-img {
     width: 100vw;
-    height: 440px;
+    height: 330px;
     top: 0px;
     position: relative;
   }
@@ -127,10 +127,10 @@ top: 200px;
   .contact-form {
     
     top: 560px;
-    left: 11px;
+
     position: absolute;
-    left: 0;
-    width: 100vw;
+    left: 4vw;
+    width: 70vw;
   }
  }
  @media (min-width: 700px) and (max-width: 900px) {
@@ -182,7 +182,7 @@ top: 200px;
 @media (max-width: 500px) {
   .message-input {
     top: 200px;
-    width: 95vw;
+    width: 90vw;
     position: absolute;
     left: -10px;
     border: 1px solid black;
@@ -292,7 +292,7 @@ top: 200px;
     top: 390px;
     position: absolute;
     left: 0;
-    width: 98vw;
+    width: 92vw;
   }
  }
 .submit-btn-txt {
@@ -330,7 +330,7 @@ top: 200px;
   .contact-form-title {
     top: 0px;
     position: relative;
-    width: 80vw;
+    width: 90vw;
     left: 10px;
     font-size: min(13vw, 54px);
   }
@@ -428,7 +428,8 @@ top: 200px;
 @media (max-width: 500px) {
   .Mailons {
     position: absolute;
-    left: 0.1vw;
+    left: 4vw;
+    text-align: left;
   }
 }
 @media (min-width: 700px) and (max-width: 900px) {
