@@ -49,7 +49,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         style={{
                             color: 'black',
                             fontSize: '24px',
-                            fontFamily: 'Inria Serif',
+                            fontFamily: Arial,
                             fontWeight: 400,
                             overflowWrap: 'break-word',
                             position: 'relative',
@@ -71,7 +71,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         style={{
                             color: 'black',
                             fontSize: '24px',
-                            fontFamily: 'Inria Serif',
+                            fontFamily: Arial,
                             fontWeight: 400,
                             overflowWrap: 'break-word',
                             position: 'relative',
@@ -101,7 +101,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         style={{
                             color: 'black',
                             fontSize: '24px',
-                            fontFamily: 'Inria Serif',
+                            fontFamily: Arial,
                             fontWeight: 400,
                             overflowWrap: 'break-word',
                             position: 'relative',
@@ -169,7 +169,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                                     position: 'absolute',
                                     color: '#171A1F',
                                     fontSize: 18,
-                                    fontFamily: 'Inria Serif',
+                                    fontFamily: Arial,
                                     fontWeight: '400',
                                     wordWrap: 'break-word',
                                 }}

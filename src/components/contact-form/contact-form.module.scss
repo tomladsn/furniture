@@ -9,6 +9,8 @@
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .root {
     min-width: 100vw;
+    position: relative;
+    top: 2190px;
   }
 }
 
@@ -22,7 +24,7 @@
     position: absolute;
     width: 100vw;
     height: auto;
-    top: 5350px;
+    top: 5490px;
 }
  }
 .contact-img {
@@ -145,7 +147,7 @@ top: 200px;
   position: relative;
   height: 50px;
   bottom: 0px;
-  font-family: 'Inria Serif';
+  font-family: Arial;
   left: -2px;
 }
 .email-input {
