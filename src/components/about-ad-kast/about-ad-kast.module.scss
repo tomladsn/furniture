@@ -68,8 +68,9 @@
 }
 @media  (max-width: 500px) {
   .line {
-position: absolute;
-top: 300px;
+    top: 300px;
+    transform: translateX(-50%);
+    left: 50%;
   }
 }
 @media (min-width: 700px) and (max-width: 900px) {
@@ -442,6 +443,8 @@ position: absolute;
   .about-us-btn {
     position: absolute;
     top: 270px;
+    left: 0;
+    width: 100%;
   }
 }
 @media (min-width: 700px) and (max-width: 900px) {
@@ -619,8 +622,8 @@ width: 35vw;
 
 @media (max-width: 500px) {
   .kast-btn {
-    position: absolute;
-    left: 25vw;
+    left: 50%;
+    transform: translateX(-50%);
     top: 300px;
   }
 }
@@ -804,11 +807,11 @@ width: 58vw;
 
  }
 }
-@media (min-width: 1000px) and (max-width: 1200px) {
+@media (min-width: 1000px) and (max-width: 1300px) {
   .delivery-head-txt {
     position: absolute;
-    left: 14vw;
-    top: 150px;
+    left: 22vw;
+    top: 160px;
   }
 }
 @media (min-width: 1380px) and (max-width: 1500px) {
@@ -830,13 +833,11 @@ width: 58vw;
 }
 @media (max-width: 500px) { 
   .delivery-head-txt {
-    width: 163px;
-    height: 26px;
-    border-radius: 38px;
     font-size: 24px;
+    width: 90%;
     position: absolute;
     top: 44px;
-    left: 33vw;
+    left: 10vw;
   }
 }
 .delivery-sub-sub-txt {
@@ -873,10 +874,12 @@ width: 58vw;
     z-index: 999;
  }
 }
-@media (min-width: 1000px) and (max-width: 1200px) {
+@media (min-width: 1000px) and (max-width: 1300px) {
   .delivery-sub-sub-txt {
     position: relative;
-    left: 100px;
+    width: 10vw;
+    left: 8vw;
+    font-size: 0.8em;
     
   }
 }
@@ -925,11 +928,11 @@ left: -90px;
 }
 @media (max-width: 500px) { 
   .verdenzing {
-    width: 125px;
+    width: 90vw;
     height: 26px;
     position: absolute;
     top: 139px;
-    left: 33vw;
+    left: 8vw; 
   }
 }
 @media (min-width: 700px) and (max-width: 900px) {
@@ -978,7 +981,7 @@ top: -160px;
 @media (min-width: 1000px) and (max-width: 1300px) {
   .sub-fast-del {
 position: absolute;
-left: 369px;
+left: 39vw;
 top: 200px;
 
  }
@@ -1040,12 +1043,12 @@ left: 310px;
 
  }
 }
-@media (min-width: 1000px) and (max-width: 1200px) {
+@media (min-width: 1000px) and (max-width: 1300px) {
   .newsletter-subscribe {
     position: absolute;
-    font-size: 1.6em;
-    left: 52vw;
-    top: 140px;
+    font-size: 1.4em;
+    left: 50vw;
+    top: 155px;
 
   }
 }
@@ -1103,7 +1106,7 @@ left: 310px;
   .field-div-newsletter {
     position: absolute;
     left: 60vw;
-    top: 190px;
+    top: 200px;
 
  }
 }
