@@ -36,7 +36,7 @@
 @media (max-width: 500px) {
   .about-block {
     min-width: 100vw;
-    height: 1322px;
+    height: 902px;
 }
 }
 
@@ -213,6 +213,7 @@ display: none;
     position: absolute;
     top: 909px;
     left: 9vw;
+    display: none;
   }
 }
 @media (min-width: 2501px) {
