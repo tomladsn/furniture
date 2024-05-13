@@ -31,9 +31,7 @@ export const Footer = ({ className }: FooterProps) => {
             </div>
             <div className={styles['div-fr4']}>
                 <p className={styles['footer-fr4-heading']}>Payment Methods</p>
-                <img src="/Image 120.svg" className={styles['footer-firstimg']} />
-                <img src="/Image122.png" className={styles['footer-secondimg']} />
-                <p className={styles['text-payment']}>VISA</p>
+                <img src="/payt.png" className={styles['footer-secondimg']} />
             </div>
             <p className={styles['copyright-1']}>2024@ VI Interieur AllRights Reserved</p>
         </div>
