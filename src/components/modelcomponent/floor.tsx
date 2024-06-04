@@ -22,6 +22,13 @@ export function Floor(props: JSX.IntrinsicElements['group']) {
   return (
     <group {...props} dispose={null}>
       <group rotation={[0, Math.PI, 0]} scale={5.427}>
+      <pointLight
+    position={[0, 0, 1]} 
+
+        intensity={10}
+        castShadow
+        color="white"
+      />
         <mesh geometry={nodes.Plane_1.geometry} material={materials['Material.001']} />
         <mesh geometry={nodes.Plane_2.geometry} material={materials.floor} />
       </group>

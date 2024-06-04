@@ -23,25 +23,26 @@ type GLTFResult = GLTF & {
 }
 
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+type KastProps = JSX.IntrinsicElements['group'] & {
+  showDrawer: boolean
 
-export function Kast(props: JSX.IntrinsicElements['group']) {
+}
+
+export function Kast( { showDrawer, ...props }: KastProps) {
   const { nodes, materials } = useGLTF('../../../public/Kast.glb') as GLTFResult
   const bbox = new THREE.Box3().setFromObject(nodes.Cube001);
   const size = bbox.getSize(new THREE.Vector3());
   return (
+    
     <group {...props} dispose={null}>
+
       <group name="Cube" position={[0.00, 1, 0.01]} scale={[3.384, 2.435, 0.654]} userData={{ name: 'Cube' }}>
+
         <mesh name="Cube001" geometry={nodes.Cube001.geometry} material={materials.external} />
-        <spotLight
-        position={[0, -0.6, -8]}
-        angle={0.3}
-        penumbra={0.5}
-        intensity={1}
-        castShadow
-        color="white"
-      />
+
         <mesh name="Cube001_1" geometry={nodes.Cube001_1.geometry} material={materials['rough wood']} />
-        <mesh name="Cube001_2" geometry={nodes.Cube001_2.geometry} material={materials.drawer} />
+
+        {showDrawer &&  <mesh name="Cube001_2" geometry={nodes.Cube001_2.geometry} material={materials.drawer} />}
         <Html position={[size.x / 2, size.y, 0]} center>
         <div style={{ background: 'white', padding: '2px', borderRadius: '3px', fontSize: '12px' }}>
           {`Width: ${size.x.toFixed(2)}m`}
