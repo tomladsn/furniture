@@ -4,7 +4,6 @@ import { Scene } from 'three';
 import styles from './configuratorpage.module.scss';
 import { Navbar } from '../../navbar/navbar';
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
-import { Model } from './model';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from '@react-three/drei';
 import { useRef, useState } from 'react';
@@ -14,13 +13,56 @@ import { MdDoorSliding, MdShelves } from 'react-icons/md';
 import { GiDoorHandle, GiClothesline, GiRunningShoe } from 'react-icons/gi';
 import { VscLayoutPanelCenter } from 'react-icons/vsc';
 import { IoIosArrowDropright } from 'react-icons/io';
+import { Floor } from '../../modelcomponent/floor'
+import { Tvmeubel } from '../../modelcomponent/tv-set';
+import { Wardrobe } from '../../modelcomponent/wardrobe';
+import { Kast } from '../../modelcomponent/kast';
 export interface ConfiguratorpageProps {
     className?: string;
 }
 interface ModelProps {
     position: [number, number, number];
   }   
+
+  const products = [
+    {
+      src: '/product image/Garderobe.png',
+      name: 'Garderobe',
+    },
+    {
+      src: '/product image/Tvmeubel.svg',
+      name: 'TV-meubel',
+    },
+    {
+      src: '/product image/Image 152Kast.png',
+      name: 'Kast',
+    },
+    // Add more products as needed
+  ];
 export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
+    const [showDoor, setShowDoor] = useState(true) 
+    const [showHandle, setShowHandle] = useState(false) 
+    const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+    const handleToggle = () => {
+        setShowHandle(!showHandle); // Toggle the showHandle state
+      };
+
+      const [currentIndex, setCurrentIndex] = useState(0);
+
+      const handleNext = () => {
+        if (currentIndex < products.length - 1) {
+          setCurrentIndex(currentIndex + 1);
+        }
+      };
+    
+      const handlePrev = () => {
+        if (currentIndex > 0) {
+          setCurrentIndex(currentIndex - 1);
+        }
+      };
+      const handleProductClick = (productName: string) => {
+        setSelectedProduct(productName);
+      };
     return (
         <div className={classNames(styles.root, className)}>
         
@@ -28,111 +70,26 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 className={styles['Container90']}
             >
                 <img
-                    className="Chevron"
-                    style={{
-                        width: '66px',
-                        height: '45px',
-                        position: 'relative',
-                        top: '30px',
-                    }}
+                onClick={handlePrev}
+                    className={styles['Chevron']} 
                     src="/product image/arrowleft.svg"
                 />
-
-                <div className={styles['first-slide-block']}>
-                    <img
-                        className="Image50"
-                        style={{ borderRadius: 2, height: '110px', width: '130px' }}
-                        src="/product image/Garderobe.png"
-                    />
-                    <p
-                        className="Lamp"
-                        style={{
-                            color: 'black',
-                            fontSize: '24px',
-                            fontFamily: 'Arial',
-                            fontWeight: 400,
-                            overflowWrap: 'break-word',
-                            position: 'relative',
-                            bottom: '70px',
-                            left: '120px',
-                        }}
-                    >
-                        Garderobe
-                    </p>
-                </div>
-                <div style={{ position: 'absolute', left: '40vw' }} className="tv-meubel-div">
-                    <img
-                        className="meubel"
-                        style={{ width: '120px', height: '112px' }}
-                        src="/product image/Tvmeubel.svg"
-                    />
-                    <p
-                        className="LivingRoom"
-                        style={{
-                            color: 'black',
-                            fontSize: '24px',
-                            fontFamily: 'Arial',
-                            fontWeight: 400,
-                            overflowWrap: 'break-word',
-                            position: 'relative',
-                            left: '130px',
-                            bottom: '70px',
-                        }}
-                    >
-                        TV-meubel
-                    </p>
-                </div>
-                <div
-                    style={{ position: 'absolute', left: '75vw', height: '120px' }}
-                    className="Kast"
-                >
-                    <img
-                        className="Image51"
-                        style={{
-                            width: '130px',
-                            height: '112px',
-                            boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-                            borderRadius: 2,
-                        }}
-                        src="/product image/Kast.png"
-                    />
-                    <p
-                        className="NewNow"
-                        style={{
-                            color: 'black',
-                            fontSize: '24px',
-                            fontFamily: 'Arial',
-                            fontWeight: 400,
-                            overflowWrap: 'break-word',
-                            position: 'relative',
-                            left: '140px',
-                            bottom: '70px',
-                            width: 50
-                        }}
-                    >
-                        Kast
-                    </p>
-                </div>
+      <ul className={styles['slider']}  style={{ transform: `translateX(-${currentIndex * 100}%)`  }}>
+        {products.map((product, index) => (
+          <li key={index} className={styles.slide} onClick={() => handleProductClick(product.name)} >
+            <img className={styles.productImage} src={product.src} alt={product.name} />
+            <p className={styles.productName}>{product.name}</p>
+          </li>
+        ))}
+      </ul>
                 <img
-                    className="ChevronLeft"
-                    style={{
-                        width: 42,
-                        position: 'absolute',
-                        left: '98vw',
-                        top: 75,
-                        height: 38,
-                        transform: 'rotate(180deg)',
-                        transformOrigin: '0px 0px',
-                    }}
+                    className={styles['Chevron-left']}
                     src="/product image/arrowleft.svg"
+                    onClick={handleNext}
                 />
             </div>
             <div className={styles['configurator-section']}>
-            <div className={styles['canva-div']}>
-            <Canvas style={{ width: '70vw' }}>
-                <Model />
-      </Canvas>
-    </div>
+
                 <div style={{
                        
                     
@@ -259,7 +216,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                                 }}
                             />
                         </div>
-                        <div className={styles['components-selection']}>
+                        <div className={styles['components-selection']}  onClick={handleToggle}>
                             <GiDoorHandle className={styles['handle-icon']} />
                             <p className={styles.door}>Handle</p>
                             <IoIosArrowDropright
@@ -321,6 +278,19 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         </div>
                     </div>
                 </div>
+                <div className={styles['canva-div']}>
+            <Canvas className={styles['canva']}>
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[5, 5, 5]} intensity={1} />
+            <pointLight position={[-10, -10, -10]} intensity={0.5} />
+            <OrbitControls />
+                <Floor />
+                {selectedProduct === 'TV-meubel' && <Tvmeubel position={[0, -4, -8]} /> }
+                {selectedProduct === 'Garderobe' && <Wardrobe showDoor={showDoor} showHandle={showHandle} />} 
+                {selectedProduct === 'Kast' && <Kast position={[0, -0.6, -8]} /> }
+
+      </Canvas>
+    </div>
             </div>
         </div>
     );

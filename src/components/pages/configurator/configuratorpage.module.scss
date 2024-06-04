@@ -2,56 +2,36 @@
   width: auto;
   height: auto;
 }
-.first-slide-block {
-}
+
 .configurator-section {
-}
-.configurator-section {
-  width: 70vw;
+  width: 100vw;
   height: 50vh;
-  display: flex;
-  flex-wrap: wrap;
+
 }
 .canva-div {
-  width: 80vw;
-  height: 70vh;
+  width: 72vw;
+  height: 90vh;
+  left: 405px;
+  position: absolute;
+
 }
-@media (min-width: 1004px) and (max-width: 1300px)  {
-  .canva-div {
-width: 61vw;
-
-  }
-}
-@media (min-width: 1304px) and (max-width: 1700px)  {
-  .canva-div {
-width: 60vw;
-
-
-  }
-}
-@media (min-width: 1924px) and (max-width: 2700px)  {
-  .canva-div {
-width: 60vw;
-position: absolute;
-
-
-
-
-  }
+.canva {
+  position: absolute;
+  right: 0;
 }
 .configurator-listing {
-  z-index: 999;
-  height: 70vh;
+  height: 87vh;
   width: 400px;
   position: absolute;
-  left: 84vw;
+  left: 0;
+  top: 220px;
   margin-top: 0px;
   box-shadow: 1.41px 1.41px 24px -11px black;
 }
 @media (min-width: 1004px) and (max-width: 1300px)  {
   .configurator-listing {
 position: absolute;
-left: 61vw;
+
 
 
   }
@@ -59,7 +39,7 @@ left: 61vw;
 @media (min-width: 1304px) and (max-width: 1700px)  {
   .configurator-listing {
 position: absolute;
-left: 71vw;
+
 
 
   }
@@ -67,10 +47,19 @@ left: 71vw;
 @media (min-width: 1904px) and (max-width: 2700px)  {
   .configurator-listing {
     position: absolute;
-    left: 77vw;
+
 
 
   }
+}
+
+.first-slide-block {
+  cursor: pointer; /* Change cursor to pointer */
+  transition: background-color 0.3s ease; /* Add transition for smooth effect */
+}
+
+.first-slide-block:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Example hover effect: change background color */
 }
 
 .Lamp {
@@ -90,6 +79,38 @@ left: 71vw;
 .kast {
   position: absolute;
   left: 900px;
+}
+.productName {
+  color: black;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  overflow-wrap: break-word;
+  position: relative;
+  bottom: 70px;
+  left: 120px;
+}
+.productImage {
+  border-radius: 2px;
+  height: 110px;
+  width: 130px;
+}
+.slide {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; /* Add pointer cursor to indicate clickability */
+}
+.slider {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 10px;
 }
 
 .LivingRoom {
@@ -114,21 +135,17 @@ left: 71vw;
   bottom: 70px;
 }
 
-.ChevronLeft {
-  width: 42px;
-  position: relative;
-  left: 980px;
-  top: 75px;
-  height: 38px;
-  transform: rotate(270deg);
-  transform-origin: 0px 0px;
+.Chevron-left {
+  transform: rotate(180deg);
+  cursor: pointer;
+  position: absolute;
+  left: 92vw;
+  z-index: 99;
 }
 
-.Chevron {
-  width: 66px;
-  height: 45px;
-  position: relative;
-  top: 30px;
+.Chevron { 
+  cursor: pointer;
+  z-index: 99;
 }
 .component-config {
   height: 420px;
@@ -143,7 +160,13 @@ left: 71vw;
   padding-top: 0px;
   margin-top: 20px;
   display: inline-block;
+  transition: background-color 0.3s ease; /* Add transition for smooth effect */
+  cursor: pointer; /* Add this line to change the mouse cursor */
 }
+.components-selection:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Example hover effect: change background color */
+}
+
 .door {
   height: 20px;
   text-align: center;
@@ -194,17 +217,11 @@ left: 71vw;
   height: 22px;
 }
 .Container90 { 
-  width: 100vw;
-  height: 118px;
-  position: relative;
-  background-color: white;
-  box-Shadow: 0px 0px 1px rgba(23, 26, 31, 0.19);
-  border-Radius: 2;
-  flex-Direction: row;
-  justify-Content: flex-start;
-  align-Items: flex-start;
   display: flex;
-  flex-Wrap: wrap;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 @media (min-width: 1024px) {
   .Container90 {
