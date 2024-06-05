@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
+type GLTFAction = any;
 type GLTFResult = GLTF & {
   nodes: {
     Plane_1: THREE.Mesh

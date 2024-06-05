@@ -8,6 +8,7 @@ import React, { useRef } from 'react'
 import { useGLTF, Html } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
+type GLTFAction = any;
 type GLTFResult = GLTF & {
   nodes: {
     cabinet_Material003_0_1: THREE.Mesh

@@ -66,22 +66,28 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       const handleProductClick = (productName: string) => {
         setSelectedProduct(productName);
       };
-      useEffect(() => {
-        const preventDefault = (e: WheelEvent) => {
-          e.preventDefault();
-        };
     
-        const canvasElement = document.querySelector(`.${styles.canva}`);
-        if (canvasElement) {
-          canvasElement.addEventListener('wheel', preventDefault, { passive: false });
-        }
-    
-        return () => {
-          if (canvasElement) {
-            canvasElement.removeEventListener('wheel', preventDefault);
-          }
-        };
-      }, []);
+useEffect(() => {
+  // Define the event handler within the useEffect scope
+  const handleWheel = (e: WheelEvent) => {
+    e.preventDefault();
+  };
+
+  // Query the canvas element
+  const canvasElement = document.querySelector(`.${styles['canva']}`);
+  if (canvasElement) {
+    // Add the event listener with type assertion
+    canvasElement.addEventListener('wheel', handleWheel as EventListener, { passive: false });
+  }
+
+  // Cleanup function to remove the event listener
+  return () => {
+    if (canvasElement) {
+      // Remove the event listener with type assertion
+      canvasElement.removeEventListener('wheel', handleWheel as EventListener);
+    }
+  };
+}, []);
     return (
         <div className={classNames(styles.root, className)}>
         
