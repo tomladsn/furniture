@@ -13,7 +13,7 @@ import { VscLayoutPanelCenter } from 'react-icons/vsc';
 import { IoIosArrowDropright } from 'react-icons/io';
 import { Floor } from '../../modelcomponent/floor'
 import { Tvmeubel } from '../../modelcomponent/tv-set';
-import { Wardrobe } from '../../modelcomponent/wardrobe';
+import  Wardrobe  from '../../modelcomponent/wardrobe';
 import { Kast } from '../../modelcomponent/kast';
 import  Draggable  from './draggable'
 export interface ConfiguratorpageProps {

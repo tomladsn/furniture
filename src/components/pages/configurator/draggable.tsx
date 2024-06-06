@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
-import { useThree } from '@react-three/fiber';
+import { useThree, extend } from '@react-three/fiber';
 import { useDrag } from '@use-gesture/react';
 import * as THREE from 'three';
+
+extend({ Group: THREE.Group });
 
 type DraggableProps = {
   children: React.ReactNode;
@@ -17,13 +19,12 @@ const Draggable: React.FC<DraggableProps> = ({ children }) => {
     ({ offset: [x, y] }) => {
       ref.current.position.set(x / aspect, -y / aspect, 0);
     },
-    { pointerEvents: true }
   );
 
   return (
-    <group ref={ref} {...bind()}>
+    <primitive object={new THREE.Group()} ref={ref} {...bind()}>
       {children}
-    </group>
+    </primitive>
   );
 };
 
