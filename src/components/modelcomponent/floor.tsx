@@ -38,3 +38,4 @@ export function Floor(props: JSX.IntrinsicElements['group']) {
 }
 
 useGLTF.preload('/environment.glb')
+export default Floor;
