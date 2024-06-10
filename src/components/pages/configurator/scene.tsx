@@ -2,11 +2,11 @@ import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
-import { Floor } from '../../modelcomponent/floor';
 import Preloader from './preloader/predator';
 import styles from './configuratorpage.module.scss';
 import Draggable from './draggable';
 
+const Floor = React.lazy(() => import('../../modelcomponent/floor') )
 const Tvmeubel = React.lazy(() => import('../../modelcomponent/tv-set'));
 const Wardrobe = React.lazy(() => import('../../modelcomponent/wardrobe'));
 const Kast = React.lazy(() => import('../../modelcomponent/kast'));
