@@ -84,3 +84,5 @@ export function Tvmeubel(props: JSX.IntrinsicElements['group']) {
 }
 
 useGLTF.preload('../../../public/tv-set.glb')
+
+export default Tvmeubel;

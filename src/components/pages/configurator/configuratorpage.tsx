@@ -1,9 +1,6 @@
 import classNames from 'classnames';
 import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
-import { Navbar } from '../../navbar/navbar';
-import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
 import { useRef, useState, useEffect } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { LuFrame } from 'react-icons/lu';
@@ -11,11 +8,7 @@ import { MdDoorSliding, MdShelves } from 'react-icons/md';
 import { GiDoorHandle, GiClothesline, GiRunningShoe } from 'react-icons/gi';
 import { VscLayoutPanelCenter } from 'react-icons/vsc';
 import { IoIosArrowDropright } from 'react-icons/io';
-import { Floor } from '../../modelcomponent/floor'
-import { Tvmeubel } from '../../modelcomponent/tv-set';
-import  Wardrobe  from '../../modelcomponent/wardrobe';
-import { Kast } from '../../modelcomponent/kast';
-import  Draggable  from './draggable'
+import  Scene  from './scene';
 export interface ConfiguratorpageProps {
     className?: string;
 }
@@ -66,28 +59,6 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       const handleProductClick = (productName: string) => {
         setSelectedProduct(productName);
       };
-    
-useEffect(() => {
-  // Define the event handler within the useEffect scope
-  const handleWheel = (e: WheelEvent) => {
-    e.preventDefault();
-  };
-
-  // Query the canvas element
-  const canvasElement = document.querySelector(`.${styles['canva']}`);
-  if (canvasElement) {
-    // Add the event listener with type assertion
-    canvasElement.addEventListener('wheel', handleWheel as EventListener, { passive: false });
-  }
-
-  // Cleanup function to remove the event listener
-  return () => {
-    if (canvasElement) {
-      // Remove the event listener with type assertion
-      canvasElement.removeEventListener('wheel', handleWheel as EventListener);
-    }
-  };
-}, []);
     return (
         <div className={classNames(styles.root, className)}>
         
@@ -294,30 +265,12 @@ useEffect(() => {
                             </div>
        </div>
                 <div className={styles['canva-div']}>
-            <Canvas className={styles['canva']}>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[5, 5, 5]} intensity={1} />
-            <pointLight position={[-10, -10, -10]} intensity={0.5} />
-            <OrbitControls 
-            enableRotate={false}/>
-                <Floor />
-                {selectedProduct === 'TV-meubel' && (
-        <Draggable>
-          <Tvmeubel position={[0, -4, -8]} />
-        </Draggable>
-      )}
-                  {selectedProduct === 'Garderobe' && (
-        <Draggable>
-          <Wardrobe showDoor={showDoor} showHandle={showHandle} />
-        </Draggable>
-      )}
-                {selectedProduct === 'Kast' && (
-        <Draggable>
-          <Kast  showDrawer={showDrawer} position={[0, -0.6, -8]} />
-        </Draggable>
-      )}
-
-      </Canvas>
+                <Scene 
+                    selectedProduct={selectedProduct} 
+                    showDoor={showDoor} 
+                    showHandle={showHandle} 
+                    showDrawer={showDrawer} 
+                />
     </div>
             </div>
         </div>
