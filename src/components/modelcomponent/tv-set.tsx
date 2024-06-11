@@ -40,7 +40,7 @@ type GLTFResult = GLTF & {
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function Tvmeubel(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('../../../public/tv-set.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('/tv-set.glb') as GLTFResult
   const bbox = new THREE.Box3().setFromObject(nodes.cabinet_Material003_0_2);
   
   const size = bbox.getSize(new THREE.Vector3());
@@ -83,6 +83,6 @@ export function Tvmeubel(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('../../../public/tv-set.glb')
+useGLTF.preload('/tv-set.glb')
 
 export default Tvmeubel;

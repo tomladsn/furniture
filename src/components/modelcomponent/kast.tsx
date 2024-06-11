@@ -25,7 +25,7 @@ type KastProps = JSX.IntrinsicElements['group'] & {
 }
 
 export function Kast( { showDrawer, ...props }: KastProps) {
-  const { nodes, materials } = useGLTF('../../../public/Kast.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('Kast.glb') as GLTFResult
   const bbox = new THREE.Box3().setFromObject(nodes.Cube001);
   const size = bbox.getSize(new THREE.Vector3());
   return (
@@ -59,6 +59,6 @@ export function Kast( { showDrawer, ...props }: KastProps) {
   )
 }
 
-useGLTF.preload('../../../public/Kast.glb')
+useGLTF.preload('/Kast.glb')
 
 export default Kast;
