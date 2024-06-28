@@ -19,10 +19,10 @@ export const Navbar = ({ className }: NavbarProps) => {
         <div className={classNames(styles.root, className)}>
 
 {isMenuOpen && (<div className={classNames(styles.containtermob, { [styles.show]: isMenuOpen })} >
-  <div className={styles.homemob}>Home</div>
+<Link to="/"><div className={styles.homemob}>Home</div></Link>
   <div  className={classNames(styles.line)}></div>
-  <div className={styles.configmob}>Aanpassen</div>
-  <div className={styles.checkoutmob}>Producten</div>
+  <Link to="/shop"><div className={styles.checkoutmob}>Producten</div></Link>
+  <Link to="/checkout"><div className={styles.configmob}>Checkout</div>  </Link>
   <Link to="/checkout">
       <img src="/Image6.svg" alt="" className={styles.navicon2} />
       </Link>
