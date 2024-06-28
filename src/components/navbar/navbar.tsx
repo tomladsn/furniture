@@ -1,24 +1,51 @@
 import classNames from 'classnames';
 import styles from './navbar.module.scss';
-import { IoMenuOutline } from 'react-icons/io5';
+import { FiX } from "react-icons/fi";
+import { FiAlignJustify } from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 export interface NavbarProps {
     className?: string;
 }
 
-/**
- * This component was created using Codux's Default new component template.
- * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
- */
+
 export const Navbar = ({ className }: NavbarProps) => {
-    return (
+
+        const [isMenuOpen, setMenuOpen] = useState(false); 
+        const toggleMenu = () => {
+          setMenuOpen(!isMenuOpen);
+        };
+    return (     
         <div className={classNames(styles.root, className)}>
+
+{isMenuOpen && (<div className={classNames(styles.containtermob, { [styles.show]: isMenuOpen })} >
+  <div className={styles.homemob}>Home</div>
+  <div  className={classNames(styles.line)}></div>
+  <div className={styles.configmob}>Aanpassen</div>
+  <div className={styles.checkoutmob}>Producten</div>
+  <Link to="/checkout">
+      <img src="/Image6.svg" alt="" className={styles.navicon2} />
+      </Link>
+  
+</div>            )}
+
             <nav className={styles.navbar}>
                 <img
                     src="/Capture-removebg-preview 2.png"
                     alt=""
                     className={styles.logo}
                 />
+                <div className={styles.iconWrapper}>
+                {!isMenuOpen ? (
+          <FiAlignJustify className={styles.mobclick} onClick={toggleMenu} />
+        ) : (
+          <FiX className={styles.reclick} onClick={toggleMenu} />
+        )}
+     </div>
+
+
+
+
                 <div className={styles.navmen}>
                 <Link to="/">
         <p className={styles.navmenu}>Home</p>
