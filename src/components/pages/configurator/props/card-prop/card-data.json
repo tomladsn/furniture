@@ -1,0 +1,76 @@
+[
+    {
+        "title": "Frame (50x175 cm)",
+        "image": "/frame1.png",
+        "category": "Frame",
+        "description": "This is a description for card 1.",
+        "width": "10px",
+        "height": "20px"
+    },
+    {
+        "title": "Frame (75x175 cm)",
+        "image": "/Frame2.png",
+        "category": "Frame",
+        "description": "This is a description for card 2.",
+        "width": "200px",
+        "height": "250px"
+    },
+    {
+        "title": "Frame ( 100x175cm)",
+        "image": "/frame3.png",
+        "category": "Frame",
+        "description": "This is a description for card 2.",
+        "width": "180px",
+        "height": "220px"
+    },
+    {
+        "title": " Corner (111cm)",
+        "image": "/frame4.png",
+        "category": "Frame",
+        "description": "This is a description for card 2.",
+        "width": "160px",
+        "height": "210px"
+    },
+        {
+        "title": "Main Door",
+        "image": "/Door 1.png",
+        "category": "Door",
+                "width": "160px",
+        "height": "210px"
+    },
+    {
+        "title": "Handle 1",
+        "image": "/Handle1.png",
+        "category": "Handle",
+                "width": "160px",
+        "height": "210px"
+    },
+    {
+        "title": "Handle 2",
+        "image": "/Handle2.png",
+       "category": "Handle",
+                "width": "160px",
+        "height": "210px"
+    },
+    {
+        "title": "Handle 3",
+        "image": "/Handle3.png",
+        "category": "Handle",
+                "width": "160px",
+        "height": "210px"
+    },
+    {
+        "title": "Handle 4",
+        "image": "./Handle4.png",
+        "category": "Handle",
+                "width": "160px",
+        "height": "210px"
+    },
+    {
+        "title": "Handle 5",
+        "image": "/Handle5.png",
+        "category": "Handle",
+                "width": "160px",
+        "height": "210px"
+    }
+]

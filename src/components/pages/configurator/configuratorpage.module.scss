@@ -230,3 +230,43 @@ position: absolute;
     flex-wrap: nowrap;
   }
 }
+
+.cardframe {
+  width: 350px;
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  position: absolute;
+  z-index: 9;
+  margin-left: 14px;
+
+}
+.cardframe > div {
+  flex: 1 1 calc(50% - 16px); 
+  box-sizing: border-box;
+}
+.frame {
+  background-color: white;
+  height: 500px;
+  width: 400px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 9;
+}
+.backarrow {
+  height: 30px;
+  position: relative;
+  width: auto;
+  top: 43px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.frametext{
+  font-family: "Arial Narrow", Arial;
+  font-size: 1.5em;
+  margin-left: 50px;
+  position: relative;
+  bottom: 20px;
+}
