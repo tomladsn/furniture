@@ -262,6 +262,14 @@
     left: -10vw;
   }
 }
+@media (min-width: 1500px) and (max-width: 1780px) {
+  .feature-prod {
+    width: 40vw;
+    top: 750px;
+    position: absolute;
+    transform: translate(50%);
+  }
+}
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .feature-prod {

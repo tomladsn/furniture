@@ -21,6 +21,7 @@ interface ComponentSelectionProps {
     category: string;
     isVisible: boolean;
     onToggleVisibility: () => void;
+    onClick: () => void;
 }
 interface ModelProps {
     position: [number, number, number];
@@ -46,6 +47,11 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const [showDrawer, setShowDrawer] = useState(true)
     const [showHandle, setShowHandle] = useState(false)
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+    const [selectedFrameProduct, setSelectedFrameProduct] = useState<string | null>(null);
+
+    const handleFrameProductClick = (productTitle: string) => {
+        setSelectedFrameProduct(productTitle);
+    };
     const handleToggle = () => {
         setShowHandle(!showHandle); // Toggle the showHandle state
     };
@@ -267,6 +273,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                                 image={card.image}
                                 width={card.width}
                                 height={card.height}
+                                onClick={() => handleFrameProductClick(card.title)}
                             />
                         ))}
                     </div>
@@ -356,6 +363,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         showDoor={showDoor}
                         showHandle={showHandle}
                         showDrawer={showDrawer}
+                        selectedFrameProduct={selectedFrameProduct}
                     />
                 </div>
             </div>

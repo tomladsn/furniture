@@ -847,6 +847,14 @@ width: 58vw;
     
   }
 }
+@media (min-width: 1500px) and (max-width: 1790px) {
+  .delivery-head-txt {
+    position:absolute;
+    font-size: 1.5em;
+    left: 28vw; 
+    
+  }
+}
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .delivery-head-txt {
@@ -1011,10 +1019,10 @@ top: 200px;
 
  }
 }
-@media (min-width: 1400px) and (max-width: 1600px) {
+@media (min-width: 1400px) and (max-width: 1790px) {
   .sub-fast-del {
 position: absolute;
-left: 579px;
+left: 689px;
 top: 200px;
 
  }
@@ -1075,6 +1083,14 @@ left: 310px;
     left: 50vw;
     top: 155px;
 
+  }
+}
+@media (min-width: 1500px) and (max-width: 1790px) {
+  .newsletter-subscribe {
+    position: absolute;
+    font-size: 1.5em;
+    left: 28vw; 
+    
   }
 }
 @media (min-width: 1800px) and (max-width: 2000px) {
