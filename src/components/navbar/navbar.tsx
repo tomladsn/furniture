@@ -51,7 +51,7 @@ export const Navbar = ({ className }: NavbarProps) => {
         <p className={styles.navmenu}>Home</p>
       </Link>
       <Link to="/configurator">
-        <p className={styles.navmenu1}>Aanpassen</p>
+        <p className={styles.navmenu1}>Configurator</p>
       </Link>
       <Link to="/shop">
         <p className={styles.navmenu2}>Producten</p>

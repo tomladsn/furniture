@@ -19,7 +19,7 @@
       },
       {
         "id": 3,
-        "name": "Garderobe",
+        "name": "Kledingkast",
         "image": "/product image/Garderobe.png",
         "featured": true,
         "favorite":true,

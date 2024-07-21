@@ -32,42 +32,42 @@
         "height": "auto"
     },
         {
-        "title": "Main Door",
+        "title": "Main Deuren",
         "image": "/Door 1.png",
         "category": "Door",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handle 1",
+        "title": "Handgrepen 1",
         "image": "/Handle1.png",
         "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handle 2",
+        "title": "Handgrepen 2",
         "image": "/Handle2.png",
        "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handle 3",
+        "title": "Handgrepen 3",
         "image": "/Handle3.png",
         "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handle 4",
+        "title": "Handgrepen 4",
         "image": "./Handle4.png",
         "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handle 5",
+        "title": "Handgrepen 5",
         "image": "/Handle5.png",
         "category": "Handle",
         "width": "auto",

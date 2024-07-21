@@ -17,20 +17,23 @@ export const Footer = ({ className }: FooterProps) => {
                 className={styles['footer-logo']}
             />
             <p className={styles['footer-txtunderlogo']}>
-                Je eigen meubels oet TwenteIn samenwerking met VI interieurs
+            Je eigen meubels oet Twente. In
+            samenwerking met VI interieurs
             </p>
             <div className={styles['div-fr2']}>
-                <p className={styles['studio-footer']}>Studio</p>
-                <p className={styles['foote-fr2-subtext']}>Bezoek onze winkel</p>
+                <p className={styles['studio-footer']}>Werkplaats</p>
+                <p className={styles['foote-fr2-subtext']}>Bezoek onze werkplaats</p>
             </div>
             <div className={styles['div-fr3']}>
-                <p className={styles['footer-fr3-heading']}>Shopping</p>
+                <p className={styles['footer-fr3-heading']}>Bestellen</p>
                 <p className={styles['footer-fr3-subtext']}>
-                    Selecteer een van onze vele producten om aan te passen.
+                Selecteer een van onze vele
+producten om aan te passen. Of
+ontwerp uw eigen product.
                 </p>
             </div>
             <div className={styles['div-fr4']}>
-                <p className={styles['footer-fr4-heading']}>Payment Methods</p>
+                <p className={styles['footer-fr4-heading']}>Betaal methodes</p>
                 <img src="/payt.png" className={styles['footer-secondimg']} />
             </div>
             <p className={styles['copyright-1']}>2024@ VI Interieur AllRights Reserved</p>

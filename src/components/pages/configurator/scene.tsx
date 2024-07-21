@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Suspense } from 'react';
+import React, { useRef, useEffect, Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
@@ -27,6 +27,7 @@ interface SceneProps {
 }
 
 const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct }) => {
+    const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const wardrobeRef = useRef<THREE.Group>(null);
     const tvmeubelRef = useRef<THREE.Group>(null);
     const kastRef = useRef<THREE.Group>(null);
@@ -60,6 +61,13 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             }
         };
     }, []);
+    useEffect(() => {
+        if (selectedFrameProduct && !activeFrames.includes(selectedFrameProduct)) {
+            setActiveFrames(prev => [...prev, selectedFrameProduct]);
+        }
+    }, [selectedFrameProduct]);
+
+    const calculatePosition = (index: number): [number, number, number] => [index * 3, -1.15, -8];
 
     return (
         <Canvas className={styles['canva']}>
@@ -75,7 +83,7 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
                         </group>
                     </Draggable>
                 )}
-                {selectedProduct === 'Garderobe' && (
+                {selectedProduct === 'Kledingkast' && (
                     <Draggable>
                         <group ref={wardrobeRef}>
                             <Wardrobe showDoor={showDoor} showHandle={showHandle} />
@@ -91,24 +99,70 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
                 )}
            {/* <Draggable>
            <Mdrawer /></Draggable>
-           <Draggable> <Cdrawer /> </Draggable> */}
-           {selectedFrameProduct === 'Corner (111cm)' && ( <group ref={CornerframeRef} position={[5.9, -1.95, -8]} rotation={[0, 6 * Math.PI / 2, 0]} scale={[2, 1.5, 1.2]} ><Cornerframe /> </group> )}
-           {/* <Draggable><Fdrawer /></Draggable>
+           <Draggable> <Cdrawer /> </Draggable> */}           {/* <Draggable><Fdrawer /></Draggable>
            <Draggable><Kdrawer /></Draggable> */}
-           {selectedFrameProduct === 'Frame (75x175 cm)' && (             
-            <Draggable>
-            <group ref={ MediumframeRef} position={[1, -1.15, -8]} rotation={[0, Math.PI, 0]} scale={[2, 2.7, 1.2]} > 
-            <Mediumframe />
+          {activeFrames.map((frame, index) => {
+    if (frame === 'Corner (111cm)') {
+        return (
+            <group
+                key={frame}
+                ref={CornerframeRef}
+                position={[7.3, -1.95, -8.1]}
+                rotation={[0, 6 * Math.PI / 2, 0]}
+                scale={[1, 1.5, 1.2]}
+            >
+                <Cornerframe />
             </group>
-             </Draggable> )}
-           {selectedFrameProduct === 'Frame (50x175 cm)' && ( <Draggable>
-            <group ref={SmallframeRef} position={[1, -2.5, -8.4]} rotation={[0, Math.PI, 0]} scale={[2, 2.7, 1.2]} >
-             <Smallframe  /></group> </Draggable> )}
-           {selectedFrameProduct === 'Frame ( 100x175cm)' && ( <Draggable>  
-            <group ref={LargeframeRef} position={[1, -1.15, -8]} rotation={[0, Math.PI, 0]} scale={[2, 2.7, 1.2]} >
-                <Largeframe /> 
-            </group>
-            </Draggable> )}
+        );
+    }
+
+    if (frame === 'Frame (75x175 cm)') {
+        return (
+            <Draggable key={frame}>
+                <group
+                    ref={MediumframeRef}
+                    position={[index * 3, -1.15, -8]} // Adjusted position to place them beside each other
+                    rotation={[0, Math.PI, 0]}
+                    scale={[2, 2.7, 1.2]}
+                >
+                    <Mediumframe />
+                </group>
+            </Draggable>
+        );
+    }
+
+    if (frame === 'Frame (50x175 cm)') {
+        return (
+            <Draggable key={frame}>
+                <group
+                    ref={SmallframeRef}
+                    position={[index * 3, -2.5, -8.4]} // Adjusted position to place them beside each other
+                    rotation={[0, Math.PI, 0]}
+                    scale={[2, 2.7, 1.2]}
+                >
+                    <Smallframe />
+                </group>
+            </Draggable>
+        );
+    }
+
+    if (frame === 'Frame (100x175cm)') {
+        return (
+            <Draggable key={frame}>
+                <group
+                    ref={LargeframeRef}
+                    position={[index * 3, -1.15, -8]} // Adjusted position to place them beside each other
+                    rotation={[0, Math.PI, 0]}
+                    scale={[2, 2.7, 1.2]}
+                >
+                    <Largeframe />
+                </group>
+            </Draggable>
+        );
+    }
+
+    return null;
+})}
         </Canvas>
     );
 };

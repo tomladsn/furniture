@@ -26,7 +26,8 @@ export const Header = ({ className }: HeaderProps) => {
             <header className={styles.header}>
                 <div className={styles['header-big']}> Je eigen meubels oet Twente</div>
                 <p className={styles['header-big1']}>
-                    Ontwerp je eigen meubel op jou wensen en laat dit in onze werkplaats maken.
+                Je eigen meubels oet Twente. In
+                samenwerking met VI interieurs
                 </p>
                 <button className={styles['header-btn1']}>Winkel nu</button>
                 <button className={styles['header-btn2']}>Personaliseren</button>

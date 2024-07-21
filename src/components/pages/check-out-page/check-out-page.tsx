@@ -50,7 +50,7 @@ export const CheckOutPage = ({ className }: CheckOutPageProps) => {
                                 style={{ width: '80px', height: 70, borderRadius: 10 }}
                                 src="/product image/Garderobe.png"
                             />
-                            <p className={styles['text--1']}>Garderobe</p>
+                            <p className={styles['text--1']}>Kledingkast</p>
                             <IoMdCloseCircle className={styles['close-icon-circle']} />
                         </div>
                         <div className={styles.listing1}>

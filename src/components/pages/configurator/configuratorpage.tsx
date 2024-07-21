@@ -30,7 +30,7 @@ interface ModelProps {
 const products = [
     {
         src: '/product image/Garderobe.png',
-        name: 'Garderobe',
+        name: 'Kledingkast',
     },
     {
         src: '/product image/Tvmeubel.svg',
@@ -218,7 +218,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     <div className={styles['component-config']} onClick={toggleDoorVisibility}>
                         <div className={styles['components-selection']}>
                             <MdDoorSliding className={styles['door-icon']} />
-                            <p className={styles.door}>Door</p>
+                            <p className={styles.door}>Deuren</p>
                             <IoIosArrowDropright
                                 style={{
                                     width: '30px',
@@ -248,7 +248,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             )}
                         <div className={styles['components-selection']} onClick={toggleFrameVisibility}>
                             <LuFrame className={styles['frame-icon']} />
-                            <p className={styles.door} >Frame</p>
+                            <p className={styles.door} >Basiselementen</p>
                             <IoIosArrowDropright
                                 style={{
                                     width: '30px',
@@ -262,7 +262,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         {isFrameVisible && (
                 <div className={styles.frame}>
                     <FaArrowLeft className={styles.backarrow} onClick={toggleFrameVisibility} />
-                    <h3 className={styles.frametext}>FRAME</h3>
+                    <h3 className={styles.frametext}>Basiselementen</h3>
                     <div className={styles.cardframe}>
                     {cardData
                             .filter(card => card.category === 'Frame')
@@ -282,7 +282,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
                         <div className={styles['components-selection']} onClick={() => { toggleHandleVisibility(); handleToggle(); }} >
                             <GiDoorHandle className={styles['handle-icon']} />
-                            <p className={styles.door}>Handle</p>
+                            <p className={styles.door}>Handgrepen</p>
                             <IoIosArrowDropright
                                 style={{
                                     width: '30px',
@@ -313,7 +313,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             )}
                         <div className={styles['components-selection']}>
                             <VscLayoutPanelCenter className={styles['drawer-icon']} />
-                            <p className={styles.door}>Drawer</p>
+                            <p className={styles.door}>Lades</p>
                             <IoIosArrowDropright
                                 style={{
                                     width: '30px',
@@ -324,7 +324,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         </div>
                         <div className={styles['components-selection']}>
                             <GiClothesline className={styles['rail-icon']} />
-                            <p className={styles.door}>Clothes Rail</p>
+                            <p className={styles.door}>Kledinghanger</p>
                             <IoIosArrowDropright
                                 style={{
                                     width: '30px',
@@ -335,7 +335,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         </div>
                         <div className={styles['components-selection']}>
                             <MdShelves className={styles['shelve-icon']} />
-                            <p className={styles.door}>Shelves</p>
+                            <p className={styles.door}>Planken</p>
                             <IoIosArrowDropright
                                 style={{
                                     width: '30px',
@@ -346,7 +346,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         </div>
                         <div className={styles['components-selection']}>
                             <GiRunningShoe className={styles['shoe-icon']} />
-                            <p className={styles.door}>door</p>
+                            <p className={styles.door}>Deuren</p>
                             <IoIosArrowDropright
                                 style={{
                                     width: '30px',

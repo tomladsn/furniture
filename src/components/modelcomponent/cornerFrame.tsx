@@ -27,10 +27,10 @@ export function Cornerframe(props: JSX.IntrinsicElements['group']) {
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Cube.geometry} material={materials.Material} position={[0, 2.095, 0]} scale={[1, 2.094, 1]} />
-      <mesh geometry={nodes.Cube001.geometry} material={nodes.Cube001.material} position={[-0.854, 3.334, -1.254]} scale={[0.5, 0.044, 0.782]} />
-      <mesh geometry={nodes.Cube002.geometry} material={nodes.Cube002.material} position={[-0.854, 2.471, -1.254]} scale={[0.5, 0.044, 0.782]} />
-      <mesh geometry={nodes.Cube003.geometry} material={nodes.Cube003.material} position={[-0.854, 1.582, -1.254]} scale={[0.5, 0.044, 0.782]} />
-      <mesh geometry={nodes.Cube004.geometry} material={nodes.Cube004.material} position={[-0.854, 0.686, -1.254]} scale={[0.5, 0.044, 0.782]} />
+      <mesh geometry={nodes.Cube001.geometry}  position={[-0.854, 3.334, -1.254]} scale={[0.5, 0.044, 0.782]} />
+      <mesh geometry={nodes.Cube002.geometry} position={[-0.854, 2.471, -1.254]} scale={[0.5, 0.044, 0.782]} />
+      <mesh geometry={nodes.Cube003.geometry} position={[-0.854, 1.582, -1.254]} scale={[0.5, 0.044, 0.782]} />
+      <mesh geometry={nodes.Cube004.geometry} position={[-0.854, 0.686, -1.254]} scale={[0.5, 0.044, 0.782]} />
     </group>
   )
 }
