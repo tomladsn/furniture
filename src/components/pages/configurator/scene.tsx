@@ -121,9 +121,9 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             <Draggable key={frame}>
                 <group
                     ref={MediumframeRef}
-                    position={[index * 3, -1.15, -8]} // Adjusted position to place them beside each other
+                    position={[index * 3, -1.15, -8.3]} // Adjusted position to place them beside each other
                     rotation={[0, Math.PI, 0]}
-                    scale={[2, 2.7, 1.2]}
+                    scale={[2, 3.05, 2.5]}
                 >
                     <Mediumframe />
                 </group>
@@ -136,9 +136,9 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             <Draggable key={frame}>
                 <group
                     ref={SmallframeRef}
-                    position={[index * 3, -2.5, -8.4]} // Adjusted position to place them beside each other
+                    position={[index * 3, -2.5, -8.1]} // Adjusted position to place them beside each other
                     rotation={[0, Math.PI, 0]}
-                    scale={[2, 2.7, 1.2]}
+                    scale={[2, 3.05, 2.5]}
                 >
                     <Smallframe />
                 </group>

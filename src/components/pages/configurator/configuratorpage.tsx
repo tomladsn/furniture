@@ -241,6 +241,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                                 image={card.image}
                                 width={card.width}
                                 height={card.height}
+                                onClick={() => handleFrameProductClick(card.title)} 
                             />
                         ))}
                     </div>
