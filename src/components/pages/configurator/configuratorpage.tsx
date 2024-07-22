@@ -26,7 +26,14 @@ interface ComponentSelectionProps {
 interface ModelProps {
     position: [number, number, number];
 }
-
+interface CardProps {
+    title: string;
+    image: string;
+    width: string;
+    height: string;
+    imageClassName?: string;
+    onClick: () => void;
+}
 const products = [
     {
         src: '/product image/Garderobe.png',
@@ -306,6 +313,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                                 image={card.image}
                                 width={card.width}
                                 height={card.height}
+                                onClick={() => handleFrameProductClick(card.title)}
                             />
                         ))}
         </div>
