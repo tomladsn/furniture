@@ -30,14 +30,14 @@
         "name": "TV-meubel",
         "image": "/product image/Tvmeubel.svg",
         "favorite":true,
-        "discount": " "
+        "discount": "-5%OFF"
       },
       {
         "id": 5,
         "name": "Wasruimtekast",
         "image": "/product image/whiteKast.svg",
         "favorite":true,
-        "discount": " "
+        "discount": "-3%OFF"
       }
     ]
   }

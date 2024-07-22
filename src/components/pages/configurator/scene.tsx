@@ -19,6 +19,7 @@ const Kdrawer = React.lazy(() => import('../../modelcomponent/Kdrawer'));
 const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
 
 interface SceneProps {
+    title: string;
     selectedProduct: string | null;
     showDoor: boolean;
     showHandle: boolean;
@@ -67,7 +68,6 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
         }
     }, [selectedFrameProduct]);
 
-    const calculatePosition = (index: number): [number, number, number] => [index * 3, -1.15, -8];
 
     return (
         <Canvas className={styles['canva']}>
@@ -101,7 +101,11 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
            <Mdrawer /></Draggable>
            <Draggable> <Cdrawer /> </Draggable> */}           {/* <Draggable><Fdrawer /></Draggable>
            <Draggable><Kdrawer /></Draggable> */}
+
           {activeFrames.map((frame, index) => {
+                               <Draggable>
+                               <Largeframe />
+                       </Draggable>
     if (frame === 'Corner (111cm)') {
         return (
             <group
@@ -121,9 +125,9 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             <Draggable key={frame}>
                 <group
                     ref={MediumframeRef}
-                    position={[index * 3, -1.15, -8.3]} // Adjusted position to place them beside each other
+                    position={[3, -0.9, -8.3]} // Adjusted position to place them beside each other
                     rotation={[0, Math.PI, 0]}
-                    scale={[2, 3.05, 2.5]}
+                    scale={[2.8, 3.05, 2.5]}
                 >
                     <Mediumframe />
                 </group>
@@ -136,9 +140,9 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             <Draggable key={frame}>
                 <group
                     ref={SmallframeRef}
-                    position={[index * 3, -2.5, -8.1]} // Adjusted position to place them beside each other
+                    position={[1, -2.5, -8.2]} // Adjusted position to place them beside each other
                     rotation={[0, Math.PI, 0]}
-                    scale={[2, 3.05, 2.5]}
+                    scale={[2.9, 3.05, 1.8]}
                 >
                     <Smallframe />
                 </group>
@@ -146,20 +150,6 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
         );
     }
 
-    if (frame === 'Frame (100x175cm)') {
-        return (
-            <Draggable key={frame}>
-                <group
-                    ref={LargeframeRef}
-                    position={[index * 3, -1.15, -8]} // Adjusted position to place them beside each other
-                    rotation={[0, Math.PI, 0]}
-                    scale={[2, 2.7, 1.2]}
-                >
-                    <Largeframe />
-                </group>
-            </Draggable>
-        );
-    }
 
     return null;
 })}
