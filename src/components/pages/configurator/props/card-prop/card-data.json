@@ -16,14 +16,6 @@
         "height": "auto"
     },
     {
-        "title": "Frame ( 100x175cm)",
-        "image": "/frame3.png",
-        "category": "Frame",
-        "description": "This is a description for card 2.",
-        "width": "auto",
-        "height": "auto"
-    },
-    {
         "title": "Corner (111cm)",
         "image": "/frame4.png",
         "category": "Frame",
@@ -70,6 +62,34 @@
         "title": "Handgrepen 5",
         "image": "/Handle5.png",
         "category": "Handle",
+        "width": "auto",
+        "height": "auto"
+    },
+    {
+        "title": "Drawer 1",
+        "image": "../../../../../../public/CDrawer.png",
+        "category": "drawer",
+        "width": "auto",
+        "height": "auto"
+    },
+    {
+        "title": "Drawer 2",
+        "image": "../../../../../../public/Fdrawer.png",
+       "category": "drawer",
+        "width": "auto",
+        "height": "auto"
+    },
+    {
+        "title": "Drawer 3",
+        "image": "../../../../../../public/K drawer.png",
+        "category": "drawer",
+        "width": "auto",
+        "height": "auto"
+    },
+    {
+        "title": "Drawer 4",
+        "image": "../../../../../../public/M drawer.png",
+        "category": "drawer",
         "width": "auto",
         "height": "auto"
     }

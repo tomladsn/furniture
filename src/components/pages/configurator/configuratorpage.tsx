@@ -85,7 +85,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const [isFrameVisible, setFrameVisible] = useState(false);
     const [isDoorVisible, setDoorVisible] = useState(false);
     const [isHandleComponentVisible, setHandleComponentVisible] = useState(false);
-
+    const [isDrawerVisible, setDrawerVisible] = useState(false);
 
     const toggleFrameVisibility = () => {
         setFrameVisible(!isFrameVisible);
@@ -95,6 +95,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     };
     const toggleHandleVisibility = () => {
         setHandleComponentVisible(!isHandleComponentVisible);
+    };
+    const toggleDrawerVisibility = () => {
+        setDrawerVisible(!isDrawerVisible);
     };
     return (
         <div className={classNames(styles.root, className)}>
@@ -237,7 +240,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         {isDoorVisible && (
                 <div className={styles.frame}>
                     <FaArrowLeft className={styles.backarrow} onClick={toggleDoorVisibility} />
-                    <h3 className={styles.frametext}>Doors</h3>
+                    <h3 className={styles.frametext}>Deuren</h3>
                     <div className={styles.carddoor}>
                     {cardData
                             .filter(card => card.category === 'Door')
@@ -320,7 +323,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
                 </div>
             )}
-                        <div className={styles['components-selection']}>
+                        <div className={styles['components-selection']} onClick={toggleDrawerVisibility}>
                             <VscLayoutPanelCenter className={styles['drawer-icon']} />
                             <p className={styles.door}>Lades</p>
                             <IoIosArrowDropright
@@ -331,6 +334,27 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                                     left: '200px',
                                 }} />
                         </div>
+                        {isDrawerVisible && (
+                <div className={styles.frame}>
+                    <FaArrowLeft className={styles.backarrow} onClick={toggleDrawerVisibility} />
+                    <h3 className={styles.frametext}>Lades</h3>
+                    <div className={styles.cardframe}>
+                    {cardData
+                            .filter(card => card.category === 'drawer')
+                            .map((card, index) => (
+                            <Card
+                                key={index}
+                                title={card.title}
+                                image={card.image}
+                                width={card.width}
+                                height={card.height}
+                                onClick={() => handleFrameProductClick(card.title)}
+                            />
+                        ))}
+        </div>
+
+                </div>
+            )}
                         <div className={styles['components-selection']}>
                             <GiClothesline className={styles['rail-icon']} />
                             <p className={styles.door}>Kledinghanger</p>
@@ -353,17 +377,6 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                                     left: '200px',
                                 }} />
                         </div>
-                        <div className={styles['components-selection']}>
-                            <GiRunningShoe className={styles['shoe-icon']} />
-                            <p className={styles.door}>Deuren</p>
-                            <IoIosArrowDropright
-                                style={{
-                                    width: '30px',
-                                    height: '20px',
-                                    position: 'relative',
-                                    left: '200px',
-                                }} />
-                        </div>
                     </div>
                 </div>
                 <div className={styles['canva-div']}>
@@ -372,8 +385,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         showDoor={showDoor}
                         showHandle={showHandle}
                         showDrawer={showDrawer}
-                        selectedFrameProduct={selectedFrameProduct}
-                    />
+                        selectedFrameProduct={selectedFrameProduct} title={''}                    />
                 </div>
             </div>
         </div>

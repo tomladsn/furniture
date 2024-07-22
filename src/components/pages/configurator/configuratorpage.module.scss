@@ -270,3 +270,12 @@ position: absolute;
   position: relative;
   bottom: 20px;
 }
+.drawer{
+  background-color: white;
+  height: 500px;
+  width: 400px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 9;
+}
