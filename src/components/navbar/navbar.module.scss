@@ -115,7 +115,7 @@ p {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .navicon {
     position: absolute;
-    left: 95vw;
+    left: 93vw;
   }
 }
 @media (min-width: 2501px) {
@@ -146,11 +146,18 @@ p {
     left: 55vw;
   }
 }
+@media only screen and (min-width: 1050px) and (max-width: 1300px) {
+  .navmenu1 {
+    position: absolute;
+    left: 58vw;
+  }
+}
+
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .navmenu1 {
     position: absolute;
-    left: 1350px;
+    left: 71vw;
   }
 }
 @media (min-width: 2501px) {

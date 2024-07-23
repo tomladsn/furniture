@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, Suspense, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
@@ -9,10 +9,10 @@ const Floor = React.lazy(() => import('../../modelcomponent/floor') )
 const Tvmeubel = React.lazy(() => import('../../modelcomponent/tv-set'));
 const Wardrobe = React.lazy(() => import('../../modelcomponent/wardrobe'));
 const Kast = React.lazy(() => import('../../modelcomponent/kast'));
-const Smallframe = React.lazy(() => import('../../modelcomponent/50cmWideframe1'));
-const Mediumframe = React.lazy(() => import('../../modelcomponent/75cmFrame'));
-const Largeframe = React.lazy(() => import('../../modelcomponent/100cmFrame'));
-const Cornerframe = React.lazy(() => import('../../modelcomponent/cornerFrame'));
+const Smallframe = React.lazy(() => import('../../modelcomponent/new50cmFrame'));
+const Mediumframe = React.lazy(() => import('../../modelcomponent/new75cmFrame'));
+// const Largeframe = React.lazy(() => import('../../modelcomponent/100cmFrame'));
+const Cornerframe = React.lazy(() => import('../../modelcomponent/newCornerFrame'));
 const Fdrawer = React.lazy(() => import('../../modelcomponent/Fdrawer'));
 const Mdrawer = React.lazy(() => import('../../modelcomponent/Mdrawer'));
 const Kdrawer = React.lazy(() => import('../../modelcomponent/Kdrawer'));
@@ -25,8 +25,21 @@ interface SceneProps {
     showHandle: boolean;
     showDrawer: boolean;
     selectedFrameProduct: string | null;
+  
 }
+const CustomCamera = () => {
+    const { camera } = useThree();
 
+    useEffect(() => {
+        if (camera instanceof THREE.PerspectiveCamera) {
+            camera.position.set(3, 8, 4);
+            camera.fov = 50; // Set the field of view
+            camera.updateProjectionMatrix();
+        }
+    }, [camera]);
+
+    return null;
+};
 const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct }) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const wardrobeRef = useRef<THREE.Group>(null);
@@ -68,9 +81,9 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
         }
     }, [selectedFrameProduct]);
 
-
     return (
         <Canvas className={styles['canva']}>
+         
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
             <pointLight position={[-10, -10, -10]} intensity={0.5} />
@@ -103,17 +116,17 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
            <Draggable><Kdrawer /></Draggable> */}
 
           {activeFrames.map((frame, index) => {
-                               <Draggable>
-                               <Largeframe />
-                       </Draggable>
+                    //            <Draggable>
+                    //            <Largeframe />
+                    //    </Draggable>
     if (frame === 'Corner (111cm)') {
         return (
             <group
                 key={frame}
                 ref={CornerframeRef}
-                position={[7.3, -1.95, -8.1]}
-                rotation={[0, 6 * Math.PI / 2, 0]}
-                scale={[1, 1.5, 1.2]}
+                position={[10.1, -1.11, -8.2]} // Adjusted position to place them beside each other
+                rotation={[0, Math.PI*2, 0]}
+                scale={[2, 1.55, 1.1]}
             >
                 <Cornerframe />
             </group>
@@ -125,9 +138,9 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             <Draggable key={frame}>
                 <group
                     ref={MediumframeRef}
-                    position={[3, -0.9, -8.3]} // Adjusted position to place them beside each other
-                    rotation={[0, Math.PI, 0]}
-                    scale={[2.8, 3.05, 2.5]}
+                    position={[5, -1.11, -9]} // Adjusted position to place them beside each other
+                    rotation={[0, Math.PI*2, 0]}
+                    scale={[2, 1.55, 1.1]}
                 >
                     <Mediumframe />
                 </group>
@@ -140,9 +153,9 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             <Draggable key={frame}>
                 <group
                     ref={SmallframeRef}
-                    position={[1, -2.5, -8.2]} // Adjusted position to place them beside each other
-                    rotation={[0, Math.PI, 0]}
-                    scale={[2.9, 3.05, 1.8]}
+                    position={[1, -1.11, -9.2]} // Adjusted position to place them beside each other
+                    rotation={[0, Math.PI*2, 0]}
+                    scale={[2, 1.55, 1.1]}
                 >
                     <Smallframe />
                 </group>

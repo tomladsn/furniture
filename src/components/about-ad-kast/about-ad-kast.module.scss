@@ -207,8 +207,8 @@ display: none;
     width: 20vw;
     position: absolute;
     left: 75vw;
-    top: 130px;
-    height: 300px;
+    top: 100px;
+    height: auto;
   }
 }
 
@@ -279,6 +279,7 @@ display: none;
   background-color: rgb(245, 245, 247);
   position: relative;
   width: auto;
+  display: none;
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
@@ -290,6 +291,7 @@ display: none;
 
 @media (max-width: 500px) { 
   .newsletterDiv {
+    display: contents;
     width: 100vw;
    height: 425px;
     display: flex;
@@ -436,7 +438,7 @@ position: absolute;
   width: 154px;
   height: 20px;
   color: #171a1f;
-  font-size: 32px;
+  font-size: 1.6em;
   font-family: Arial;
   font-weight: 500;
   line-height: 22px;
@@ -465,11 +467,11 @@ position: absolute;
 }
 @media (min-width: 1824px) and (max-width: 2000px) {
   .about-us-btn {
-    font-size: 2vw;
+    font-size: 1.6em;
     width: 20vw;
     position: relative;
-    top: 180px;
-    left: 1px;
+    top: 190px;
+    left: -15px;
   }
 }
 @media (min-width: 2501px) {

@@ -3,14 +3,13 @@
   width: 100vw;
   height: 800px;
   position: relative;
-  top: 1650px;
+  top: 2100px;
 }
 @media screen and (min-width: 1800px) {
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .root {
     min-width: 100vw;
-    position: relative;
-    top: 2190px;
+
   }
 }
 
@@ -31,6 +30,8 @@
   width: 98vw;
   height: 800px;
   max-width: 2000px;
+  position: relative;
+  top: -470px;
  
 }
 
@@ -38,13 +39,13 @@
   /* Your CSS rules for devices with a minimum width of 1800 pixels */
   .contact-img {
     min-width:  98vw;
-    height: 500px;
+
   }
 }
 @media (min-width: 2501px) {
   .contact-img {
     width: 98vw;
-    height: 600px;
+
   }
 }
 @media (max-width: 500px) {
@@ -57,7 +58,7 @@
  }
  @media (min-width: 1800px) and (max-width: 2000px) {
   .contact-img {
-    height: 600px;
+
  
     position: relative;
         bottom: 40px;
