@@ -55,10 +55,26 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const [showHandle, setShowHandle] = useState(false)
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
     const [selectedFrameProduct, setSelectedFrameProduct] = useState<string | null>(null);
-
+    const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
+    const [scale, setScale] = useState(1);
     const handleFrameProductClick = (productTitle: string) => {
         setSelectedFrameProduct(productTitle);
-    };
+    
+        // Show the customization menu if the clicked product requires it
+        if (productTitle === 'Frame (50x175 cm)') {
+          setIsCustomisationVisible(true);
+        } else {
+          setIsCustomisationVisible(false);
+        }
+      };
+      const handleScaleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setScale(parseFloat(event.target.value));
+      };
+      useEffect(() => {
+        // Apply scaling to the model (pseudo code)
+        // Replace with your actual logic for scaling the model
+      }, [scale]);
+    
     const handleToggle = () => {
         setShowHandle(!showHandle); // Toggle the showHandle state
     };
@@ -82,13 +98,16 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const handleProductClick = (productName: string) => {
         setSelectedProduct(productName);
     };
+
     const [isFrameVisible, setFrameVisible] = useState(false);
+
     const [isDoorVisible, setDoorVisible] = useState(false);
     const [isHandleComponentVisible, setHandleComponentVisible] = useState(false);
     const [isDrawerVisible, setDrawerVisible] = useState(false);
 
     const toggleFrameVisibility = () => {
         setFrameVisible(!isFrameVisible);
+        setIsCustomisationVisible(false);
     };
     const toggleDoorVisibility = () => {
         setDoorVisible(!isDoorVisible);
@@ -99,6 +118,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const toggleDrawerVisibility = () => {
         setDrawerVisible(!isDrawerVisible);
     };
+
     return (
         <div className={classNames(styles.root, className)}>
 
@@ -290,6 +310,26 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     </div>
                 </div>
             )}
+{isCustomisationVisible && (
+        <div className={styles.frame}>
+          <FaArrowLeft className={styles.backarrow} onClick={toggleFrameVisibility} />
+          <h3 className={styles.frametext}>50cmframe customisation</h3>
+          <div className={styles.customise}>
+          <label>
+              Scale:
+              <input
+                type="range"
+                min="0.1"
+                max="2"
+                step="0.1"
+                value={scale}
+                onChange={handleScaleChange}
+              />
+              {scale.toFixed(1)}
+            </label>
+          </div>
+        </div>
+      )}
 
                         <div className={styles['components-selection']} onClick={() => { toggleHandleVisibility(); handleToggle(); }} >
                             <GiDoorHandle className={styles['handle-icon']} />
@@ -381,11 +421,13 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 </div>
                 <div className={styles['canva-div']}>
                     <Scene
+                    scale={scale}
                         selectedProduct={selectedProduct}
                         showDoor={showDoor}
                         showHandle={showHandle}
                         showDrawer={showDrawer}
-                        selectedFrameProduct={selectedFrameProduct} title={''}                    />
+                        selectedFrameProduct={selectedFrameProduct} title={''}   
+                        onScaleChange={handleScaleChange}                 />
                 </div>
             </div>
         </div>

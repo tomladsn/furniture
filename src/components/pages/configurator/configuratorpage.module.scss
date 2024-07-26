@@ -248,7 +248,7 @@ position: absolute;
 }
 .frame {
   background-color: white;
-  height: 500px;
+  height: 540px;
   width: 400px;
   position: absolute;
   left: 0px;
@@ -278,4 +278,30 @@ position: absolute;
   left: 0px;
   top: 0px;
   z-index: 9;
+}
+
+.customise {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.customise label {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.customise input[type="range"] {
+  width: 200px;
+  margin: 0 10px;
+}
+
+.customise span {
+  display: inline-block;
+  width: 30px;
+  text-align: right;
 }

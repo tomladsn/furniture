@@ -25,7 +25,8 @@ interface SceneProps {
     showHandle: boolean;
     showDrawer: boolean;
     selectedFrameProduct: string | null;
-  
+    scale: number;
+    onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const CustomCamera = () => {
     const { camera } = useThree();
@@ -40,7 +41,7 @@ const CustomCamera = () => {
 
     return null;
 };
-const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct }) => {
+const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scale }) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const wardrobeRef = useRef<THREE.Group>(null);
     const tvmeubelRef = useRef<THREE.Group>(null);
@@ -80,7 +81,7 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             setActiveFrames(prev => [...prev, selectedFrameProduct]);
         }
     }, [selectedFrameProduct]);
-
+    const originalScale = [2, 1.55, 1.1];
     return (
         <Canvas className={styles['canva']}>
          
@@ -126,6 +127,7 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
                 ref={CornerframeRef}
                 position={[10.1, -1.11, -8.2]} // Adjusted position to place them beside each other
                 rotation={[0, Math.PI*2, 0]}
+               
                 scale={[2, 1.55, 1.1]}
             >
                 <Cornerframe />
@@ -152,11 +154,15 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
         return (
             <Draggable key={frame}>
                 <group
-                    ref={SmallframeRef}
-                    position={[1, -1.11, -9.2]} // Adjusted position to place them beside each other
-                    rotation={[0, Math.PI*2, 0]}
-                    scale={[2, 1.55, 1.1]}
-                >
+        ref={SmallframeRef}
+        position={[1 / scale, -1.11 / scale, -9.2 / scale]} // Adjusted to compensate for scaling
+        rotation={[0, Math.PI * 2, 0]}
+        scale={[
+          originalScale[0] * scale,
+          originalScale[1] * scale,
+          originalScale[2] * scale
+        ]}
+      >
                     <Smallframe />
                 </group>
             </Draggable>

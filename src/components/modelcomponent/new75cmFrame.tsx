@@ -20,6 +20,13 @@ type GLTFResult = GLTF & {
 
 export function Mediumframe(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/new75cmframe.glb') as GLTFResult
+  const material = materials['FrontColor.001'].clone();
+
+  // Set the material color to grey
+  material.color.set('white');
+
+  // Set the roughness to 1 for a fully matte appearance
+  material.roughness = 1;
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Mesh2.geometry} material={materials['FrontColor.001']} position={[-2, 1.5, 1]} scale={0.0024} />
