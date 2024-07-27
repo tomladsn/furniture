@@ -25,7 +25,9 @@ interface SceneProps {
     showHandle: boolean;
     showDrawer: boolean;
     selectedFrameProduct: string | null;
-    scale: number;
+    scaleX: number;
+    scaleY: number;
+    scaleZ: number;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const CustomCamera = () => {
@@ -41,7 +43,7 @@ const CustomCamera = () => {
 
     return null;
 };
-const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scale }) => {
+const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scaleX, scaleY, scaleZ }) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const wardrobeRef = useRef<THREE.Group>(null);
     const tvmeubelRef = useRef<THREE.Group>(null);
@@ -151,23 +153,30 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
     }
 
     if (frame === 'Frame (50x175 cm)') {
+        const originalScale = [2, 1.55, 1.1]; // Assuming this is your original scale
+        const baseY = -1.11; // Original Y position
+    
         return (
-            <Draggable key={frame}>
-                <group
-        ref={SmallframeRef}
-        position={[1 / scale, -1.11 / scale, -9.2 / scale]} // Adjusted to compensate for scaling
-        rotation={[0, Math.PI * 2, 0]}
-        scale={[
-          originalScale[0] * scale,
-          originalScale[1] * scale,
-          originalScale[2] * scale
-        ]}
-      >
-                    <Smallframe />
-                </group>
-            </Draggable>
+          <Draggable key={frame}>
+            <group
+              ref={SmallframeRef}
+              position={[
+                1 / scaleX,
+                baseY + (scaleY - 1) * Math.abs(baseY), // This will make it scale upward
+                -9.2 / scaleZ
+              ]}
+              rotation={[0, Math.PI * 2, 0]}
+              scale={[
+                originalScale[0] * scaleX,
+                originalScale[1] * scaleY,
+                originalScale[2] * scaleZ
+              ]}
+            >
+              <Smallframe />
+            </group>
+          </Draggable>
         );
-    }
+      }
 
 
     return null;

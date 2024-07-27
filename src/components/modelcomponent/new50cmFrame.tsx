@@ -20,7 +20,7 @@ export function Smallframe(props: JSX.IntrinsicElements['group']) {
   const meshRef = useRef<THREE.Mesh>(null)
 
   // Create a new white material
-  const whiteMaterial = new THREE.MeshStandardMaterial({   color: '0xE0E0E0',
+  const whiteMaterial = new THREE.MeshStandardMaterial({   color: 'white',
     roughness: 0.7})
   return (
     <group  {...props} dispose={null}>

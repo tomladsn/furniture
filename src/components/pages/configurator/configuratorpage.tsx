@@ -56,7 +56,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
     const [selectedFrameProduct, setSelectedFrameProduct] = useState<string | null>(null);
     const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
-    const [scale, setScale] = useState(1);
+  
     const handleFrameProductClick = (productTitle: string) => {
         setSelectedFrameProduct(productTitle);
     
@@ -67,13 +67,21 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
           setIsCustomisationVisible(false);
         }
       };
-      const handleScaleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setScale(parseFloat(event.target.value));
+      const [scaleX, setScaleX] = useState(1);
+      const [scaleY, setScaleY] = useState(1);
+      const [scaleZ, setScaleZ] = useState(1);
+    
+      const handleScaleXChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setScaleX(parseFloat(event.target.value));
       };
-      useEffect(() => {
-        // Apply scaling to the model (pseudo code)
-        // Replace with your actual logic for scaling the model
-      }, [scale]);
+    
+      const handleScaleYChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setScaleY(parseFloat(event.target.value));
+      };
+    
+      const handleScaleZChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setScaleZ(parseFloat(event.target.value));
+      };
     
     const handleToggle = () => {
         setShowHandle(!showHandle); // Toggle the showHandle state
@@ -316,17 +324,41 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
           <h3 className={styles.frametext}>50cmframe customisation</h3>
           <div className={styles.customise}>
           <label>
-              Scale:
-              <input
-                type="range"
-                min="0.1"
-                max="2"
-                step="0.1"
-                value={scale}
-                onChange={handleScaleChange}
-              />
-              {scale.toFixed(1)}
-            </label>
+        Scale X:
+        <input
+          type="range"
+          min="0.1"
+          max="2"
+          step="0.1"
+          value={scaleX}
+          onChange={handleScaleXChange}
+        />
+        {scaleX.toFixed(1)}
+      </label>
+      <label>
+        Scale Y:
+        <input
+          type="range"
+          min="1"
+          max="2"
+          step="0.1"
+          value={scaleY}
+          onChange={handleScaleYChange}
+        />
+        {scaleY.toFixed(1)}
+      </label>
+      <label>
+        Scale Z:
+        <input
+          type="range"
+          min="0.1"
+          max="2"
+          step="0.1"
+          value={scaleZ}
+          onChange={handleScaleZChange}
+        />
+        {scaleZ.toFixed(1)}
+      </label>
           </div>
         </div>
       )}
@@ -420,14 +452,17 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     </div>
                 </div>
                 <div className={styles['canva-div']}>
-                    <Scene
-                    scale={scale}
-                        selectedProduct={selectedProduct}
-                        showDoor={showDoor}
-                        showHandle={showHandle}
-                        showDrawer={showDrawer}
-                        selectedFrameProduct={selectedFrameProduct} title={''}   
-                        onScaleChange={handleScaleChange}                 />
+                <Scene
+        scaleX={scaleX}
+        scaleY={scaleY}
+        scaleZ={scaleZ}
+        selectedProduct={selectedProduct}
+        showDoor={showDoor}
+        showHandle={showHandle}
+        showDrawer={showDrawer}
+        selectedFrameProduct={selectedFrameProduct}
+        title={''}
+      />
                 </div>
             </div>
         </div>
