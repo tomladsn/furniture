@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, ChangeEvent } from 'react';
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { LuFrame } from 'react-icons/lu';
@@ -56,17 +56,49 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
     const [selectedFrameProduct, setSelectedFrameProduct] = useState<string | null>(null);
     const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
-  
-    const handleFrameProductClick = (productTitle: string) => {
+    const [isFrame2CustomisationVisible, setIsFrame2CustomisationVisible] = useState(false);
+    const [isFrame3CustomisationVisible, setIsFrame3CustomisationVisible] = useState(false);
+
+    const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
+    const [visibles2SubComponent, setVisible2SubComponent] = useState<'shelves' | 'drawers' | null>(null);
+    const [visibles3SubComponent, setVisible3SubComponent] = useState<'shelves' | 'drawers' | null>(null);
+    const handleSubCardClick = (component: 'shelves' | 'drawers') => {
+        setVisibleSubComponent(component);
+      };
+      const handleSub2CardClick = (component: 'shelves' | 'drawers') => {
+        setVisible2SubComponent(component);
+      }; 
+        const handleSub3CardClick = (component: 'shelves' | 'drawers') => {
+        setVisible3SubComponent(component);
+      };
+
+      const handleFrameProductClick = (productTitle: string) => {
         setSelectedFrameProduct(productTitle);
     
-        // Show the customization menu if the clicked product requires it
         if (productTitle === 'Frame (50x175 cm)') {
           setIsCustomisationVisible(true);
+          setIsFrame2CustomisationVisible(false);
+          setIsFrame3CustomisationVisible(false);
+          setFrameVisible(false);
+        } else if (productTitle === 'Frame (75x175 cm)') {
+          setIsCustomisationVisible(false);
+          setIsFrame2CustomisationVisible(true);
+          setIsFrame3CustomisationVisible(false);
+          setFrameVisible(false);
+        } else if (productTitle === 'Corner (111cm)') {
+          setIsCustomisationVisible(false);
+          setIsFrame2CustomisationVisible(false);
+          setIsFrame3CustomisationVisible(true);
+          setFrameVisible(false);
         } else {
           setIsCustomisationVisible(false);
+          setIsFrame2CustomisationVisible(false);
+          setIsFrame3CustomisationVisible(false);
+          setFrameVisible(true);
         }
       };
+    
+    
       const [scaleX, setScaleX] = useState(1);
       const [scaleY, setScaleY] = useState(1);
       const [scaleZ, setScaleZ] = useState(1);
@@ -82,7 +114,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       const handleScaleZChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setScaleZ(parseFloat(event.target.value));
       };
-    
+
     const handleToggle = () => {
         setShowHandle(!showHandle); // Toggle the showHandle state
     };
@@ -114,12 +146,21 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const [isDrawerVisible, setDrawerVisible] = useState(false);
 
     const toggleFrameVisibility = () => {
-        setFrameVisible(!isFrameVisible);
         setIsCustomisationVisible(false);
-    };
-    const toggleDoorVisibility = () => {
-        setDoorVisible(!isDoorVisible);
-    };
+        setIsFrame2CustomisationVisible(false);
+        setIsFrame3CustomisationVisible(false);
+        setVisibleSubComponent(null);
+        setFrameVisible(!isFrameVisible);
+      };
+      const handleBackClick = () => {
+        setIsCustomisationVisible(false);
+        setIsFrame2CustomisationVisible(false);
+        setIsFrame3CustomisationVisible(false);
+        setFrameVisible(true); // Show the frame selection div
+      };
+    // const toggleDoorVisibility = () => {
+    //     setDoorVisible(!isDoorVisible);
+    // };
     const toggleHandleVisibility = () => {
         setHandleComponentVisible(!isHandleComponentVisible);
     };
@@ -253,7 +294,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                             ></div>
                         </div>
                     </div>
-                    <div className={styles['component-config']} onClick={toggleDoorVisibility}>
+                    <div className={styles['component-config']}>
                         <div className={styles['components-selection']}>
                             <MdDoorSliding className={styles['door-icon']} />
                             <p className={styles.door}>Deuren</p>
@@ -267,7 +308,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         </div>
                         {isDoorVisible && (
                 <div className={styles.frame}>
-                    <FaArrowLeft className={styles.backarrow} onClick={toggleDoorVisibility} />
+                    <FaArrowLeft className={styles.backarrow} />
                     <h3 className={styles.frametext}>Deuren</h3>
                     <div className={styles.carddoor}>
                     {cardData
@@ -320,7 +361,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             )}
 {isCustomisationVisible && (
         <div className={styles.frame}>
-          <FaArrowLeft className={styles.backarrow} onClick={toggleFrameVisibility} />
+          <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
           <h3 className={styles.frametext}>50cmframe customisation</h3>
           <div className={styles.customise}>
           <label>
@@ -360,8 +401,133 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         {scaleZ.toFixed(1)}
       </label>
           </div>
+          <div className={styles.cardContainer22}>
+  <div className={styles.card789} onClick={() => handleSubCardClick('shelves')}>
+    <div className={styles.cardContent183}>
+      <h3 className={styles.cardTitle591}>Shelves</h3>
+    </div>
+  </div>
+  <div className={styles.card359} onClick={() => handleSubCardClick('drawers')}>
+    <div className={styles.cardContent497}>
+      <h3 className={styles.cardTitle824}>Drawers</h3>
+    </div>
+  </div>
+</div>
         </div>
       )}
+      {isFrame2CustomisationVisible && (
+        <div className={styles.frame}>
+          <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
+          <h3 className={styles.frametext}>75cmframe customisation</h3>
+          <div className={styles.customise}>
+          <label>
+        Scale X:
+        <input
+          type="range"
+          min="0.1"
+          max="2"
+          step="0.1"
+          value={scaleX}
+          onChange={handleScaleXChange}
+        />
+        {scaleX.toFixed(1)}
+      </label>
+      <label>
+        Scale Y:
+        <input
+          type="range"
+          min="1"
+          max="2"
+          step="0.1"
+          value={scaleY}
+          onChange={handleScaleYChange}
+        />
+        {scaleY.toFixed(1)}
+      </label>
+      <label>
+        Scale Z:
+        <input
+          type="range"
+          min="0.1"
+          max="2"
+          step="0.1"
+          value={scaleZ}
+          onChange={handleScaleZChange}
+        />
+        {scaleZ.toFixed(1)}
+      </label>
+
+
+      <div className={styles.cardContainer22}>
+  <div className={styles.card789} onClick={() => handleSub2CardClick('shelves')}>
+    <div className={styles.cardContent183}>
+      <h3 className={styles.cardTitle591}>Shelves</h3>
+    </div>
+  </div>
+  <div className={styles.card359} onClick={() => handleSub2CardClick('drawers')}>
+    <div className={styles.cardContent497}>
+      <h3 className={styles.cardTitle824}>Drawers</h3>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+      )}
+
+{isFrame3CustomisationVisible && (
+        <div className={styles.frame}>
+          <FaArrowLeft className={styles.backarrow} onClick={handleBackClick}/>
+          <h3 className={styles.frametext}>cornerframe customisation</h3>
+          <div className={styles.customise}>
+          <label>
+        Scale X:
+        <input
+          type="range"
+          min="0.1"
+          max="2"
+          step="0.1"
+          value={scaleX}
+          onChange={handleScaleXChange}
+        />
+        {scaleX.toFixed(1)}
+      </label>
+      <label>
+        Scale Y:
+        <input
+          type="range"
+          min="1"
+          max="2"
+          step="0.1"
+          value={scaleY}
+          onChange={handleScaleYChange}
+        />
+        {scaleY.toFixed(1)}
+      </label>
+      <label>
+        Scale Z:
+        <input
+          type="range"
+          min="0.1"
+          max="2"
+          step="0.1"
+          value={scaleZ}
+          onChange={handleScaleZChange}
+        />
+        {scaleZ.toFixed(1)}
+      </label>
+
+
+      <div className={styles.cardContainer22}>
+  <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
+    <div className={styles.cardContent183}>
+      <h3 className={styles.cardTitle591}>Corner Shelves</h3>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+      )}
+
 
                         <div className={styles['components-selection']} onClick={() => { toggleHandleVisibility(); handleToggle(); }} >
                             <GiDoorHandle className={styles['handle-icon']} />
@@ -453,16 +619,22 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 </div>
                 <div className={styles['canva-div']}>
                 <Scene
-        scaleX={scaleX}
-        scaleY={scaleY}
-        scaleZ={scaleZ}
-        selectedProduct={selectedProduct}
-        showDoor={showDoor}
-        showHandle={showHandle}
-        showDrawer={showDrawer}
-        selectedFrameProduct={selectedFrameProduct}
-        title={''}
-      />
+                        scaleX={scaleX}
+                        scaleY={scaleY}
+                        scaleZ={scaleZ}
+                        selectedProduct={selectedProduct}
+                        showDoor={showDoor}
+                        showHandle={showHandle}
+                        showDrawer={showDrawer}
+                        selectedFrameProduct={selectedFrameProduct}
+                        title={''}
+                        visible2component={visibles2SubComponent}
+                        visible3component={visibles3SubComponent}
+                        visibleComponent={visiblesSubComponent} // Correct prop name
+                        onScaleChange={function (event: ChangeEvent<HTMLInputElement>): void {
+                            throw new Error('Function not implemented.');
+                        } }  
+                           />
                 </div>
             </div>
         </div>

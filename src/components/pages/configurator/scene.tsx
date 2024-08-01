@@ -9,15 +9,14 @@ const Floor = React.lazy(() => import('../../modelcomponent/floor') )
 const Tvmeubel = React.lazy(() => import('../../modelcomponent/tv-set'));
 const Wardrobe = React.lazy(() => import('../../modelcomponent/wardrobe'));
 const Kast = React.lazy(() => import('../../modelcomponent/kast'));
-const Smallframe = React.lazy(() => import('../../modelcomponent/new50cmFrame'));
-const Mediumframe = React.lazy(() => import('../../modelcomponent/new75cmFrame'));
+const Smallframe = React.lazy(() => import('../../modelcomponent/50cmframewithdrawer'));
+const Mediumframe = React.lazy(() => import('../../modelcomponent/75cmfullframe'));
 // const Largeframe = React.lazy(() => import('../../modelcomponent/100cmFrame'));
-const Cornerframe = React.lazy(() => import('../../modelcomponent/newCornerFrame'));
+const Cornerframe = React.lazy(() => import('../../modelcomponent/cornerfullframe'));
 const Fdrawer = React.lazy(() => import('../../modelcomponent/Fdrawer'));
 const Mdrawer = React.lazy(() => import('../../modelcomponent/Mdrawer'));
 const Kdrawer = React.lazy(() => import('../../modelcomponent/Kdrawer'));
 const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
-
 interface SceneProps {
     title: string;
     selectedProduct: string | null;
@@ -29,6 +28,9 @@ interface SceneProps {
     scaleY: number;
     scaleZ: number;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    visibleComponent: 'shelves' | 'drawers' | null;
+    visible2component: "shelves" | "drawers" | null;
+    visible3component: "shelves" | "drawers" | null;
 }
 const CustomCamera = () => {
     const { camera } = useThree();
@@ -43,7 +45,7 @@ const CustomCamera = () => {
 
     return null;
 };
-const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scaleX, scaleY, scaleZ }) => {
+const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scaleX, scaleY, scaleZ,  visibleComponent, visible2component, visible3component }) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const wardrobeRef = useRef<THREE.Group>(null);
     const tvmeubelRef = useRef<THREE.Group>(null);
@@ -122,35 +124,57 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
                     //            <Draggable>
                     //            <Largeframe />
                     //    </Draggable>
-    if (frame === 'Corner (111cm)') {
-        return (
-            <group
-                key={frame}
-                ref={CornerframeRef}
-                position={[10.1, -1.11, -8.2]} // Adjusted position to place them beside each other
-                rotation={[0, Math.PI*2, 0]}
-               
-                scale={[2, 1.55, 1.1]}
-            >
-                <Cornerframe />
-            </group>
-        );
-    }
+                    if (frame === 'Corner (111cm)') {
+                        const originalScale = [1, 1.55, 1.1]; // Original scale for the Corner frame
+                        const baseY = -1.11; // Original Y position
+                      
+                        return (
+                          <group
+                            key={frame}
+                            ref={CornerframeRef}
+                            position={[
+                              10.1 / scaleX,
+                              baseY + (scaleY - 1) * Math.abs(baseY), // Scale upward similarly to the other frames
+                              -8.2 / scaleZ
+                            ]}
+                            rotation={[0, Math.PI * 2, 0]}
+                            scale={[
+                              originalScale[0] * scaleX,
+                              originalScale[1] * scaleY,
+                              originalScale[2] * scaleZ
+                            ]}
+                          >
+                            <Cornerframe visible3Component={visible3component} />
+                          </group>
+                        );
+                      }
+                      
 
-    if (frame === 'Frame (75x175 cm)') {
-        return (
-            <Draggable key={frame}>
-                <group
-                    ref={MediumframeRef}
-                    position={[5, -1.11, -9]} // Adjusted position to place them beside each other
-                    rotation={[0, Math.PI*2, 0]}
-                    scale={[2, 1.55, 1.1]}
-                >
-                    <Mediumframe />
-                </group>
-            </Draggable>
-        );
-    }
+if (frame === 'Frame (75x175 cm)') {
+  const originalScale = [2, 1.55, 1.1]; // Assuming this is your original scale
+  const baseY = -1.11; // Original Y position
+
+  return (
+    <Draggable key={frame}>
+      <group
+        ref={MediumframeRef}
+        position={[
+          5 / scaleX,
+          baseY + (scaleY - 1) * Math.abs(baseY), // Scale upward similarly to the other frame
+          -9 / scaleZ
+        ]}
+        rotation={[0, Math.PI * 2, 0]}
+        scale={[
+          originalScale[0] * scaleX,
+          originalScale[1] * scaleY,
+          originalScale[2] * scaleZ
+        ]}
+      >
+        <Mediumframe visible2component={visible2component}/>
+      </group>
+    </Draggable>
+  );
+}
 
     if (frame === 'Frame (50x175 cm)') {
         const originalScale = [2, 1.55, 1.1]; // Assuming this is your original scale
@@ -172,7 +196,7 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
                 originalScale[2] * scaleZ
               ]}
             >
-              <Smallframe />
+              <Smallframe  visibleComponent={visibleComponent}/>
             </group>
           </Draggable>
         );

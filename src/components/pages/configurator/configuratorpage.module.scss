@@ -305,3 +305,66 @@ position: absolute;
   width: 30px;
   text-align: right;
 }
+.cardContainer22 {
+  display: flex;
+  gap: 20px; /* space between cards */
+  justify-content: center; /* center the cards */
+}
+
+/* Card for Shelves */
+.card789 {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.card789:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage442 {
+  width: 100%;
+  height: auto;
+}
+
+.cardContent183 {
+  padding: 16px;
+  text-align: center;
+}
+
+.cardTitle591 {
+  margin: 0;
+  font-size: 1.25em;
+}
+
+/* Card for Drawers */
+.card359 {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.card359:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage273 {
+  width: 100%;
+  height: auto;
+}
+
+.cardContent497 {
+  padding: 16px;
+  text-align: center;
+}
+
+.cardTitle824 {
+  margin: 0;
+  font-size: 1.25em;
+}
