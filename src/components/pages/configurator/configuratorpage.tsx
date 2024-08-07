@@ -1,4 +1,8 @@
+// npx gltfjsx src\components\modelcomponent\environment.glb --output src\components\modelcomponent\environment --types --keepnames --meta
+
+
 import classNames from 'classnames';
+
 import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
 import { useRef, useState, useEffect, ChangeEvent } from 'react';
@@ -15,6 +19,7 @@ import Scene from './scene';
 export interface ConfiguratorpageProps {
     className?: string;
 }
+
 interface ComponentSelectionProps {
     title: string;
     icon: React.ReactNode;
@@ -55,13 +60,15 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const [showHandle, setShowHandle] = useState(false)
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
     const [selectedFrameProduct, setSelectedFrameProduct] = useState<string | null>(null);
+    const [selectedDrawer, setSelectedDrawer] = useState<string | null>(null);
     const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
     const [isFrame2CustomisationVisible, setIsFrame2CustomisationVisible] = useState(false);
     const [isFrame3CustomisationVisible, setIsFrame3CustomisationVisible] = useState(false);
-
+    const [frames, setFrames] = useState<Array<{id: number, type: string, scale: [number, number, number]}>>([]);
     const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
     const [visibles2SubComponent, setVisible2SubComponent] = useState<'shelves' | 'drawers' | null>(null);
     const [visibles3SubComponent, setVisible3SubComponent] = useState<'shelves' | 'drawers' | null>(null);
+
     const handleSubCardClick = (component: 'shelves' | 'drawers') => {
         setVisibleSubComponent(component);
       };
@@ -71,6 +78,18 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         const handleSub3CardClick = (component: 'shelves' | 'drawers') => {
         setVisible3SubComponent(component);
       };
+      const handleDrawerSelection = (productTitle: string, setSelectedDrawer: React.Dispatch<React.SetStateAction<string | null>>) => {
+        if (productTitle === 'Drawer 1') {
+          setSelectedDrawer('Drawer 1');
+        } else if (productTitle === 'Drawer 2') {
+          setSelectedDrawer('Drawer 2');
+        } else if (productTitle === 'Drawer 3') {
+          setSelectedDrawer('Drawer 3');
+        } else if (productTitle === 'Drawer 4') {
+          setSelectedDrawer('Drawer 4');
+        }
+      };
+      
 
       const handleFrameProductClick = (productTitle: string) => {
         setSelectedFrameProduct(productTitle);
@@ -80,6 +99,14 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
           setIsFrame2CustomisationVisible(false);
           setIsFrame3CustomisationVisible(false);
           setFrameVisible(false);
+          setFrames(prevFrames => [
+            ...prevFrames,
+            {
+              id: Date.now(), // Unique ID for each frame
+              type: 'Frame (50x175 cm)',
+              scale: [1, 1, 1] // Initial scale
+            }
+          ]);
         } else if (productTitle === 'Frame (75x175 cm)') {
           setIsCustomisationVisible(false);
           setIsFrame2CustomisationVisible(true);
@@ -96,9 +123,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
           setIsFrame3CustomisationVisible(false);
           setFrameVisible(true);
         }
+    
+        handleDrawerSelection(productTitle, setSelectedDrawer);
       };
-    
-    
       const [scaleX, setScaleX] = useState(1);
       const [scaleY, setScaleY] = useState(1);
       const [scaleZ, setScaleZ] = useState(1);
@@ -153,6 +180,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         setFrameVisible(!isFrameVisible);
       };
       const handleBackClick = () => {
+        
         setIsCustomisationVisible(false);
         setIsFrame2CustomisationVisible(false);
         setIsFrame3CustomisationVisible(false);
@@ -167,7 +195,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const toggleDrawerVisibility = () => {
         setDrawerVisible(!isDrawerVisible);
     };
-
+    useEffect(() => {
+      console.log("Frames state updated:", frames);
+    }, [frames]);
     return (
         <div className={classNames(styles.root, className)}>
 
@@ -578,17 +608,17 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     <h3 className={styles.frametext}>Lades</h3>
                     <div className={styles.cardframe}>
                     {cardData
-                            .filter(card => card.category === 'drawer')
-                            .map((card, index) => (
-                            <Card
-                                key={index}
-                                title={card.title}
-                                image={card.image}
-                                width={card.width}
-                                height={card.height}
-                                onClick={() => handleFrameProductClick(card.title)}
-                            />
-                        ))}
+            .filter(card => card.category === 'drawer')
+            .map((card, index) => (
+              <Card
+                key={index}
+                title={card.title}
+                image={card.image}
+                width={card.width}
+                height={card.height}
+                onClick={() => handleFrameProductClick(card.title)}
+              />
+            ))}
         </div>
 
                 </div>
@@ -619,22 +649,24 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 </div>
                 <div className={styles['canva-div']}>
                 <Scene
-                        scaleX={scaleX}
-                        scaleY={scaleY}
-                        scaleZ={scaleZ}
-                        selectedProduct={selectedProduct}
-                        showDoor={showDoor}
-                        showHandle={showHandle}
-                        showDrawer={showDrawer}
-                        selectedFrameProduct={selectedFrameProduct}
-                        title={''}
-                        visible2component={visibles2SubComponent}
-                        visible3component={visibles3SubComponent}
-                        visibleComponent={visiblesSubComponent} // Correct prop name
-                        onScaleChange={function (event: ChangeEvent<HTMLInputElement>): void {
-                            throw new Error('Function not implemented.');
-                        } }  
-                           />
+              frames={frames}
+              setFrames={setFrames}
+              scaleX={scaleX}
+              scaleY={scaleY}
+              scaleZ={scaleZ}
+              selectedDrawer={selectedDrawer}
+              selectedProduct={selectedProduct}
+              showDoor={showDoor}
+              showHandle={showHandle}
+              showDrawer={showDrawer}
+              selectedFrameProduct={selectedFrameProduct}
+              title={''}
+              visible2component={visibles2SubComponent}
+              visible3component={visibles3SubComponent}
+              visibleComponent={visiblesSubComponent} // Correct prop name
+              onScaleChange={function (event: ChangeEvent<HTMLInputElement>): void {
+                throw new Error('Function not implemented.');
+              } } frameId={0}                           />
                 </div>
             </div>
         </div>

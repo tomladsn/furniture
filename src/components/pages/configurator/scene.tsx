@@ -24,6 +24,7 @@ interface SceneProps {
     showHandle: boolean;
     showDrawer: boolean;
     selectedFrameProduct: string | null;
+    selectedDrawer: string | null
     scaleX: number;
     scaleY: number;
     scaleZ: number;
@@ -31,6 +32,9 @@ interface SceneProps {
     visibleComponent: 'shelves' | 'drawers' | null;
     visible2component: "shelves" | "drawers" | null;
     visible3component: "shelves" | "drawers" | null;
+    frames: Array<{id: number, type: string, scale: [number, number, number]}>;
+    setFrames: React.Dispatch<React.SetStateAction<Array<{id: number, type: string, scale: [number, number, number]}>>>;
+    frameId: number
 }
 const CustomCamera = () => {
     const { camera } = useThree();
@@ -45,7 +49,7 @@ const CustomCamera = () => {
 
     return null;
 };
-const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scaleX, scaleY, scaleZ,  visibleComponent, visible2component, visible3component }) => {
+const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scaleX, scaleY, scaleZ,  visibleComponent, visible2component, visible3component, selectedDrawer, frames, setFrames }) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const wardrobeRef = useRef<THREE.Group>(null);
     const tvmeubelRef = useRef<THREE.Group>(null);
@@ -87,126 +91,119 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
     }, [selectedFrameProduct]);
     const originalScale = [2, 1.55, 1.1];
     return (
-        <Canvas className={styles['canva']}>
-         
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[5, 5, 5]} intensity={1} />
-            <pointLight position={[-10, -10, -10]} intensity={0.5} />
-            <OrbitControls enableRotate={true} />
-            <Floor />
-                {selectedProduct === 'TV-meubel' && (
-                    <Draggable>
-                        <group ref={tvmeubelRef} position={[0, -4, -8]}>
-                            <Tvmeubel />
-                        </group>
-                    </Draggable>
-                )}
-                {selectedProduct === 'Kledingkast' && (
-                    <Draggable>
-                        <group ref={wardrobeRef}>
-                            <Wardrobe showDoor={showDoor} showHandle={showHandle} />
-                        </group>
-                    </Draggable>
-                )}
-                {selectedProduct === 'Kast' && (
-                    <Draggable>
-                        <group ref={kastRef} position={[0, -0.6, -8]}>
-                            <Kast showDrawer={showDrawer} />
-                        </group>
-                    </Draggable>
-                )}
-           {/* <Draggable>
-           <Mdrawer /></Draggable>
-           <Draggable> <Cdrawer /> </Draggable> */}           {/* <Draggable><Fdrawer /></Draggable>
-           <Draggable><Kdrawer /></Draggable> */}
-
-          {activeFrames.map((frame, index) => {
-                    //            <Draggable>
-                    //            <Largeframe />
-                    //    </Draggable>
-                    if (frame === 'Corner (111cm)') {
-                        const originalScale = [1, 1.55, 1.1]; // Original scale for the Corner frame
-                        const baseY = -1.11; // Original Y position
-                      
-                        return (
-                          <group
-                            key={frame}
-                            ref={CornerframeRef}
-                            position={[
-                              10.1 / scaleX,
-                              baseY + (scaleY - 1) * Math.abs(baseY), // Scale upward similarly to the other frames
-                              -8.2 / scaleZ
-                            ]}
-                            rotation={[0, Math.PI * 2, 0]}
-                            scale={[
-                              originalScale[0] * scaleX,
-                              originalScale[1] * scaleY,
-                              originalScale[2] * scaleZ
-                            ]}
-                          >
-                            <Cornerframe visible3Component={visible3component} />
-                          </group>
-                        );
-                      }
-                      
-
-if (frame === 'Frame (75x175 cm)') {
-  const originalScale = [2, 1.55, 1.1]; // Assuming this is your original scale
-  const baseY = -1.11; // Original Y position
-
-  return (
-    <Draggable key={frame}>
-      <group
-        ref={MediumframeRef}
-        position={[
-          5 / scaleX,
-          baseY + (scaleY - 1) * Math.abs(baseY), // Scale upward similarly to the other frame
-          -9 / scaleZ
-        ]}
-        rotation={[0, Math.PI * 2, 0]}
-        scale={[
-          originalScale[0] * scaleX,
-          originalScale[1] * scaleY,
-          originalScale[2] * scaleZ
-        ]}
-      >
-        <Mediumframe visible2component={visible2component}/>
-      </group>
-    </Draggable>
-  );
-}
-
-    if (frame === 'Frame (50x175 cm)') {
-        const originalScale = [2, 1.55, 1.1]; // Assuming this is your original scale
-        const baseY = -1.11; // Original Y position
-    
-        return (
-          <Draggable key={frame}>
-            <group
-              ref={SmallframeRef}
-              position={[
-                1 / scaleX,
-                baseY + (scaleY - 1) * Math.abs(baseY), // This will make it scale upward
-                -9.2 / scaleZ
-              ]}
-              rotation={[0, Math.PI * 2, 0]}
-              scale={[
-                originalScale[0] * scaleX,
-                originalScale[1] * scaleY,
-                originalScale[2] * scaleZ
-              ]}
-            >
-              <Smallframe  visibleComponent={visibleComponent}/>
+      <Canvas className={styles['canva']}>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <pointLight position={[-10, -10, -10]} intensity={0.5} />
+        <OrbitControls enableRotate={true} />
+        <Floor />
+        {selectedProduct === 'TV-meubel' && (
+          <Draggable>
+            <group ref={tvmeubelRef} position={[0, -4, -8]}>
+              <Tvmeubel />
             </group>
           </Draggable>
-        );
-      }
-
-
-    return null;
-})}
-        </Canvas>
+        )}
+        {selectedProduct === 'Kledingkast' && (
+          <Draggable>
+            <group ref={wardrobeRef}>
+              <Wardrobe showDoor={showDoor} showHandle={showHandle} />
+            </group>
+          </Draggable>
+        )}
+        {selectedProduct === 'Kast' && (
+          <Draggable>
+            <group ref={kastRef} position={[0, -0.6, -8]}>
+              <Kast showDrawer={showDrawer} />
+            </group>
+          </Draggable>
+        )}
+        {activeFrames.map((frame, index) => {
+          if (frame === 'Corner (111cm)') {
+            const originalScale = [1, 1.55, 1.1];
+            const baseY = -1.11;
+            
+            return (
+              <group
+                key={frame}
+                ref={CornerframeRef}
+                position={[
+                  10.1 / scaleX,
+                  baseY + (scaleY - 1) * Math.abs(baseY),
+                  -8.2 / scaleZ
+                ]}
+                rotation={[0, Math.PI * 2, 0]}
+                scale={[
+                  originalScale[0] * scaleX,
+                  originalScale[1] * scaleY,
+                  originalScale[2] * scaleZ
+                ]}
+              >
+                <Cornerframe visible3Component={visible3component} />
+              </group>
+            );
+          }
+          
+          if (frame === 'Frame (75x175 cm)') {
+            const originalScale = [2, 1.55, 1.1];
+            const baseY = -1.11;
+    
+            return (
+              <Draggable key={frame}>
+                <group
+                  ref={MediumframeRef}
+                  position={[
+                    5 / scaleX,
+                    baseY + (scaleY - 1) * Math.abs(baseY),
+                    -9 / scaleZ
+                  ]}
+                  rotation={[0, Math.PI * 2, 0]}
+                  scale={[
+                    originalScale[0] * scaleX,
+                    originalScale[1] * scaleY,
+                    originalScale[2] * scaleZ
+                  ]}
+                >
+                  <Mediumframe visible2component={visible2component} selectedDrawer={selectedDrawer}/>
+                </group>
+              </Draggable>
+            );
+          }
+          return null;
+        })}
+        {frames.map((frame) => {
+          if (frame.type === 'Frame (50x175 cm)') {
+            const originalScale = [2, 1.55, 1.1];
+            const baseY = -1.11;
+            return (
+              <Draggable key={frame.id}>
+                <group
+                  position={[
+                    1 / frame.scale[0],
+                    baseY + (frame.scale[1] - 1) * Math.abs(baseY),
+                    -9.2 / frame.scale[2]
+                  ]}
+                  rotation={[0, Math.PI * 2, 0]}
+                  scale={[
+                    originalScale[0] * frame.scale[0],
+                    originalScale[1] * frame.scale[1],
+                    originalScale[2] * frame.scale[2]
+                  ]}
+                >
+                  <Smallframe
+                    visibleComponent={visibleComponent}
+                    selectedDrawer={selectedDrawer}
+                    frameId={frame.id}
+                    setFrames={setFrames}
+                  />
+                </group>
+              </Draggable>
+            );
+          } 
+          return null;
+        })}
+      </Canvas>
     );
-};
+  }
 
 export default Scene;

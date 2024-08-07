@@ -39,14 +39,81 @@ type GLTFResult = GLTF & {
   }
   animations: GLTFAction[]
 }
+type SmallframeProps = {
+  visible2component: 'shelves' | 'drawers' | null;
+  selectedDrawer: string | null;
+} & JSX.IntrinsicElements['group'];
 
-export function Mediumframe({visible2component, ...props }: { visible2component: 'shelves' | 'drawers' | null } & JSX.IntrinsicElements['group']) {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDrawer, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
   const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
   return (
     <group {...props} dispose={null} position={[-1.6, -0.46, 0.95]} scale={[0.12, 0.14, 0.13]}>
+    {selectedDrawer === 'Drawer 1' && ( <group >
+            <mesh
+              name="Cdrawer"
+              geometry={nodes.drawer5.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.drawer5}
+              position={[-3.12, 1.5, 3.273]}
+              scale={[0.15, 0.15, 0.22]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-3.133, 7.3, 0.541]}
+              scale={[-6.938, -0.196, -5.481]}
+            />
+          </group>)}
+          {selectedDrawer === 'Drawer 2' && (  <group >
+             <mesh
+              name="Mdrawer"
+              geometry={nodes.drawer5.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.drawer5}
+              position={[-3.12, 0.5, 3.273]}
+              scale={[0.15, 0.15, 0.1]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-3.133, 3.5, 0.541]}
+              scale={[-6.938, -0.196, -5.481]}
+            />
+          </group>)}
+          {selectedDrawer === 'Drawer 3' && ( <group >
+             <mesh
+              name="Kdrawer"
+              geometry={nodes.drawer5.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.drawer5}
+              position={[-3.12, 1.3, 3.273]}
+              scale={[0.15, 0.15, 0.17]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-3.133, 5.8, 0.541]}
+              scale={[-6.938, -0.196, -5.481]}
+            />
+          </group>)}
+          {selectedDrawer === 'Drawer 4' &&(<group >
+             <mesh
+              name="Fdrawer"
+              geometry={nodes.drawer5.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.drawer5}
+              position={[-3.12, 2.563, 3.273]}
+              scale={[0.15, 0.15, 0.3]}
+            />
+           <mesh name="shelve5" geometry={nodes.shelve5.geometry} material={materials.shelve5} position={[-3.133, 10.389, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve5' }} />
+          </group>)}
+
       <mesh name="frame" geometry={nodes.frame.geometry} material={whiteMaterial} position={[-3.079, 13.984, 0.565]} scale={[0.019, 0.017, 0.019]} userData={{ name: 'frame' }} />
       {false && ( <> <mesh name="drawer6" geometry={nodes.drawer6.geometry} material={materials.drawer6} position={[-3.12, 0.417, 3.273]} rotation={[Math.PI / 2, 0, 0]} scale={[0.152, 0.131, 0.123]} userData={{ name: 'drawer6' }} />
       <mesh name="drawer5" geometry={nodes.drawer5.geometry} material={materials.drawer5} position={[-3.12, 5.563, 3.273]} rotation={[Math.PI / 2, 0, 0]} scale={[0.152, 0.131, 0.123]} userData={{ name: 'drawer5' }} />

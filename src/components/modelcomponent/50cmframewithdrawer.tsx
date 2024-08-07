@@ -38,12 +38,110 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export function Smallframe({visibleComponent, ...props }: { visibleComponent: 'shelves' | 'drawers' | null } & JSX.IntrinsicElements['group']) {
+type CdrawerGLTFResult = GLTF & {
+  nodes: {
+    Cdrawer: any // Update this to match the actual node name in the model
+  }
+  materials: {
+    CdrawerMaterial: THREE.MeshStandardMaterial // Update this to match the actual material name
+  }
+}
+type MdrawerGLTFResult = GLTF & {
+  nodes: {
+    Mdrawer: THREE.Mesh;
+    // Add other nodes here if necessary
+  };
+  materials: {
+    MdrawerMaterial: THREE.MeshStandardMaterial;
+    // Add other materials here if necessary
+  };
+};
+type SmallframeProps = {
+  visibleComponent: 'shelves' | 'drawers' | null;
+  selectedDrawer: string | null;
+  frameId: number;
+  setFrames: React.Dispatch<React.SetStateAction<Array<{id: number, type: string, scale: [number, number, number]}>>>;
+ 
+} & JSX.IntrinsicElements['group'];
+
+const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawer, frameId, setFrames, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
+  const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
+  const { nodes: mdNodes, materials: mdMaterials } = useGLTF('/Mdrawer.glb') as MdrawerGLTFResult;
+
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
   return (
     <group {...props} dispose={null} position={[-2, -0.78, -0.9]} scale={[0.077, 0.125, 0.15]} >
+     {selectedDrawer === 'Drawer 1' && ( <group >
+            <mesh
+              name="Cdrawer"
+              geometry={nodes.Lades.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.Lades}
+              position={[-0.3, 4.5, 15.5]}
+              scale={[0.18, 0.15, 0.34]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-0.323, 8.94, 13.615]}
+              scale={[7.876, 0.203, 4.672]}
+            />
+          </group>)}
+          {selectedDrawer === 'Drawer 2' && (<group >
+             <mesh
+              name="Mdrawer"
+              geometry={nodes.Lades.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.Lades}
+              position={[-0.3, 2.7, 15.5]}
+              scale={[0.18, 0.15, 0.14]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-0.323, 4.8, 13.615]}
+              scale={[7.876, 0.203, 4.672]}
+            />
+          </group>)}
+          {selectedDrawer === 'Drawer 3' && ( <group >
+             <mesh
+              name="Kdrawer"
+              geometry={nodes.Lades.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.Lades}
+              position={[-0.3, 3.7, 15.5]}
+              scale={[0.18, 0.15, 0.24]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-0.323, 7, 13.615]}
+              scale={[7.876, 0.203, 4.672]}
+            />
+          </group>)}
+          {selectedDrawer === 'Drawer 4' &&(<group >
+             <mesh
+              name="Fdrawer"
+              geometry={nodes.Lades.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.Lades}
+              position={[-0.3, 5.2, 15.5]}
+              scale={[0.18, 0.15, 0.44]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-0.323, 10.5, 13.615]}
+              scale={[7.876, 0.203, 4.672]}
+            />
+          </group>)}
+
        {false && ( <mesh name="Lades" geometry={nodes.Lades.geometry} material={materials.Lades} position={[-0.27, 3.525, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades' }} />)}
        {false && ( <mesh name="Lades001" geometry={nodes.Lades001.geometry} material={materials.lades1} position={[-0.27, 9.238, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.001' }} />)}
         {false && (<mesh name="Lades002" geometry={nodes.Lades002.geometry} material={materials.lades2} position={[-0.27, 14.992, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.002' }} />)}
@@ -121,4 +219,5 @@ export function Smallframe({visibleComponent, ...props }: { visibleComponent: 's
 }
 
 useGLTF.preload('/50cmframewithdrawer.glb')
+useGLTF.preload('/Cdrawer.glb')
 export default Smallframe;
