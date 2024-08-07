@@ -92,5 +92,12 @@
         "category": "drawer",
         "width": "auto",
         "height": "auto"
+    },
+    {
+        "title": "clotherail",
+        "image": "../../../../../../public/rail1.png",
+        "category": "rail",
+        "width": "auto",
+        "height": "auto"
     }
 ]

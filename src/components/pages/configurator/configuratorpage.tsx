@@ -171,6 +171,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     const [isDoorVisible, setDoorVisible] = useState(false);
     const [isHandleComponentVisible, setHandleComponentVisible] = useState(false);
     const [isDrawerVisible, setDrawerVisible] = useState(false);
+    const [isRailVisible, setRailVisible] = useState(false);
 
     const toggleFrameVisibility = () => {
         setIsCustomisationVisible(false);
@@ -189,6 +190,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     // const toggleDoorVisibility = () => {
     //     setDoorVisible(!isDoorVisible);
     // };
+    const RailVisible = () => {
+      setRailVisible(!isRailVisible);
+    };
     const toggleHandleVisibility = () => {
         setHandleComponentVisible(!isHandleComponentVisible);
     };
@@ -623,7 +627,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
                 </div>
             )}
-                        <div className={styles['components-selection']}>
+                        <div className={styles['components-selection']} onClick={RailVisible}>
                             <GiClothesline className={styles['rail-icon']} />
                             <p className={styles.door}>Kledinghanger</p>
                             <IoIosArrowDropright
@@ -633,6 +637,27 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                                     position: 'relative',
                                     left: '200px',
                                 }} />
+                                   {isRailVisible && (
+                <div className={styles.frame}>
+                    <FaArrowLeft className={styles.backarrow} onClick={RailVisible} />
+                    <h3 className={styles.frametext}>clotherail</h3>
+                    <div className={styles.cardframe}>
+                    {cardData
+            .filter(card => card.category === 'rail')
+            .map((card, index) => (
+              <Card
+                key={index}
+                title={card.title}
+                image={card.image}
+                width={card.width}
+                height={card.height}
+                onClick={() => handleFrameProductClick(card.title)}
+              />
+            ))}
+        </div>
+
+                </div>
+            )}
                         </div>
                         <div className={styles['components-selection']}>
                             <MdShelves className={styles['shelve-icon']} />

@@ -35,6 +35,7 @@ interface SceneProps {
     frames: Array<{id: number, type: string, scale: [number, number, number]}>;
     setFrames: React.Dispatch<React.SetStateAction<Array<{id: number, type: string, scale: [number, number, number]}>>>;
     frameId: number
+    
 }
 const CustomCamera = () => {
     const { camera } = useThree();
@@ -51,6 +52,7 @@ const CustomCamera = () => {
 };
 const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scaleX, scaleY, scaleZ,  visibleComponent, visible2component, visible3component, selectedDrawer, frames, setFrames }) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
+    const [isDragging, setIsDragging] = useState(false);
     const wardrobeRef = useRef<THREE.Group>(null);
     const tvmeubelRef = useRef<THREE.Group>(null);
     const kastRef = useRef<THREE.Group>(null);
@@ -95,25 +97,29 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
-        <OrbitControls enableRotate={true} />
+      <OrbitControls enableRotate={!isDragging} />
         <Floor />
         {selectedProduct === 'TV-meubel' && (
           <Draggable>
-            <group ref={tvmeubelRef} position={[0, -4, -8]}>
+            <group onPointerDown={() => setIsDragging(true)}
+                  onPointerUp={() => setIsDragging(false)}
+                  ref={tvmeubelRef} position={[0, -4, -8]}>
               <Tvmeubel />
             </group>
           </Draggable>
         )}
         {selectedProduct === 'Kledingkast' && (
           <Draggable>
-            <group ref={wardrobeRef}>
+            <group onPointerDown={() => setIsDragging(true)}
+                  onPointerUp={() => setIsDragging(false)} ref={wardrobeRef}>
               <Wardrobe showDoor={showDoor} showHandle={showHandle} />
             </group>
           </Draggable>
         )}
         {selectedProduct === 'Kast' && (
           <Draggable>
-            <group ref={kastRef} position={[0, -0.6, -8]}>
+            <group onPointerDown={() => setIsDragging(true)}
+                  onPointerUp={() => setIsDragging(false)} ref={kastRef} position={[0, -0.6, -8]}>
               <Kast showDrawer={showDrawer} />
             </group>
           </Draggable>
@@ -125,6 +131,8 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             
             return (
               <group
+              onPointerDown={() => setIsDragging(true)}
+                  onPointerUp={() => setIsDragging(false)}
                 key={frame}
                 ref={CornerframeRef}
                 position={[
@@ -149,8 +157,12 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             const baseY = -1.11;
     
             return (
-              <Draggable key={frame}>
+              <Draggable
+
+            >
                 <group
+                onPointerDown={() => setIsDragging(true)}
+                onPointerUp={() => setIsDragging(false)}
                   ref={MediumframeRef}
                   position={[
                     5 / scaleX,
@@ -175,9 +187,12 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
           if (frame.type === 'Frame (50x175 cm)') {
             const originalScale = [2, 1.55, 1.1];
             const baseY = -1.11;
+        
             return (
               <Draggable key={frame.id}>
                 <group
+                  onPointerDown={() => setIsDragging(true)}
+                  onPointerUp={() => setIsDragging(false)}
                   position={[
                     1 / frame.scale[0],
                     baseY + (frame.scale[1] - 1) * Math.abs(baseY),
@@ -199,7 +214,7 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
                 </group>
               </Draggable>
             );
-          } 
+          }
           return null;
         })}
       </Canvas>
