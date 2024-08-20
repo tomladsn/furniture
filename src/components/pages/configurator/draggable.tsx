@@ -7,16 +7,20 @@ extend({ Group: THREE.Group });
 
 type DraggableProps = {
   children: React.ReactNode;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
 };
 
-const Draggable: React.FC<DraggableProps> = ({ children }) => {
+const Draggable: React.FC<DraggableProps> = ({ children, onDragStart, onDragEnd }) => {
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
 
   const ref = useRef<THREE.Group>(null!);
 
   const bind = useDrag(
-    ({ offset: [x, y] }) => {
+    ({ offset: [x, y], first, last }) => {
+      if (first && onDragStart) onDragStart();
+      if (last && onDragEnd) onDragEnd();
       ref.current.position.set(x / aspect, -y / aspect, 0);
     },
   );

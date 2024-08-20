@@ -28,3 +28,4 @@
     </div>
 </div>
 </div>
+npx gltfjsx@6.5.0 public/handle3.glb --output src/components/modelcomponent/Handle1 --types --keepnames --meta   

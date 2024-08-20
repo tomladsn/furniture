@@ -1,8 +1,10 @@
-import React, { useRef, useEffect, Suspense, useState } from 'react';
+import React, { useRef, useEffect, Suspense, useState, useCallback, forwardRef } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
-import { OrbitControls, Html } from '@react-three/drei';
+import { OrbitControls, Html, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
+import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter';
+import { saveAs } from 'file-saver';
 import Draggable from './draggable';
 
 const Floor = React.lazy(() => import('../../modelcomponent/floor') )
@@ -17,7 +19,10 @@ const Fdrawer = React.lazy(() => import('../../modelcomponent/Fdrawer'));
 const Mdrawer = React.lazy(() => import('../../modelcomponent/Mdrawer'));
 const Kdrawer = React.lazy(() => import('../../modelcomponent/Kdrawer'));
 const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
+const clotherail = React.lazy(() => import('../../modelcomponent/clotherail'));
 interface SceneProps {
+  onModelClick: any
+  isRackVisible: any;
     title: string;
     selectedProduct: string | null;
     showDoor: boolean;
@@ -50,7 +55,24 @@ const CustomCamera = () => {
 
     return null;
 };
-const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, showDrawer, selectedFrameProduct, scaleX, scaleY, scaleZ,  visibleComponent, visible2component, visible3component, selectedDrawer, frames, setFrames }) => {
+const Scene = forwardRef<THREE.Group, SceneProps>(({
+  selectedProduct,
+  showDoor,
+  showHandle,
+  showDrawer,
+  selectedFrameProduct,
+  scaleX,
+  scaleY,
+  scaleZ,
+  visibleComponent,
+  visible2component,
+  visible3component,
+  selectedDrawer,
+  frames,
+  setFrames,
+  onModelClick,
+  isRackVisible
+}, ref) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const [isDragging, setIsDragging] = useState(false);
     const wardrobeRef = useRef<THREE.Group>(null);
@@ -64,7 +86,7 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
     const KdrawerRef = useRef<THREE.Group>(null);
     const FdrawerRef = useRef<THREE.Group>(null);
     const CdrawerRef = useRef<THREE.Group>(null);
-
+    
     useEffect(() => {
         // Define the event handler within the useEffect scope
         const handleWheel = (e: WheelEvent) => {
@@ -94,32 +116,30 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
     const originalScale = [2, 1.55, 1.1];
     return (
       <Canvas className={styles['canva']}>
+        <group ref={ref}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
+        {/* <PerspectiveCamera makeDefault position={[5, 2, 5]} fov={75} /> */}
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
       <OrbitControls enableRotate={!isDragging} />
         <Floor />
         {selectedProduct === 'TV-meubel' && (
-          <Draggable>
-            <group onPointerDown={() => setIsDragging(true)}
-                  onPointerUp={() => setIsDragging(false)}
-                  ref={tvmeubelRef} position={[0, -4, -8]}>
+          <Draggable onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}>
+            <group ref={tvmeubelRef} position={[0, -4, -8]}>
               <Tvmeubel />
             </group>
           </Draggable>
         )}
         {selectedProduct === 'Kledingkast' && (
-          <Draggable>
-            <group onPointerDown={() => setIsDragging(true)}
-                  onPointerUp={() => setIsDragging(false)} ref={wardrobeRef}>
+          <Draggable onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}>
+            <group ref={wardrobeRef}>
               <Wardrobe showDoor={showDoor} showHandle={showHandle} />
             </group>
           </Draggable>
         )}
         {selectedProduct === 'Kast' && (
-          <Draggable>
-            <group onPointerDown={() => setIsDragging(true)}
-                  onPointerUp={() => setIsDragging(false)} ref={kastRef} position={[0, -0.6, -8]}>
+          <Draggable onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}>
+            <group ref={kastRef} position={[0, -0.6, -8]}>
               <Kast showDrawer={showDrawer} />
             </group>
           </Draggable>
@@ -131,8 +151,6 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
             
             return (
               <group
-              onPointerDown={() => setIsDragging(true)}
-                  onPointerUp={() => setIsDragging(false)}
                 key={frame}
                 ref={CornerframeRef}
                 position={[
@@ -158,11 +176,10 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
     
             return (
               <Draggable
-
+              
+              onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}
             >
                 <group
-                onPointerDown={() => setIsDragging(true)}
-                onPointerUp={() => setIsDragging(false)}
                   ref={MediumframeRef}
                   position={[
                     5 / scaleX,
@@ -187,12 +204,11 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
           if (frame.type === 'Frame (50x175 cm)') {
             const originalScale = [2, 1.55, 1.1];
             const baseY = -1.11;
-        
+  
             return (
-              <Draggable key={frame.id}>
+              <Draggable onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}  key={frame.id} >
                 <group
-                  onPointerDown={() => setIsDragging(true)}
-                  onPointerUp={() => setIsDragging(false)}
+                 onClick={onModelClick}
                   position={[
                     1 / frame.scale[0],
                     baseY + (frame.scale[1] - 1) * Math.abs(baseY),
@@ -205,20 +221,23 @@ const Scene: React.FC<SceneProps> = ({ selectedProduct, showDoor, showHandle, sh
                     originalScale[2] * frame.scale[2]
                   ]}
                 >
+
                   <Smallframe
                     visibleComponent={visibleComponent}
+                    isRackVisible={isRackVisible}
                     selectedDrawer={selectedDrawer}
                     frameId={frame.id}
                     setFrames={setFrames}
                   />
                 </group>
               </Draggable>
-            );
+            );  
           }
           return null;
         })}
+        </group>
       </Canvas>
     );
-  }
+  });
 
 export default Scene;

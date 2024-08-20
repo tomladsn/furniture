@@ -99,5 +99,12 @@
         "category": "rail",
         "width": "auto",
         "height": "auto"
+    },
+    {
+        "title": "Rack",
+        "image": "../../../../../../shoerackimg.png",
+        "category": "rack",
+        "width": "auto",
+        "height": "auto"
     }
 ]
