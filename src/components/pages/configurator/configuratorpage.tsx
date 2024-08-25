@@ -457,7 +457,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     />
                     {scaleX.toFixed(1)}
                   </label> */}
-                  {/* <label>
+                  <label>
                     Scale Y:
                     <input
                       type="range"
@@ -468,8 +468,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleYChange}
                     />
                     {scaleY.toFixed(1)}
-                  </label> */}
-                  <label>
+                  </label>
+                  {/* <label>
                     Scale Z:
                     <input
                       type="range"
@@ -480,10 +480,15 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleZChange}
                     />
                     {scaleZ.toFixed(1)}
-                  </label>
+                  </label> */}
                 </div>
                 <div className={styles.cardContainer22}>
-                </div>
+                    <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
+                      <div className={styles.cardContent183}>
+                        <h3 className={styles.cardTitle591}>delete</h3>
+                      </div>
+                    </div>
+                  </div>
               </div>
             )}
             {isFrame2CustomisationVisible && (
@@ -502,7 +507,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleXChange}
                     />
                     {scaleX.toFixed(1)}
-                  </label>
+                  </label> */}
                   <label>
                     Scale Y:
                     <input
@@ -514,8 +519,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleYChange}
                     />
                     {scaleY.toFixed(1)}
-                  </label> */}
-                  <label>
+                  </label>
+                  {/* <label>
                     Scale Z:
                     <input
                       type="range"
@@ -526,10 +531,14 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleZChange}
                     />
                     {scaleZ.toFixed(1)}
-                  </label>
+                  </label> */}
 
-
-                  <div className={styles.cardContainer22}>
+<div className={styles.cardContainer22}>
+                    <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
+                      <div className={styles.cardContent183}>
+                        <h3 className={styles.cardTitle591}>delete</h3>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -551,7 +560,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleXChange}
                     />
                     {scaleX.toFixed(1)}
-                  </label>
+                  </label> */}
                   <label>
                     Scale Y:
                     <input
@@ -563,8 +572,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleYChange}
                     />
                     {scaleY.toFixed(1)}
-                  </label> */}
-                  <label>
+                  </label>
+                  {/* <label>
                     Scale Z:
                     <input
                       type="range"
@@ -575,13 +584,19 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleZChange}
                     />
                     {scaleZ.toFixed(1)}
-                  </label>
+                  </label> */}
 
 
                   <div className={styles.cardContainer22}>
                     <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
                       <div className={styles.cardContent183}>
                         <h3 className={styles.cardTitle591}>Corner Shelves</h3>
+                      </div>
+                    </div>
+                  <br />
+                    <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
+                      <div className={styles.cardContent183}>
+                        <h3 className={styles.cardTitle591}>Delete</h3>
                       </div>
                     </div>
                   </div>
@@ -725,6 +740,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             ref={sceneRef}
             frames={frames}
             setFrames={setFrames}
+            setScaleY={setScaleY}
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}

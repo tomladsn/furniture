@@ -35,14 +35,16 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export function Cornerframe({visible3Component,isDoorSelected, isRailSelected, isRackSelected, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
+export function Cornerframe({visible3Component,isDoorSelected, isRailSelected, isRackSelected,scaleY, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
   isDoorSelected: any;
   isRailSelected: any;
   isRackSelected: any;
+  scaleY: number
  } & JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/cornerframefull.glb') as GLTFResult
     const bbox = new THREE.Box3().setFromObject(nodes.cornerframe);
   const size = bbox.getSize(new THREE.Vector3());
+  const baseWidth = 175;
   const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
   const [ref] = useBox(() => ({
     args: [size.x, size.y, size.z], // Set collision box to match the model's size
@@ -81,7 +83,53 @@ export function Cornerframe({visible3Component,isDoorSelected, isRailSelected, i
 
 
     </group>
+    <Html position={[0.375, 20, 0.175]} center>
+  <div style={{
+    color: '#333',
+    background: 'rgba(255, 255, 255, 0.7)',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontFamily: 'Arial, sans-serif',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    transform: 'translate(-50%, -50%) ',
+    whiteSpace: 'nowrap',
+  }}>
+    Width: 120cm
+  </div>
+</Html>
+<Html position={[6, 20, 20]} center>
+  <div style={{
+    color: '#333',
+    background: 'rgba(255, 255, 255, 0.7)',
+ 
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontFamily: 'Arial, sans-serif',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    transform: 'translate(-50%, -50%) rotate(-90deg)',
+    whiteSpace: 'nowrap',
+  }}>
+    Height: {(baseWidth * scaleY).toFixed(1)} cm
+  </div>
+</Html>
+<Html position={[0, 0, 20]} center>
+  <div style={{
+    color: '#333',
+    background: 'rgba(255, 255, 255, 0.7)',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontFamily: 'Arial, sans-serif',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    transform: 'translate(-50%, -50%) rotatey(45deg)',
+    whiteSpace: 'nowrap',
+  }}>
+    Depth: 35cm
+  </div>
+</Html>
     </group>
+    
   )
 }
 

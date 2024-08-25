@@ -46,9 +46,12 @@ type SmallframeProps = {
   isRackSelected: any;
   isRailSelected: any;
   isDoorSelected: any;
+  scaleY:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
+  
+  const baseWidth = 175;
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
   const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
@@ -57,9 +60,12 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDra
     <group {...props} dispose={null} position={[-1.6, -0.46, 0.95]} scale={[0.12, 0.14, 0.13]}>
    {isRailSelected && (<Clotherail  position={[-3, 22.78, 3]} scale={[2.1, 1.8, 1.5]}/>)}
      {isRackSelected && (<Rack position={[-3.2, -0.8, 3]} scale={[5.5, 6, 3.7]}/>)}
+
                {false && (  <Handle1 />)}
                {false && ( <Handle2 />)}
                {false && (  <Handle3 />)}
+
+
                {isDoorSelected && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7, 15]} />)}
     {selectedDrawer === 'Drawer 1' && ( <group >
             <mesh
@@ -152,22 +158,51 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDra
       <mesh name="shelve4" geometry={nodes.shelve4.geometry} material={materials.shelve4} position={[-3.133, 9.011, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve4' }} />
       <mesh name="shelve5" geometry={nodes.shelve5.geometry} material={materials.shelve5} position={[-3.133, 3.989, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve5' }} />
       </>
-  )}
-   {/* <Html position={[size.x / 2, size.y, 0]} center>
-          <div style={{ background: 'white', padding: '2px', borderRadius: '3px', fontSize: '12px' }}>
-            {`Width: ${size.x.toFixed(2)}m`}
-          </div>
-        </Html>
-        <Html position={[0, size.y / 2, size.z / 2]} center>
-          <div style={{ background: 'white', padding: '2px', borderRadius: '3px', fontSize: '12px' }}>
-            {`Height: ${size.y.toFixed(2)}m`}
-          </div>
-        </Html>
-        <Html position={[0, size.y, size.z / 2]} center>
-          <div style={{ background: 'white', padding: '2px', borderRadius: '3px', fontSize: '12px' }}>
-            {`Depth: ${size.z.toFixed(2)}m`}
-          </div>
-        </Html>*/}
+  )}<Html position={[0.375, 20, 0.175]} center>
+  <div style={{
+    color: '#333',
+    background: 'rgba(255, 255, 255, 0.7)',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontFamily: 'Arial, sans-serif',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    transform: 'translate(-50%, -50%) ',
+    whiteSpace: 'nowrap',
+  }}>
+    Width: 75cm
+  </div>
+</Html>
+<Html position={[6, 20, 20]} center>
+  <div style={{
+    color: '#333',
+    background: 'rgba(255, 255, 255, 0.7)',
+ 
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontFamily: 'Arial, sans-serif',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    transform: 'translate(-50%, -50%) rotate(-90deg)',
+    whiteSpace: 'nowrap',
+  }}>
+    Height: {(baseWidth * scaleY).toFixed(1)} cm
+  </div>
+</Html>
+<Html position={[0, 0, 20]} center>
+  <div style={{
+    color: '#333',
+    background: 'rgba(255, 255, 255, 0.7)',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontFamily: 'Arial, sans-serif',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    transform: 'translate(-50%, -50%) rotatey(45deg)',
+    whiteSpace: 'nowrap',
+  }}>
+    Depth: 35cm
+  </div>
+</Html>
     </group> 
     </group>
   )

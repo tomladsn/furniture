@@ -36,6 +36,7 @@ interface SceneProps {
     scaleX: number;
     scaleY: number;
     scaleZ: number;
+    setScaleY: number;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     visibleComponent: 'shelves' | 'drawers' | null;
     visible2component: "shelves" | "drawers" | null;
@@ -60,6 +61,8 @@ const CustomCamera = () => {
     return null;
 };
 
+
+
 const Scene = forwardRef<THREE.Group, SceneProps>(({
   setIsFrame3CustomisationVisible,
   setIsFrame2CustomisationVisible,
@@ -70,6 +73,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   selectedFrameProduct,
   scaleX,
   scaleY,
+  setScaleY,
   scaleZ,
   visibleComponent,
   visible2component,
@@ -123,13 +127,17 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
             setActiveFrames(prev => [...prev, selectedFrameProduct]);
         }
     }, [selectedFrameProduct]);
-  
     return (
       <Canvas className={styles['canva']}>
         <group   ref={ref}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-      <PerspectiveCamera makeDefault position={[5, 2, 5]} fov={75} /> 
+        <PerspectiveCamera 
+  makeDefault 
+  position={[1, 1, 1]} // Your desired position
+  fov={75}
+  onUpdate={(self) => self.lookAt(5, 20, 0)} // Ensure the camera looks at a specific target
+/>
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
       <OrbitControls enableRotate={!isDragging} />
       <Physics>
@@ -180,7 +188,9 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
                 ]}
               >
                  <Physics>
-                <Cornerframe   isRackSelected={isRackSelected}
+                <Cornerframe  
+                     scaleY={scaleY}
+                      isRackSelected={isRackSelected}
                     isRailSelected={isRailSelected}
                     isDoorSelected={isDoorSelected} visible3Component={visible3component} />
                     </Physics>
@@ -212,7 +222,9 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
                     originalScale[2] * scaleZ
                   ]}
                 >
-                  <Mediumframe   isRackSelected={isRackSelected}
+                  <Mediumframe 
+                  scaleY={scaleY}
+                  isRackSelected={isRackSelected}
                     isRailSelected={isRailSelected}
                     isDoorSelected={isDoorSelected}
                     visible2component={visible2component} selectedDrawer={selectedDrawer}/>
@@ -237,19 +249,19 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
                  onClick={onModelClick}
                   position={[
                     1 / frame.scale[0],
-                    baseY + (frame.scale[1] - 1) * Math.abs(baseY),
+                    baseY + (scaleY - 1) * Math.abs(baseY),
                     -9.2 / frame.scale[2]
                   ]}
                   rotation={[0, Math.PI * 2, 0]}
                   scale={[
-                    originalScale[0] * frame.scale[0],
-                    originalScale[1] * frame.scale[1],
-                    originalScale[2] * frame.scale[2]
+                    originalScale[0] * scaleX,
+                    originalScale[1] * scaleY,
+                    originalScale[2] * scaleZ
                   ]}
                 >
 
                   <Smallframe
-                  
+                   scaleY={scaleY}
                     visibleComponent={visibleComponent}
                     isRackSelected={isRackSelected}
                     isRailSelected={isRailSelected}
