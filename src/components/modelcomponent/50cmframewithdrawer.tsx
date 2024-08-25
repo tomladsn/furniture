@@ -67,10 +67,12 @@ type SmallframeProps = {
   selectedDrawer: string | null;
   frameId: number;
   setFrames: React.Dispatch<React.SetStateAction<Array<{id: number, type: string, scale: [number, number, number]}>>>;
-  isRackVisible: any;
+  isRackSelected: any;
+  isRailSelected: any;
+  isDoorSelected: any;
 } & JSX.IntrinsicElements['group'];
 
-const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawer, frameId,  isRackVisible, setFrames, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawer, frameId,  isRackSelected,isRailSelected,isDoorSelected, setFrames, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
   const { nodes: mdNodes, materials: mdMaterials } = useGLTF('/Mdrawer.glb') as MdrawerGLTFResult;
@@ -78,12 +80,14 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawe
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
   return (
+    <group>
     <group {...props} dispose={null} position={[-2, -0.78, -0.9]} scale={[0.077, 0.125, 0.15]} >
-               {false && (<Clotherail  position={[0.1, 24.78, 13]} scale={[2.3, 2, 1.5]}/>)}
-               {isRackVisible && ( <Rack position={[-0.2, 1.68, 16]} scale={[6.2, 7, 3]}/>)}
+               {isRailSelected && (<Clotherail  position={[0.1, 24.78, 13]} scale={[2.3, 2, 1.5]}/>)}
+               {isRackSelected && ( <Rack position={[-0.2, 1.68, 16]} scale={[6.2, 7, 3]}/>)}
                {false && (  <Handle1 />)}
                {false && ( <Handle2 />)}
                {false && (  <Handle3 />)}
+               {isDoorSelected && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-0.25, 18.166, 18.851]} scale={[0.22, 7.86, 16.7]} />)}
      {selectedDrawer === 'Drawer 1' && ( <group >
             <mesh
               name="Cdrawer"
@@ -225,6 +229,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawe
             {`Depth: ${size.z.toFixed(2)}m`}
           </div>
         </Html>
+    </group>
     </group>
   )
 }

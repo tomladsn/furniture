@@ -43,20 +43,24 @@ type GLTFResult = GLTF & {
 type SmallframeProps = {
   visible2component: 'shelves' | 'drawers' | null;
   selectedDrawer: string | null;
+  isRackSelected: any;
+  isRailSelected: any;
+  isDoorSelected: any;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDrawer, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
   const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
   return (
+    <group >
     <group {...props} dispose={null} position={[-1.6, -0.46, 0.95]} scale={[0.12, 0.14, 0.13]}>
-      {false && (<Clotherail  position={[0.1, 24.78, 13]} scale={[2.3, 2, 1.5]}/>)}
-      {false && (<Rack position={[-0.2, 1.68, 16]} scale={[6.2, 7, 3]}/>)}
-               {false && ( <Clotherail/>)}
+   {isRailSelected && (<Clotherail  position={[-3, 22.78, 3]} scale={[2.1, 1.8, 1.5]}/>)}
+     {isRackSelected && (<Rack position={[-3.2, -0.8, 3]} scale={[5.5, 6, 3.7]}/>)}
                {false && (  <Handle1 />)}
                {false && ( <Handle2 />)}
                {false && (  <Handle3 />)}
+               {isDoorSelected && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7, 15]} />)}
     {selectedDrawer === 'Drawer 1' && ( <group >
             <mesh
               name="Cdrawer"
@@ -149,7 +153,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDra
       <mesh name="shelve5" geometry={nodes.shelve5.geometry} material={materials.shelve5} position={[-3.133, 3.989, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve5' }} />
       </>
   )}
-   <Html position={[size.x / 2, size.y, 0]} center>
+   {/* <Html position={[size.x / 2, size.y, 0]} center>
           <div style={{ background: 'white', padding: '2px', borderRadius: '3px', fontSize: '12px' }}>
             {`Width: ${size.x.toFixed(2)}m`}
           </div>
@@ -163,7 +167,8 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDra
           <div style={{ background: 'white', padding: '2px', borderRadius: '3px', fontSize: '12px' }}>
             {`Depth: ${size.z.toFixed(2)}m`}
           </div>
-        </Html>
+        </Html>*/}
+    </group> 
     </group>
   )
 }

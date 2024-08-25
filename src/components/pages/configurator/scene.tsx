@@ -1,12 +1,10 @@
-import React, { useRef, useEffect, Suspense, useState, useCallback, forwardRef } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import React, {useEffect,useRef , Suspense, useState, useCallback, forwardRef } from 'react';
+import { Canvas, useThree,extend  } from '@react-three/fiber';
 import { OrbitControls, Html, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
 import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter';
-import { saveAs } from 'file-saver';
 import Draggable from './draggable';
-
 const Floor = React.lazy(() => import('../../modelcomponent/floor') )
 const Tvmeubel = React.lazy(() => import('../../modelcomponent/tv-set'));
 const Wardrobe = React.lazy(() => import('../../modelcomponent/wardrobe'));
@@ -20,9 +18,14 @@ const Mdrawer = React.lazy(() => import('../../modelcomponent/Mdrawer'));
 const Kdrawer = React.lazy(() => import('../../modelcomponent/Kdrawer'));
 const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
 const clotherail = React.lazy(() => import('../../modelcomponent/clotherail'));
+import { Physics } from '@react-three/cannon';
 interface SceneProps {
   onModelClick: any
-  isRackVisible: any;
+  isRackSelected: any;
+  isRailSelected: any;
+  isDoorSelected:any;
+  setIsFrame2CustomisationVisible: any;
+  setIsFrame3CustomisationVisible: any;
     title: string;
     selectedProduct: string | null;
     showDoor: boolean;
@@ -42,6 +45,7 @@ interface SceneProps {
     frameId: number
     
 }
+
 const CustomCamera = () => {
     const { camera } = useThree();
 
@@ -55,7 +59,10 @@ const CustomCamera = () => {
 
     return null;
 };
+
 const Scene = forwardRef<THREE.Group, SceneProps>(({
+  setIsFrame3CustomisationVisible,
+  setIsFrame2CustomisationVisible,
   selectedProduct,
   showDoor,
   showHandle,
@@ -71,10 +78,13 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   frames,
   setFrames,
   onModelClick,
-  isRackVisible
+  isRackSelected,
+  isRailSelected,
+  isDoorSelected
 }, ref) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const [isDragging, setIsDragging] = useState(false);
+    
     const wardrobeRef = useRef<THREE.Group>(null);
     const tvmeubelRef = useRef<THREE.Group>(null);
     const kastRef = useRef<THREE.Group>(null);
@@ -86,7 +96,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
     const KdrawerRef = useRef<THREE.Group>(null);
     const FdrawerRef = useRef<THREE.Group>(null);
     const CdrawerRef = useRef<THREE.Group>(null);
-    
+    const [globalScale, setGlobalScale] = useState(10);
     useEffect(() => {
         // Define the event handler within the useEffect scope
         const handleWheel = (e: WheelEvent) => {
@@ -113,16 +123,18 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
             setActiveFrames(prev => [...prev, selectedFrameProduct]);
         }
     }, [selectedFrameProduct]);
-    const originalScale = [2, 1.55, 1.1];
+  
     return (
       <Canvas className={styles['canva']}>
-        <group ref={ref}>
+        <group   ref={ref}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        {/* <PerspectiveCamera makeDefault position={[5, 2, 5]} fov={75} /> */}
+      <PerspectiveCamera makeDefault position={[5, 2, 5]} fov={75} /> 
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
       <OrbitControls enableRotate={!isDragging} />
+      <Physics>
         <Floor />
+        </Physics>
         {selectedProduct === 'TV-meubel' && (
           <Draggable onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}>
             <group ref={tvmeubelRef} position={[0, -4, -8]}>
@@ -150,7 +162,9 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
             const baseY = -1.11;
             
             return (
+              
               <group
+              onClick={() => setIsFrame3CustomisationVisible(true)}
                 key={frame}
                 ref={CornerframeRef}
                 position={[
@@ -165,7 +179,11 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
                   originalScale[2] * scaleZ
                 ]}
               >
-                <Cornerframe visible3Component={visible3component} />
+                 <Physics>
+                <Cornerframe   isRackSelected={isRackSelected}
+                    isRailSelected={isRailSelected}
+                    isDoorSelected={isDoorSelected} visible3Component={visible3component} />
+                    </Physics>
               </group>
             );
           }
@@ -180,6 +198,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
               onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}
             >
                 <group
+                  onClick={() => setIsFrame2CustomisationVisible(true)}
                   ref={MediumframeRef}
                   position={[
                     5 / scaleX,
@@ -193,7 +212,10 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
                     originalScale[2] * scaleZ
                   ]}
                 >
-                  <Mediumframe visible2component={visible2component} selectedDrawer={selectedDrawer}/>
+                  <Mediumframe   isRackSelected={isRackSelected}
+                    isRailSelected={isRailSelected}
+                    isDoorSelected={isDoorSelected}
+                    visible2component={visible2component} selectedDrawer={selectedDrawer}/>
                 </group>
               </Draggable>
             );
@@ -206,8 +228,12 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
             const baseY = -1.11;
   
             return (
-              <Draggable onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}  key={frame.id} >
-                <group
+              <Draggable
+              
+              onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}
+            >
+               <group
+               ref={ref}
                  onClick={onModelClick}
                   position={[
                     1 / frame.scale[0],
@@ -223,14 +249,17 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
                 >
 
                   <Smallframe
+                  
                     visibleComponent={visibleComponent}
-                    isRackVisible={isRackVisible}
+                    isRackSelected={isRackSelected}
+                    isRailSelected={isRailSelected}
+                    isDoorSelected={isDoorSelected}
                     selectedDrawer={selectedDrawer}
                     frameId={frame.id}
                     setFrames={setFrames}
                   />
                 </group>
-              </Draggable>
+                </Draggable>
             );  
           }
           return null;

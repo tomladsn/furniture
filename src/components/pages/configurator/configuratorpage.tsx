@@ -63,6 +63,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [selectedFrameProduct, setSelectedFrameProduct] = useState<string | null>(null);
   const [selectedDrawer, setSelectedDrawer] = useState<string | null>(null);
+  const [isRackSelected, setRackSelected] = useState(false);
+  const [isRailSelected, setRailSelected] = useState(false);
+  const [isDoorSelected, setDoorSelected] = useState(false);
   const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
   const [isFrame2CustomisationVisible, setIsFrame2CustomisationVisible] = useState(false);
   const [isFrame3CustomisationVisible, setIsFrame3CustomisationVisible] = useState(false);
@@ -123,7 +126,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       setIsFrame3CustomisationVisible(true);
       setFrameVisible(false);
     } else if (productTitle === 'Rack') {
-      setRackVisible(true);
+      setRackSelected(true);
       setIsCustomisationVisible(false);
       setIsFrame2CustomisationVisible(false);
       setIsFrame3CustomisationVisible(false);
@@ -213,6 +216,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   };
   const toggleDrawerVisibility = () => {
     setDrawerVisible(!isDrawerVisible);
+  };
+  const toggleDoorVisibility = () => {
+    setDoorVisible(!isDoorVisible);
   };
   useEffect(() => {
     console.log("Frames state updated:", frames);
@@ -369,7 +375,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
               ></div>
             </div>
           </div>
-          <div className={styles['component-config']}>
+          <div className={styles['component-config']} onClick={toggleDoorVisibility}>
             <div className={styles['components-selection']}>
               <MdDoorSliding className={styles['door-icon']} />
               <p className={styles.door}>Deuren</p>
@@ -382,8 +388,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 }} />
             </div>
             {isDoorVisible && (
-              <div className={styles.frame}>
-                <FaArrowLeft className={styles.backarrow} />
+              <div className={styles.frame}  >
+                <FaArrowLeft className={styles.backarrow} onClick={toggleDoorVisibility} />
                 <h3 className={styles.frametext}>Deuren</h3>
                 <div className={styles.carddoor}>
                   {cardData
@@ -395,7 +401,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         image={card.image}
                         width={card.width}
                         height={card.height}
-                        onClick={() => handleFrameProductClick(card.title)}
+                        onClick={() => setDoorSelected(true)}
                       />
                     ))}
                 </div>
@@ -439,7 +445,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>50cmframe customisation</h3>
                 <div className={styles.customise}>
-                  <label>
+                  {/* <label>
                     Scale X:
                     <input
                       type="range"
@@ -450,8 +456,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleXChange}
                     />
                     {scaleX.toFixed(1)}
-                  </label>
-                  <label>
+                  </label> */}
+                  {/* <label>
                     Scale Y:
                     <input
                       type="range"
@@ -462,7 +468,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleYChange}
                     />
                     {scaleY.toFixed(1)}
-                  </label>
+                  </label> */}
                   <label>
                     Scale Z:
                     <input
@@ -485,7 +491,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>75cmframe customisation</h3>
                 <div className={styles.customise}>
-                  <label>
+                  {/* <label>
                     Scale X:
                     <input
                       type="range"
@@ -508,7 +514,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleYChange}
                     />
                     {scaleY.toFixed(1)}
-                  </label>
+                  </label> */}
                   <label>
                     Scale Z:
                     <input
@@ -534,7 +540,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>cornerframe customisation</h3>
                 <div className={styles.customise}>
-                  <label>
+                  {/* <label>
                     Scale X:
                     <input
                       type="range"
@@ -557,7 +563,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handleScaleYChange}
                     />
                     {scaleY.toFixed(1)}
-                  </label>
+                  </label> */}
                   <label>
                     Scale Z:
                     <input
@@ -672,7 +678,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                           image={card.image}
                           width={card.width}
                           height={card.height}
-                          onClick={() => handleFrameProductClick(card.title)}
+                          onClick={() => setRailSelected(true)}
                         />
                       ))}
                   </div>
@@ -705,7 +711,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         image={card.image}
                         width={card.width}
                         height={card.height}
-                        onClick={() => handleFrameProductClick(card.title)}
+                        onClick={() => setRackSelected(true)}
                       />
                     ))}
                 </div>
@@ -736,7 +742,11 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
               throw new Error('Function not implemented.');
             }} frameId={0}
             onModelClick={handleModelClick} 
-            isRackVisible={isRackVisible}
+            isRackSelected={isRackSelected}
+            isRailSelected={isRailSelected}
+            isDoorSelected={isDoorSelected}
+            setIsFrame2CustomisationVisible={setIsFrame2CustomisationVisible}
+            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible}
 />
         </div>
       </div>

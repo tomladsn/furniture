@@ -16,9 +16,10 @@ type GLTFResult = GLTF & {
 
 export function Door1(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/door.glb') as GLTFResult
+  const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
   return (
     <group {...props} dispose={null}>
-      <mesh name="door" geometry={nodes.door.geometry} material={materials.Material} position={[0, 2.071, 0]} scale={[0.02, 2.021, 0.887]} userData={{ name: 'door' }} />
+      <mesh name="door" geometry={nodes.door.geometry} material={whiteMaterial}   userData={{ name: 'door' }} />
     </group>
   )
 }
