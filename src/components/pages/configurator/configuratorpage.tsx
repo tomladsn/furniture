@@ -740,7 +740,6 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             ref={sceneRef}
             frames={frames}
             setFrames={setFrames}
-            setScaleY={setScaleY}
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}
@@ -756,14 +755,13 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             visibleComponent={visiblesSubComponent} // Correct prop name
             onScaleChange={function (event: ChangeEvent<HTMLInputElement>): void {
               throw new Error('Function not implemented.');
-            }} frameId={0}
-            onModelClick={handleModelClick} 
+            } } frameId={0}
+            onModelClick={handleModelClick}
             isRackSelected={isRackSelected}
             isRailSelected={isRailSelected}
             isDoorSelected={isDoorSelected}
             setIsFrame2CustomisationVisible={setIsFrame2CustomisationVisible}
-            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible}
-/>
+            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0}/>
         </div>
       </div>
     </div>

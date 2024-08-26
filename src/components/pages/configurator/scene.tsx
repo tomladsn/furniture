@@ -73,7 +73,6 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   selectedFrameProduct,
   scaleX,
   scaleY,
-  setScaleY,
   scaleZ,
   visibleComponent,
   visible2component,
