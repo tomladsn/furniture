@@ -192,6 +192,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
       >
         <Physics>
           <Cornerframe  
+             selectedHandle={selectedHandle}
             scaleY={scaleY}
             isRackSelected={isRackSelected}
             isRailSelected={isRailSelected}
