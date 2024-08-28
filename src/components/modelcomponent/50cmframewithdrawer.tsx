@@ -92,7 +92,12 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,   selectedHan
                {false && (  <Handle1 />)}
                {false && ( <Handle2 />)}
                {false && (  <Handle3 />)}
-               {isDoorSelected && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-0.25, 18.166, 18.851]} scale={[0.22, 7.86, 16.7]} />)}
+               {isDoorSelected && ( <group>
+                <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-0.25, 18.166, 18.851]} scale={[0.22, 7.86, 16.7]} />
+                { selectedHandle === 'Handgreep  5' && ( <Handle1 position={[-7.5, 18, 17.6]} scale={[0.09, 0.2, 0.38]} rotation={[0, 0,Math.PI/2]}/>)}
+                 { selectedHandle === 'Handgreep  1' && (  <Handle2 position={[-10.5, 18, 17.6]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI/2, Math.PI/2 ,0]}/>)}
+                  { selectedHandle === 'Handgreep  3' && ( <Handle3 position={[-6.5, 18, 17.6]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI/2, Math.PI/2 ,0]}/>)}
+                 </group>)}
      {selectedDrawer === 'Lade 1' && ( <group >
             <mesh
               name="Cdrawer"

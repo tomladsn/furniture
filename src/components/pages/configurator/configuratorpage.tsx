@@ -495,7 +495,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             {isCustomisationVisible && (
               <div className={styles.frame}>
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
-                <h3 className={styles.frametext}>50cmframe customisation</h3>
+                <h3 className={styles.frametext}>50cmframe  aanpassing</h3>
                 <div className={styles.customise}>
                   {/* <label>
                     Scale X:
@@ -546,7 +546,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             {isFrame2CustomisationVisible && (
               <div className={styles.frame}>
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
-                <h3 className={styles.frametext}>75cmframe customisation</h3>
+                <h3 className={styles.frametext}>75cmframe  aanpassing</h3>
                 <div className={styles.customise}>
                   {/* <label>
                     Scale X:
@@ -599,7 +599,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             {isFrame3CustomisationVisible && (
               <div className={styles.frame}>
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
-                <h3 className={styles.frametext}>cornerframe customisation</h3>
+                <h3 className={styles.frametext}>Hoekframe aanpassing</h3>
                 <div className={styles.customise}>
                   {/* <label>
                     Scale X:
@@ -642,7 +642,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                   <div className={styles.cardContainer22}>
                     <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
                       <div className={styles.cardContent183}>
-                        <h3 className={styles.cardTitle591}>Corner Shelves</h3>
+                        <h3 className={styles.cardTitle591}>Hoekplanken</h3>
                       </div>
                     </div>
                   <br />
