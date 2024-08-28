@@ -2,6 +2,7 @@
 
 import * as THREE from 'three'
 import React from 'react'
+import { useState } from 'react';
 import Clotherail from './clotherail';
 import Rack from './rack';
 import Door1 from './door';
@@ -76,6 +77,7 @@ type SmallframeProps = {
 
 const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,   selectedHandle, selectedDrawer, frameId, isRackSelected, isRailSelected,isDoorSelected, setFrames,   scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
+  const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
   const { nodes: mdNodes, materials: mdMaterials } = useGLTF('/Mdrawer.glb') as MdrawerGLTFResult;
 
@@ -224,7 +226,8 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,   selectedHan
       )}
             {false && ( <mesh name="Lades004" geometry={nodes.Lades004.geometry} material={materials.lades4} position={[-0.27, 26.099, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.004' }} />)}
               {false && ( <mesh name="Lades005" geometry={nodes.Lades005.geometry} material={materials.lades5} position={[-0.27, 31.691, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.005' }} />)}
-      {true && (<mesh name="frame" geometry={nodes.frame.geometry} material={materials.Frame} position={[-0.285, 18.146, 11.451]} scale={[7.976, 1.053, 4.787]} userData={{ name: 'frame' }} />)}
+      {true && (<mesh onPointerOver={() => setShowDimensions(true)}
+  onPointerOut={() => setShowDimensions(false)} name="frame" geometry={nodes.frame.geometry} material={materials.Frame} position={[-0.285, 18.146, 11.451]} scale={[7.976, 1.053, 4.787]} userData={{ name: 'frame' }} />)}
       {visibleComponent === 'shelves' && (
     <>
     <mesh name="shelve4" geometry={nodes.shelve4.geometry} material={materials.shelve4} position={[-0.323, 12.64, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve4' }} />
@@ -234,6 +237,8 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,   selectedHan
           <mesh name="shelve1" geometry={nodes.shelve1.geometry} material={materials.shelve1} position={[-0.323, 29.466, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve1' }} />
           </>
   )}
+  {showDimensions && (
+  <>
 <Html position={[0.375, 35, 0.175]} center>
   <div style={{
     color: '#333',
@@ -279,6 +284,8 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,   selectedHan
     Depth: 35cm
   </div>
 </Html>
+</>
+)}
     </group>
     </group>
   )

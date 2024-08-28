@@ -1,6 +1,6 @@
 
 import * as THREE from 'three'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useBox } from '@react-three/cannon';
 import Clotherail from './clotherail';
 import Handle1  from './Handle1';
@@ -12,7 +12,6 @@ import { useGLTF, Html } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import Rack from './rack';
 import { Physics } from '@react-three/cannon';
-import DimensionLines from './dimensionline';
 type GLTFAction = any;
 type GLTFResult = GLTF & {
   nodes: {
@@ -42,6 +41,7 @@ export function Cornerframe({visible3Component,isDoorSelected, isRailSelected, i
   scaleY: number
  } & JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/cornerframefull.glb') as GLTFResult
+  const [showDimensions, setShowDimensions] = useState(false);
     const bbox = new THREE.Box3().setFromObject(nodes.cornerframe);
   const size = bbox.getSize(new THREE.Vector3());
   const baseWidth = 175;
@@ -60,7 +60,8 @@ export function Cornerframe({visible3Component,isDoorSelected, isRailSelected, i
                {false && (  <Handle3 />)}
                {/* {true && (<Door1 rotation={[Math.PI / 2, 0,Math.PI ]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7, 15]} />)} */}
                {isDoorSelected && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[15, 14, -0.51]} scale={[0.22, 5, 15]} />)}
-      <mesh name="cornerframe" geometry={nodes.cornerframe.geometry} material={whiteMaterial} position={[21.173, 13.909, -0.683]} scale={[0.019, 0.017, 0.019]} userData={{ name: 'cornerframe' }} />
+      <mesh  onPointerOver={() => setShowDimensions(true)}
+  onPointerOut={() => setShowDimensions(false)} name="cornerframe" geometry={nodes.cornerframe.geometry} material={whiteMaterial} position={[21.173, 13.909, -0.683]} scale={[0.019, 0.017, 0.019]} userData={{ name: 'cornerframe' }} />
            <mesh name="frameshelve1" geometry={nodes.frameshelve1.geometry} material={materials.shelve1} position={[19.822, 23.252, -6.186]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve1' }} />
                <mesh name="frameshelve2" geometry={nodes.frameshelve2.geometry} material={materials.shelve1} position={[19.822, 17.318, -6.186]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve2' }} />
               <mesh name="frameshelve3" geometry={nodes.frameshelve3.geometry} material={materials.shelve1} position={[20.012, 10.474, -6.165]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve3' }} />
@@ -76,10 +77,9 @@ export function Cornerframe({visible3Component,isDoorSelected, isRailSelected, i
                       </>
   )} */}
 
-
-
-    </group>
-    <Html position={[0.375, 20, 0.175]} center>
+{showDimensions && (
+  <>
+<Html position={[0.375, 20, 0.175]} center>
   <div style={{
     color: '#333',
     background: 'rgba(255, 255, 255, 0.7)',
@@ -124,6 +124,10 @@ export function Cornerframe({visible3Component,isDoorSelected, isRailSelected, i
     Depth: 35cm
   </div>
 </Html>
+</>
+)}
+    </group>
+ 
     </group>
     
   )
