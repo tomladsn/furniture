@@ -20,7 +20,8 @@ const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
 const clotherail = React.lazy(() => import('../../modelcomponent/clotherail'));
 import { Physics } from '@react-three/cannon';
 interface SceneProps {
-  onModelClick: any
+  onModelClick: any;
+  onDeleteFrame:any;
   isRackSelected: any;
   isRailSelected: any;
   isDoorSelected:any;
@@ -32,7 +33,8 @@ interface SceneProps {
     showHandle: boolean;
     showDrawer: boolean;
     selectedFrameProduct: string | null;
-    selectedDrawer: string | null
+    selectedDrawer: string | null;
+    selectedHandle:any;
     scaleX: number;
     scaleY: number;
     scaleZ: number;
@@ -64,6 +66,8 @@ const CustomCamera = () => {
 
 
 const Scene = forwardRef<THREE.Group, SceneProps>(({
+  onDeleteFrame,
+  selectedHandle,
   setIsFrame3CustomisationVisible,
   setIsFrame2CustomisationVisible,
   selectedProduct,
@@ -163,121 +167,134 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
             </group>
           </Draggable>
         )}
-        {activeFrames.map((frame, index) => {
-          if (frame === 'Corner (111cm)') {
-            const originalScale = [1, 1.55, 1.1];
-            const baseY = -1.11;
-            
-            return (
-              
-              <group
-              onClick={() => setIsFrame3CustomisationVisible(true)}
-                key={frame}
-                ref={CornerframeRef}
-                position={[
-                  10.1 / scaleX,
-                  baseY + (scaleY - 1) * Math.abs(baseY),
-                  -8.2 / scaleZ
-                ]}
-                rotation={[0, Math.PI * 2, 0]}
-                scale={[
-                  originalScale[0] * scaleX,
-                  originalScale[1] * scaleY,
-                  originalScale[2] * scaleZ
-                ]}
-              >
-                 <Physics>
-                <Cornerframe  
-                     scaleY={scaleY}
-                      isRackSelected={isRackSelected}
-                    isRailSelected={isRailSelected}
-                    isDoorSelected={isDoorSelected} visible3Component={visible3component} />
-                    </Physics>
-              </group>
-            );
-          }
-          
-          if (frame === 'Frame (75x175 cm)') {
-            const originalScale = [2, 1.55, 1.1];
-            const baseY = -1.11;
-    
-            return (
-              <Draggable
-              
-              onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}
-            >
-                <group
-                  onClick={() => setIsFrame2CustomisationVisible(true)}
-                  ref={MediumframeRef}
-                  position={[
-                    5 / scaleX,
-                    baseY + (scaleY - 1) * Math.abs(baseY),
-                    -9 / scaleZ
-                  ]}
-                  rotation={[0, Math.PI * 2, 0]}
-                  scale={[
-                    originalScale[0] * scaleX,
-                    originalScale[1] * scaleY,
-                    originalScale[2] * scaleZ
-                  ]}
-                >
-                  <Mediumframe 
-                  scaleY={scaleY}
-                  isRackSelected={isRackSelected}
-                    isRailSelected={isRailSelected}
-                    isDoorSelected={isDoorSelected}
-                    visible2component={visible2component} selectedDrawer={selectedDrawer}/>
-                </group>
-              </Draggable>
-            );
-          }
-          return null;
-        })}
-        {frames.map((frame) => {
-          if (frame.type === 'Frame (50x175 cm)') {
-            const originalScale = [2, 1.55, 1.1];
-            const baseY = -1.11;
+      {activeFrames.map((frame, index) => {
   
-            return (
-              <Draggable
-              
-              onDragStart={() => setIsDragging(true)} onDragEnd={() => setIsDragging(false)}
-            >
-               <group
-               ref={ref}
-                 onClick={onModelClick}
-                  position={[
-                    1 / frame.scale[0],
-                    baseY + (scaleY - 1) * Math.abs(baseY),
-                    -9.2 / frame.scale[2]
-                  ]}
-                  rotation={[0, Math.PI * 2, 0]}
-                  scale={[
-                    originalScale[0] * scaleX,
-                    originalScale[1] * scaleY,
-                    originalScale[2] * scaleZ
-                  ]}
-                >
+  if (frame === 'Hoek (111cm) ') {
+    const originalScale = [1, 1.55, 1.1];
+    const baseY = -1.11;
+    
+    return (
+      <group
+        key={`corner-${index}`} // Unique key for each corner frame
+        onClick={() => setIsFrame3CustomisationVisible(true)}
+        ref={CornerframeRef}
+        position={[
+          10.1 / scaleX,
+          baseY + (scaleY - 1) * Math.abs(baseY),
+          -8.2 / scaleZ
+        ]}
+        rotation={[0, Math.PI * 2, 0]}
+        scale={[
+          originalScale[0] * scaleX,
+          originalScale[1] * scaleY,
+          originalScale[2] * scaleZ
+        ]}
+      >
+        <Physics>
+          <Cornerframe  
+            scaleY={scaleY}
+            isRackSelected={isRackSelected}
+            isRailSelected={isRailSelected}
+            isDoorSelected={isDoorSelected} 
+            visible3Component={visible3component} 
+          />
+        </Physics>
+      </group>
+    );
+  }
+  return null;
+})}
 
-                  <Smallframe
-                   scaleY={scaleY}
-                    visibleComponent={visibleComponent}
-                    isRackSelected={isRackSelected}
-                    isRailSelected={isRailSelected}
-                    isDoorSelected={isDoorSelected}
-                    selectedDrawer={selectedDrawer}
-                    frameId={frame.id}
-                    setFrames={setFrames}
-                  />
-                </group>
-                </Draggable>
-            );  
-          }
-          return null;
-        })}
+{frames.map((frame) => {
+  if (frame.type === 'Frame (75x175 cm)') {
+    const originalScale = [2, 1.55, 1.1];
+    const baseY = -1.11;
+
+    return (
+      <Draggable
+        key={frame.id}  // Unique key for each frame
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={() => setIsDragging(false)}
+      >
+        <group
+          onClick={() => setIsFrame2CustomisationVisible(true)}
+          ref={MediumframeRef}
+          position={[
+            5 / scaleX,
+            baseY + (scaleY - 1) * Math.abs(baseY),
+            -9 / scaleZ
+          ]}
+          rotation={[0, Math.PI * 2, 0]}
+          scale={[
+            originalScale[0] * scaleX,
+            originalScale[1] * scaleY,
+            originalScale[2] * scaleZ
+          ]}
+        >
+          <Mediumframe 
+            scaleY={scaleY}
+            selectedHandle={selectedHandle}
+            isRackSelected={isRackSelected}
+            isRailSelected={isRailSelected}
+            isDoorSelected={isDoorSelected}
+            visible2component={visible2component}
+            selectedDrawer={selectedDrawer}
+          />
+        </group>
+      </Draggable>
+    );
+  }
+  return null;
+})}
+
+{frames.map((frame) => {
+  if (frame.type === 'Frame (50x175 cm)') {
+    const originalScale = [2, 1.55, 1.1];
+    const baseY = -1.11;
+
+    return (
+      <Draggable
+        key={frame.id}  // Unique key for each frame
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={() => setIsDragging(false)}
+      >
+        <group
+          ref={ref}
+          onClick={onModelClick}
+          position={[
+            1 / frame.scale[0],
+            baseY + (scaleY - 1) * Math.abs(baseY),
+            -9.2 / frame.scale[2]
+          ]}
+          rotation={[0, Math.PI * 2, 0]}
+          scale={[
+            originalScale[0] * scaleX,
+            originalScale[1] * scaleY,
+            originalScale[2] * scaleZ
+          ]}
+        >
+          <Smallframe
+            scaleY={scaleY}
+            selectedHandle={selectedHandle}
+            visibleComponent={visibleComponent}
+            isRackSelected={isRackSelected}
+            isRailSelected={isRailSelected}
+            isDoorSelected={isDoorSelected}
+            selectedDrawer={selectedDrawer}
+            frameId={frame.id}
+            setFrames={setFrames}
+          />
+        </group>
+      </Draggable>
+    );  
+  }
+  return null;
+})}
+
         </group>
       </Canvas>
     );
   });
+
 
 export default Scene;

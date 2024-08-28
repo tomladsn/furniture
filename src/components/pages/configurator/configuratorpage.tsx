@@ -73,7 +73,11 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles2SubComponent, setVisible2SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles3SubComponent, setVisible3SubComponent] = useState<'shelves' | 'drawers' | null>(null);
+  const [selectedHandle, setSelectedHandle] = useState<string | null>(null);
 
+  const handleCardHandleClick = (title: string, setSelectedHandle: React.Dispatch<React.SetStateAction<string | null>>) => {
+    setSelectedHandle(title);
+  };
   const handleSubCardClick = (component: 'shelves' | 'drawers') => {
     setVisibleSubComponent(component);
   };
@@ -84,14 +88,14 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     setVisible3SubComponent(component);
   };
   const handleDrawerSelection = (productTitle: string, setSelectedDrawer: React.Dispatch<React.SetStateAction<string | null>>) => {
-    if (productTitle === 'Drawer 1') {
-      setSelectedDrawer('Drawer 1');
-    } else if (productTitle === 'Drawer 2') {
-      setSelectedDrawer('Drawer 2');
-    } else if (productTitle === 'Drawer 3') {
-      setSelectedDrawer('Drawer 3');
-    } else if (productTitle === 'Drawer 4') {
-      setSelectedDrawer('Drawer 4');
+    if (productTitle === 'Lade 1') {
+      setSelectedDrawer('Lade 1');
+    } else if (productTitle === 'Lade 2') {
+      setSelectedDrawer('Lade 2');
+    } else if (productTitle === 'Lade 3') {
+      setSelectedDrawer('Lade 3');
+    } else if (productTitle === 'Lade 4') {
+      setSelectedDrawer('Lade 4');
     }
   };
 
@@ -120,11 +124,27 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       setIsFrame2CustomisationVisible(true);
       setIsFrame3CustomisationVisible(false);
       setFrameVisible(false);
-    } else if (productTitle === 'Corner (111cm)') {
+      setFrames(prevFrames => [
+        ...prevFrames,
+        {
+          id: Date.now(), // Unique ID for each frame
+          type: 'Frame (75x175 cm)',
+          scale: [1, 1, 1] // Initial scale
+        }
+      ]);
+    } else if (productTitle === 'Hoek (111cm) ') {
       setIsCustomisationVisible(false);
       setIsFrame2CustomisationVisible(false);
       setIsFrame3CustomisationVisible(true);
       setFrameVisible(false);
+      setFrames(prevFrames => [
+        ...prevFrames,
+        {
+          id: Date.now(), // Unique ID for each frame
+          type: 'Hoek (111cm) ',
+          scale: [1, 1, 1] // Initial scale
+        }
+      ]);
     } else if (productTitle === 'Rack') {
       setRackSelected(true);
       setIsCustomisationVisible(false);
@@ -139,7 +159,39 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     }
 
     handleDrawerSelection(productTitle, setSelectedDrawer);
+  };const handleDeleteFrame = (productTitle: string) => {
+    // Deselect the frame product
+    setSelectedFrameProduct(null);
+  
+    // Perform deletion logic based on the product title
+    if (productTitle === 'Frame (50x175 cm)') {
+      setIsCustomisationVisible(false);
+      setFrames(prevFrames => prevFrames.filter(frame => frame.type !== 'Frame (50x175 cm)'));
+    } else if (productTitle === 'Frame (75x175 cm)') {
+      setIsFrame2CustomisationVisible(false);
+      setFrames(prevFrames => prevFrames.filter(frame => frame.type !== 'Frame (75x175 cm)'));
+    } else if (productTitle === 'Hoek (111cm) ') {
+      setIsFrame3CustomisationVisible(false);
+      setFrames(prevFrames => prevFrames.filter(frame => frame.type !== 'Hoek (111cm) '));
+    }
+    setFrameVisible(true);
   };
+  
+  const handleDeleteFrame2 = () => {
+    setSelectedFrameProduct(null); // Or an appropriate default value
+    setFrames(prevFrames => prevFrames.filter(frame => frame.type !== 'Frame (50x175 cm)'));
+    setIsCustomisationVisible(false);
+    setIsFrame2CustomisationVisible(false)
+    setFrameVisible(true); // Adjust based on your application logic
+  };
+  const handleDeleteFrame3 = () => {
+    setSelectedFrameProduct(null); // Or an appropriate default value
+    setFrames(prevFrames => prevFrames.filter(frame => frame.type !== 'Frame (50x175 cm)'));
+    setIsCustomisationVisible(false);
+    setIsFrame3CustomisationVisible(false);
+    setFrameVisible(true); // Adjust based on your application logic
+  };
+  
   const [scaleX, setScaleX] = useState(1);
   const [scaleY, setScaleY] = useState(1);
   const [scaleZ, setScaleZ] = useState(1);
@@ -483,9 +535,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                   </label> */}
                 </div>
                 <div className={styles.cardContainer22}>
-                    <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
+                    <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (50x175 cm)')}>
                       <div className={styles.cardContent183}>
-                        <h3 className={styles.cardTitle591}>delete</h3>
+                        <h3 className={styles.cardTitle591} >delete</h3>
                       </div>
                     </div>
                   </div>
@@ -534,7 +586,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                   </label> */}
 
 <div className={styles.cardContainer22}>
-                    <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
+                    <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (75x175 cm)')}>
                       <div className={styles.cardContent183}>
                         <h3 className={styles.cardTitle591}>delete</h3>
                       </div>
@@ -594,11 +646,11 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       </div>
                     </div>
                   <br />
-                    <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
+                    {/* <div className={styles.card789}onClick={() => handleDeleteFrame('Hoek (111cm) ')}>
                       <div className={styles.cardContent183}>
                         <h3 className={styles.cardTitle591}>Delete</h3>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -607,7 +659,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
             <div className={styles['components-selection']} onClick={() => { toggleHandleVisibility(); handleToggle(); }} >
               <GiDoorHandle className={styles['handle-icon']} />
-              <p className={styles.door}>Handgrepen</p>
+              <p className={styles.door}>Handgreep </p>
               <IoIosArrowDropright
                 style={{
                   width: '30px',
@@ -619,7 +671,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             {isHandleComponentVisible && (
               <div className={styles.frame}>
                 <FaArrowLeft className={styles.backarrow} onClick={toggleHandleVisibility} />
-                <h3 className={styles.frametext}>Handle</h3>
+                <h3 className={styles.frametext}>Handgreep</h3>
                 <div className={styles.cardframe}>
                   {cardData
                     .filter(card => card.category === 'Handle')
@@ -630,7 +682,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         image={card.image}
                         width={card.width}
                         height={card.height}
-                        onClick={() => handleFrameProductClick(card.title)}
+                        onClick={() => handleCardHandleClick(card.title, setSelectedHandle)}
                       />
                     ))}
                 </div>
@@ -682,7 +734,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
               {isRailVisible && (
                 <div className={styles.frame}>
                   <FaArrowLeft className={styles.backarrow} onClick={RailVisible} />
-                  <h3 className={styles.frametext}>clotherail</h3>
+                  <h3 className={styles.frametext}>Kledinghanger</h3>
                   <div className={styles.cardframe}>
                     {cardData
                       .filter(card => card.category === 'rail')
@@ -703,7 +755,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             </div>
             <div className={styles['components-selection']}  onClick={toggleRackVisibility} >
               <MdShelves className={styles['shelve-icon']} />
-              <p className={styles.door}>Shoe Rack</p>
+              <p className={styles.door}> Schoenenrek</p>
               <IoIosArrowDropright
                 style={{
                   width: '30px',
@@ -715,7 +767,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             {isRackVisible && (
               <div className={styles.frame}>
                 <FaArrowLeft className={styles.backarrow} onClick={toggleRackVisibility} />
-                <h3 className={styles.frametext}>Rack</h3>
+                <h3 className={styles.frametext}> Schoenenrek</h3>
                 <div className={styles.cardframe}>
                   {cardData
                     .filter(card => card.category === 'rack')
@@ -737,6 +789,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         </div>
         <div className={styles['canva-div']}>
           <Scene
+          onDeleteFrame={handleDeleteFrame}
+          selectedHandle={selectedHandle}
             ref={sceneRef}
             frames={frames}
             setFrames={setFrames}

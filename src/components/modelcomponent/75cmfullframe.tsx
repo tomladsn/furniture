@@ -46,9 +46,10 @@ type SmallframeProps = {
   isRackSelected: any;
   isRailSelected: any;
   isDoorSelected: any;
+  selectedHandle: any;
   scaleY:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   
   const baseWidth = 175;
@@ -67,67 +68,82 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedDra
 
 
                {isDoorSelected && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7, 15]} />)}
-    {selectedDrawer === 'Drawer 1' && ( <group >
+    {selectedDrawer === 'Lade 1' && ( <group >
             <mesh
               name="Cdrawer"
               geometry={nodes.drawer5.geometry}
               rotation={[Math.PI / 2, 0, 0]}
               material={materials.drawer5}
-              position={[-3.12, 1.5, 3.273]}
-              scale={[0.15, 0.15, 0.22]}
-            />
-            <mesh
-              name="shelve5"
-              geometry={nodes.shelve5.geometry}
-              material={materials.shelve5}
-              position={[-3.133, 7.3, 0.541]}
-              scale={[-6.938, -0.196, -5.481]}
-            />
-          </group>)}
-          {selectedDrawer === 'Drawer 2' && (  <group >
-             <mesh
-              name="Mdrawer"
-              geometry={nodes.drawer5.geometry}
-              rotation={[Math.PI / 2, 0, 0]}
-              material={materials.drawer5}
-              position={[-3.12, 0.5, 3.273]}
-              scale={[0.15, 0.15, 0.1]}
-            />
-            <mesh
-              name="shelve5"
-              geometry={nodes.shelve5.geometry}
-              material={materials.shelve5}
-              position={[-3.133, 3.5, 0.541]}
-              scale={[-6.938, -0.196, -5.481]}
-            />
-          </group>)}
-          {selectedDrawer === 'Drawer 3' && ( <group >
-             <mesh
-              name="Kdrawer"
-              geometry={nodes.drawer5.geometry}
-              rotation={[Math.PI / 2, 0, 0]}
-              material={materials.drawer5}
-              position={[-3.12, 1.3, 3.273]}
+              position={[-3.12, 1.2, 3.273]}
               scale={[0.15, 0.15, 0.17]}
             />
             <mesh
               name="shelve5"
               geometry={nodes.shelve5.geometry}
               material={materials.shelve5}
-              position={[-3.133, 5.8, 0.541]}
+              position={[-3.133, 5.9, 0.541]}
               scale={[-6.938, -0.196, -5.481]}
             />
+             { selectedHandle === 'Handgreep  5' && (  <Handle1 position={[-7, 5, 4.8]} scale={[0.08, 0.15, 0.34]} rotation={[0, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  1' && ( <Handle2 position={[-4, 4, 4.9]} scale={[0.04, 0.1, 0.1]} rotation={[Math.PI/2, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  3' && (  <Handle3 position={[-4, 3, 4.9]} scale={[0.04, 0.1, 0.08]} rotation={[Math.PI/2, 0, 0]} />)}
           </group>)}
-          {selectedDrawer === 'Drawer 4' &&(<group >
+          {selectedDrawer === 'Lade 2' && (  <group >
+             <mesh
+              name="Mdrawer"
+              geometry={nodes.drawer5.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.drawer5}
+              position={[-3.12, 0.3, 3.273]}
+              scale={[0.15, 0.15, 0.08]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-3.133, 2.7, 0.541]}
+              scale={[-6.938, -0.196, -5.481]}
+            />
+             { selectedHandle === 'Handgreep  5' && (  <Handle1 position={[-7, 2, 5]} scale={[0.08, 0.15, 0.3]} rotation={[0, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  1' && ( <Handle2 position={[-4, 2.5, 5]} scale={[0.04, 0.08, 0.08]} rotation={[Math.PI/2, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  3' && (  <Handle3 position={[-4, 1, 5.4]} scale={[0.04, 0.08, 0.07]} rotation={[Math.PI/2, 0, 0]} />)}
+         
+          </group>)}
+          {selectedDrawer === 'Lade 3' && ( <group >
+             <mesh
+              name="Kdrawer"
+              geometry={nodes.drawer5.geometry}
+              rotation={[Math.PI / 2, 0, 0]}
+              material={materials.drawer5}
+              position={[-3.12, 0.8, 3.273]}
+              scale={[0.15, 0.15, 0.15]}
+            />
+            <mesh
+              name="shelve5"
+              geometry={nodes.shelve5.geometry}
+              material={materials.shelve5}
+              position={[-3.133, 5, 0.541]}
+              scale={[-6.938, -0.196, -5.481]}
+            />
+            { selectedHandle === 'Handgreep  5' && (  <Handle1 position={[-7, 4, 5]} scale={[0.08, 0.15, 0.3]} rotation={[0, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  1' && ( <Handle2 position={[-4, 4, 4.9]} scale={[0.04, 0.1, 0.1]} rotation={[Math.PI/2, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  3' && (  <Handle3 position={[-4, 2, 4.9]} scale={[0.035, 0.1, 0.07]} rotation={[Math.PI/2, 0, 0]} />)}
+         
+          </group>)}
+          {selectedDrawer === 'Lade 4' &&(<group >
              <mesh
               name="Fdrawer"
               geometry={nodes.drawer5.geometry}
               rotation={[Math.PI / 2, 0, 0]}
               material={materials.drawer5}
-              position={[-3.12, 2.563, 3.273]}
-              scale={[0.15, 0.15, 0.3]}
+              position={[-3.12, 1.5, 3.273]}
+              scale={[0.15, 0.15, 0.23]}
             />
-           <mesh name="shelve5" geometry={nodes.shelve5.geometry} material={materials.shelve5} position={[-3.133, 10.389, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve5' }} />
+           <mesh name="shelve5" geometry={nodes.shelve5.geometry} material={materials.shelve5} position={[-3.133, 7.5, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve5' }} />
+           { selectedHandle === 'Handgreep  5' && (  <Handle1 position={[-7, 7, 5]} scale={[0.08, 0.15, 0.34]} rotation={[0, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  1' && ( <Handle2 position={[-4, 5, 4.9]} scale={[0.04, 0.1, 0.1]} rotation={[Math.PI/2, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  3' && (  <Handle3 position={[-4, 3, 4.9]} scale={[0.04, 0.09, 0.09]} rotation={[Math.PI/2, 0, 0]} />)}
+         
           </group>)}
 
       <mesh name="frame" geometry={nodes.frame.geometry} material={whiteMaterial} position={[-3.079, 13.984, 0.565]} scale={[0.019, 0.017, 0.019]} userData={{ name: 'frame' }} />

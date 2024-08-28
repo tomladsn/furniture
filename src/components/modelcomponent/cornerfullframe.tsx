@@ -58,12 +58,8 @@ export function Cornerframe({visible3Component,isDoorSelected, isRailSelected, i
                {false && (  <Handle1 />)}
                {false && ( <Handle2 />)}
                {false && (  <Handle3 />)}
-               {/* {true && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI ]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7, 15]} />)} */}
+               {/* {true && (<Door1 rotation={[Math.PI / 2, 0,Math.PI ]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7, 15]} />)} */}
                {isDoorSelected && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[15, 14, -0.51]} scale={[0.22, 5, 15]} />)}
-               <DimensionLines 
-  position={[0, 0, 0]} 
-  dimensions={{ width: 100, height: 175, depth: 40 }} 
-/>
       <mesh name="cornerframe" geometry={nodes.cornerframe.geometry} material={whiteMaterial} position={[21.173, 13.909, -0.683]} scale={[0.019, 0.017, 0.019]} userData={{ name: 'cornerframe' }} />
            <mesh name="frameshelve1" geometry={nodes.frameshelve1.geometry} material={materials.shelve1} position={[19.822, 23.252, -6.186]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve1' }} />
                <mesh name="frameshelve2" geometry={nodes.frameshelve2.geometry} material={materials.shelve1} position={[19.822, 17.318, -6.186]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve2' }} />

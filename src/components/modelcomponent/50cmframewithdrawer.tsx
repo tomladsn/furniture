@@ -71,9 +71,10 @@ type SmallframeProps = {
   isRailSelected: any;
   isDoorSelected: any;
   scaleY: number;
+  selectedHandle:  any;
 } & JSX.IntrinsicElements['group'];
 
-const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawer, frameId,  isRackSelected,isRailSelected,isDoorSelected, setFrames,   scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,   selectedHandle, selectedDrawer, frameId, isRackSelected, isRailSelected,isDoorSelected, setFrames,   scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
   const { nodes: mdNodes, materials: mdMaterials } = useGLTF('/Mdrawer.glb') as MdrawerGLTFResult;
@@ -90,7 +91,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawe
                {false && ( <Handle2 />)}
                {false && (  <Handle3 />)}
                {isDoorSelected && ( <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-0.25, 18.166, 18.851]} scale={[0.22, 7.86, 16.7]} />)}
-     {selectedDrawer === 'Drawer 1' && ( <group >
+     {selectedDrawer === 'Lade 1' && ( <group >
             <mesh
               name="Cdrawer"
               geometry={nodes.Lades.geometry}
@@ -106,8 +107,11 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawe
               position={[-0.323, 8.94, 13.615]}
               scale={[7.876, 0.203, 4.672]}
             />
+               { selectedHandle === 'Handgreep  5' && (  <Handle1 position={[-5.2, 8, 17]} scale={[0.08, 0.15, 0.34]} rotation={[0, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  1' && ( <Handle2 position={[-1, 6.9, 17]} scale={[0.04, 0.1, 0.1]} rotation={[Math.PI/2, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  3' && (  <Handle3 position={[-1, 5.4, 17]} scale={[0.04, 0.1, 0.08]} rotation={[Math.PI/2, 0, 0]} />)}
           </group>)}
-          {selectedDrawer === 'Drawer 2' && (<group >
+          {selectedDrawer === 'Lade 2' && (<group >
              <mesh
               name="Mdrawer"
               geometry={nodes.Lades.geometry}
@@ -123,8 +127,12 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawe
               position={[-0.323, 4.8, 13.615]}
               scale={[7.876, 0.203, 4.672]}
             />
+            { selectedHandle === 'Handgreep  5' && (  <Handle1 position={[-5.2, 4, 17]} scale={[0.08, 0.15, 0.3]} rotation={[0, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  1' && ( <Handle2 position={[-1, 5, 17.5]} scale={[0.04, 0.08, 0.08]} rotation={[Math.PI/2, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  3' && (  <Handle3 position={[-1, 3, 17.5]} scale={[0.04, 0.08, 0.07]} rotation={[Math.PI/2, 0, 0]} />)}
+         
           </group>)}
-          {selectedDrawer === 'Drawer 3' && ( <group >
+          {selectedDrawer === 'Lade 3' && ( <group >
              <mesh
               name="Kdrawer"
               geometry={nodes.Lades.geometry}
@@ -140,8 +148,12 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawe
               position={[-0.323, 7, 13.615]}
               scale={[7.876, 0.203, 4.672]}
             />
+            { selectedHandle === 'Handgreep  5' && (  <Handle1 position={[-5.2, 6.3, 17.5]} scale={[0.08, 0.15, 0.3]} rotation={[0, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  1' && ( <Handle2 position={[-1, 6.9, 17]} scale={[0.04, 0.1, 0.1]} rotation={[Math.PI/2, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  3' && (  <Handle3 position={[-1, 4, 17]} scale={[0.035, 0.1, 0.07]} rotation={[Math.PI/2, 0, 0]} />)}
+         
           </group>)}
-          {selectedDrawer === 'Drawer 4' &&(<group >
+          {selectedDrawer === 'Lade 4' &&(<group >
              <mesh
               name="Fdrawer"
               geometry={nodes.Lades.geometry}
@@ -157,6 +169,10 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedDrawe
               position={[-0.323, 10.5, 13.615]}
               scale={[7.876, 0.203, 4.672]}
             />
+            { selectedHandle === 'Handgreep  5' && (  <Handle1 position={[-5.2, 10, 17]} scale={[0.08, 0.15, 0.34]} rotation={[0, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  1' && ( <Handle2 position={[-1, 7.5, 17]} scale={[0.04, 0.1, 0.1]} rotation={[Math.PI/2, 0, 0]}/>)}
+               { selectedHandle === 'Handgreep  3' && (  <Handle3 position={[-1, 6, 17.5]} scale={[0.04, 0.09, 0.09]} rotation={[Math.PI/2, 0, 0]} />)}
+         
           </group>)}
 
         {false && (<mesh name="Lades" geometry={nodes.Lades.geometry} material={materials.Lades} position={[-0.27, 3.525, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades' }} />)}

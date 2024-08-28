@@ -16,7 +16,7 @@
         "height": "auto"
     },
     {
-        "title": "Corner (111cm)",
+        "title": "Hoek (111cm) ",
         "image": "/frame4.png",
         "category": "Frame",
         "description": "This is a description for card 2.",
@@ -24,84 +24,84 @@
         "height": "auto"
     },
         {
-        "title": "Main Deuren",
+        "title": "Standaard Deur",
         "image": "/Door 1.png",
         "category": "Door",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handgrepen 1",
+        "title": "Handgreep  1",
         "image": "/Handle1.png",
         "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handgrepen 2",
+        "title": "Handgreep  2",
         "image": "/Handle2.png",
        "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handgrepen 3",
+        "title": "Handgreep  3",
         "image": "/Handle3.png",
         "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handgrepen 4",
+        "title": "Handgreep  4",
         "image": "./Handle4.png",
         "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Handgrepen 5",
+        "title": "Handgreep  5",
         "image": "/Handle5.png",
         "category": "Handle",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Drawer 1",
+        "title": "Lade 1",
         "image": "../../../../../../public/CDrawer.png",
         "category": "drawer",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Drawer 2",
+        "title": "Lade 2",
         "image": "../../../../../../public/Fdrawer.png",
        "category": "drawer",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Drawer 3",
+        "title": "Lade 3",
         "image": "../../../../../../public/K drawer.png",
         "category": "drawer",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Drawer 4",
+        "title": "Lade 4",
         "image": "../../../../../../public/M drawer.png",
         "category": "drawer",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "clotherail",
+        "title": "Kledinghanger",
         "image": "../../../../../../public/rail1.png",
         "category": "rail",
         "width": "auto",
         "height": "auto"
     },
     {
-        "title": "Rack",
+        "title": "Schoenenrek",
         "image": "../../../../../../shoerackimg.png",
         "category": "rack",
         "width": "auto",
