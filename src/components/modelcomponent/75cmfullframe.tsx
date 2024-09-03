@@ -47,10 +47,11 @@ type SmallframeProps = {
   isRailSelected: any;
   isDoorSelected: any;
   selectedHandle: any;
+  width75Scale: number;
   scaleY:number;
   heightScale:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component,heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, width75Scale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const baseWidth = 175;
@@ -153,7 +154,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component,heightScale,
           </group>)}
 
       <mesh onPointerOver={() => setShowDimensions(true)}
-  onPointerOut={() => setShowDimensions(false)} name="frame" geometry={nodes.frame.geometry} material={whiteMaterial} position={[-3.079, 13.984 + (Math.max(0, heightScale / 175 - 1)/1.8 * 15.156 * 1.5), 0.565]} scale={[0.019, heightScale/10294.12, 0.019]} userData={{ name: 'frame' }} />
+  onPointerOut={() => setShowDimensions(false)} name="frame" geometry={nodes.frame.geometry} material={whiteMaterial} position={[-3.079, 13.984 + (Math.max(0, heightScale / 175 - 1)/1.8 * 15.156 * 1.5), 0.565]} scale={[0.019 * width75Scale/75, heightScale/10294.12, 0.019]} userData={{ name: 'frame' }} />
       {false && ( <> <mesh name="drawer6" geometry={nodes.drawer6.geometry} material={materials.drawer6} position={[-3.12, 0.417, 3.273]} rotation={[Math.PI / 2, 0, 0]} scale={[0.152, 0.131, 0.123]} userData={{ name: 'drawer6' }} />
       <mesh name="drawer5" geometry={nodes.drawer5.geometry} material={materials.drawer5} position={[-3.12, 5.563, 3.273]} rotation={[Math.PI / 2, 0, 0]} scale={[0.152, 0.131, 0.123]} userData={{ name: 'drawer5' }} />
       <mesh name="drawer4" geometry={nodes.drawer4.geometry} material={materials.drawer4} position={[-3.12, 10.622, 3.273]} rotation={[Math.PI / 2, 0, 0]} scale={[0.152, 0.131, 0.123]} userData={{ name: 'drawer4' }} />

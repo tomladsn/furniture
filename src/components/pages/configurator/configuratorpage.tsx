@@ -231,8 +231,18 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   };
 
   const [height, setHeight] = useState(175); // Set the default height to 175cm
+  const [width50, setwidth50] = useState(50); // Set the default height to 175cm
+  const [width75, setwidth75] = useState(75); // Set the default height to 175cm
 
   function handleHeightChange(e: { target: { value: string; }; }) {
+    const inputValue = parseFloat(e.target.value);
+  
+    // Ensure the value stays within the allowed range
+    const validatedValue = Math.max(175, Math.min(280, inputValue));
+  
+    setHeight(validatedValue);
+  }
+  function handleWidthChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
   
     // Ensure the value stays within the allowed range
@@ -538,17 +548,17 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <h3 className={styles.frametext}>50cmframe  aanpassing</h3>
                 <div className={styles.customise}>
                 <label>
-                    Height (cm):
+                   Width (cm):
                     <input
     type="number"
-    min="175"
-    max="280"
+    min="50"
+    max="74"
     step="1"
-    value={height} // Bind the input value to the state
-    onChange={(e) => setHeight(parseFloat(e.target.value))} // Handle input change
+    value={width50} // Bind the input value to the state
+    onChange={(e) => setwidth50(parseFloat(e.target.value))} // Handle input change
   />
   <button >Apply</button> {/* Button to apply the new height */}
-  {`${height.toFixed(1)} cm`} {/* Display the height in cm */}
+  {`${width50.toFixed(1)} cm`} {/* Display the height in cm */}
                   </label>
                   <label>
                     Height (cm):
@@ -591,18 +601,19 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>75cmframe  aanpassing</h3>
                 <div className={styles.customise}>
-                  {/* <label>
-                    Scale X:
+                <label>
+                   Width (cm):
                     <input
-                      type="range"
-                      min="0.1"
-                      max="2"
-                      step="0.1"
-                      value={scaleX}
-                      onChange={handleScaleXChange}
-                    />
-                    {scaleX.toFixed(1)}
-                  </label> */}
+    type="number"
+    min="75"
+    max="100"
+    step="1"
+    value={width75} // Bind the input value to the state
+    onChange={(e) => setwidth75(parseFloat(e.target.value))} // Handle input change
+  />
+  <button >Apply</button> {/* Button to apply the new height */}
+  {`${width75.toFixed(1)} cm`} {/* Display the height in cm */}
+                  </label>
                   <label>
                     Height (cm):
                     <input
@@ -842,6 +853,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}
+            width75Scale = {width75}
+            width50Scale = {width50}
             heightScale={height}
             selectedDrawer={selectedDrawer}
             selectedProduct={selectedProduct}

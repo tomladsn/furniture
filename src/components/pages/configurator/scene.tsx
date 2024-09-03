@@ -40,7 +40,9 @@ interface SceneProps {
     scaleX: number;
     scaleY: number;
     scaleZ: number;
+    width50Scale: number;
     setScaleY: number;
+    width75Scale: number;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     visibleComponent: 'shelves' | 'drawers' | null;
     visible2component: "shelves" | "drawers" | null;
@@ -64,8 +66,10 @@ const CustomCamera = () => {
     return null;
 };
 const Scene = forwardRef<THREE.Group, SceneProps>(({
+  width75Scale,
   frameInstances,
   onDeleteFrame,
+  width50Scale,
   selectedHandle,
   setIsFrame3CustomisationVisible,
   setIsFrame2CustomisationVisible,
@@ -231,6 +235,7 @@ const scaleZ = 1;
           ]}
         >
           <Mediumframe 
+          width75Scale = {width75Scale}
           heightScale={heightScale}
             scaleY={scaleY}
             selectedHandle={selectedHandle}
@@ -274,6 +279,7 @@ const scaleZ = 1;
           ]}
         >
           <Smallframe
+          width50Scale = {width50Scale}
           heightScale={heightScale}
             scaleY={scaleY}
             selectedHandle={selectedHandle}

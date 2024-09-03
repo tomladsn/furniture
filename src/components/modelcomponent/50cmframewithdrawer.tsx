@@ -73,11 +73,12 @@ type SmallframeProps = {
   isDoorSelected: any;
   scaleY: number;
   heightScale: number;
+  width50Scale: number;
   selectedHandle:  any;
 } & JSX.IntrinsicElements['group'];
 
 
-const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, heightScale,  selectedHandle, selectedDrawer, frameId, isRackSelected, isRailSelected,isDoorSelected, setFrames,   scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, heightScale,   width50Scale,  selectedHandle, selectedDrawer, frameId, isRackSelected, isRailSelected,isDoorSelected, setFrames,   scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
@@ -234,9 +235,9 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, heightScale, 
             {false && ( <mesh name="Lades004" geometry={nodes.Lades004.geometry} material={materials.lades4} position={[-0.27, 26.099, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.004' }} />)}
               {false && ( <mesh name="Lades005" geometry={nodes.Lades005.geometry} material={materials.lades5} position={[-0.27, 31.691, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.005' }} />)}
       {true && (<mesh onPointerOver={() => setShowDimensions(true)}
-  onPointerOut={() => setShowDimensions(false)}  name="drain" geometry={nodes.frame.geometry} material={materials.Frame} 
+  onPointerOut={() => setShowDimensions(false)}  name="frame" geometry={nodes.frame.geometry} material={materials.Frame} 
   position={[-0.285, 18.156 + (Math.max(0, heightScale / 175 - 1)/1.8 * 20.156 * 1.5), 11.451]} 
-   scale={[7.976, heightScale/174, 4.787]}
+   scale={[width50Scale/50 * 7.976, heightScale/174, 4.787]}
     userData={{ name: 'frame' }} />)}
       {visibleComponent === 'shelves' && (
     <>
