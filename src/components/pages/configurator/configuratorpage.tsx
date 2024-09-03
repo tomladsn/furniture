@@ -30,7 +30,14 @@ interface ComponentSelectionProps {
   onToggleVisibility: () => void;
   onClick: () => void;
 }
+interface newFrameInstance {
+  scaleX: number;
+}
 interface ModelProps {
+  position: [number, number, number];
+}
+interface FrameInstance {
+  id: number;
   position: [number, number, number];
 }
 interface CardProps {
@@ -74,7 +81,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [visibles2SubComponent, setVisible2SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles3SubComponent, setVisible3SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [selectedHandle, setSelectedHandle] = useState<string | null>(null);
-
+  const [frameInstances, setFrameInstances] = useState<FrameInstance[]>([]);
   const handleCardHandleClick = (title: string, setSelectedHandle: React.Dispatch<React.SetStateAction<string | null>>) => {
     setSelectedHandle(title);
   };
@@ -102,6 +109,17 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
   const handleModelClick = () => {
     setIsCustomisationVisible(true);
+  };
+  const [scaleX, setScaleX] = useState(1);
+  const [scaleY, setScaleY] = useState(1);
+  const [scaleZ, setScaleZ] = useState(1);
+
+  const baseY = -1.11;
+
+
+  const newFrameInstance: FrameInstance = {
+    id: frameInstances.length, // Unique ID for each frame instance
+    position: [10.1 / scaleX, baseY + (scaleY - 1) * Math.abs(baseY), -8.2 / scaleZ] as [number, number, number],
   };
   const handleFrameProductClick = (productTitle: string) => {
     setSelectedFrameProduct(productTitle);
@@ -136,6 +154,20 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       setIsCustomisationVisible(false);
       setIsFrame2CustomisationVisible(false);
       setIsFrame3CustomisationVisible(true);
+
+      // Ensure baseY and scales are defined here or passed as parameters
+      const baseY = -1.11;
+      const scaleX = 1;
+      const scaleY = 1;
+      const scaleZ = 1;
+
+      const newFrameInstance: FrameInstance = {
+        id: frameInstances.length, // Unique ID for each frame instance
+        position: [10.1 / scaleX, baseY + (scaleY - 1) * Math.abs(baseY), -8.2 / scaleZ],
+      };
+
+      setFrameInstances([...frameInstances, newFrameInstance]);
+
       setFrameVisible(false);
       setFrames(prevFrames => [
         ...prevFrames,
@@ -159,10 +191,10 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     }
 
     handleDrawerSelection(productTitle, setSelectedDrawer);
-  };const handleDeleteFrame = (productTitle: string) => {
+  }; const handleDeleteFrame = (productTitle: string) => {
     // Deselect the frame product
     setSelectedFrameProduct(null);
-  
+
     // Perform deletion logic based on the product title
     if (productTitle === 'Frame (50x175 cm)') {
       setIsCustomisationVisible(false);
@@ -176,7 +208,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     }
     setFrameVisible(true);
   };
-  
+
   const handleDeleteFrame2 = () => {
     setSelectedFrameProduct(null); // Or an appropriate default value
     setFrames(prevFrames => prevFrames.filter(frame => frame.type !== 'Frame (50x175 cm)'));
@@ -191,19 +223,27 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     setIsFrame3CustomisationVisible(false);
     setFrameVisible(true); // Adjust based on your application logic
   };
-  
-  const [scaleX, setScaleX] = useState(1);
-  const [scaleY, setScaleY] = useState(1);
-  const [scaleZ, setScaleZ] = useState(1);
+
+
 
   const handleScaleXChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setScaleX(parseFloat(event.target.value));
   };
 
-  const handleScaleYChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setScaleY(parseFloat(event.target.value));
-  };
+  const [height, setHeight] = useState(175); // Set the default height to 175cm
 
+  function handleHeightChange(e: { target: { value: string; }; }) {
+    const inputValue = parseFloat(e.target.value);
+  
+    // Ensure the value stays within the allowed range
+    const validatedValue = Math.max(175, Math.min(280, inputValue));
+  
+    setHeight(validatedValue);
+  }
+  const handleApplyHeight = () => {
+    // Your logic to apply the height change
+    console.log(`Height applied: ${height} cm`);
+  };
   const handleScaleZChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setScaleZ(parseFloat(event.target.value));
   };
@@ -497,30 +537,33 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>50cmframe  aanpassing</h3>
                 <div className={styles.customise}>
-                  {/* <label>
-                    Scale X:
+                <label>
+                    Height (cm):
                     <input
-                      type="range"
-                      min="0.1"
-                      max="2"
-                      step="0.1"
-                      value={scaleX}
-                      onChange={handleScaleXChange}
-                    />
-                    {scaleX.toFixed(1)}
-                  </label> */}
-                  <label>
-                    Scale Y:
-                    <input
-                      type="range"
-                      min="1"
-                      max="2"
-                      step="0.1"
-                      value={scaleY}
-                      onChange={handleScaleYChange}
-                    />
-                    {scaleY.toFixed(1)}
+    type="number"
+    min="175"
+    max="280"
+    step="1"
+    value={height} // Bind the input value to the state
+    onChange={(e) => setHeight(parseFloat(e.target.value))} // Handle input change
+  />
+  <button >Apply</button> {/* Button to apply the new height */}
+  {`${height.toFixed(1)} cm`} {/* Display the height in cm */}
                   </label>
+                  <label>
+                    Height (cm):
+                    <input
+    type="number"
+    min="175"
+    max="280"
+    step="1"
+    value={height} // Bind the input value to the state
+    onChange={(e) => setHeight(parseFloat(e.target.value))} // Handle input change
+  />
+  <button onClick={handleApplyHeight}>Apply</button> {/* Button to apply the new height */}
+  {`${height.toFixed(1)} cm`} {/* Display the height in cm */}
+                  </label>
+
                   {/* <label>
                     Scale Z:
                     <input
@@ -535,12 +578,12 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                   </label> */}
                 </div>
                 <div className={styles.cardContainer22}>
-                    <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (50x175 cm)')}>
-                      <div className={styles.cardContent183}>
-                        <h3 className={styles.cardTitle591} >delete</h3>
-                      </div>
+                  <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (50x175 cm)')}>
+                    <div className={styles.cardContent183}>
+                      <h3 className={styles.cardTitle591} >delete</h3>
                     </div>
                   </div>
+                </div>
               </div>
             )}
             {isFrame2CustomisationVisible && (
@@ -561,16 +604,16 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     {scaleX.toFixed(1)}
                   </label> */}
                   <label>
-                    Scale Y:
+                    Height (cm):
                     <input
-                      type="range"
-                      min="1"
-                      max="2"
-                      step="0.1"
-                      value={scaleY}
-                      onChange={handleScaleYChange}
+                      type="number"
+                      min="175"
+                      max="280"
+                      step="1"
+                      value={height.toFixed(1)}
+                      onChange={handleHeightChange}
                     />
-                    {scaleY.toFixed(1)}
+                    {`${height.toFixed(1)} cm`}
                   </label>
                   {/* <label>
                     Scale Z:
@@ -585,7 +628,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     {scaleZ.toFixed(1)}
                   </label> */}
 
-<div className={styles.cardContainer22}>
+                  <div className={styles.cardContainer22}>
                     <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (75x175 cm)')}>
                       <div className={styles.cardContent183}>
                         <h3 className={styles.cardTitle591}>delete</h3>
@@ -614,17 +657,18 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     {scaleX.toFixed(1)}
                   </label> */}
                   <label>
-                    Scale Y:
+                    Height (cm):
                     <input
-                      type="range"
-                      min="1"
-                      max="2"
-                      step="0.1"
-                      value={scaleY}
-                      onChange={handleScaleYChange}
+                      type="number"
+                      min="175"
+                      max="280"
+                      step="1"
+                      value={height.toFixed(1)}
+                      onChange={handleHeightChange}
                     />
-                    {scaleY.toFixed(1)}
+                    {`${height.toFixed(1)} cm`}
                   </label>
+
                   {/* <label>
                     Scale Z:
                     <input
@@ -645,7 +689,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         <h3 className={styles.cardTitle591}>Hoekplanken</h3>
                       </div>
                     </div>
-                  <br />
+                    <br />
                     {/* <div className={styles.card789}onClick={() => handleDeleteFrame('Hoek (111cm) ')}>
                       <div className={styles.cardContent183}>
                         <h3 className={styles.cardTitle591}>Delete</h3>
@@ -753,7 +797,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 </div>
               )}
             </div>
-            <div className={styles['components-selection']}  onClick={toggleRackVisibility} >
+            <div className={styles['components-selection']} onClick={toggleRackVisibility} >
               <MdShelves className={styles['shelve-icon']} />
               <p className={styles.door}> Schoenenrek</p>
               <IoIosArrowDropright
@@ -789,14 +833,16 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         </div>
         <div className={styles['canva-div']}>
           <Scene
-          onDeleteFrame={handleDeleteFrame}
-          selectedHandle={selectedHandle}
+            frameInstances={frameInstances}
+            onDeleteFrame={handleDeleteFrame}
+            selectedHandle={selectedHandle}
             ref={sceneRef}
             frames={frames}
             setFrames={setFrames}
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}
+            heightScale={height}
             selectedDrawer={selectedDrawer}
             selectedProduct={selectedProduct}
             showDoor={showDoor}
@@ -809,13 +855,13 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             visibleComponent={visiblesSubComponent} // Correct prop name
             onScaleChange={function (event: ChangeEvent<HTMLInputElement>): void {
               throw new Error('Function not implemented.');
-            } } frameId={0}
+            }} frameId={0}
             onModelClick={handleModelClick}
             isRackSelected={isRackSelected}
             isRailSelected={isRailSelected}
             isDoorSelected={isDoorSelected}
             setIsFrame2CustomisationVisible={setIsFrame2CustomisationVisible}
-            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0}/>
+            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0} />
         </div>
       </div>
     </div>

@@ -1,9 +1,9 @@
 import React, {useEffect,useRef , Suspense, useState, useCallback, forwardRef } from 'react';
-import { Canvas, useThree,extend  } from '@react-three/fiber';
+import { Canvas, useThree,extend, Vector3  } from '@react-three/fiber';
 import { OrbitControls, Html, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
-import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter';
+import CameraHelperComponent from './camerahelper'
 import Draggable from './draggable';
 const Floor = React.lazy(() => import('../../modelcomponent/floor') )
 const Tvmeubel = React.lazy(() => import('../../modelcomponent/tv-set'));
@@ -20,7 +20,9 @@ const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
 const clotherail = React.lazy(() => import('../../modelcomponent/clotherail'));
 import { Physics } from '@react-three/cannon';
 interface SceneProps {
+  frameInstances: any;
   onModelClick: any;
+  heightScale: number;
   onDeleteFrame:any;
   isRackSelected: any;
   isRailSelected: any;
@@ -45,8 +47,7 @@ interface SceneProps {
     visible3component: "shelves" | "drawers" | null;
     frames: Array<{id: number, type: string, scale: [number, number, number]}>;
     setFrames: React.Dispatch<React.SetStateAction<Array<{id: number, type: string, scale: [number, number, number]}>>>;
-    frameId: number
-    
+    frameId: number;  
 }
 
 const CustomCamera = () => {
@@ -62,10 +63,8 @@ const CustomCamera = () => {
 
     return null;
 };
-
-
-
 const Scene = forwardRef<THREE.Group, SceneProps>(({
+  frameInstances,
   onDeleteFrame,
   selectedHandle,
   setIsFrame3CustomisationVisible,
@@ -75,9 +74,6 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   showHandle,
   showDrawer,
   selectedFrameProduct,
-  scaleX,
-  scaleY,
-  scaleZ,
   visibleComponent,
   visible2component,
   visible3component,
@@ -87,7 +83,8 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   onModelClick,
   isRackSelected,
   isRailSelected,
-  isDoorSelected
+  isDoorSelected,
+  heightScale
 }, ref) => {
     const [activeFrames, setActiveFrames] = useState<string[]>([]);
     const [isDragging, setIsDragging] = useState(false);
@@ -104,6 +101,10 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
     const FdrawerRef = useRef<THREE.Group>(null);
     const CdrawerRef = useRef<THREE.Group>(null);
     const [globalScale, setGlobalScale] = useState(10);
+    const scaleX = 1;
+const scaleY = 1;
+const scaleZ = 1;
+
     useEffect(() => {
         // Define the event handler within the useEffect scope
         const handleWheel = (e: WheelEvent) => {
@@ -135,12 +136,8 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
         <group   ref={ref}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        <PerspectiveCamera 
-  makeDefault 
-  position={[1, 1, 1]} // Your desired position
-  fov={75}
-  onUpdate={(self) => self.lookAt(5, 20, 0)} // Ensure the camera looks at a specific target
-/>
+       <PerspectiveCamera />
+       <CameraHelperComponent />
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
       <OrbitControls enableRotate={!isDragging} />
       <Physics>
@@ -174,8 +171,8 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
     const baseY = -1.11;
     
     return (
+      <Physics>
       <group
-        key={`corner-${index}`} // Unique key for each corner frame
         onClick={() => setIsFrame3CustomisationVisible(true)}
         ref={CornerframeRef}
         position={[
@@ -190,8 +187,8 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
           originalScale[2] * scaleZ
         ]}
       >
-        <Physics>
           <Cornerframe  
+           heightScale={heightScale}
              selectedHandle={selectedHandle}
             scaleY={scaleY}
             isRackSelected={isRackSelected}
@@ -199,12 +196,13 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
             isDoorSelected={isDoorSelected} 
             visible3Component={visible3component} 
           />
-        </Physics>
       </group>
+      </Physics>
     );
   }
   return null;
 })}
+
 
 {frames.map((frame) => {
   if (frame.type === 'Frame (75x175 cm)') {
@@ -233,6 +231,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
           ]}
         >
           <Mediumframe 
+          heightScale={heightScale}
             scaleY={scaleY}
             selectedHandle={selectedHandle}
             isRackSelected={isRackSelected}
@@ -275,6 +274,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
           ]}
         >
           <Smallframe
+          heightScale={heightScale}
             scaleY={scaleY}
             selectedHandle={selectedHandle}
             visibleComponent={visibleComponent}

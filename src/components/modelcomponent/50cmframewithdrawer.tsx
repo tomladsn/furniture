@@ -72,21 +72,23 @@ type SmallframeProps = {
   isRailSelected: any;
   isDoorSelected: any;
   scaleY: number;
+  heightScale: number;
   selectedHandle:  any;
 } & JSX.IntrinsicElements['group'];
 
-const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,   selectedHandle, selectedDrawer, frameId, isRackSelected, isRailSelected,isDoorSelected, setFrames,   scaleY, ...props }) => {
+
+const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, heightScale,  selectedHandle, selectedDrawer, frameId, isRackSelected, isRailSelected,isDoorSelected, setFrames,   scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
   const { nodes: mdNodes, materials: mdMaterials } = useGLTF('/Mdrawer.glb') as MdrawerGLTFResult;
-
+  const baseY = 18.146;
   const baseWidth = 175;
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
   return (
     <group>
-    <group {...props} dispose={null} position={[-2, -0.78, -0.9]} scale={[0.077, 0.125, 0.15]} >
+    <group {...props} dispose={null} position={[-2, -0.88, -0.9]} scale={[0.077, 0.125, 0.15]} >
                {isRailSelected && (<Clotherail  position={[0.1, 24.78, 13]} scale={[2.3, 2, 1.5]}/>)}
                {isRackSelected && ( <Rack position={[-0.2, 1.68, 16]} scale={[6.2, 7, 3]}/>)}
                {false && (  <Handle1 />)}
@@ -232,7 +234,10 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,   selectedHan
             {false && ( <mesh name="Lades004" geometry={nodes.Lades004.geometry} material={materials.lades4} position={[-0.27, 26.099, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.004' }} />)}
               {false && ( <mesh name="Lades005" geometry={nodes.Lades005.geometry} material={materials.lades5} position={[-0.27, 31.691, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.005' }} />)}
       {true && (<mesh onPointerOver={() => setShowDimensions(true)}
-  onPointerOut={() => setShowDimensions(false)} name="frame" geometry={nodes.frame.geometry} material={materials.Frame} position={[-0.285, 18.146, 11.451]} scale={[7.976, 1.053, 4.787]} userData={{ name: 'frame' }} />)}
+  onPointerOut={() => setShowDimensions(false)}  name="drain" geometry={nodes.frame.geometry} material={materials.Frame} 
+  position={[-0.285, 18.156 + (Math.max(0, heightScale / 175 - 1)/1.8 * 20.156 * 1.5), 11.451]} 
+   scale={[7.976, heightScale/174, 4.787]}
+    userData={{ name: 'frame' }} />)}
       {visibleComponent === 'shelves' && (
     <>
     <mesh name="shelve4" geometry={nodes.shelve4.geometry} material={materials.shelve4} position={[-0.323, 12.64, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve4' }} />
