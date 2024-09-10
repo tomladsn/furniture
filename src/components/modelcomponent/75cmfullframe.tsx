@@ -48,10 +48,11 @@ type SmallframeProps = {
   isDoorSelected: any;
   selectedHandle: any;
   width75Scale: number;
+  depthScale: number;
   scaleY:number;
   heightScale:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, width75Scale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const baseWidth = 175;
@@ -60,7 +61,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, width75Scal
   const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
   return (
     <group >
-    <group {...props} dispose={null} position={[-1.6, -0.46, 0.95]} scale={[0.12, 0.14, 0.13]}>
+    <group {...props} dispose={null} position={[-1.6, -0.46, (Math.max(0, depthScale/35 - 1)/2 ) + 0.95]} scale={[0.12 * width75Scale/75, 0.14,  depthScale/35 * 0.13]}>
    {isRailSelected && (<Clotherail  position={[-3, 22.78, 3]} scale={[2.1, 1.8, 1.5]}/>)}
      {isRackSelected && (<Rack position={[-3.2, -0.8, 3]} scale={[5.5, 6, 3.7]}/>)}
 
@@ -197,7 +198,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, width75Scal
     transform: 'translate(-50%, -50%) ',
     whiteSpace: 'nowrap',
   }}>
-    Width: 75cm
+    Width: {width75Scale} cm
   </div>
 </Html>
 <Html position={[6, 20, 20]} center>
@@ -212,7 +213,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, width75Scal
     transform: 'translate(-50%, -50%) rotate(-90deg)',
     whiteSpace: 'nowrap',
   }}>
-    Height: {(baseWidth * scaleY).toFixed(1)} cm
+    Height: {heightScale} cm
   </div>
 </Html>
 <Html position={[0, 0, 20]} center>
@@ -227,7 +228,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, width75Scal
     transform: 'translate(-50%, -50%) rotatey(45deg)',
     whiteSpace: 'nowrap',
   }}>
-    Depth: 35cm
+    Depth: {depthScale}cm
   </div>
 </Html>
 </>

@@ -7,7 +7,7 @@ import { saveAs } from 'file-saver';
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
 import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
-import { useRef, useState, useEffect, ChangeEvent } from 'react';
+import { useRef, useState, useEffect, ChangeEvent, SetStateAction } from 'react';
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { LuFrame } from 'react-icons/lu';
@@ -63,6 +63,17 @@ const products = [
   },
   // Add more products as needed
 ];
+type Frame = {
+  id: number;
+  type: string;
+  scale: [number, number, number];
+} | {
+  id: number;
+  type: string;
+  widthScale: number;
+  heightScale: number;
+  position: [number, number, number];
+};
 export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [showDoor, setShowDoor] = useState(true)
   const [showDrawer, setShowDrawer] = useState(true)
@@ -76,12 +87,29 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
   const [isFrame2CustomisationVisible, setIsFrame2CustomisationVisible] = useState(false);
   const [isFrame3CustomisationVisible, setIsFrame3CustomisationVisible] = useState(false);
-  const [frames, setFrames] = useState<Array<{ id: number, type: string, scale: [number, number, number] }>>([]);
-  const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
+  const [frames, setFrames] = useState<Array<{ id: number; type: string; scale: [number, number, number]; position: [number, number, number]; }>>([]);  const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles2SubComponent, setVisible2SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles3SubComponent, setVisible3SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [selectedHandle, setSelectedHandle] = useState<string | null>(null);
   const [frameInstances, setFrameInstances] = useState<FrameInstance[]>([]);
+const [frames50, setFrames50] = useState<{ id: number; type: string; scale: [number, number, number]; position: [number, number, number]; }[]>([]);
+
+const handleFrameProduct50 = (title: string) => {
+  if (title === 'Frame (50x175 cm)') {
+    // Create a new frame object with the expected `scale` property as a tuple
+    const newFrame = {
+      id: frames50.length + 1,  // Unique ID for each frame
+      type: 'Frame (50x175 cm)',
+      scale: [50, 175, 1] as [number, number, number],  // Ensure scale is a tuple
+      position: [Math.random() * 10, 0, Math.random() * 10] as [number, number, number],  // Ensure position is a tuple
+    };
+
+    // Add the new frame to the state
+    setFrames50((prevFrames) => [...prevFrames, newFrame]);
+  }
+};
+  
+  
   const handleCardHandleClick = (title: string, setSelectedHandle: React.Dispatch<React.SetStateAction<string | null>>) => {
     setSelectedHandle(title);
   };
@@ -124,59 +152,101 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const handleFrameProductClick = (productTitle: string) => {
     setSelectedFrameProduct(productTitle);
 
+
     if (productTitle === 'Frame (50x175 cm)') {
       setIsCustomisationVisible(true);
       setIsFrame2CustomisationVisible(false);
       setIsFrame3CustomisationVisible(false);
       setFrameVisible(false);
-      setFrames(prevFrames => [
-        ...prevFrames,
-        {
-          id: Date.now(), // Unique ID for each frame
-          type: 'Frame (50x175 cm)',
-          scale: [1, 1, 1] // Initial scale
-        }
-      ]);
-    } else if (productTitle === 'Frame (75x175 cm)') {
-      setIsCustomisationVisible(false);
-      setIsFrame2CustomisationVisible(true);
-      setIsFrame3CustomisationVisible(false);
-      setFrameVisible(false);
-      setFrames(prevFrames => [
-        ...prevFrames,
-        {
-          id: Date.now(), // Unique ID for each frame
-          type: 'Frame (75x175 cm)',
-          scale: [1, 1, 1] // Initial scale
-        }
-      ]);
-    } else if (productTitle === 'Hoek (111cm) ') {
+  
+     // Ensure the maximum number of frames is 4
+  if (frames.length < 4) {
+    // Calculate a new unique position for each new frame, only modifying the X-axis (moving to the left)
+    const baseX = 0; // Start from X position 0
+    const xOffset = (frames.length * 3); // Move each new frame 2 units left along X-axis (negative direction)
+
+    const newFramePosition: [number, number, number] = [
+      baseX + xOffset,  // Shift to the left for each new frame
+      -1.11,            // Fixed Y-position
+      -9.2,             // Fixed Z-position (unchanged)
+    ];
+
+    // Add new frame to the state with a unique position and id
+    setFrames(prevFrames => [
+      ...prevFrames,
+      {
+        id: Date.now(),             // Unique ID for each frame
+        type: 'Frame (50x175 cm)',  // The type of frame
+        scale: [1, 1, 1],           // Initial scale for the frame
+        position: newFramePosition, // Ensure that position is provided
+      }
+    ]);
+  }
+}
+else if (productTitle === 'Frame (75x175 cm)') {
+  setIsCustomisationVisible(false);
+  setIsFrame2CustomisationVisible(true);
+  setIsFrame3CustomisationVisible(false);
+  setFrameVisible(false);
+
+  // Ensure the maximum number of frames is 4
+  if (frames.length < 3) {
+    // Calculate a new unique position for each new frame, only modifying the X-axis (moving to the left)
+    const baseX = 0; // Start from X position 0
+    const xOffset = (frames.length * 1); // Move each new frame 2 units left along X-axis (negative direction)
+
+    const newFramePosition: [number, number, number] = [
+      baseX + xOffset,  // Shift to the left for each new frame
+      -1.11,            // Fixed Y-position
+      -9.2,             // Fixed Z-position (unchanged)
+    ];
+
+    // Add new frame to the state with a unique position and id
+    setFrames(prevFrames => [
+      ...prevFrames,
+      {
+        id: Date.now(),             // Unique ID for each frame
+        type: 'Frame (75x175 cm)',  // The type of frame
+        scale: [1, 1, 1],           // Initial scale for the frame
+        position: newFramePosition, // Ensure that position is provided
+      }
+    ]);
+  }
+    }
+    else if (productTitle === 'Hoek (111cm) ') {
       setIsCustomisationVisible(false);
       setIsFrame2CustomisationVisible(false);
       setIsFrame3CustomisationVisible(true);
-
-      // Ensure baseY and scales are defined here or passed as parameters
-      const baseY = -1.11;
-      const scaleX = 1;
-      const scaleY = 1;
-      const scaleZ = 1;
-
-      const newFrameInstance: FrameInstance = {
-        id: frameInstances.length, // Unique ID for each frame instance
-        position: [10.1 / scaleX, baseY + (scaleY - 1) * Math.abs(baseY), -8.2 / scaleZ],
-      };
-
-      setFrameInstances([...frameInstances, newFrameInstance]);
-
       setFrameVisible(false);
-      setFrames(prevFrames => [
-        ...prevFrames,
-        {
-          id: Date.now(), // Unique ID for each frame
-          type: 'Hoek (111cm) ',
-          scale: [1, 1, 1] // Initial scale
-        }
-      ]);
+    
+      // Ensure only one duplicate is allowed
+      if (frames.filter((frame) => frame.type === 'Hoek (111cm)').length < 2) {
+        // Define the base position for the original frame
+        const baseX = 1; // Initial X position
+        const baseZ = -9.2; // Initial Z position for the first corner frame
+    
+        // Check if this is the first or second instance of the corner frame
+        const isDuplicate = frames.some((frame) => frame.type === 'Hoek (111cm)');
+    
+        // Calculate the new position and rotation for the duplicate
+        const newFramePosition: [number, number, number] = isDuplicate
+          ? [baseX, -1.11, baseZ + 2] // Z-offset by 2 for the duplicate
+          : [baseX, -1.11, baseZ];    // Original position for the first frame
+    
+        const newRotation = isDuplicate ? [0, Math.PI / 2, 0] : [0, 0, 0]; // Rotate 90 degrees for the duplicate
+    
+        // Add the new frame with rotation and position
+        setFrames((prevFrames) => [
+          ...prevFrames,
+          {
+            id: Date.now(),            // Unique ID for each frame
+            type: 'Hoek (111cm)',      // Frame type
+            scale: [1, 1, 1],          // Initial scale
+            position: newFramePosition,// Position, with Z-offset for duplicate
+            rotation: newRotation      // Rotation, 90 degrees for duplicate
+          },
+        ]);
+      }
     } else if (productTitle === 'Rack') {
       setRackSelected(true);
       setIsCustomisationVisible(false);
@@ -233,7 +303,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [height, setHeight] = useState(175); // Set the default height to 175cm
   const [width50, setwidth50] = useState(50); // Set the default height to 175cm
   const [width75, setwidth75] = useState(75); // Set the default height to 175cm
-
+  const [depth50, setdepth50] = useState(35);
   function handleHeightChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
   
@@ -536,7 +606,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         image={card.image}
                         width={card.width}
                         height={card.height}
-                        onClick={() => handleFrameProductClick(card.title)}
+                        onClick={() =>{ handleFrameProductClick(card.title)
+                          handleFrameProduct50
+                        }}
                       />
                     ))}
                 </div>
@@ -574,18 +646,18 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   {`${height.toFixed(1)} cm`} {/* Display the height in cm */}
                   </label>
 
-                  {/* <label>
-                    Scale Z:
+                  <label>
+                  Depth (cm):
                     <input
-                      type="range"
-                      min="0.1"
-                      max="2"
-                      step="0.1"
-                      value={scaleZ}
-                      onChange={handleScaleZChange}
+                      type="number"
+                      min="35"
+                      max="50"
+                      step="1"
+                      value={depth50}
+                      onChange={(e) => setdepth50(parseFloat(e.target.value))} 
                     />
-                    {scaleZ.toFixed(1)}
-                  </label> */}
+                     {`${depth50.toFixed(1)} cm`}
+                  </label>
                 </div>
                 <div className={styles.cardContainer22}>
                   <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (50x175 cm)')}>
@@ -626,18 +698,18 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     />
                     {`${height.toFixed(1)} cm`}
                   </label>
-                  {/* <label>
-                    Scale Z:
+                  <label>
+                  Depth (cm):
                     <input
-                      type="range"
-                      min="0.1"
-                      max="2"
-                      step="0.1"
-                      value={scaleZ}
-                      onChange={handleScaleZChange}
+                      type="number"
+                      min="35"
+                      max="50"
+                      step="1"
+                      value={depth50}
+                      onChange={(e) => setdepth50(parseFloat(e.target.value))} 
                     />
-                    {scaleZ.toFixed(1)}
-                  </label> */}
+                     {`${depth50.toFixed(1)} cm`}
+                  </label>
 
                   <div className={styles.cardContainer22}>
                     <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (75x175 cm)')}>
@@ -680,24 +752,24 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     {`${height.toFixed(1)} cm`}
                   </label>
 
-                  {/* <label>
-                    Scale Z:
+                  <label>
+                  Depth (cm):
                     <input
-                      type="range"
-                      min="0.1"
-                      max="2"
-                      step="0.1"
-                      value={scaleZ}
-                      onChange={handleScaleZChange}
+                      type="number"
+                      min="35"
+                      max="50"
+                      step="1"
+                      value={depth50}
+                      onChange={(e) => setdepth50(parseFloat(e.target.value))} 
                     />
-                    {scaleZ.toFixed(1)}
-                  </label> */}
+                     {`${depth50.toFixed(1)} cm`}
+                  </label>
 
 
                   <div className={styles.cardContainer22}>
-                    <div className={styles.card789} onClick={() => handleSub3CardClick('shelves')}>
+                    <div className={styles.card789} onClick={() => handleDeleteFrame('Hoek')}>
                       <div className={styles.cardContent183}>
-                        <h3 className={styles.cardTitle591}>Hoekplanken</h3>
+                        <h3 className={styles.cardTitle591}>delete</h3>
                       </div>
                     </div>
                     <br />
@@ -844,17 +916,19 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         </div>
         <div className={styles['canva-div']}>
           <Scene
+          depthScale={depth50} 
+            handle50={handleFrameProduct50}
             frameInstances={frameInstances}
             onDeleteFrame={handleDeleteFrame}
             selectedHandle={selectedHandle}
             ref={sceneRef}
             frames={frames}
-            setFrames={setFrames}
+
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}
-            width75Scale = {width75}
-            width50Scale = {width50}
+            width75Scale={width75}
+            width50Scale={width50}
             heightScale={height}
             selectedDrawer={selectedDrawer}
             selectedProduct={selectedProduct}
@@ -868,13 +942,15 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             visibleComponent={visiblesSubComponent} // Correct prop name
             onScaleChange={function (event: ChangeEvent<HTMLInputElement>): void {
               throw new Error('Function not implemented.');
-            }} frameId={0}
+            } } frameId={0}
             onModelClick={handleModelClick}
             isRackSelected={isRackSelected}
             isRailSelected={isRailSelected}
             isDoorSelected={isDoorSelected}
             setIsFrame2CustomisationVisible={setIsFrame2CustomisationVisible}
-            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0} />
+            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0} setFrames={function (value: SetStateAction<{ id: number; type: string; scale: [number, number, number]; }[]>): void {
+              throw new Error('Function not implemented.');
+            } }    />
         </div>
       </div>
     </div>

@@ -33,12 +33,14 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export function Cornerframe({visible3Component,isDoorSelected,   heightScale, isRailSelected, isRackSelected,scaleY,    selectedHandle, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
+export function Cornerframe({visible3Component,isDoorSelected, depthScale,width75Scale , heightScale, isRailSelected, isRackSelected,scaleY,    selectedHandle, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
   isDoorSelected: any;
   isRailSelected: any;
   isRackSelected: any;
+  width75Scale : number;
   scaleY: number
   heightScale:number;
+  depthScale: number;
   selectedHandle: any;
  } & JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/cornerframefull.glb') as GLTFResult
@@ -53,7 +55,7 @@ export function Cornerframe({visible3Component,isDoorSelected,   heightScale, is
   }));
   return (
     <group >
-    <group {...props} dispose={null} position={[-7.6, -0.46, 0.95]} scale={[0.2, 0.14, 0.13]}>
+    <group {...props} dispose={null} position={[-7.6, -0.46, (Math.max(0, depthScale/35 - 1)/1.8 * 2.6) + 1]} scale={[0.2, 0.14, depthScale/35 * 0.13]}>
        {isRailSelected && ( <Clotherail  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[24, 22, -1]} scale={[3, 2, 1.5]}/>)}
           { isRackSelected && ( <Rack  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[25, -1.3, 1]} scale={[6.2, 7, 4]}/>)}
                {false && (  <Handle1 />)}
@@ -112,7 +114,7 @@ export function Cornerframe({visible3Component,isDoorSelected,   heightScale, is
     transform: 'translate(-50%, -50%) rotate(-90deg)',
     whiteSpace: 'nowrap',
   }}>
-    Height: {(baseWidth * scaleY).toFixed(1)} cm
+    Height: {heightScale} cm
   </div>
 </Html>
 <Html position={[0, 0, 20]} center>

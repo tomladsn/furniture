@@ -3,7 +3,11 @@ import { useHelper } from '@react-three/drei';
 import { PerspectiveCamera, CameraHelper } from 'three';
 import { useFrame } from '@react-three/fiber';
 
-const CameraHelperComponent: React.FC = () => {
+interface CameraHelperProps {
+  setCameraPosition: (position: [number, number, number]) => void;
+}
+
+const CameraHelperComponent: React.FC<CameraHelperProps> = ({ setCameraPosition }) => {
   const cameraRef = useRef<PerspectiveCamera>(null);
 
   useHelper(cameraRef as React.MutableRefObject<PerspectiveCamera>, CameraHelper);
@@ -11,6 +15,9 @@ const CameraHelperComponent: React.FC = () => {
   useFrame(() => {
     if (cameraRef.current) {
       cameraRef.current.updateMatrixWorld();
+      // Update the camera position state
+      const { x, y, z } = cameraRef.current.position;
+      setCameraPosition([x, y, z]);
     }
   });
 
@@ -20,7 +27,7 @@ const CameraHelperComponent: React.FC = () => {
       fov={75}
       near={0.1}
       far={1000}
-      position={[0, 0, 5]}
+      position={[-5, 0, -4]} // Initial position
     />
   );
 };

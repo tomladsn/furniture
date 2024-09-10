@@ -20,6 +20,7 @@ const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
 const clotherail = React.lazy(() => import('../../modelcomponent/clotherail'));
 import { Physics } from '@react-three/cannon';
 interface SceneProps {
+  handle50: any;
   frameInstances: any;
   onModelClick: any;
   heightScale: number;
@@ -47,25 +48,18 @@ interface SceneProps {
     visibleComponent: 'shelves' | 'drawers' | null;
     visible2component: "shelves" | "drawers" | null;
     visible3component: "shelves" | "drawers" | null;
-    frames: Array<{id: number, type: string, scale: [number, number, number]}>;
+    frames: Array<{
+      position: any; id: number, type: string, scale: [number, number, number]
+}>;
+
     setFrames: React.Dispatch<React.SetStateAction<Array<{id: number, type: string, scale: [number, number, number]}>>>;
     frameId: number;  
+    depthScale: number;
 }
-
-const CustomCamera = () => {
-    const { camera } = useThree();
-
-    useEffect(() => {
-        if (camera instanceof THREE.PerspectiveCamera) {
-            camera.position.set(3, 8, 4);
-            camera.fov = 50; // Set the field of view
-            camera.updateProjectionMatrix();
-        }
-    }, [camera]);
-
-    return null;
-};
 const Scene = forwardRef<THREE.Group, SceneProps>(({
+  depthScale,
+  handle50,
+  setFrames,
   width75Scale,
   frameInstances,
   onDeleteFrame,
@@ -83,7 +77,6 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   visible3component,
   selectedDrawer,
   frames,
-  setFrames,
   onModelClick,
   isRackSelected,
   isRailSelected,
@@ -108,7 +101,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
     const scaleX = 1;
 const scaleY = 1;
 const scaleZ = 1;
-
+const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([-5, 0, -4]);
     useEffect(() => {
         // Define the event handler within the useEffect scope
         const handleWheel = (e: WheelEvent) => {
@@ -140,10 +133,16 @@ const scaleZ = 1;
         <group   ref={ref}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-       <PerspectiveCamera />
-       <CameraHelperComponent />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} />
-      <OrbitControls enableRotate={!isDragging} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} />
+      <PerspectiveCamera
+          makeDefault
+          position={[0, 1, 1]}  // Adjust the position as needed
+          fov={40}
+          near={1}
+          far={10000}
+          
+        />
+      <OrbitControls enableRotate={!isDragging}  enablePan={true}   enableZoom={true}  minZoom={100}   maxZoom={500}             />
       <Physics>
         <Floor />
         </Physics>
@@ -176,32 +175,37 @@ const scaleZ = 1;
     
     return (
       <Physics>
-      <group
-        onClick={() => setIsFrame3CustomisationVisible(true)}
-        ref={CornerframeRef}
-        position={[
-          10.1 / scaleX,
-          baseY + (scaleY - 1) * Math.abs(baseY),
-          -8.2 / scaleZ
-        ]}
-        rotation={[0, Math.PI * 2, 0]}
-        scale={[
-          originalScale[0] * scaleX,
-          originalScale[1] * scaleY,
-          originalScale[2] * scaleZ
-        ]}
-      >
-          <Cornerframe  
-           heightScale={heightScale}
-             selectedHandle={selectedHandle}
+      {frames.map((frame, index) => (
+        <group
+        key={`hoek-frame-${index}`} // Add a unique key for each group
+          onClick={() => setIsFrame3CustomisationVisible(true)}
+          ref={CornerframeRef}
+          position={[
+            10.1 / scaleX,
+            baseY + (scaleY - 1) * Math.abs(baseY),
+            -8.2 / scaleZ
+          ]}
+          rotation={[0, Math.PI * 2, 0]}
+          scale={[
+            originalScale[0] * scaleX,
+            originalScale[1] * scaleY,
+            originalScale[2] * scaleZ
+          ]}
+        >
+          <Cornerframe
+            width75Scale={width75Scale}
+            depthScale={depthScale}
+            heightScale={heightScale}
+            selectedHandle={selectedHandle}
             scaleY={scaleY}
             isRackSelected={isRackSelected}
             isRailSelected={isRailSelected}
-            isDoorSelected={isDoorSelected} 
-            visible3Component={visible3component} 
+            isDoorSelected={isDoorSelected}
+            visible3Component={visible3component}
           />
-      </group>
-      </Physics>
+        </group>
+      ))}
+    </Physics>
     );
   }
   return null;
@@ -235,6 +239,7 @@ const scaleZ = 1;
           ]}
         >
           <Mediumframe 
+           depthScale= { depthScale}
           width75Scale = {width75Scale}
           heightScale={heightScale}
             scaleY={scaleY}
@@ -251,11 +256,10 @@ const scaleZ = 1;
   }
   return null;
 })}
-
 {frames.map((frame) => {
   if (frame.type === 'Frame (50x175 cm)') {
     const originalScale = [2, 1.55, 1.1];
-    const baseY = -1.11;
+    const baseY = frame.position[1];  // Use Y position from frame
 
     return (
       <Draggable
@@ -266,34 +270,29 @@ const scaleZ = 1;
         <group
           ref={ref}
           onClick={onModelClick}
-          position={[
-            1 / frame.scale[0],
-            baseY + (scaleY - 1) * Math.abs(baseY),
-            -9.2 / frame.scale[2]
-          ]}
+          position={frame.position}  // Use frame's unique position
           rotation={[0, Math.PI * 2, 0]}
           scale={[
-            originalScale[0] * scaleX,
-            originalScale[1] * scaleY,
-            originalScale[2] * scaleZ
+            originalScale[0] * frame.scale[0],  // Scale along X-axis
+            originalScale[1] * frame.scale[1],  // Scale along Y-axis
+            originalScale[2] * frame.scale[2],  // Scale along Z-axis
           ]}
         >
           <Smallframe
-          width50Scale = {width50Scale}
-          heightScale={heightScale}
-            scaleY={scaleY}
+           depthScale= { depthScale}
+            width50Scale={width50Scale}
+            heightScale={heightScale}
+            scaleY={frame.scale[1]} // Pass unique Y scale
             selectedHandle={selectedHandle}
             visibleComponent={visibleComponent}
             isRackSelected={isRackSelected}
             isRailSelected={isRailSelected}
             isDoorSelected={isDoorSelected}
             selectedDrawer={selectedDrawer}
-            frameId={frame.id}
-            setFrames={setFrames}
-          />
+            frameId={frame.id}    />
         </group>
       </Draggable>
-    );  
+    );
   }
   return null;
 })}

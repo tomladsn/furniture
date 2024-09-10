@@ -12,6 +12,7 @@ import Handle3 from './Handle3';
 import { useGLTF, Html  } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
+
 type GLTFAction = any;
 type GLTFResult = GLTF & {
   nodes: {
@@ -67,18 +68,18 @@ type SmallframeProps = {
   visibleComponent: 'shelves' | 'drawers' | null;
   selectedDrawer: string | null;
   frameId: number;
-  setFrames: React.Dispatch<React.SetStateAction<Array<{id: number, type: string, scale: [number, number, number]}>>>;
   isRackSelected: any;
   isRailSelected: any;
   isDoorSelected: any;
   scaleY: number;
   heightScale: number;
+  depthScale: number;
   width50Scale: number;
   selectedHandle:  any;
 } & JSX.IntrinsicElements['group'];
 
 
-const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, heightScale,   width50Scale,  selectedHandle, selectedDrawer, frameId, isRackSelected, isRailSelected,isDoorSelected, setFrames,   scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,  depthScale, heightScale,   width50Scale,  selectedHandle, selectedDrawer, isRackSelected, isRailSelected,isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
@@ -89,7 +90,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, heightScale, 
   const size = bbox.getSize(new THREE.Vector3());
   return (
     <group>
-    <group {...props} dispose={null} position={[-2, -0.88, -0.9]} scale={[0.077, 0.125, 0.15]} >
+    <group {...props} dispose={null} position={[-2, -0.88, (Math.max(0, depthScale/35 - 1)/-1.8  * 2.4) -0.9]} scale={[width50Scale/50 * 0.077, 0.125, depthScale/35 * 0.15]} >
                {isRailSelected && (<Clotherail  position={[0.1, 24.78, 13]} scale={[2.3, 2, 1.5]}/>)}
                {isRackSelected && ( <Rack position={[-0.2, 1.68, 16]} scale={[6.2, 7, 3]}/>)}
                {false && (  <Handle1 />)}
@@ -262,7 +263,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, heightScale, 
     transform: 'translate(-50%, -50%) ',
     whiteSpace: 'nowrap',
   }}>
-    Width: 50cm
+    Width: {width50Scale} cm
   </div>
 </Html>
 <Html position={[6, 20, 20]} center>
@@ -277,7 +278,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, heightScale, 
     transform: 'translate(-50%, -50%) rotate(-90deg)',
     whiteSpace: 'nowrap',
   }}>
-    Height: {(baseWidth * scaleY).toFixed(1)} cm
+    Height: {heightScale} cm
   </div>
 </Html>
 <Html position={[0, 0, 20]} center>
