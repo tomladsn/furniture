@@ -55,7 +55,7 @@ export function Cornerframe({visible3Component,isDoorSelected, depthScale,width7
   }));
   return (
     <group >
-    <group {...props} dispose={null} position={[-7.6, -0.46, (Math.max(0, depthScale/35 - 1)/1.8 * 2.6) + 1]} scale={[0.2, 0.14, depthScale/35 * 0.13]}>
+    <group {...props} dispose={null} position={[-8, -0.46, (Math.max(0, depthScale/35 - 1)/1.8 * 2.6) + 1]} scale={[0.2, 0.14, depthScale/35 * 0.13]}>
        {isRailSelected && ( <Clotherail  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[24, 22, -1]} scale={[3, 2, 1.5]}/>)}
           { isRackSelected && ( <Rack  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[25, -1.3, 1]} scale={[6.2, 7, 4]}/>)}
                {false && (  <Handle1 />)}
@@ -69,11 +69,11 @@ export function Cornerframe({visible3Component,isDoorSelected, depthScale,width7
                  
                </group>)}
       <mesh  onPointerOver={() => setShowDimensions(true)}
-  onPointerOut={() => setShowDimensions(false)} name="cornerframe" geometry={nodes.cornerframe.geometry} material={whiteMaterial} position={[21.173, 13.909+ (Math.max(0, heightScale / 175 - 1)/1.7 * 15.5 * 1.69), -0.683]} scale={[0.019, heightScale/10294.12, 0.019]} userData={{ name: 'cornerframe' }} />
-           <mesh name="frameshelve1" geometry={nodes.frameshelve1.geometry} material={materials.shelve1} position={[19.822, 23.252, -6.186]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve1' }} />
-               <mesh name="frameshelve2" geometry={nodes.frameshelve2.geometry} material={materials.shelve1} position={[19.822, 17.318, -6.186]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve2' }} />
-              <mesh name="frameshelve3" geometry={nodes.frameshelve3.geometry} material={materials.shelve1} position={[20.012, 10.474, -6.165]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve3' }} />
-                  <mesh name="frameshelve4" geometry={nodes.frameshelve4.geometry} material={materials.shelve1} position={[19.822, 3.462, -6.186]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve4' }} />
+  onPointerOut={() => setShowDimensions(false)} name="cornerframe" geometry={nodes.cornerframe.geometry} material={whiteMaterial} position={[21.173, 13.909+ (Math.max(0, heightScale / 175 - 1)/1.7 * 15.5 * 1.69), 0]} scale={[0.019, heightScale/10294.12, 0.019]} userData={{ name: 'cornerframe' }} />
+           <mesh name="frameshelve1" geometry={nodes.frameshelve1.geometry} material={materials.shelve1} position={[19.822, 23.2523, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve1' }} />
+               <mesh name="frameshelve2" geometry={nodes.frameshelve2.geometry} material={materials.shelve1} position={[19.822, 17.318, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve2' }} />
+              <mesh name="frameshelve3" geometry={nodes.frameshelve3.geometry} material={materials.shelve1} position={[20.012, 10.474, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve3' }} />
+                  <mesh name="frameshelve4" geometry={nodes.frameshelve4.geometry} material={materials.shelve1} position={[19.822, 3.462, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve4' }} />
             {/* {visible3Component === 'shelves' && (
     <>
               <mesh name="cornershelve2" geometry={nodes.cornershelve2.geometry} material={materials.shelve1} position={[30.462, 19.945, -1.069]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-10.054, -0.196, -10.277]} userData={{ name: 'cornershelve2' }} />

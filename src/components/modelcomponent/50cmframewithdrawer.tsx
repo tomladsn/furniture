@@ -9,10 +9,9 @@ import Door1 from './door';
 import Handle1  from './Handle1';
 import Handle2 from './Handle2';
 import Handle3 from './Handle3';
-import { useGLTF, Html  } from '@react-three/drei'
+import { useGLTF, Html } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-
-
+import Draggable from '../pages/configurator/draggable';
 type GLTFAction = any;
 type GLTFResult = GLTF & {
   nodes: {
@@ -88,8 +87,15 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,  depthScale, 
   const baseWidth = 175;
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
+  const [framePosition, setFramePosition] = useState<[number, number, number]>([0, 0, 0]);
+  const handleDrag = (newPosition: [number, number, number]) => {
+    setFramePosition(newPosition);  // Update the position state
+  };
+  const [isDragging, setIsDragging] = useState(false);
   return (
-    <group>
+    <Draggable onDrag={handleDrag}         onDragStart={() => setIsDragging(true)}
+    onDragEnd={() => setIsDragging(false)}>
+    <group position={framePosition}>
     <group {...props} dispose={null} position={[-2, -0.88, (Math.max(0, depthScale/35 - 1)/-1.8  * 2.4) -0.9]} scale={[width50Scale/50 * 0.077, 0.125, depthScale/35 * 0.15]} >
                {isRailSelected && (<Clotherail  position={[0.1, 24.78, 13]} scale={[2.3, 2, 1.5]}/>)}
                {isRackSelected && ( <Rack position={[-0.2, 1.68, 16]} scale={[6.2, 7, 3]}/>)}
@@ -240,6 +246,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,  depthScale, 
   position={[-0.285, 18.156 + (Math.max(0, heightScale / 175 - 1)/1.8 * 20.156 * 1.5), 11.451]} 
    scale={[width50Scale/50 * 7.976, heightScale/174, 4.787]}
     userData={{ name: 'frame' }} />)}
+    
       {visibleComponent === 'shelves' && (
     <>
     <mesh name="shelve4" geometry={nodes.shelve4.geometry} material={materials.shelve4} position={[-0.323, 12.64, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve4' }} />
@@ -300,6 +307,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,  depthScale, 
 )}
     </group>
     </group>
+    </Draggable>
   )
 }
 

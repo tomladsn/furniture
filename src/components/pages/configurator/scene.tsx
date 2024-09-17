@@ -136,7 +136,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
       <pointLight position={[-10, -10, -10]} intensity={0.5} />
       <PerspectiveCamera
           makeDefault
-          position={[0, 1, 1]}  // Adjust the position as needed
+          position={[0, 1, 7]}  // Adjust the position as needed
           fov={40}
           near={1}
           far={10000}
@@ -218,12 +218,9 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
     const baseY = -1.11;
 
     return (
-      <Draggable
-        key={frame.id}  // Unique key for each frame
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={() => setIsDragging(false)}
-      >
+
         <group
+        key={frame.id}
           onClick={() => setIsFrame2CustomisationVisible(true)}
           ref={MediumframeRef}
           position={[
@@ -251,7 +248,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
             selectedDrawer={selectedDrawer}
           />
         </group>
-      </Draggable>
+
     );
   }
   return null;

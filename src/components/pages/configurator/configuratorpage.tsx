@@ -247,7 +247,8 @@ else if (productTitle === 'Frame (75x175 cm)') {
           },
         ]);
       }
-    } else if (productTitle === 'Rack') {
+    }
+     else if (productTitle === 'Rack') {
       setRackSelected(true);
       setIsCustomisationVisible(false);
       setIsFrame2CustomisationVisible(false);
