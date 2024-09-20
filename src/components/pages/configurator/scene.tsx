@@ -42,6 +42,7 @@ interface SceneProps {
     scaleY: number;
     scaleZ: number;
     width50Scale: number;
+    selectedMaterialImage: any
     setScaleY: number;
     width75Scale: number;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -60,6 +61,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   depthScale,
   handle50,
   setFrames,
+  selectedMaterialImage,
   width75Scale,
   frameInstances,
   onDeleteFrame,
@@ -276,6 +278,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Smallframe
+          selectedMaterialImage={selectedMaterialImage} 
            depthScale= { depthScale}
             width50Scale={width50Scale}
             heightScale={heightScale}

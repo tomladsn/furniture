@@ -4,7 +4,7 @@ import Handle1  from './Handle1';
 import Handle2 from './Handle2';
 import Handle3 from './Handle3';
 import Door1 from './door';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGLTF, Html  } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import Rack from './rack';
@@ -43,6 +43,7 @@ type GLTFResult = GLTF & {
 type SmallframeProps = {
   visible2component: 'shelves' | 'drawers' | null;
   selectedDrawer: string | null;
+  selectedMaterialImage: any;
   isRackSelected: any;
   isRailSelected: any;
   isDoorSelected: any;
@@ -52,13 +53,26 @@ type SmallframeProps = {
   scaleY:number;
   heightScale:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedMaterialImage,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const baseWidth = 175;
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
   const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
+  const [materialTexture, setMaterialTexture] = useState<THREE.Texture | null>(null);
+
+  // Load the texture when selectedMaterialImage changes
+  useEffect(() => {
+    if (selectedMaterialImage) {
+      const textureLoader = new THREE.TextureLoader();
+      textureLoader.load(selectedMaterialImage, (texture) => {
+        setMaterialTexture(texture); // Set the loaded texture
+      });
+    } else {
+      setMaterialTexture(null); // Clear texture if no material selected
+    }
+  }, [selectedMaterialImage]);
   return (
     <group >
     <group {...props} dispose={null} position={[-1.6, -0.46, (Math.max(0, depthScale/35 - 1)/2 ) + 0.95]} scale={[0.12 * width75Scale/75, 0.14,  depthScale/35 * 0.13]}>

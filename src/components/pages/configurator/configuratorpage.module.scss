@@ -368,3 +368,40 @@ position: absolute;
   margin: 0;
   font-size: 1.25em;
 }
+.materialSelection1 {
+  margin-top: 20px;
+}
+
+.materialCards1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.materialCard1 {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.materialCard1:hover {
+  border-color: #666;
+}
+
+.materialCard1 img {
+  width: 50px;
+  height: 50px;
+}
+
+.selected1 {
+  border-color: #000;
+}
+.materialImage1 {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}

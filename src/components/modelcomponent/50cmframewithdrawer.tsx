@@ -1,7 +1,7 @@
 
 
 import * as THREE from 'three'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import Clotherail from './clotherail';
 import Rack from './rack';
@@ -75,10 +75,11 @@ type SmallframeProps = {
   depthScale: number;
   width50Scale: number;
   selectedHandle:  any;
+  selectedMaterialImage: any;
 } & JSX.IntrinsicElements['group'];
 
 
-const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,  depthScale, heightScale,   width50Scale,  selectedHandle, selectedDrawer, isRackSelected, isRailSelected,isDoorSelected, scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedMaterialImage, depthScale, heightScale,   width50Scale,  selectedHandle, selectedDrawer, isRackSelected, isRailSelected,isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
@@ -92,6 +93,19 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,  depthScale, 
     setFramePosition(newPosition);  // Update the position state
   };
   const [isDragging, setIsDragging] = useState(false);
+  const [materialTexture, setMaterialTexture] = useState<THREE.Texture | null>(null);
+
+  // Load the texture when selectedMaterialImage changes
+  useEffect(() => {
+    if (selectedMaterialImage) {
+      const textureLoader = new THREE.TextureLoader();
+      textureLoader.load(selectedMaterialImage, (texture) => {
+        setMaterialTexture(texture); // Set the loaded texture
+      });
+    } else {
+      setMaterialTexture(null); // Clear texture if no material selected
+    }
+  }, [selectedMaterialImage]);
   return (
     <Draggable onDrag={handleDrag}         onDragStart={() => setIsDragging(true)}
     onDragEnd={() => setIsDragging(false)}>
@@ -242,7 +256,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,  depthScale, 
             {false && ( <mesh name="Lades004" geometry={nodes.Lades004.geometry} material={materials.lades4} position={[-0.27, 26.099, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.004' }} />)}
               {false && ( <mesh name="Lades005" geometry={nodes.Lades005.geometry} material={materials.lades5} position={[-0.27, 31.691, 15.188]} rotation={[Math.PI / 2, 0, 0]} scale={[0.177, 0.137, 0.254]} userData={{ name: 'Lades.005' }} />)}
       {true && (<mesh onPointerOver={() => setShowDimensions(true)}
-  onPointerOut={() => setShowDimensions(false)}  name="frame" geometry={nodes.frame.geometry} material={materials.Frame} 
+  onPointerOut={() => setShowDimensions(false)}  name="frame" geometry={nodes.frame.geometry}   material={materialTexture ? new THREE.MeshStandardMaterial({ map: materialTexture }) : materials.Frame}
   position={[-0.285, 18.156 + (Math.max(0, heightScale / 175 - 1)/1.8 * 20.156 * 1.5), 11.451]} 
    scale={[width50Scale/50 * 7.976, heightScale/174, 4.787]}
     userData={{ name: 'frame' }} />)}

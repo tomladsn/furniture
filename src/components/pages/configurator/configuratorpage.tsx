@@ -63,6 +63,24 @@ const products = [
   },
   // Add more products as needed
 ];
+const materials = [
+  {
+    name: 'Wood',
+    image: '../../../../public/solidwood.jpg',  // Path to wood material image
+  },
+  {
+    name: 'Plywood',
+    image: '../../../../public/plywood.jpg', // Path to metal material image
+  },
+  {
+    name: 'Fiberboard',
+    image: '../../../../public/fabricboard.jpg', // Path to glass material image
+  },
+  {
+    name: 'Particle board',
+    image: '../../../../public/particleboard.jpg', // Path to glass material image
+  }
+];
 type Frame = {
   id: number;
   type: string;
@@ -87,29 +105,33 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
   const [isFrame2CustomisationVisible, setIsFrame2CustomisationVisible] = useState(false);
   const [isFrame3CustomisationVisible, setIsFrame3CustomisationVisible] = useState(false);
-  const [frames, setFrames] = useState<Array<{ id: number; type: string; scale: [number, number, number]; position: [number, number, number]; }>>([]);  const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
+  const [frames, setFrames] = useState<Array<{ id: number; type: string; scale: [number, number, number]; position: [number, number, number]; }>>([]); const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles2SubComponent, setVisible2SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles3SubComponent, setVisible3SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [selectedHandle, setSelectedHandle] = useState<string | null>(null);
   const [frameInstances, setFrameInstances] = useState<FrameInstance[]>([]);
-const [frames50, setFrames50] = useState<{ id: number; type: string; scale: [number, number, number]; position: [number, number, number]; }[]>([]);
+  const [frames50, setFrames50] = useState<{ id: number; type: string; scale: [number, number, number]; position: [number, number, number]; }[]>([]);
+  const [selectedMaterialImage, setSelectedMaterialImage] = useState<string | null>(null);
 
-const handleFrameProduct50 = (title: string) => {
-  if (title === 'Frame (50x175 cm)') {
-    // Create a new frame object with the expected `scale` property as a tuple
-    const newFrame = {
-      id: frames50.length + 1,  // Unique ID for each frame
-      type: 'Frame (50x175 cm)',
-      scale: [50, 175, 1] as [number, number, number],  // Ensure scale is a tuple
-      position: [Math.random() * 10, 0, Math.random() * 10] as [number, number, number],  // Ensure position is a tuple
-    };
+  const handleMaterialClick = (materialImage: string) => {
+    setSelectedMaterialImage(materialImage);  // Pass the image path instead of name
+  };
+  const handleFrameProduct50 = (title: string) => {
+    if (title === 'Frame (50x175 cm)') {
+      // Create a new frame object with the expected `scale` property as a tuple
+      const newFrame = {
+        id: frames50.length + 1,  // Unique ID for each frame
+        type: 'Frame (50x175 cm)',
+        scale: [50, 175, 1] as [number, number, number],  // Ensure scale is a tuple
+        position: [Math.random() * 10, 0, Math.random() * 10] as [number, number, number],  // Ensure position is a tuple
+      };
 
-    // Add the new frame to the state
-    setFrames50((prevFrames) => [...prevFrames, newFrame]);
-  }
-};
-  
-  
+      // Add the new frame to the state
+      setFrames50((prevFrames) => [...prevFrames, newFrame]);
+    }
+  };
+
+
   const handleCardHandleClick = (title: string, setSelectedHandle: React.Dispatch<React.SetStateAction<string | null>>) => {
     setSelectedHandle(title);
   };
@@ -158,83 +180,83 @@ const handleFrameProduct50 = (title: string) => {
       setIsFrame2CustomisationVisible(false);
       setIsFrame3CustomisationVisible(false);
       setFrameVisible(false);
-  
-     // Ensure the maximum number of frames is 4
-  if (frames.length < 4) {
-    // Calculate a new unique position for each new frame, only modifying the X-axis (moving to the left)
-    const baseX = 0; // Start from X position 0
-    const xOffset = (frames.length * 3); // Move each new frame 2 units left along X-axis (negative direction)
 
-    const newFramePosition: [number, number, number] = [
-      baseX + xOffset,  // Shift to the left for each new frame
-      -1.11,            // Fixed Y-position
-      -9.2,             // Fixed Z-position (unchanged)
-    ];
+      // Ensure the maximum number of frames is 4
+      if (frames.length < 4) {
+        // Calculate a new unique position for each new frame, only modifying the X-axis (moving to the left)
+        const baseX = 0; // Start from X position 0
+        const xOffset = (frames.length * 3); // Move each new frame 2 units left along X-axis (negative direction)
 
-    // Add new frame to the state with a unique position and id
-    setFrames(prevFrames => [
-      ...prevFrames,
-      {
-        id: Date.now(),             // Unique ID for each frame
-        type: 'Frame (50x175 cm)',  // The type of frame
-        scale: [1, 1, 1],           // Initial scale for the frame
-        position: newFramePosition, // Ensure that position is provided
+        const newFramePosition: [number, number, number] = [
+          baseX + xOffset,  // Shift to the left for each new frame
+          -1.11,            // Fixed Y-position
+          -9.2,             // Fixed Z-position (unchanged)
+        ];
+
+        // Add new frame to the state with a unique position and id
+        setFrames(prevFrames => [
+          ...prevFrames,
+          {
+            id: Date.now(),             // Unique ID for each frame
+            type: 'Frame (50x175 cm)',  // The type of frame
+            scale: [1, 1, 1],           // Initial scale for the frame
+            position: newFramePosition, // Ensure that position is provided
+          }
+        ]);
       }
-    ]);
-  }
-}
-else if (productTitle === 'Frame (75x175 cm)') {
-  setIsCustomisationVisible(false);
-  setIsFrame2CustomisationVisible(true);
-  setIsFrame3CustomisationVisible(false);
-  setFrameVisible(false);
+    }
+    else if (productTitle === 'Frame (75x175 cm)') {
+      setIsCustomisationVisible(false);
+      setIsFrame2CustomisationVisible(true);
+      setIsFrame3CustomisationVisible(false);
+      setFrameVisible(false);
 
-  // Ensure the maximum number of frames is 4
-  if (frames.length < 3) {
-    // Calculate a new unique position for each new frame, only modifying the X-axis (moving to the left)
-    const baseX = 0; // Start from X position 0
-    const xOffset = (frames.length * 1); // Move each new frame 2 units left along X-axis (negative direction)
+      // Ensure the maximum number of frames is 4
+      if (frames.length < 3) {
+        // Calculate a new unique position for each new frame, only modifying the X-axis (moving to the left)
+        const baseX = 0; // Start from X position 0
+        const xOffset = (frames.length * 1); // Move each new frame 2 units left along X-axis (negative direction)
 
-    const newFramePosition: [number, number, number] = [
-      baseX + xOffset,  // Shift to the left for each new frame
-      -1.11,            // Fixed Y-position
-      -9.2,             // Fixed Z-position (unchanged)
-    ];
+        const newFramePosition: [number, number, number] = [
+          baseX + xOffset,  // Shift to the left for each new frame
+          -1.11,            // Fixed Y-position
+          -9.2,             // Fixed Z-position (unchanged)
+        ];
 
-    // Add new frame to the state with a unique position and id
-    setFrames(prevFrames => [
-      ...prevFrames,
-      {
-        id: Date.now(),             // Unique ID for each frame
-        type: 'Frame (75x175 cm)',  // The type of frame
-        scale: [1, 1, 1],           // Initial scale for the frame
-        position: newFramePosition, // Ensure that position is provided
+        // Add new frame to the state with a unique position and id
+        setFrames(prevFrames => [
+          ...prevFrames,
+          {
+            id: Date.now(),             // Unique ID for each frame
+            type: 'Frame (75x175 cm)',  // The type of frame
+            scale: [1, 1, 1],           // Initial scale for the frame
+            position: newFramePosition, // Ensure that position is provided
+          }
+        ]);
       }
-    ]);
-  }
     }
     else if (productTitle === 'Hoek (111cm) ') {
       setIsCustomisationVisible(false);
       setIsFrame2CustomisationVisible(false);
       setIsFrame3CustomisationVisible(true);
       setFrameVisible(false);
-    
+
       // Ensure only one duplicate is allowed
       if (frames.filter((frame) => frame.type === 'Hoek (111cm)').length < 2) {
         // Define the base position for the original frame
         const baseX = 1; // Initial X position
         const baseZ = -9.2; // Initial Z position for the first corner frame
-    
+
         // Check if this is the first or second instance of the corner frame
         const isDuplicate = frames.some((frame) => frame.type === 'Hoek (111cm)');
-    
+
         // Calculate the new position and rotation for the duplicate
         const newFramePosition: [number, number, number] = isDuplicate
           ? [baseX, -1.11, baseZ + 2] // Z-offset by 2 for the duplicate
           : [baseX, -1.11, baseZ];    // Original position for the first frame
-    
+
         const newRotation = isDuplicate ? [0, Math.PI / 2, 0] : [0, 0, 0]; // Rotate 90 degrees for the duplicate
-    
+
         // Add the new frame with rotation and position
         setFrames((prevFrames) => [
           ...prevFrames,
@@ -248,7 +270,7 @@ else if (productTitle === 'Frame (75x175 cm)') {
         ]);
       }
     }
-     else if (productTitle === 'Rack') {
+    else if (productTitle === 'Rack') {
       setRackSelected(true);
       setIsCustomisationVisible(false);
       setIsFrame2CustomisationVisible(false);
@@ -307,18 +329,18 @@ else if (productTitle === 'Frame (75x175 cm)') {
   const [depth50, setdepth50] = useState(35);
   function handleHeightChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
-  
+
     // Ensure the value stays within the allowed range
     const validatedValue = Math.max(175, Math.min(280, inputValue));
-  
+
     setHeight(validatedValue);
   }
   function handleWidthChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
-  
+
     // Ensure the value stays within the allowed range
     const validatedValue = Math.max(175, Math.min(280, inputValue));
-  
+
     setHeight(validatedValue);
   }
   const handleApplyHeight = () => {
@@ -607,7 +629,8 @@ else if (productTitle === 'Frame (75x175 cm)') {
                         image={card.image}
                         width={card.width}
                         height={card.height}
-                        onClick={() =>{ handleFrameProductClick(card.title)
+                        onClick={() => {
+                          handleFrameProductClick(card.title)
                           handleFrameProduct50
                         }}
                       />
@@ -620,46 +643,61 @@ else if (productTitle === 'Frame (75x175 cm)') {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>50cmframe  aanpassing</h3>
                 <div className={styles.customise}>
-                <label>
-                   Width (cm):
+                  <label>
+                    Width (cm):
                     <input
-    type="number"
-    min="50"
-    max="74"
-    step="1"
-    value={width50} // Bind the input value to the state
-    onChange={(e) => setwidth50(parseFloat(e.target.value))} // Handle input change
-  />
-  <button >Apply</button> {/* Button to apply the new height */}
-  {`${width50.toFixed(1)} cm`} {/* Display the height in cm */}
+                      type="number"
+                      min="50"
+                      max="74"
+                      step="1"
+                      value={width50} 
+                      onChange={(e) => setwidth50(parseFloat(e.target.value))}
+                    />
+                    <button >Apply</button> {/* Button to apply the new height */}
+                    {`${width50.toFixed(1)} cm`} {/* Display the height in cm */}
                   </label>
                   <label>
                     Height (cm):
                     <input
-    type="number"
-    min="175"
-    max="280"
-    step="1"
-    value={height} // Bind the input value to the state
-    onChange={(e) => setHeight(parseFloat(e.target.value))} // Handle input change
-  />
-  <button onClick={handleApplyHeight}>Apply</button> {/* Button to apply the new height */}
-  {`${height.toFixed(1)} cm`} {/* Display the height in cm */}
+                      type="number"
+                      min="175"
+                      max="280"
+                      step="1"
+                      value={height} // Bind the input value to the state
+                      onChange={(e) => setHeight(parseFloat(e.target.value))} // Handle input change
+                    />
+                    <button onClick={handleApplyHeight}>Apply</button> {/* Button to apply the new height */}
+                    {`${height.toFixed(1)} cm`} {/* Display the height in cm */}
                   </label>
 
                   <label>
-                  Depth (cm):
+                    Depth (cm):
                     <input
                       type="number"
                       min="35"
                       max="50"
                       step="1"
                       value={depth50}
-                      onChange={(e) => setdepth50(parseFloat(e.target.value))} 
+                      onChange={(e) => setdepth50(parseFloat(e.target.value))}
                     />
-                     {`${depth50.toFixed(1)} cm`}
+                    {`${depth50.toFixed(1)} cm`}
                   </label>
                 </div>
+                <div className={styles.materialSelection1}>
+        <h4>Select Material:</h4>
+        <div className={styles.materialCards1}>
+          {materials.map((material) => (
+            <div
+              key={material.name}
+              className={`materialCard ${selectedMaterialImage === material.image ? 'selected' : ''}`}
+              onClick={() => handleMaterialClick(material.image)}
+            >
+              <img src={material.image} alt={material.name} className={styles.materialImage1} />
+              <p>{material.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
                 <div className={styles.cardContainer22}>
                   <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (50x175 cm)')}>
                     <div className={styles.cardContent183}>
@@ -674,18 +712,18 @@ else if (productTitle === 'Frame (75x175 cm)') {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>75cmframe  aanpassing</h3>
                 <div className={styles.customise}>
-                <label>
-                   Width (cm):
+                  <label>
+                    Width (cm):
                     <input
-    type="number"
-    min="75"
-    max="100"
-    step="1"
-    value={width75} // Bind the input value to the state
-    onChange={(e) => setwidth75(parseFloat(e.target.value))} // Handle input change
-  />
-  <button >Apply</button> {/* Button to apply the new height */}
-  {`${width75.toFixed(1)} cm`} {/* Display the height in cm */}
+                      type="number"
+                      min="75"
+                      max="100"
+                      step="1"
+                      value={width75} // Bind the input value to the state
+                      onChange={(e) => setwidth75(parseFloat(e.target.value))} // Handle input change
+                    />
+                    <button >Apply</button> {/* Button to apply the new height */}
+                    {`${width75.toFixed(1)} cm`} {/* Display the height in cm */}
                   </label>
                   <label>
                     Height (cm):
@@ -700,18 +738,32 @@ else if (productTitle === 'Frame (75x175 cm)') {
                     {`${height.toFixed(1)} cm`}
                   </label>
                   <label>
-                  Depth (cm):
+                    Depth (cm):
                     <input
                       type="number"
                       min="35"
                       max="50"
                       step="1"
                       value={depth50}
-                      onChange={(e) => setdepth50(parseFloat(e.target.value))} 
+                      onChange={(e) => setdepth50(parseFloat(e.target.value))}
                     />
-                     {`${depth50.toFixed(1)} cm`}
+                    {`${depth50.toFixed(1)} cm`}
                   </label>
-
+                  <div className={styles.materialSelection1}>
+        <h4>Select Material:</h4>
+        <div className={styles.materialCards1}>
+          {materials.map((material) => (
+            <div
+              key={material.name}
+              className={`materialCard ${selectedMaterialImage === material.image ? 'selected' : ''}`}
+              onClick={() => handleMaterialClick(material.image)}
+            >
+              <img src={material.image} alt={material.name} className={styles.materialImage1} />
+              <p>{material.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
                   <div className={styles.cardContainer22}>
                     <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (75x175 cm)')}>
                       <div className={styles.cardContent183}>
@@ -754,16 +806,16 @@ else if (productTitle === 'Frame (75x175 cm)') {
                   </label>
 
                   <label>
-                  Depth (cm):
+                    Depth (cm):
                     <input
                       type="number"
                       min="35"
                       max="50"
                       step="1"
                       value={depth50}
-                      onChange={(e) => setdepth50(parseFloat(e.target.value))} 
+                      onChange={(e) => setdepth50(parseFloat(e.target.value))}
                     />
-                     {`${depth50.toFixed(1)} cm`}
+                    {`${depth50.toFixed(1)} cm`}
                   </label>
 
 
@@ -917,14 +969,14 @@ else if (productTitle === 'Frame (75x175 cm)') {
         </div>
         <div className={styles['canva-div']}>
           <Scene
-          depthScale={depth50} 
+            depthScale={depth50}
             handle50={handleFrameProduct50}
             frameInstances={frameInstances}
             onDeleteFrame={handleDeleteFrame}
             selectedHandle={selectedHandle}
             ref={sceneRef}
             frames={frames}
-
+            selectedMaterialImage={selectedMaterialImage}
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}
@@ -943,7 +995,7 @@ else if (productTitle === 'Frame (75x175 cm)') {
             visibleComponent={visiblesSubComponent} // Correct prop name
             onScaleChange={function (event: ChangeEvent<HTMLInputElement>): void {
               throw new Error('Function not implemented.');
-            } } frameId={0}
+            }} frameId={0}
             onModelClick={handleModelClick}
             isRackSelected={isRackSelected}
             isRailSelected={isRailSelected}
@@ -951,7 +1003,7 @@ else if (productTitle === 'Frame (75x175 cm)') {
             setIsFrame2CustomisationVisible={setIsFrame2CustomisationVisible}
             setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0} setFrames={function (value: SetStateAction<{ id: number; type: string; scale: [number, number, number]; }[]>): void {
               throw new Error('Function not implemented.');
-            } }    />
+            }} />
         </div>
       </div>
     </div>
