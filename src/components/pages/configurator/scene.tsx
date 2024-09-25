@@ -67,6 +67,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   onDeleteFrame,
   width50Scale,
   selectedHandle,
+  selectedDrawer,
   setIsFrame3CustomisationVisible,
   setIsFrame2CustomisationVisible,
   selectedProduct,
@@ -77,7 +78,6 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   visibleComponent,
   visible2component,
   visible3component,
-  selectedDrawer,
   frames,
   onModelClick,
   isRackSelected,
@@ -238,6 +238,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Mediumframe 
+          selectedMaterialImage={selectedMaterialImage} 
            depthScale= { depthScale}
           width75Scale = {width75Scale}
           heightScale={heightScale}
