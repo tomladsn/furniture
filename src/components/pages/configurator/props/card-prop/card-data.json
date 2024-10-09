@@ -106,5 +106,12 @@
         "category": "rack",
         "width": "auto",
         "height": "auto"
+    },
+    {
+        "title": "Plinth",
+        "image": "../../../../../../public/plinthimg.jpg",
+        "category": "leg",
+        "width": "auto",
+        "height": "auto"
     }
 ]

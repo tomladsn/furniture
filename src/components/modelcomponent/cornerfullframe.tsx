@@ -11,6 +11,7 @@ import React from 'react'
 import { useGLTF, Html } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import Rack from './rack';
+import { Plinth } from './plinth';
 type GLTFAction = any;
 type GLTFResult = GLTF & {
   nodes: {
@@ -33,10 +34,11 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export function Cornerframe({visible3Component,isDoorSelected, depthScale,width75Scale , heightScale, isRailSelected, isRackSelected,scaleY,    selectedHandle, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
+export function Cornerframe({visible3Component,isDoorSelected, materialTexture, depthScale,width75Scale , heightScale, isRailSelected, isRackSelected,scaleY,    selectedHandle, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
   isDoorSelected: any;
   isRailSelected: any;
   isRackSelected: any;
+  materialTexture: any;
   width75Scale : number;
   scaleY: number
   heightScale:number;
@@ -58,6 +60,8 @@ export function Cornerframe({visible3Component,isDoorSelected, depthScale,width7
     <group {...props} dispose={null} position={[-8, -0.46, (Math.max(0, depthScale/35 - 1)/1.8 * 2.6) + 1]} scale={[0.2, 0.14, depthScale/35 * 0.13]}>
        {isRailSelected && ( <Clotherail  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[24, 22, -1]} scale={[3, 2, 1.5]}/>)}
           { isRackSelected && ( <Rack  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[25, -1.3, 1]} scale={[6.2, 7, 4]}/>)}
+          <Plinth position={[17.3, -1, -1.9]} scale={[18.2, 12, 20]} materialTexture={materialTexture}/>
+          <Plinth position={[22.3, -1, -1.9]} scale={[29.2, 12, 25]} rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} materialTexture={materialTexture}/>
                {false && (  <Handle1 />)}
                {false && ( <Handle2 />)}
                {false && (  <Handle3 />)}
@@ -69,7 +73,7 @@ export function Cornerframe({visible3Component,isDoorSelected, depthScale,width7
                  
                </group>)}
       <mesh  onPointerOver={() => setShowDimensions(true)}
-  onPointerOut={() => setShowDimensions(false)} name="cornerframe" geometry={nodes.cornerframe.geometry} material={whiteMaterial} position={[21.173, 13.909+ (Math.max(0, heightScale / 175 - 1)/1.7 * 15.5 * 1.69), 0]} scale={[0.019, heightScale/10294.12, 0.019]} userData={{ name: 'cornerframe' }} />
+  onPointerOut={() => setShowDimensions(false)} name="cornerframe" geometry={nodes.cornerframe.geometry} material={materialTexture ? new THREE.MeshStandardMaterial({ map: materialTexture }) : whiteMaterial} position={[21.173, 14.909+ (Math.max(0, heightScale / 175 - 1)/1.7 * 15.5 * 1.69), 0]} scale={[0.019, heightScale/10294.12, 0.019]} userData={{ name: 'cornerframe' }} />
            <mesh name="frameshelve1" geometry={nodes.frameshelve1.geometry} material={materials.shelve1} position={[19.822, 23.2523, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve1' }} />
                <mesh name="frameshelve2" geometry={nodes.frameshelve2.geometry} material={materials.shelve1} position={[19.822, 17.318, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve2' }} />
               <mesh name="frameshelve3" geometry={nodes.frameshelve3.geometry} material={materials.shelve1} position={[20.012, 10.474, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve3' }} />

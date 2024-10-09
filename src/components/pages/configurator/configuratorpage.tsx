@@ -1,4 +1,4 @@
-// npx gltfjsx public\shoerack1.glb --output src\components\modelcomponent\rack --types --keepnames --meta
+// npx gltfjsx public\plinth.glb --output src\components\modelcomponent\plinth --types --keepnames --meta
 
 
 import classNames from 'classnames';
@@ -112,10 +112,15 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [frameInstances, setFrameInstances] = useState<FrameInstance[]>([]);
   const [frames50, setFrames50] = useState<{ id: number; type: string; scale: [number, number, number]; position: [number, number, number]; }[]>([]);
   const [selectedMaterialImage, setSelectedMaterialImage] = useState<string | null>(null);
-
-  const handleMaterialClick = (materialImage: string) => {
-    setSelectedMaterialImage(materialImage);  // Pass the image path instead of name
+  const [drawerPosition, setDrawerPosition] = useState(0);
+  const [materialTexture, setMaterialTexture] = useState<THREE.Texture | null>(null);
+  const textureLoader = new THREE.TextureLoader();
+  const handleMaterialClick = (imagePath: string) => {
+    const texture = textureLoader.load(imagePath);
+    setMaterialTexture(texture);
+    setSelectedMaterialImage(imagePath);
   };
+
   const handleFrameProduct50 = (title: string) => {
     if (title === 'Frame (50x175 cm)') {
       // Create a new frame object with the expected `scale` property as a tuple
@@ -283,7 +288,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       setFrameVisible(true);
     }
 
-    handleDrawerSelection(productTitle, setSelectedDrawer);
+
   }; const handleDeleteFrame = (productTitle: string) => {
     // Deselect the frame product
     setSelectedFrameProduct(null);
@@ -327,6 +332,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [width50, setwidth50] = useState(50); // Set the default height to 175cm
   const [width75, setwidth75] = useState(75); // Set the default height to 175cm
   const [depth50, setdepth50] = useState(35);
+
   function handleHeightChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
 
@@ -382,6 +388,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const [isRailVisible, setRailVisible] = useState(false);
   const [isRackVisible, setRackVisible] = useState(false);
+  const [islegComponentVisible, setIslegComponentVisible] = useState(false);
 
   const toggleFrameVisibility = () => {
     setIsCustomisationVisible(false);
@@ -650,7 +657,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       min="50"
                       max="74"
                       step="1"
-                      value={width50} 
+                      value={width50}
                       onChange={(e) => setwidth50(parseFloat(e.target.value))}
                     />
                     <button >Apply</button> {/* Button to apply the new height */}
@@ -684,20 +691,20 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                   </label>
                 </div>
                 <div className={styles.materialSelection1}>
-        <h4>Select Material:</h4>
-        <div className={styles.materialCards1}>
-          {materials.map((material) => (
-            <div
-              key={material.name}
-              className={`materialCard ${selectedMaterialImage === material.image ? 'selected' : ''}`}
-              onClick={() => handleMaterialClick(material.image)}
-            >
-              <img src={material.image} alt={material.name} className={styles.materialImage1} />
-              <p>{material.name}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+                  <h4>Select Material:</h4>
+                  <div className={styles.materialCards1}>
+                    {materials.map((material) => (
+                      <div
+                        key={material.name}
+                        className={`materialCard ${selectedMaterialImage === material.image ? 'selected' : ''}`}
+                        onClick={() => handleMaterialClick(material.image)}
+                      >
+                        <img src={material.image} alt={material.name} className={styles.materialImage1} />
+                        <p>{material.name}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
                 <div className={styles.cardContainer22}>
                   <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (50x175 cm)')}>
                     <div className={styles.cardContent183}>
@@ -750,20 +757,20 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     {`${depth50.toFixed(1)} cm`}
                   </label>
                   <div className={styles.materialSelection1}>
-        <h4>Select Material:</h4>
-        <div className={styles.materialCards1}>
-          {materials.map((material) => (
-            <div
-              key={material.name}
-              className={`materialCard ${selectedMaterialImage === material.image ? 'selected' : ''}`}
-              onClick={() => handleMaterialClick(material.image)}
-            >
-              <img src={material.image} alt={material.name} className={styles.materialImage1} />
-              <p>{material.name}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+                    <h4>Select Material:</h4>
+                    <div className={styles.materialCards1}>
+                      {materials.map((material) => (
+                        <div
+                          key={material.name}
+                          className={`materialCard ${selectedMaterialImage === material.image ? 'selected' : ''}`}
+                          onClick={() => handleMaterialClick(material.image)}
+                        >
+                          <img src={material.image} alt={material.name} className={styles.materialImage1} />
+                          <p>{material.name}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                   <div className={styles.cardContainer22}>
                     <div className={styles.card789} onClick={() => handleDeleteFrame('Frame (75x175 cm)')}>
                       <div className={styles.cardContent183}>
@@ -895,6 +902,41 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         width={card.width}
                         height={card.height}
                         onClick={() => handleDrawerSelection(card.title, setSelectedDrawer)}
+
+                      />
+                    ))
+                  }
+                </div>
+
+              </div>
+            )}
+            <div className={styles['components-selection']} onClick={() => setIslegComponentVisible(prevState => !prevState)}>
+              <GiDoorHandle className={styles['handle-icon']} />
+              <p className={styles.door}>legs</p>
+              <IoIosArrowDropright
+                style={{
+                  width: '30px',
+                  height: '20px',
+                  position: 'relative',
+                  left: '200px',
+                }} />
+            </div>
+            {islegComponentVisible && (
+              <div className={styles.frame}>
+                <FaArrowLeft className={styles.backarrow} onClick={() => setIslegComponentVisible(prevState => !prevState)} />
+                <h3 className={styles.frametext}>legs</h3>
+                <div className={styles.cardframe}>
+                  {cardData
+                    .filter(card => card.category === 'leg')
+                    .map((card, index) => (
+                      <Card
+                        key={index}
+                        title={card.title}
+                        image={card.image}
+                        width={card.width}
+                        height={card.height} onClick={function (): void {
+                          throw new Error('Function not implemented.');
+                        }}
                       />
                     ))}
                 </div>
@@ -980,6 +1022,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}
+            materialTexture={materialTexture}
             width75Scale={width75}
             width50Scale={width50}
             heightScale={height}

@@ -45,6 +45,7 @@ interface SceneProps {
     selectedMaterialImage: any
     setScaleY: number;
     width75Scale: number;
+    materialTexture: any;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     visibleComponent: 'shelves' | 'drawers' | null;
     visible2component: "shelves" | "drawers" | null;
@@ -79,6 +80,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   visible2component,
   visible3component,
   frames,
+  materialTexture,
   onModelClick,
   isRackSelected,
   isRailSelected,
@@ -195,6 +197,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Cornerframe
+               materialTexture={materialTexture}
             width75Scale={width75Scale}
             depthScale={depthScale}
             heightScale={heightScale}
@@ -238,6 +241,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Mediumframe 
+          materialTexture={materialTexture}
           selectedMaterialImage={selectedMaterialImage} 
            depthScale= { depthScale}
           width75Scale = {width75Scale}
@@ -290,6 +294,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
             isRailSelected={isRailSelected}
             isDoorSelected={isDoorSelected}
             selectedDrawer={selectedDrawer}
+            materialTexture={materialTexture}
             frameId={frame.id}    />
         </group>
       </Draggable>
