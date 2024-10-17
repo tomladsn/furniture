@@ -77,10 +77,11 @@ type SmallframeProps = {
   selectedHandle: any;
   selectedMaterialImage: any;
   materialTexture: any;
+  positionX: any;
 } & JSX.IntrinsicElements['group'];
 
 
-const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,positionX, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
@@ -98,7 +99,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent, selectedMater
     <Draggable onDrag={handleDrag} onDragStart={() => setIsDragging(true)}
       onDragEnd={() => setIsDragging(false)}>
       <group position={framePosition}>
-        <group {...props} dispose={null} position={[-2, -0.88, (Math.max(0, depthScale / 35 - 1) / -1.8 * 2.4) - 0.9]} scale={[width50Scale / 50 * 0.077, 0.125, depthScale / 35 * 0.15]} >
+        <group {...props} dispose={null} position={[positionX, -0.88, (Math.max(0, depthScale / 35 - 1) / -1.8 * 2.4) - 0.9]} scale={[width50Scale / 50 * 0.077, 0.129, depthScale / 35 * 0.15]} >
           {isRailSelected && (<Clotherail position={[0.1, 24.78, 13]} scale={[2.3, 2, 1.5]} />)}
           {isRackSelected && (<Rack position={[-0.2, 1.68, 16]} scale={[6.2, 7, 3]} />)}
           <group ><Plinth

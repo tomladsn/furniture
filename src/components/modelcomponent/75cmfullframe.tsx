@@ -49,13 +49,14 @@ type SmallframeProps = {
   isRailSelected: any;
   isDoorSelected: any;
   selectedHandle: any;
-  materialTexture:any,
+  materialTexture:any;
+  position75X:any;
   width75Scale: number;
   depthScale: number;
   scaleY:number;
   heightScale:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedMaterialImage, materialTexture,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component,position75X, selectedMaterialImage, materialTexture,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const baseWidth = 175;
@@ -65,9 +66,9 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedMat
 
   return (
     <group >
-    <group {...props} dispose={null} position={[-1.6, -0.46, (Math.max(0, depthScale/35 - 1)/2 ) + 0.95]} scale={[0.12 * width75Scale/75, 0.14,  depthScale/35 * 0.13]}>
+    <group {...props} dispose={null} position={[position75X, -0.46, (Math.max(0, depthScale/35 - 1)/2 ) + 0.95]} scale={[0.12 * width75Scale/75, 0.15,  depthScale/35 * 0.13]}>
    {isRailSelected && (<Clotherail  position={[-3, 22.78, 3]} scale={[2.1, 1.8, 1.5]}/>)}
-   <Plinth position={[-3.3, -1, 3.9]} scale={[18.2, 12, 20]} materialTexture={materialTexture} />
+   <Plinth position={[-3.3, -1, 3.9]} scale={[18.2, 14, 20]} materialTexture={materialTexture} />
         
      {isRackSelected && (<Rack position={[-3.2, -0.8, 3]} scale={[5.5, 6, 3.7]}/>)}
 
@@ -161,7 +162,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, selectedMat
           </group>)}
 
       <mesh onPointerOver={() => setShowDimensions(true)}
-  onPointerOut={() => setShowDimensions(false)} name="frame" geometry={nodes.frame.geometry} material={materialTexture ? new THREE.MeshStandardMaterial({ map: materialTexture }) : whiteMaterial} position={[-3.079, 14.984 + (Math.max(0, heightScale / 175 - 1)/1.8 * 15.156 * 1.5), 0.565]} scale={[0.019 * width75Scale/75, heightScale/10294.12, 0.019]} userData={{ name: 'frame' }} />
+  onPointerOut={() => setShowDimensions(false)} name="frame" geometry={nodes.frame.geometry} material={materialTexture ? new THREE.MeshStandardMaterial({ map: materialTexture }) : whiteMaterial} position={[-3.079, 13.984 + (Math.max(0, heightScale / 179 - 1)/1.8 * 17.156 * 1.5), 0.565]} scale={[0.019 * width75Scale/75, heightScale/11294.12, 0.019]} userData={{ name: 'frame' }} />
       {false && ( <> <mesh name="drawer6" geometry={nodes.drawer6.geometry} material={materials.drawer6} position={[-3.12, 0.417, 3.273]} rotation={[Math.PI / 2, 0, 0]} scale={[0.152, 0.131, 0.123]} userData={{ name: 'drawer6' }} />
       <mesh name="drawer5" geometry={nodes.drawer5.geometry} material={materials.drawer5} position={[-3.12, 5.563, 3.273]} rotation={[Math.PI / 2, 0, 0]} scale={[0.152, 0.131, 0.123]} userData={{ name: 'drawer5' }} />
       <mesh name="drawer4" geometry={nodes.drawer4.geometry} material={materials.drawer4} position={[-3.12, 10.622, 3.273]} rotation={[Math.PI / 2, 0, 0]} scale={[0.152, 0.131, 0.123]} userData={{ name: 'drawer4' }} />

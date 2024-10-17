@@ -46,6 +46,8 @@ interface SceneProps {
     setScaleY: number;
     width75Scale: number;
     materialTexture: any;
+    positionX: any;
+    position75X: any;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     visibleComponent: 'shelves' | 'drawers' | null;
     visible2component: "shelves" | "drawers" | null;
@@ -60,6 +62,7 @@ interface SceneProps {
 }
 const Scene = forwardRef<THREE.Group, SceneProps>(({
   depthScale,
+  positionX,
   handle50,
   setFrames,
   selectedMaterialImage,
@@ -80,6 +83,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   visible2component,
   visible3component,
   frames,
+  position75X,
   materialTexture,
   onModelClick,
   isRackSelected,
@@ -241,6 +245,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Mediumframe 
+          position75X={position75X}
           materialTexture={materialTexture}
           selectedMaterialImage={selectedMaterialImage} 
            depthScale= { depthScale}
@@ -266,11 +271,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
     const baseY = frame.position[1];  // Use Y position from frame
 
     return (
-      <Draggable
-        key={frame.id}  // Unique key for each frame
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={() => setIsDragging(false)}
-      >
+
         <group
           ref={ref}
           onClick={onModelClick}
@@ -283,6 +284,8 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Smallframe
+
+          positionX={positionX}
           selectedMaterialImage={selectedMaterialImage} 
            depthScale= { depthScale}
             width50Scale={width50Scale}
@@ -297,7 +300,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
             materialTexture={materialTexture}
             frameId={frame.id}    />
         </group>
-      </Draggable>
+
     );
   }
   return null;

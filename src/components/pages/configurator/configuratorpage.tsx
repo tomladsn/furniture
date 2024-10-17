@@ -168,6 +168,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [scaleX, setScaleX] = useState(1);
   const [scaleY, setScaleY] = useState(1);
   const [scaleZ, setScaleZ] = useState(1);
+  const [positionX, setPositionX] = useState(-3);
+  const [position75X, setPosition75X] = useState(-1.6);
 
   const baseY = -1.11;
 
@@ -689,6 +691,18 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     />
                     {`${depth50.toFixed(1)} cm`}
                   </label>
+                  <label>
+                    Move Part along X-axis:
+                    <input
+                      type="range"
+                      min="-3"
+                      max="10"
+                      step="0.1"
+                      value={positionX}
+                      onChange={(e) => setPositionX(parseFloat(e.target.value))}
+                    />
+                    {`${positionX.toFixed(1)} units`}
+                  </label>
                 </div>
                 <div className={styles.materialSelection1}>
                   <h4>Select Material:</h4>
@@ -755,6 +769,18 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={(e) => setdepth50(parseFloat(e.target.value))}
                     />
                     {`${depth50.toFixed(1)} cm`}
+                  </label>
+                  <label>
+                    Move Part along X-axis:
+                    <input
+                      type="range"
+                      min="-1.6"
+                      max="10"
+                      step="0.1"
+                      value={position75X}
+                      onChange={(e) => setPosition75X(parseFloat(e.target.value))}
+                    />
+                    {`${positionX.toFixed(1)} units`}
                   </label>
                   <div className={styles.materialSelection1}>
                     <h4>Select Material:</h4>
@@ -1022,6 +1048,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}
+            positionX={positionX}
+            position75X={position75X}
             materialTexture={materialTexture}
             width75Scale={width75}
             width50Scale={width50}
