@@ -9,7 +9,7 @@ import * as THREE from 'three';
 import styles from './configuratorpage.module.scss';
 import { useRef, useState, useEffect, ChangeEvent, SetStateAction } from 'react';
 import { FaArrowLeft } from "react-icons/fa";
-import { FaArrowRightLong } from 'react-icons/fa6';
+import { FaArrowRightLong, FaShoePrints } from 'react-icons/fa6';
 import { LuFrame } from 'react-icons/lu';
 import { MdDoorSliding, MdShelves } from 'react-icons/md';
 import { GiDoorHandle, GiClothesline, GiRunningShoe } from 'react-icons/gi';
@@ -391,6 +391,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [isRailVisible, setRailVisible] = useState(false);
   const [isRackVisible, setRackVisible] = useState(false);
   const [islegComponentVisible, setIslegComponentVisible] = useState(false);
+  const [isShelveVisible, setIsShelveVisible] = useState(false)
 
   const toggleFrameVisibility = () => {
     setIsCustomisationVisible(false);
@@ -1001,7 +1002,40 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 </div>
               )}
             </div>
-            <div className={styles['components-selection']} onClick={toggleRackVisibility} >
+            <div className={styles['components-selection']} onClick={() => setIsShelveVisible(prev => !prev)} >
+              <FaShoePrints className={styles['shelve-icon']} />
+              <p className={styles.door}> Schoenenrek</p>
+              <IoIosArrowDropright
+                style={{
+                  width: '30px',
+                  height: '20px',
+                  position: 'relative',
+                  left: '200px',
+                }} />
+            </div>
+            {isShelveVisible && (
+              <div className={styles.frame}>
+                <FaArrowLeft className={styles.backarrow} onClick={() => setIsShelveVisible(prev => !prev)} />
+                <h3 className={styles.frametext}> Shelves </h3>
+                <div className={styles.cardframe}>
+                  {cardData
+                    .filter(card => card.category === 'rack')
+                    .map((card, index) => (
+                      <Card
+                        key={index}
+                        title={card.title}
+                        image={card.image}
+                        width={card.width}
+                        height={card.height}
+                        onClick={() => setRackSelected(true)}
+                      />
+                    ))}
+                </div>
+
+              </div>
+            )}
+          </div>
+          <div className={styles['components-selection']} onClick={toggleRackVisibility} >
               <MdShelves className={styles['shelve-icon']} />
               <p className={styles.door}> Schoenenrek</p>
               <IoIosArrowDropright
@@ -1033,7 +1067,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
               </div>
             )}
-          </div>
+
         </div>
         <div className={styles['canva-div']}>
           <Scene
