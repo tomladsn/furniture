@@ -170,7 +170,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [scaleZ, setScaleZ] = useState(1);
   const [positionX, setPositionX] = useState(-3);
   const [position75X, setPosition75X] = useState(-1.6);
-
+  const [shelfCount, setShelfCount] = useState(0);
+  const [shelfPosition50, setShelfPosition50] = useState(6.5)
+  const [shelfPosition75, setShelfPosition75] = useState(6.5)
   const baseY = -1.11;
 
 
@@ -217,17 +219,15 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       setIsFrame2CustomisationVisible(true);
       setIsFrame3CustomisationVisible(false);
       setFrameVisible(false);
-
-      // Ensure the maximum number of frames is 4
       if (frames.length < 3) {
-        // Calculate a new unique position for each new frame, only modifying the X-axis (moving to the left)
-        const baseX = 0; // Start from X position 0
-        const xOffset = (frames.length * 1); // Move each new frame 2 units left along X-axis (negative direction)
+        
+        const baseX = 0; 
+        const xOffset = (frames.length * 1); 
 
         const newFramePosition: [number, number, number] = [
-          baseX + xOffset,  // Shift to the left for each new frame
-          -1.11,            // Fixed Y-position
-          -9.2,             // Fixed Z-position (unchanged)
+          baseX + xOffset,  
+                    -1.11,          
+          -9.2,         
         ];
 
         // Add new frame to the state with a unique position and id
@@ -1018,18 +1018,30 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <FaArrowLeft className={styles.backarrow} onClick={() => setIsShelveVisible(prev => !prev)} />
                 <h3 className={styles.frametext}> Shelves </h3>
                 <div className={styles.cardframe}>
-                  {cardData
-                    .filter(card => card.category === 'rack')
-                    .map((card, index) => (
-                      <Card
-                        key={index}
-                        title={card.title}
-                        image={card.image}
-                        width={card.width}
-                        height={card.height}
-                        onClick={() => setRackSelected(true)}
-                      />
-                    ))}
+                <label>
+          Number of Shelves:
+          <input
+            type="number"
+            min="0" 
+            max="10" 
+            step="1"
+            value={shelfCount} // Bind the input value to the state
+            onChange={(e) => setShelfCount(parseInt(e.target.value, 10) || 0)}
+          />
+        </label>
+                
+        <label>
+                    Adjust shelf position:
+                    <input
+                      type="range"
+                      min="1"
+                      max="40"
+                      step="0.1"
+                      value={position75X}
+                      onChange={(e) => setShelfPosition50(parseFloat(e.target.value))}
+                    />
+                    {`${shelfPosition50.toFixed(1)} units`}
+                  </label>
                 </div>
 
               </div>
@@ -1071,6 +1083,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         </div>
         <div className={styles['canva-div']}>
           <Scene
+          shelfPosition50={shelfPosition50}
+          shelfCount={shelfCount}
             depthScale={depth50}
             handle50={handleFrameProduct50}
             frameInstances={frameInstances}

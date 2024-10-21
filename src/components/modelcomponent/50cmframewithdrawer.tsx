@@ -78,10 +78,12 @@ type SmallframeProps = {
   selectedMaterialImage: any;
   materialTexture: any;
   positionX: any;
+  shelfCount: any;
+  shelfPosition50: any;
 } & JSX.IntrinsicElements['group'];
 
 
-const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,positionX, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition50, visibleComponent,positionX, shelfCount, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
@@ -90,15 +92,9 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,positionX, sel
   const baseWidth = 175;
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
-  const [framePosition, setFramePosition] = useState<[number, number, number]>([0, 0, 0]);
-  const handleDrag = (newPosition: [number, number, number]) => {
-    setFramePosition(newPosition);  // Update the position state
-  };
-  const [isDragging, setIsDragging] = useState(false);
   return (
-    <Draggable onDrag={handleDrag} onDragStart={() => setIsDragging(true)}
-      onDragEnd={() => setIsDragging(false)}>
-      <group position={framePosition}>
+
+      <group >
         <group {...props} dispose={null} position={[positionX, -0.88, (Math.max(0, depthScale / 35 - 1) / -1.8 * 2.4) - 0.9]} scale={[width50Scale / 50 * 0.077, 0.129, depthScale / 35 * 0.15]} >
           {isRailSelected && (<Clotherail position={[0.1, 24.78, 13]} scale={[2.3, 2, 1.5]} />)}
           {isRackSelected && (<Rack position={[-0.2, 1.68, 16]} scale={[6.2, 7, 3]} />)}
@@ -266,15 +262,25 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,positionX, sel
             />
           )}
 
-          {visibleComponent === 'shelves' && (
-            <>
-              <mesh name="shelve4" geometry={nodes.shelve4.geometry} material={materials.shelve4} position={[-0.323, 12.64, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve4' }} />
-              <mesh name="shelve2" geometry={nodes.shelve2.geometry} material={materials.shelve2} position={[-0.323, 23.731, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve2' }} />
+       
+            <> {[...Array(shelfCount)].map((_, index) => (
+        <mesh
+          key={index} // Use index as key for rendering multiple shelves
+          name={`shelve${index + 4}`} // Adjust to name each shelf uniquely
+          geometry={nodes.shelve4.geometry} // Assuming nodes.shelve4.geometry is the same for all shelves
+          material={materials.shelve4}
+          position={[-0.323, shelfPosition50 + index * 6, 13.615]} // Adjust position based on index to stack shelves
+          scale={[7.876, 0.203, 4.672]}
+          userData={{ name: `shelve${index + 4}` }} // Adjust userData as needed
+        />
+      ))}
+       {/* <mesh name="shelve2" geometry={nodes.shelve2.geometry} material={materials.shelve2} position={[-0.323, 23.731, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve2' }} />
               <mesh name="shelve5" geometry={nodes.shelve5.geometry} material={materials.shelve5} position={[-0.323, 6.94, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve5' }} />
               <mesh name="shelve3" geometry={nodes.shelve3.geometry} material={materials.shelve3} position={[-0.323, 18.396, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve3' }} />
               <mesh name="shelve1" geometry={nodes.shelve1.geometry} material={materials.shelve1} position={[-0.323, 29.466, 13.615]} scale={[7.876, 0.203, 4.672]} userData={{ name: 'shelve1' }} />
+            */}
             </>
-          )}
+
           {showDimensions && (
             <>
               <Html position={[0.375, 35, 0.175]} center>
@@ -328,7 +334,7 @@ const Smallframe: React.FC<SmallframeProps> = ({ visibleComponent,positionX, sel
 
         </group>
       </group>
-    </Draggable>
+
   )
 }
 
