@@ -34,9 +34,11 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export function Cornerframe({visible3Component,isDoorSelected, materialTexture, depthScale,width75Scale , heightScale, isRailSelected, isRackSelected,scaleY,    selectedHandle, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
+export function Cornerframe({visible3Component, shelfCount, shelfPosition, isDoorSelected, materialTexture, depthScale,width75Scale , heightScale, isRailSelected, isRackSelected,scaleY,    selectedHandle, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
   isDoorSelected: any;
   isRailSelected: any;
+  shelfCount: any;
+  shelfPosition: any;
   isRackSelected: any;
   materialTexture: any;
   width75Scale : number;
@@ -66,7 +68,7 @@ export function Cornerframe({visible3Component,isDoorSelected, materialTexture, 
                {false && ( <Handle2 />)}
                {false && (  <Handle3 />)}
                {/* {true && (<Door1 rotation={[Math.PI / 2, 0,Math.PI ]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7, 15]} />)} */}
-               {isDoorSelected && ( <group><Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[15, 14, -0.51]} scale={[0.22, 5, 15]} />
+               {isDoorSelected && ( <group><Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[15, 14.95, 1.1]} scale={[0.22, 5, heightScale/175 * 14.6 ]} />
                 {selectedHandle === 'Handgreep  5' &&  ( <Handle1 position={[11.2, 18, -2]} scale={[0.09, 0.2, 0.38]} rotation={[0, 0,Math.PI/2]}/>)}
                  { selectedHandle === 'Handgreep  1' && (  <Handle2 position={[8.2, 18, -2]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI/2, Math.PI/2 ,0]}/>)}
                   { selectedHandle === 'Handgreep  3' && ( <Handle3 position={[12.2, 18, -1]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI/2, Math.PI/2 ,0]}/>)}
@@ -78,6 +80,17 @@ export function Cornerframe({visible3Component,isDoorSelected, materialTexture, 
                <mesh name="frameshelve2" geometry={nodes.frameshelve2.geometry} material={materials.shelve1} position={[19.822, 17.318, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve2' }} />
               <mesh name="frameshelve3" geometry={nodes.frameshelve3.geometry} material={materials.shelve1} position={[20.012, 10.474, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve3' }} />
                   <mesh name="frameshelve4" geometry={nodes.frameshelve4.geometry} material={materials.shelve1} position={[19.822, 3.462, -4]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-9.009, -0.196, -4.778]} userData={{ name: 'frameshelve4' }} />
+                  
+                  {[...Array(shelfCount.shelfCountcorner)].map((_, index) => (
+                    <mesh name="cornershelve1"
+                    key={index}
+                     geometry={nodes.cornershelve1.geometry} 
+                     material={materials.shelve1}
+                      position={[30.462, shelfPosition.shelfPositioncorner + index * 5, -1.069]}
+                       rotation={[-Math.PI, 0, -Math.PI]} 
+                       scale={[-10.054, -0.196, -10.277]} 
+                       userData={{ name: 'cornershelve1' }} />
+                  ))}
             {/* {visible3Component === 'shelves' && (
     <>
               <mesh name="cornershelve2" geometry={nodes.cornershelve2.geometry} material={materials.shelve1} position={[30.462, 19.945, -1.069]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-10.054, -0.196, -10.277]} userData={{ name: 'cornershelve2' }} />

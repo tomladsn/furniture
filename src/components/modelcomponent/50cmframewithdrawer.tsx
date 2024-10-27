@@ -79,11 +79,11 @@ type SmallframeProps = {
   materialTexture: any;
   positionX: any;
   shelfCount: any;
-  shelfPosition50: any;
+  shelfPosition: any;
 } & JSX.IntrinsicElements['group'];
 
 
-const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition50, visibleComponent,positionX, shelfCount, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition, visibleComponent,positionX, shelfCount, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
@@ -105,7 +105,7 @@ const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition50, visibleComp
           {false && (<Handle2 />)}
           {false && (<Handle3 />)}
           {isDoorSelected && (<group>
-            <Door1 rotation={[Math.PI / 2, 0, Math.PI / 2]} position={[-0.25, 18.166, 18.851]} scale={[0.22, 7.86, 16.7]} />
+            <Door1 rotation={[Math.PI / 2, 0, Math.PI / 2]} position={[-0.25, 19.166, 18.851]} scale={[0.22, 7.86, heightScale/175 * 16]} />
             {selectedHandle === 'Handgreep  5' && (<Handle1 position={[-7.5, 18, 17.6]} scale={[0.09, 0.2, 0.38]} rotation={[0, 0, Math.PI / 2]} />)}
             {selectedHandle === 'Handgreep  1' && (<Handle2 position={[-10.5, 18, 17.6]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI / 2, Math.PI / 2, 0]} />)}
             {selectedHandle === 'Handgreep  3' && (<Handle3 position={[-6.5, 18, 17.6]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI / 2, Math.PI / 2, 0]} />)}
@@ -263,13 +263,13 @@ const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition50, visibleComp
           )}
 
        
-            <> {[...Array(shelfCount)].map((_, index) => (
+            <> {[...Array(shelfCount.shelfCount50)].map((_, index) => (
         <mesh
           key={index} // Use index as key for rendering multiple shelves
           name={`shelve${index + 4}`} // Adjust to name each shelf uniquely
           geometry={nodes.shelve4.geometry} // Assuming nodes.shelve4.geometry is the same for all shelves
           material={materials.shelve4}
-          position={[-0.323, shelfPosition50 + index * 6, 13.615]} // Adjust position based on index to stack shelves
+          position={[-0.323, shelfPosition.shelfPosition50 + index * 6, 13.615]} // Adjust position based on index to stack shelves
           scale={[7.876, 0.203, 4.672]}
           userData={{ name: `shelve${index + 4}` }} // Adjust userData as needed
         />

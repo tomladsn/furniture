@@ -53,10 +53,12 @@ type SmallframeProps = {
   position75X:any;
   width75Scale: number;
   depthScale: number;
+  shelfCount: any;
+  shelfPosition: any;
   scaleY:number;
   heightScale:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component,position75X, selectedMaterialImage, materialTexture,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component,  shelfPosition, shelfCount, position75X, selectedMaterialImage, materialTexture,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const baseWidth = 175;
@@ -77,7 +79,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component,position75X,
                {false && (  <Handle3 />)}
 
 
-               {isDoorSelected && (<group> <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7, 15]} />
+               {isDoorSelected && (<group> <Door1 rotation={[Math.PI / 2, 0,Math.PI / 2]}  position={[-3.1, 14, 6.51]} scale={[0.22, 7,  heightScale/175 * 13.5]} />
                 { selectedHandle === 'Handgreep  5' &&  ( <Handle1 position={[-9.3, 18, 5]} scale={[0.09, 0.2, 0.38]} rotation={[0, 0,Math.PI/2]}/>)}
                  { selectedHandle === 'Handgreep  1' && (  <Handle2 position={[-11.5, 17, 5.5]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI/2, Math.PI/2 ,0]}/>)}
                   { selectedHandle === 'Handgreep  3' && ( <Handle3 position={[-9, 17, 5.5]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI/2, Math.PI/2 ,0]}/>)}
@@ -181,7 +183,12 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component,position75X,
          <mesh name="shelve4" geometry={nodes.shelve4.geometry} material={materials.shelve4} position={[-3.133, 9.011, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve4' }} />  
                 </>
       )}
-     
+        {[...Array(shelfCount.shelfCount75)].map((_, index) => (
+          <mesh
+          key={index}
+           name={`shelve${index + 4}`}
+            geometry={nodes.shelve1.geometry} material={materials.shelve1} position={[-3.133, shelfPosition.shelfPosition75 + index * 6, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve1' }} />
+        ))}
       {visible2component === 'shelves' && (
     <>
       <mesh name="shelve1" geometry={nodes.shelve1.geometry} material={materials.shelve1} position={[-3.133, 24.133, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve1' }} />

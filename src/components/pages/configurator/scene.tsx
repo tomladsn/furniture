@@ -48,7 +48,7 @@ interface SceneProps {
     materialTexture: any;
     positionX: any;
     position75X: any;
-    shelfPosition50: any;
+    shelfPosition: any;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     visibleComponent: 'shelves' | 'drawers' | null;
     visible2component: "shelves" | "drawers" | null;
@@ -63,7 +63,7 @@ interface SceneProps {
     depthScale: number;
 }
 const Scene = forwardRef<THREE.Group, SceneProps>(({
-  shelfPosition50,
+  shelfPosition,
   shelfCount,
   depthScale,
   positionX,
@@ -205,6 +205,8 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Cornerframe
+           shelfCount={shelfCount}
+          shelfPosition={shelfPosition}
                materialTexture={materialTexture}
             width75Scale={width75Scale}
             depthScale={depthScale}
@@ -249,6 +251,8 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Mediumframe 
+           shelfPosition={shelfPosition}
+           shelfCount={shelfCount}
           position75X={position75X}
           materialTexture={materialTexture}
           selectedMaterialImage={selectedMaterialImage} 
@@ -288,7 +292,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Smallframe
-           shelfPosition50={shelfPosition50}
+           shelfPosition={shelfPosition}
            shelfCount={shelfCount}
           positionX={positionX}
           selectedMaterialImage={selectedMaterialImage} 

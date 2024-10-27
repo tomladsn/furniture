@@ -170,9 +170,17 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [scaleZ, setScaleZ] = useState(1);
   const [positionX, setPositionX] = useState(-3);
   const [position75X, setPosition75X] = useState(-1.6);
-  const [shelfCount, setShelfCount] = useState(0);
-  const [shelfPosition50, setShelfPosition50] = useState(6.5)
-  const [shelfPosition75, setShelfPosition75] = useState(6.5)
+  const [shelfCounts, setShelfCounts] = useState({
+    shelfCount50: 0,
+    shelfCount75: 0,
+    shelfCountcorner: 0,
+  });
+  const [shelfPosition, setShelfPosition] = useState({
+    shelfPosition75: 6.5,
+    shelfPositioncorner: 6.5,
+    shelfPosition50: 6.5,
+  })
+
   const baseY = -1.11;
 
 
@@ -980,27 +988,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                   position: 'relative',
                   left: '200px',
                 }} />
-              {isRailVisible && (
-                <div className={styles.frame}>
-                  <FaArrowLeft className={styles.backarrow} onClick={RailVisible} />
-                  <h3 className={styles.frametext}>Kledinghanger</h3>
-                  <div className={styles.cardframe}>
-                    {cardData
-                      .filter(card => card.category === 'rail')
-                      .map((card, index) => (
-                        <Card
-                          key={index}
-                          title={card.title}
-                          image={card.image}
-                          width={card.width}
-                          height={card.height}
-                          onClick={() => setRailSelected(true)}
-                        />
-                      ))}
-                  </div>
 
-                </div>
-              )}
             </div>
             <div className={styles['components-selection']} onClick={() => setIsShelveVisible(prev => !prev)} >
               <FaShoePrints className={styles['shelve-icon']} />
@@ -1019,29 +1007,76 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <h3 className={styles.frametext}> Shelves </h3>
                 <div className={styles.cardframe}>
                 <label>
-          Number of Shelves:
+          Number of Shelves 50cm frame:
           <input
             type="number"
             min="0" 
             max="10" 
             step="1"
-            value={shelfCount} // Bind the input value to the state
-            onChange={(e) => setShelfCount(parseInt(e.target.value, 10) || 0)}
-          />
+            value={shelfCounts.shelfCount50}
+            onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCount50: parseInt(e.target.value, 10) })}
+        />
         </label>
-                
         <label>
-                    Adjust shelf position:
+          Number of Shelves 75cm frame:
+          <input
+            type="number"
+            min="0" 
+            max="10" 
+            step="1"
+            value={shelfCounts.shelfCount75}
+            onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCount75: parseInt(e.target.value, 10) })}
+        />
+        </label>
+        <label>
+          Number of Shelves corner frame:
+          <input
+            type="number"
+            min="0" 
+            max="10" 
+            step="1"
+            value={shelfCounts.shelfCountcorner}
+            onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCountcorner: parseInt(e.target.value, 10) })}
+        />
+        </label>
+        <label>
+                    Adjust 50cm shelf position:
                     <input
                       type="range"
                       min="1"
-                      max="40"
+                      max="24"
                       step="0.1"
-                      value={position75X}
-                      onChange={(e) => setShelfPosition50(parseFloat(e.target.value))}
+                      value={shelfPosition.shelfPosition50}
+                      onChange={(e) => setShelfPosition({...shelfPosition, shelfPosition50: parseFloat(e.target.value)})}
                     />
-                    {`${shelfPosition50.toFixed(1)} units`}
+                    {`${shelfPosition.shelfPosition50.toFixed(1)} units`}
                   </label>
+                
+        <label>
+                    Adjust 75cm shelf position:
+                    <input
+                      type="range"
+                      min="1"
+                      max="24"
+                      step="0.1"
+                      value={shelfPosition.shelfPosition75}
+                      onChange={(e) => setShelfPosition({...shelfPosition, shelfPosition75: parseFloat(e.target.value)})}
+                    />
+                    {`${shelfPosition.shelfPosition75.toFixed(1)} units`}
+                  </label>
+                  <label>
+                    Adjust corner shelf position:
+                    <input
+                      type="range"
+                      min="1"
+                      max="24"
+                      step="0.1"
+                      value={shelfPosition.shelfPositioncorner}
+                      onChange={(e) => setShelfPosition({...shelfPosition, shelfPositioncorner: parseFloat(e.target.value)})}
+                    />
+                    {`${shelfPosition.shelfPositioncorner.toFixed(1)} units`}
+                  </label>
+                  
                 </div>
 
               </div>
@@ -1083,8 +1118,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         </div>
         <div className={styles['canva-div']}>
           <Scene
-          shelfPosition50={shelfPosition50}
-          shelfCount={shelfCount}
+          shelfPosition={shelfPosition}
+          shelfCount={shelfCounts}
             depthScale={depth50}
             handle50={handleFrameProduct50}
             frameInstances={frameInstances}
