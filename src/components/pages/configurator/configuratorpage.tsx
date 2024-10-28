@@ -92,13 +92,24 @@ type Frame = {
   heightScale: number;
   position: [number, number, number];
 };
+interface DrawerState {
+  drawer1: string | null;
+  drawer2: string | null;
+  drawer3: string | null;
+  drawer4: string | null;
+}
 export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [showDoor, setShowDoor] = useState(true)
   const [showDrawer, setShowDrawer] = useState(true)
   const [showHandle, setShowHandle] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [selectedFrameProduct, setSelectedFrameProduct] = useState<string | null>(null);
-  const [selectedDrawer, setSelectedDrawer] = useState<string | null>(null);
+  const [selectedDrawers, setSelectedDrawers] = useState<DrawerState>({
+    drawer1: null,
+    drawer2: null,
+    drawer3: null,
+    drawer4: null,
+  });
   const [isRackSelected, setRackSelected] = useState(false);
   const [isRailSelected, setRailSelected] = useState(false);
   const [isDoorSelected, setDoorSelected] = useState(false);
@@ -149,19 +160,35 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const handleSub3CardClick = (component: 'shelves' | 'drawers') => {
     setVisible3SubComponent(component);
   };
-  const handleDrawerSelection = (productTitle: string, setSelectedDrawer: React.Dispatch<React.SetStateAction<string | null>>) => {
-    if (productTitle === 'Lade 1') {
-      setSelectedDrawer('Lade 1');
-    } else if (productTitle === 'Lade 2') {
-      setSelectedDrawer('Lade 2');
-    } else if (productTitle === 'Lade 3') {
-      setSelectedDrawer('Lade 3');
-    } else if (productTitle === 'Lade 4') {
-      setSelectedDrawer('Lade 4');
-    }
-  };
-
-
+  
+const handleDrawerSelection = (productTitle: string) => {
+  switch (productTitle) {
+    case 'Lade 1':
+      setSelectedDrawers(prev => ({
+        ...prev,
+        drawer1: prev.drawer1 ? null : 'Lade 1', // Toggle drawer1
+      }));
+      break;
+    case 'Lade 2':
+      setSelectedDrawers(prev => ({
+        ...prev,
+        drawer2: prev.drawer2 ? null : 'Lade 2', // Toggle drawer2
+      }));
+      break;
+    case 'Lade 3':
+      setSelectedDrawers(prev => ({
+        ...prev,
+        drawer3: prev.drawer3 ? null : 'Lade 3', // Toggle drawer3
+      }));
+      break;
+    case 'Lade 4':
+      setSelectedDrawers(prev => ({
+        ...prev,
+        drawer4: prev.drawer4 ? null : 'Lade 4', // Toggle drawer4
+      }));
+      break;
+  }
+};
   const handleModelClick = () => {
     setIsCustomisationVisible(true);
   };
@@ -170,6 +197,16 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [scaleZ, setScaleZ] = useState(1);
   const [positionX, setPositionX] = useState(-3);
   const [position75X, setPosition75X] = useState(-1.6);
+  const [rackCustomisation, setRackCustomisation] = useState({
+    rackPosition50: 3.2,
+    rackPosition75: 3.2,
+    rackPositioncorner: 3.2,
+  });
+  const [railPosition, setRailPosition] = useState({
+    railPosition50: 24.78,
+    railPosition75: 22.78,
+    railPositioncorner: 22,
+  });
   const [shelfCounts, setShelfCounts] = useState({
     shelfCount50: 0,
     shelfCount75: 0,
@@ -228,14 +265,14 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       setIsFrame3CustomisationVisible(false);
       setFrameVisible(false);
       if (frames.length < 3) {
-        
-        const baseX = 0; 
-        const xOffset = (frames.length * 1); 
+
+        const baseX = 0;
+        const xOffset = (frames.length * 1);
 
         const newFramePosition: [number, number, number] = [
-          baseX + xOffset,  
-                    -1.11,          
-          -9.2,         
+          baseX + xOffset,
+          -1.11,
+          -9.2,
         ];
 
         // Add new frame to the state with a unique position and id
@@ -413,11 +450,13 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     setIsCustomisationVisible(false);
     setIsFrame2CustomisationVisible(false);
     setIsFrame3CustomisationVisible(false);
+
     setFrameVisible(true); // Show the frame selection div
   };
   // const toggleDoorVisibility = () => {
   //     setDoorVisible(!isDoorVisible);
   // };
+  const [railCustomisation, setRailCustomisation] = useState(false);
   const RailVisible = () => {
     setRailVisible(!isRailVisible);
   };
@@ -936,7 +975,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         image={card.image}
                         width={card.width}
                         height={card.height}
-                        onClick={() => handleDrawerSelection(card.title, setSelectedDrawer)}
+                        onClick={() => handleDrawerSelection(card.title)}
 
                       />
                     ))
@@ -988,58 +1027,102 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                   position: 'relative',
                   left: '200px',
                 }} />
+              {isRailVisible && (
+                <div className={styles.frame}>
+                  <FaArrowLeft className={styles.backarrow} onClick={() => setRailVisible(prev => !prev)} />
+                  <h3 className={styles.frametext}> Clotherail </h3>
+                  <div className={styles.cardframe}>
+                    {cardData
+                      .filter(card => card.category === 'rail')
+                      .map((card, index) => (
+                        <Card
+                          key={index}
+                          title={card.title}
+                          image={card.image}
+                          width={card.width}
+                          height={card.height} onClick={() => { setRailSelected(true); setRailCustomisation(true) }}
+                        />
+                      ))}
 
-            </div>
-            <div className={styles['components-selection']} onClick={() => setIsShelveVisible(prev => !prev)} >
-              <FaShoePrints className={styles['shelve-icon']} />
-              <p className={styles.door}> Schoenenrek</p>
-              <IoIosArrowDropright
-                style={{
-                  width: '30px',
-                  height: '20px',
-                  position: 'relative',
-                  left: '200px',
-                }} />
+                  </div>
+
+                </div>
+              )}
+
+              {railCustomisation && (
+                <div className={styles.frame}>
+                  <FaArrowLeft className={styles.backarrow} onClick={() => { setRailCustomisation(false); }} />
+                  <h3 className={styles.frametext}> rails </h3>
+                  <div className={styles.cardframe}>
+                    <label>
+                      Adjust 50cm rail  position:
+                      <input
+                        type="range"
+                        min="4"
+                        max="24.78"
+                        step="0.1"
+                        value={railPosition.railPosition50}
+                        onChange={(e) => setRailPosition({ ...railPosition, railPosition50: parseFloat(e.target.value) })}
+                      />
+                      {`${railPosition.railPosition50.toFixed(1)} units`}
+                    </label>
+                    <label>
+                      Adjust 75cm rail  position:
+                      <input
+                        type="range"
+                        min="4"
+                        max="24.78"
+                        step="0.1"
+                        value={railPosition.railPosition75}
+                        onChange={(e) => setRailPosition({ ...railPosition, railPosition75: parseFloat(e.target.value) })}
+                      />
+                      {`${railPosition.railPosition75.toFixed(1)} units`}
+                    </label>
+
+                  </div>
+
+                </div>
+              )}
             </div>
             {isShelveVisible && (
               <div className={styles.frame}>
                 <FaArrowLeft className={styles.backarrow} onClick={() => setIsShelveVisible(prev => !prev)} />
                 <h3 className={styles.frametext}> Shelves </h3>
                 <div className={styles.cardframe}>
-                <label>
-          Number of Shelves 50cm frame:
-          <input
-            type="number"
-            min="0" 
-            max="10" 
-            step="1"
-            value={shelfCounts.shelfCount50}
-            onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCount50: parseInt(e.target.value, 10) })}
-        />
-        </label>
-        <label>
-          Number of Shelves 75cm frame:
-          <input
-            type="number"
-            min="0" 
-            max="10" 
-            step="1"
-            value={shelfCounts.shelfCount75}
-            onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCount75: parseInt(e.target.value, 10) })}
-        />
-        </label>
-        <label>
-          Number of Shelves corner frame:
-          <input
-            type="number"
-            min="0" 
-            max="10" 
-            step="1"
-            value={shelfCounts.shelfCountcorner}
-            onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCountcorner: parseInt(e.target.value, 10) })}
-        />
-        </label>
-        <label>
+                  <label>
+                    Number of Shelves 50cm frame:
+                    <input
+                      type="number"
+                      min="0"
+                      max="10"
+                      step="1"
+                      value={shelfCounts.shelfCount50}
+                      onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCount50: parseInt(e.target.value, 10) })}
+                    />
+                  </label>
+                  <label>
+                    Number of Shelves 75cm frame:
+                    <input
+                      type="number"
+                      min="0"
+                      max="10"
+                      step="1"
+                      value={shelfCounts.shelfCount75}
+                      onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCount75: parseInt(e.target.value, 10) })}
+                    />
+                  </label>
+                  <label>
+                    Number of Shelves corner frame:
+                    <input
+                      type="number"
+                      min="0"
+                      max="10"
+                      step="1"
+                      value={shelfCounts.shelfCountcorner}
+                      onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCountcorner: parseInt(e.target.value, 10) })}
+                    />
+                  </label>
+                  <label>
                     Adjust 50cm shelf position:
                     <input
                       type="range"
@@ -1047,12 +1130,12 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       max="24"
                       step="0.1"
                       value={shelfPosition.shelfPosition50}
-                      onChange={(e) => setShelfPosition({...shelfPosition, shelfPosition50: parseFloat(e.target.value)})}
+                      onChange={(e) => setShelfPosition({ ...shelfPosition, shelfPosition50: parseFloat(e.target.value) })}
                     />
                     {`${shelfPosition.shelfPosition50.toFixed(1)} units`}
                   </label>
-                
-        <label>
+
+                  <label>
                     Adjust 75cm shelf position:
                     <input
                       type="range"
@@ -1060,7 +1143,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       max="24"
                       step="0.1"
                       value={shelfPosition.shelfPosition75}
-                      onChange={(e) => setShelfPosition({...shelfPosition, shelfPosition75: parseFloat(e.target.value)})}
+                      onChange={(e) => setShelfPosition({ ...shelfPosition, shelfPosition75: parseFloat(e.target.value) })}
                     />
                     {`${shelfPosition.shelfPosition75.toFixed(1)} units`}
                   </label>
@@ -1072,54 +1155,55 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       max="24"
                       step="0.1"
                       value={shelfPosition.shelfPositioncorner}
-                      onChange={(e) => setShelfPosition({...shelfPosition, shelfPositioncorner: parseFloat(e.target.value)})}
+                      onChange={(e) => setShelfPosition({ ...shelfPosition, shelfPositioncorner: parseFloat(e.target.value) })}
                     />
                     {`${shelfPosition.shelfPositioncorner.toFixed(1)} units`}
                   </label>
-                  
+
                 </div>
 
               </div>
             )}
           </div>
           <div className={styles['components-selection']} onClick={toggleRackVisibility} >
-              <MdShelves className={styles['shelve-icon']} />
-              <p className={styles.door}> Schoenenrek</p>
-              <IoIosArrowDropright
-                style={{
-                  width: '30px',
-                  height: '20px',
-                  position: 'relative',
-                  left: '200px',
-                }} />
-            </div>
-            {isRackVisible && (
-              <div className={styles.frame}>
-                <FaArrowLeft className={styles.backarrow} onClick={toggleRackVisibility} />
-                <h3 className={styles.frametext}> Schoenenrek</h3>
-                <div className={styles.cardframe}>
-                  {cardData
-                    .filter(card => card.category === 'rack')
-                    .map((card, index) => (
-                      <Card
-                        key={index}
-                        title={card.title}
-                        image={card.image}
-                        width={card.width}
-                        height={card.height}
-                        onClick={() => setRackSelected(true)}
-                      />
-                    ))}
-                </div>
-
+            <MdShelves className={styles['shelve-icon']} />
+            <p className={styles.door}> Schoenenrek</p>
+            <IoIosArrowDropright
+              style={{
+                width: '30px',
+                height: '20px',
+                position: 'relative',
+                left: '200px',
+              }} />
+          </div>
+          {isRackVisible && (
+            <div className={styles.frame}>
+              <FaArrowLeft className={styles.backarrow} onClick={toggleRackVisibility} />
+              <h3 className={styles.frametext}> Schoenenrek</h3>
+              <div className={styles.cardframe}>
+                {cardData
+                  .filter(card => card.category === 'rack')
+                  .map((card, index) => (
+                    <Card
+                      key={index}
+                      title={card.title}
+                      image={card.image}
+                      width={card.width}
+                      height={card.height}
+                      onClick={() => handleDrawerSelection(card.title)}
+                    />
+                  ))}
               </div>
-            )}
+
+            </div>
+          )}
 
         </div>
         <div className={styles['canva-div']}>
           <Scene
-          shelfPosition={shelfPosition}
-          shelfCount={shelfCounts}
+            railPosition={railPosition}
+            shelfPosition={shelfPosition}
+            shelfCount={shelfCounts}
             depthScale={depth50}
             handle50={handleFrameProduct50}
             frameInstances={frameInstances}
@@ -1137,7 +1221,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             width75Scale={width75}
             width50Scale={width50}
             heightScale={height}
-            selectedDrawer={selectedDrawer}
+            selectedDrawer={selectedDrawers}
             selectedProduct={selectedProduct}
             showDoor={showDoor}
             showHandle={showHandle}

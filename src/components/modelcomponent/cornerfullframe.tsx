@@ -34,9 +34,10 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export function Cornerframe({visible3Component, shelfCount, shelfPosition, isDoorSelected, materialTexture, depthScale,width75Scale , heightScale, isRailSelected, isRackSelected,scaleY,    selectedHandle, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
+export function Cornerframe({visible3Component,  railPosition, shelfCount, shelfPosition, isDoorSelected, materialTexture, depthScale,width75Scale , heightScale, isRailSelected, isRackSelected,scaleY,    selectedHandle, ...props }: { visible3Component: 'shelves' | 'drawers' | null;
   isDoorSelected: any;
   isRailSelected: any;
+  railPosition: any;
   shelfCount: any;
   shelfPosition: any;
   isRackSelected: any;
@@ -60,7 +61,7 @@ export function Cornerframe({visible3Component, shelfCount, shelfPosition, isDoo
   return (
     <group >
     <group {...props} dispose={null} position={[-8, -0.46, (Math.max(0, depthScale/35 - 1)/1.8 * 2.6) + 1]} scale={[0.2, 0.14, depthScale/35 * 0.13]}>
-       {isRailSelected && ( <Clotherail  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[24, 22, -1]} scale={[3, 2, 1.5]}/>)}
+       {isRailSelected && ( <Clotherail  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[24,   railPosition.railPositioncorner, -1]} scale={[3, 2, 1.5]}/>)}
           { isRackSelected && ( <Rack  rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} position={[25, -1.3, 1]} scale={[6.2, 7, 4]}/>)}
           <Plinth position={[17.3, -1, -1.9]} scale={[18.2, 12, 20]} materialTexture={materialTexture}/>
           <Plinth position={[22.3, -1, -1.9]} scale={[29.2, 12, 25]} rotation={[Math.PI / 2, Math.PI/2*3,Math.PI / 2]} materialTexture={materialTexture}/>

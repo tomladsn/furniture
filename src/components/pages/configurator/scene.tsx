@@ -18,7 +18,7 @@ const Mdrawer = React.lazy(() => import('../../modelcomponent/Mdrawer'));
 const Kdrawer = React.lazy(() => import('../../modelcomponent/Kdrawer'));
 const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
 const clotherail = React.lazy(() => import('../../modelcomponent/clotherail'));
-import { Physics } from '@react-three/cannon';
+        import { Physics } from '@react-three/cannon';
 interface SceneProps {
   handle50: any;
   frameInstances: any;
@@ -36,7 +36,7 @@ interface SceneProps {
     showHandle: boolean;
     showDrawer: boolean;
     selectedFrameProduct: string | null;
-    selectedDrawer: string | null;
+    selectedDrawer: any;
     selectedHandle:any;
     scaleX: number;
     scaleY: number;
@@ -47,6 +47,7 @@ interface SceneProps {
     width75Scale: number;
     materialTexture: any;
     positionX: any;
+    railPosition: any;
     position75X: any;
     shelfPosition: any;
     onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -63,6 +64,7 @@ interface SceneProps {
     depthScale: number;
 }
 const Scene = forwardRef<THREE.Group, SceneProps>(({
+  railPosition,
   shelfPosition,
   shelfCount,
   depthScale,
@@ -205,6 +207,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Cornerframe
+           railPosition={railPosition}
            shelfCount={shelfCount}
           shelfPosition={shelfPosition}
                materialTexture={materialTexture}
@@ -251,6 +254,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Mediumframe 
+           railPosition={railPosition}
            shelfPosition={shelfPosition}
            shelfCount={shelfCount}
           position75X={position75X}
@@ -292,6 +296,7 @@ const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([
           ]}
         >
           <Smallframe
+          railPosition={railPosition}
            shelfPosition={shelfPosition}
            shelfCount={shelfCount}
           positionX={positionX}
