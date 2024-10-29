@@ -15,6 +15,7 @@ import { MdDoorSliding, MdShelves } from 'react-icons/md';
 import { GiDoorHandle, GiClothesline, GiRunningShoe } from 'react-icons/gi';
 import { VscLayoutPanelCenter } from 'react-icons/vsc';
 import { IoIosArrowDropright } from 'react-icons/io';
+import { BsBookshelf } from "react-icons/bs";
 import cardData from './props/card-prop/card-data.json';
 import Card from './props/card-prop/subcards';
 import Scene from './scene';
@@ -1084,6 +1085,17 @@ const handleDrawerSelection = (productTitle: string) => {
                 </div>
               )}
             </div>
+            <div className={styles['components-selection']} onClick={() => setIsShelveVisible(prev => !prev)}>
+              <BsBookshelf className={styles['rail-icon']} />
+              <p className={styles.door}>shelves</p>
+              <IoIosArrowDropright
+                style={{
+                  width: '30px',
+                  height: '20px',
+                  position: 'relative',
+                  left: '200px',
+                }} />
+                </div>
             {isShelveVisible && (
               <div className={styles.frame}>
                 <FaArrowLeft className={styles.backarrow} onClick={() => setIsShelveVisible(prev => !prev)} />
