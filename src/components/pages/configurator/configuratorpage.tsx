@@ -86,11 +86,6 @@ type Frame = {
   id: number;
   type: string;
   scale: [number, number, number];
-} | {
-  id: number;
-  type: string;
-  widthScale: number;
-  heightScale: number;
   position: [number, number, number];
 };
 interface DrawerState {
@@ -117,7 +112,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
   const [isFrame2CustomisationVisible, setIsFrame2CustomisationVisible] = useState(false);
   const [isFrame3CustomisationVisible, setIsFrame3CustomisationVisible] = useState(false);
-  const [frames, setFrames] = useState<Array<{ id: number; type: string; scale: [number, number, number]; position: [number, number, number]; }>>([]); const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
+  const [frames, setFrames] = useState<Frame[]>([]); 
+  const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles2SubComponent, setVisible2SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles3SubComponent, setVisible3SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [selectedHandle, setSelectedHandle] = useState<string | null>(null);
@@ -161,35 +157,35 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const handleSub3CardClick = (component: 'shelves' | 'drawers') => {
     setVisible3SubComponent(component);
   };
-  
-const handleDrawerSelection = (productTitle: string) => {
-  switch (productTitle) {
-    case 'Lade 1':
-      setSelectedDrawers(prev => ({
-        ...prev,
-        drawer1: prev.drawer1 ? null : 'Lade 1', // Toggle drawer1
-      }));
-      break;
-    case 'Lade 2':
-      setSelectedDrawers(prev => ({
-        ...prev,
-        drawer2: prev.drawer2 ? null : 'Lade 2', // Toggle drawer2
-      }));
-      break;
-    case 'Lade 3':
-      setSelectedDrawers(prev => ({
-        ...prev,
-        drawer3: prev.drawer3 ? null : 'Lade 3', // Toggle drawer3
-      }));
-      break;
-    case 'Lade 4':
-      setSelectedDrawers(prev => ({
-        ...prev,
-        drawer4: prev.drawer4 ? null : 'Lade 4', // Toggle drawer4
-      }));
-      break;
-  }
-};
+
+  const handleDrawerSelection = (productTitle: string) => {
+    switch (productTitle) {
+      case 'Lade 1':
+        setSelectedDrawers(prev => ({
+          ...prev,
+          drawer1: prev.drawer1 ? null : 'Lade 1', // Toggle drawer1
+        }));
+        break;
+      case 'Lade 2':
+        setSelectedDrawers(prev => ({
+          ...prev,
+          drawer2: prev.drawer2 ? null : 'Lade 2', // Toggle drawer2
+        }));
+        break;
+      case 'Lade 3':
+        setSelectedDrawers(prev => ({
+          ...prev,
+          drawer3: prev.drawer3 ? null : 'Lade 3', // Toggle drawer3
+        }));
+        break;
+      case 'Lade 4':
+        setSelectedDrawers(prev => ({
+          ...prev,
+          drawer4: prev.drawer4 ? null : 'Lade 4', // Toggle drawer4
+        }));
+        break;
+    }
+  };
   const handleModelClick = () => {
     setIsCustomisationVisible(true);
   };
@@ -375,7 +371,7 @@ const handleDrawerSelection = (productTitle: string) => {
   const handleScaleXChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setScaleX(parseFloat(event.target.value));
   };
-
+  const [numberOfFrames, setNumberOfFrames] = useState(0);
   const [height, setHeight] = useState(175); // Set the default height to 175cm
   const [width50, setwidth50] = useState(50); // Set the default height to 175cm
   const [width75, setwidth75] = useState(75); // Set the default height to 175cm
@@ -701,6 +697,18 @@ const handleDrawerSelection = (productTitle: string) => {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>50cmframe  aanpassing</h3>
                 <div className={styles.customise}>
+                  <label>
+                    Number of 50cm frames:
+                    <input
+                      type="number"
+                      min="0"
+                      max="10"
+                      step="1"
+                      value={numberOfFrames} // bind this to state
+                      onChange={(e) => setNumberOfFrames(parseInt(e.target.value))} // update on change
+                    />
+                  </label>
+
                   <label>
                     Width (cm):
                     <input
@@ -1095,7 +1103,7 @@ const handleDrawerSelection = (productTitle: string) => {
                   position: 'relative',
                   left: '200px',
                 }} />
-                </div>
+            </div>
             {isShelveVisible && (
               <div className={styles.frame}>
                 <FaArrowLeft className={styles.backarrow} onClick={() => setIsShelveVisible(prev => !prev)} />
@@ -1221,6 +1229,7 @@ const handleDrawerSelection = (productTitle: string) => {
             frameInstances={frameInstances}
             onDeleteFrame={handleDeleteFrame}
             selectedHandle={selectedHandle}
+            numberOfFrames={numberOfFrames}
             ref={sceneRef}
             frames={frames}
             selectedMaterialImage={selectedMaterialImage}
@@ -1251,9 +1260,7 @@ const handleDrawerSelection = (productTitle: string) => {
             isRailSelected={isRailSelected}
             isDoorSelected={isDoorSelected}
             setIsFrame2CustomisationVisible={setIsFrame2CustomisationVisible}
-            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0} setFrames={function (value: SetStateAction<{ id: number; type: string; scale: [number, number, number]; }[]>): void {
-              throw new Error('Function not implemented.');
-            }} />
+            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0} setFrames={setFrames} />
         </div>
       </div>
     </div>

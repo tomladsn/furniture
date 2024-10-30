@@ -1,4 +1,3 @@
-
 import * as THREE from 'three'
 import React, { useEffect } from 'react'
 import { useState } from 'react';
@@ -98,6 +97,26 @@ const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition,  railPosition
   const baseWidth = 175;
   const bbox = new THREE.Box3().setFromObject(nodes.frame);
   const size = bbox.getSize(new THREE.Vector3());
+  const getDrawerPosition = (drawerNumber: number) => {
+    type DrawerPositions = {
+      [key: number]: [number, number, number]
+    };
+  
+    const basePosition: [number, number, number] = [0, 1, 0];
+    const drawerHeight = 3; // Adjust as needed to space drawers
+  
+    // Calculate offset based on which drawers are visible
+    const visibleDrawers = Object.values(selectedDrawer)
+      .slice(0, drawerNumber - 1)
+      .filter(Boolean).length;
+  
+    // Offset each drawer position by the number of visible drawers below it
+    return [
+      basePosition[0],
+      basePosition[1] + visibleDrawers * drawerHeight,
+      basePosition[2]
+    ];
+  };
   return (
 
 
@@ -117,9 +136,8 @@ const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition,  railPosition
             {selectedHandle === 'Handgreep  3' && (<Handle3 position={[-6.5, 18, 17.6]} scale={[0.06, 0.1, 0.2]} rotation={[Math.PI / 2, Math.PI / 2, 0]} />)}
           </group>)}
 
-
           {selectedDrawer.drawer1 && (
-            <group position={[0,1,0]}  scale={[ width50Scale / 50 * 1,1,1]}>
+            <group position={new THREE.Vector3(...getDrawerPosition(1))} scale={[ width50Scale / 50 * 1,1,1]}>
               <mesh
                 name="Cdrawer"
                 geometry={nodes.Lades.geometry}
@@ -140,7 +158,7 @@ const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition,  railPosition
               {selectedHandle === 'Handgreep  3' && (<Handle3 position={[-1, 5.4, 17]} scale={[0.04, 0.1, 0.08]} rotation={[Math.PI / 2, 0, 0]} />)}
             </group>)}
             {selectedDrawer.drawer2 && (
-            <group position={[0,1,0]}  scale={[ width50Scale / 50 * 1,1,1]} >
+            <group position={new THREE.Vector3(...getDrawerPosition(2))} scale={[ width50Scale / 50 * 1,1,1]} >
               <mesh
                 name="Mdrawer"
                 geometry={nodes.Lades.geometry}
@@ -162,7 +180,7 @@ const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition,  railPosition
 
             </group>)}
             {selectedDrawer.drawer3 && (
-            <group  position={[0,1,0]}  scale={[ width50Scale / 50 * 1,1,1]}>
+            <group  position={new THREE.Vector3(...getDrawerPosition(3))}  scale={[ width50Scale / 50 * 1,1,1]}>
               <mesh
                 name="Kdrawer"
                 geometry={nodes.Lades.geometry}
@@ -184,7 +202,7 @@ const Smallframe: React.FC<SmallframeProps> = ({    shelfPosition,  railPosition
 
             </group>)}
             {selectedDrawer.drawer4 && (
-            <group position={[0,1,0]}  scale={[ width50Scale / 50 * 1,1,1]} >
+            <group position={new THREE.Vector3(...getDrawerPosition(4))}  scale={[ width50Scale / 50 * 1,1,1]} >
               <mesh
                 name="Fdrawer"
                 geometry={nodes.Lades.geometry}
