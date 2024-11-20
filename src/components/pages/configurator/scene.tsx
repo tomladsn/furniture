@@ -19,6 +19,7 @@ const Kdrawer = React.lazy(() => import('../../modelcomponent/Kdrawer'));
 const Cdrawer = React.lazy(() => import('../../modelcomponent/Cdrawer'));
 const clotherail = React.lazy(() => import('../../modelcomponent/clotherail'));
 import { Physics } from '@react-three/cannon';
+import { is } from '@react-three/fiber/dist/declarations/src/core/utils';
 interface Frame {
   id: number;
   type: string;
@@ -56,6 +57,7 @@ interface SceneProps {
   numberOfFrames: any;
   railPosition: any;
   position75X: any;
+  selectedFrameId: Number | null;
   shelfPosition: any;
   onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   visibleComponent: 'shelves' | 'drawers' | null;
@@ -96,6 +98,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   visible3component,
   frames,
   position75X,
+  selectedFrameId,
   materialTexture,
   onModelClick,
   isRackSelected,
@@ -103,17 +106,6 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   isDoorSelected,
   heightScale
 }, ref) => {
-useEffect(() => {
-  setFrames(
-    Array.from({ length: numberOfFrames }, (_, i) => ({
-      id: i + 1,
-      type: 'Frame (50x175 cm)',
-      position: [i * 3, -1.1, -9.2] as [number, number, number], // Adjust X position for horizontal alignment
-      scale: [1, 1, 1] as [number, number, number]
-    }))
-  );
-}, [numberOfFrames, setFrames]);
-
 
   const [activeFrames, setActiveFrames] = useState<string[]>([]);
   const [isDragging, setIsDragging] = useState(false);
@@ -288,8 +280,7 @@ useEffect(() => {
                   isRailSelected={isRailSelected}
                   isDoorSelected={isDoorSelected}
                   visible2component={visible2component}
-                  selectedDrawer={selectedDrawer}
-                />
+                  selectedDrawer={selectedDrawer} frameId={0}                />
               </group>
 
             );
@@ -329,7 +320,9 @@ useEffect(() => {
                   isDoorSelected={isDoorSelected}
                   selectedDrawer={selectedDrawer}
                   materialTexture={materialTexture}
-                  frameId={frame.id} />
+                  frameId={frame.id} updateFrameAttributes={function (frameId: number, attribute: 'hasDrawer' | 'hasRail' | 'hasShelf', value: boolean): void {
+                    throw new Error('Function not implemented.');
+                  } } />
               </group>
 
             );

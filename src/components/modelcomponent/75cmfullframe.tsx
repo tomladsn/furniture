@@ -42,6 +42,7 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 type SmallframeProps = {
+  frameId: number;
   visible2component: 'shelves' | 'drawers' | null;
   selectedDrawer: string | null;
   selectedMaterialImage: any;
@@ -69,7 +70,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, railPositio
 
   return (
     <group >
-    <group {...props} dispose={null} position={[position75X, -0.46, (Math.max(0, depthScale/35 - 1)/2 ) + 0.95]} scale={[0.12 * width75Scale/75, 0.15,  depthScale/35 * 0.13]}>
+    <group {...props} dispose={null} position={[position75X, -0.46, (Math.max(0, depthScale/35 - 1)/2 ) + 1.2]} scale={[0.12 * width75Scale/75, 0.15,  depthScale/35 * 0.13]}>
    {isRailSelected && (<Clotherail  position={[-3,  railPosition.railPosition75, 3]} scale={[2.1 * width75Scale/75, 1.8, 1.5]}/>)}
    <Plinth position={[-3.3, -1, 3.9]} scale={[18.2, 14, 20]} materialTexture={materialTexture} />
         

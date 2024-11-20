@@ -186,9 +186,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         break;
     }
   };
-  const handleModelClick = () => {
-    setIsCustomisationVisible(true);
-  };
+ 
+
   const [scaleX, setScaleX] = useState(1);
   const [scaleY, setScaleY] = useState(1);
   const [scaleZ, setScaleZ] = useState(1);
@@ -333,7 +332,10 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     }
 
 
-  }; const handleDeleteFrame = (productTitle: string) => {
+  };
+  
+  
+  const handleDeleteFrame = (productTitle: string) => {
     // Deselect the frame product
     setSelectedFrameProduct(null);
 
@@ -376,7 +378,21 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [width50, setwidth50] = useState(50); // Set the default height to 175cm
   const [width75, setwidth75] = useState(75); // Set the default height to 175cm
   const [depth50, setdepth50] = useState(35);
-
+  const [selectedFrameId, setSelectedFrameId] = useState<number | null>(null);
+  const handlePositionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newPositionX = parseFloat(event.target.value);
+    setFrames((prevFrames) =>
+      prevFrames.map((frame) =>
+        frame.id === selectedFrameId ? { ...frame, position: [newPositionX, frame.position[1], frame.position[2]] } : frame
+      )
+    );
+  };
+  const handleModelClick = (frameId: number) => {
+    setIsCustomisationVisible(true);
+    setSelectedFrameId(frameId); // Update selected frame ID
+    console.log('Model clicked with frame id:', frameId);
+  };
+  
   function handleHeightChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
 
@@ -385,6 +401,26 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
     setHeight(validatedValue);
   }
+   
+
+  useEffect(() => {
+    setFrames(prevFrames => {
+      const newFrames = Array.from({ length: numberOfFrames }, (_, i) => ({
+        id: Date.now() + i, // Ensure unique IDs
+        type: 'Frame (50x175 cm)',
+        position: [i * 3, -1.1, -9.2] as [number, number, number],
+        scale: [1, 1, 1] as [number, number, number]
+      }));
+  
+      // Filter out existing frames of the same type before adding new ones
+      return [
+        ...prevFrames.filter(frame => frame.type !== 'Frame (50x175 cm)'),
+        ...newFrames
+      ];
+    });
+  }, [numberOfFrames]);
+  
+
   function handleWidthChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
 
@@ -681,11 +717,12 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         key={index}
                         title={card.title}
                         image={card.image}
-                        width={card.width}
+                        width={card.width} 
                         height={card.height}
                         onClick={() => {
-                          handleFrameProductClick(card.title)
+                          handleFrameProductClick(card.title);
                           handleFrameProduct50
+                   
                         }}
                       />
                     ))}
@@ -755,8 +792,12 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       min="-3"
                       max="10"
                       step="0.1"
-                      value={positionX}
-                      onChange={(e) => setPositionX(parseFloat(e.target.value))}
+                      value={
+                        selectedFrameId !== null
+                          ? frames.find(frame => frame.id === selectedFrameId)?.position[0] || 0
+                          : 0
+                      }
+                      onChange={handlePositionChange}
                     />
                     {`${positionX.toFixed(1)} units`}
                   </label>
@@ -1068,7 +1109,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       <input
                         type="range"
                         min="4"
-                        max="24.78"
+                        max="34.78"
                         step="0.1"
                         value={railPosition.railPosition50}
                         onChange={(e) => setRailPosition({ ...railPosition, railPosition50: parseFloat(e.target.value) })}
@@ -1080,7 +1121,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       <input
                         type="range"
                         min="4"
-                        max="24.78"
+                        max="34.78"
                         step="0.1"
                         value={railPosition.railPosition75}
                         onChange={(e) => setRailPosition({ ...railPosition, railPosition75: parseFloat(e.target.value) })}
@@ -1221,6 +1262,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         </div>
         <div className={styles['canva-div']}>
           <Scene
+          selectedFrameId= {selectedFrameId}
             railPosition={railPosition}
             shelfPosition={shelfPosition}
             shelfCount={shelfCounts}
