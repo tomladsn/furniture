@@ -87,6 +87,8 @@ type Frame = {
   type: string;
   scale: [number, number, number];
   position: [number, number, number];
+  rotation?: any;
+
 };
 interface DrawerState {
   drawer1: string | null;
@@ -109,10 +111,11 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [isRackSelected, setRackSelected] = useState(false);
   const [isRailSelected, setRailSelected] = useState(false);
   const [isDoorSelected, setDoorSelected] = useState(false);
+  const [isDoorCustomisationSelected, setDoorCustomisationSelected] = useState(false);
   const [isCustomisationVisible, setIsCustomisationVisible] = useState(false);
   const [isFrame2CustomisationVisible, setIsFrame2CustomisationVisible] = useState(false);
   const [isFrame3CustomisationVisible, setIsFrame3CustomisationVisible] = useState(false);
-  const [frames, setFrames] = useState<Frame[]>([]); 
+  const [frames, setFrames] = useState<Frame[]>([]);
   const [visiblesSubComponent, setVisibleSubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles2SubComponent, setVisible2SubComponent] = useState<'shelves' | 'drawers' | null>(null);
   const [visibles3SubComponent, setVisible3SubComponent] = useState<'shelves' | 'drawers' | null>(null);
@@ -136,7 +139,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         id: frames50.length + 1,  // Unique ID for each frame
         type: 'Frame (50x175 cm)',
         scale: [50, 175, 1] as [number, number, number],  // Ensure scale is a tuple
-        position: [Math.random() * 10, 0, Math.random() * 10] as [number, number, number],  // Ensure position is a tuple
+        position: [Math.random() * 3, 0, Math.random() * 10] as [number, number, number],  // Ensure position is a tuple
       };
 
       // Add the new frame to the state
@@ -186,8 +189,15 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         break;
     }
   };
- 
 
+  const handleDeleteDrawers = () => {
+    setSelectedDrawers({
+      drawer1: null,
+      drawer2: null,
+      drawer3: null,
+      drawer4: null,
+    });
+  };
   const [scaleX, setScaleX] = useState(1);
   const [scaleY, setScaleY] = useState(1);
   const [scaleZ, setScaleZ] = useState(1);
@@ -213,6 +223,24 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     shelfPositioncorner: 6.5,
     shelfPosition50: 6.5,
   })
+  const handleShelfPositionChange = (shelfId: string, newPosition: number) => {
+    setShelfPosition((prevPositions) => ({
+      ...prevPositions,
+      [shelfId]: newPosition,
+    }));
+  };
+
+
+  const handleShelfCountChange = (key: string, value: number) => {
+    setShelfCounts((prevCounts) => ({
+      ...prevCounts,
+      [key]: value,
+    }));
+  };
+
+  const handleShelfClick = (shelfId: string) => {
+    console.log(`Shelf clicked with ID: ${shelfId}`);
+  };
 
   const baseY = -1.11;
 
@@ -333,8 +361,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
 
   };
-  
-  
+
+
   const handleDeleteFrame = (productTitle: string) => {
     // Deselect the frame product
     setSelectedFrameProduct(null);
@@ -374,11 +402,13 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     setScaleX(parseFloat(event.target.value));
   };
   const [numberOfFrames, setNumberOfFrames] = useState(0);
+  const [numberOf75Frames, setNumberOf75Frames] = useState(0);
   const [height, setHeight] = useState(175); // Set the default height to 175cm
   const [width50, setwidth50] = useState(50); // Set the default height to 175cm
   const [width75, setwidth75] = useState(75); // Set the default height to 175cm
   const [depth50, setdepth50] = useState(35);
   const [selectedFrameId, setSelectedFrameId] = useState<number | null>(null);
+  const [rotateFrame, setRotateFrame] = useState(0);
   const handlePositionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newPositionX = parseFloat(event.target.value);
     setFrames((prevFrames) =>
@@ -386,13 +416,15 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         frame.id === selectedFrameId ? { ...frame, position: [newPositionX, frame.position[1], frame.position[2]] } : frame
       )
     );
+    setPositionX(newPositionX); // Update the positionX state
   };
+
   const handleModelClick = (frameId: number) => {
     setIsCustomisationVisible(true);
     setSelectedFrameId(frameId); // Update selected frame ID
     console.log('Model clicked with frame id:', frameId);
   };
-  
+
   function handleHeightChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
 
@@ -401,25 +433,55 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
     setHeight(validatedValue);
   }
-   
+
+
+  const handleRotationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newRotation = parseFloat(event.target.value);
+    setFrames((prevFrames) =>
+      prevFrames.map((frame) =>
+        frame.id === selectedFrameId ? { ...frame, rotation: [0, newRotation, 0] } : frame
+      )
+    );
+    setRotateFrame(newRotation); // Update the rotateFrame state
+  };
 
   useEffect(() => {
     setFrames(prevFrames => {
-      const newFrames = Array.from({ length: numberOfFrames }, (_, i) => ({
+      const existingFrames = prevFrames.filter(frame => frame.type === 'Frame (50x175 cm)');
+      const newFrames = Array.from({ length: numberOfFrames - existingFrames.length }, (_, i) => ({
         id: Date.now() + i, // Ensure unique IDs
         type: 'Frame (50x175 cm)',
-        position: [i * 3, -1.1, -9.2] as [number, number, number],
+        position: [(existingFrames.length + i) * 1.1, -1.1, -9.2] as [number, number, number],
         scale: [1, 1, 1] as [number, number, number]
       }));
-  
-      // Filter out existing frames of the same type before adding new ones
+
       return [
         ...prevFrames.filter(frame => frame.type !== 'Frame (50x175 cm)'),
+        ...existingFrames,
         ...newFrames
       ];
     });
   }, [numberOfFrames]);
-  
+
+
+  useEffect(() => {
+    setFrames(prevFrames => {
+      const existingFrames = prevFrames.filter(frame => frame.type === 'Frame (75x175 cm)');
+      const newFrames = Array.from({ length: numberOf75Frames - existingFrames.length }, (_, i) => ({
+        id: Date.now() + i, // Ensure unique IDs
+        type: 'Frame (75x175 cm)',
+        position: [(existingFrames.length + i) * 1.1, -1.1, -9.2] as [number, number, number],
+        scale: [1, 1, 1] as [number, number, number]
+      }));
+
+      return [
+        ...prevFrames.filter(frame => frame.type !== 'Frame (75x175 cm)'),
+        ...existingFrames,
+        ...newFrames
+      ];
+    });
+  }, [numberOf75Frames]);
+
 
   function handleWidthChange(e: { target: { value: string; }; }) {
     const inputValue = parseFloat(e.target.value);
@@ -477,6 +539,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
     setIsFrame3CustomisationVisible(false);
     setVisibleSubComponent(null);
     setFrameVisible(!isFrameVisible);
+
   };
   const handleBackClick = () => {
 
@@ -504,6 +567,10 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   };
   const toggleDoorVisibility = () => {
     setDoorVisible(!isDoorVisible);
+  };
+  const handleBackArrowClick = () => {
+    setDoorSelected(false);
+    setDoorVisible(true); // Show the door list when clicking the back arrow
   };
   useEffect(() => {
     console.log("Frames state updated:", frames);
@@ -686,10 +753,30 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         image={card.image}
                         width={card.width}
                         height={card.height}
-                        onClick={() => setDoorSelected(true)}
+                        onClick={() =>{ 
+                          setDoorCustomisationSelected(true);
+                          setDoorSelected(true)}}
                       />
                     ))}
                 </div>
+              </div>
+            )}
+            {isDoorCustomisationSelected && (
+              <div className={styles.frame}>
+                <FaArrowLeft className={styles.backarrow}  onClick={() => {setDoorCustomisationSelected(false)
+                
+                }}/>
+                <button
+                  style={{
+            position: 'relative',
+            top: '50px',
+            left:'30px',
+                    border: '1px solid #000',
+                  }}
+                  onClick={() => setDoorSelected(false)}
+                >
+                  Delete Door
+                </button>
               </div>
             )}
             <div className={styles['components-selection']} onClick={toggleFrameVisibility}>
@@ -717,12 +804,12 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         key={index}
                         title={card.title}
                         image={card.image}
-                        width={card.width} 
+                        width={card.width}
                         height={card.height}
                         onClick={() => {
                           handleFrameProductClick(card.title);
                           handleFrameProduct50
-                   
+
                         }}
                       />
                     ))}
@@ -801,6 +888,24 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     />
                     {`${positionX.toFixed(1)} units`}
                   </label>
+                  <label>
+                    Rotate Frame
+                    <input
+                      type="range"
+                      min="0"
+                      max="6.28" // 2 * Math.PI for full rotation
+                      step="1.57" // 90 degrees in radians
+                      value={
+                        selectedFrameId !== null
+                          ? frames.find(frame => frame.id === selectedFrameId)?.rotation?.[1] || 0
+                          : 0
+                      }
+                      onChange={handleRotationChange}
+                    />
+                    {`${(rotateFrame * (180 / Math.PI)).toFixed(0)} degrees`}
+                  </label>
+
+
                 </div>
                 <div className={styles.materialSelection1}>
                   <h4>Select Material:</h4>
@@ -831,6 +936,18 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                 <FaArrowLeft className={styles.backarrow} onClick={handleBackClick} />
                 <h3 className={styles.frametext}>75cmframe  aanpassing</h3>
                 <div className={styles.customise}>
+                <label>
+                    Number of 75cm frames:
+                    <input
+                      type="number"
+                      min="0"
+                      max="2"
+                      step="1"
+                      value={numberOf75Frames} // bind this to state
+                      onChange={(e) => setNumberOf75Frames(parseInt(e.target.value))} // update on change
+                    />
+                  </label>
+
                   <label>
                     Width (cm):
                     <input
@@ -1030,6 +1147,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       />
                     ))
                   }
+                  <button onClick={handleDeleteDrawers}> Delete Drawers </button>
                 </div>
 
               </div>
@@ -1109,7 +1227,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       <input
                         type="range"
                         min="4"
-                        max="34.78"
+                        max="50"
                         step="0.1"
                         value={railPosition.railPosition50}
                         onChange={(e) => setRailPosition({ ...railPosition, railPosition50: parseFloat(e.target.value) })}
@@ -1158,7 +1276,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       max="10"
                       step="1"
                       value={shelfCounts.shelfCount50}
-                      onChange={(e) => setShelfCounts({ ...shelfCounts, shelfCount50: parseInt(e.target.value, 10) })}
+                      onChange={(e) => handleShelfCountChange('shelfCount50', parseInt(e.target.value, 10))}
                     />
                   </label>
                   <label>
@@ -1191,7 +1309,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       max="24"
                       step="0.1"
                       value={shelfPosition.shelfPosition50}
-                      onChange={(e) => setShelfPosition({ ...shelfPosition, shelfPosition50: parseFloat(e.target.value) })}
+                      onChange={(e) => handleShelfPositionChange('shelfPosition50', parseFloat(e.target.value))}
                     />
                     {`${shelfPosition.shelfPosition50.toFixed(1)} units`}
                   </label>
@@ -1251,7 +1369,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       image={card.image}
                       width={card.width}
                       height={card.height}
-                      onClick={() => handleDrawerSelection(card.title)}
+                      onClick={() => setRackSelected(true)}
                     />
                   ))}
               </div>
@@ -1262,7 +1380,9 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         </div>
         <div className={styles['canva-div']}>
           <Scene
-          selectedFrameId= {selectedFrameId}
+          shelfClick={handleShelfClick}
+            rotationFrame={handleRotationChange}
+            selectedFrameId={selectedFrameId}
             railPosition={railPosition}
             shelfPosition={shelfPosition}
             shelfCount={shelfCounts}
@@ -1272,6 +1392,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             onDeleteFrame={handleDeleteFrame}
             selectedHandle={selectedHandle}
             numberOfFrames={numberOfFrames}
+            numberOf75Frames={numberOf75Frames}
             ref={sceneRef}
             frames={frames}
             selectedMaterialImage={selectedMaterialImage}

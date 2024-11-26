@@ -25,6 +25,7 @@ interface Frame {
   type: string;
   scale: [number, number, number];
   position: [number, number, number];
+  rotation?: any
 }
 interface SceneProps {
   handle50: any;
@@ -55,8 +56,10 @@ interface SceneProps {
   materialTexture: any;
   positionX: any;
   numberOfFrames: any;
+  numberOf75Frames:any;
   railPosition: any;
   position75X: any;
+  shelfClick: any;
   selectedFrameId: Number | null;
   shelfPosition: any;
   onScaleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -65,13 +68,16 @@ interface SceneProps {
   visible3component: "shelves" | "drawers" | null;
   shelfCount: any;
   frames: Frame[];
-
+  rotationFrame: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setFrames: React.Dispatch<React.SetStateAction<Frame[]>>;
   frameId: number;
   depthScale: number;
 }
 const Scene = forwardRef<THREE.Group, SceneProps>(({
+  shelfClick,
+  rotationFrame,
   numberOfFrames,
+  numberOf75Frames,
   railPosition,
   shelfPosition,
   shelfCount,
@@ -241,95 +247,87 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
         })}
 
 
-        {frames.map((frame) => {
-          if (frame.type === 'Frame (75x175 cm)') {
-            const originalScale = [2, 1.55, 1.1];
-            const baseY = -1.11;
+{frames.map((frame) => {
+  if (frame.type === 'Frame (75x175 cm)') {
+    const originalScale = [2, 1.55, 1.1];
+    const baseY = -1.11;
 
-            return (
+    return (
+      <group
+        key={frame.id}
+        onClick={() => {
+          onModelClick(frame.id);
+          setIsFrame2CustomisationVisible(true)}}
+        ref={MediumframeRef}
+        position={frame.position}
+        rotation={[0, Math.PI * 2, 0]}
+        scale={[
+          originalScale[0] * scaleX,
+          originalScale[1] * scaleY,
+          originalScale[2] * scaleZ
+        ]}
+      >
+        <Mediumframe
+         shelfClick={shelfClick}
+          railPosition={railPosition}
+          shelfPosition={shelfPosition}
+          shelfCount={shelfCount}
+          position75X={position75X}
+          materialTexture={materialTexture}
+          selectedMaterialImage={selectedMaterialImage}
+          depthScale={depthScale}
+          width75Scale={width75Scale}
+          heightScale={heightScale}
+          scaleY={scaleY}
+          selectedHandle={selectedHandle}
+          isRackSelected={isRackSelected}
+          isRailSelected={isRailSelected}
+          isDoorSelected={isDoorSelected}
+          visible2component={visible2component}
+          selectedDrawer={selectedDrawer} frameId={0}
+        />
+      </group>
+    );
+  }
+  return null;
+})}
 
-              <group
-                key={frame.id}
-                onClick={() => setIsFrame2CustomisationVisible(true)}
-                ref={MediumframeRef}
-                position={[
-                  5 / scaleX,
-                  baseY + (scaleY - 1) * Math.abs(baseY),
-                  -9 / scaleZ
-                ]}
-                rotation={[0, Math.PI * 2, 0]}
-                scale={[
-                  originalScale[0] * scaleX,
-                  originalScale[1] * scaleY,
-                  originalScale[2] * scaleZ
-                ]}
-              >
-                <Mediumframe
-                  railPosition={railPosition}
-                  shelfPosition={shelfPosition}
-                  shelfCount={shelfCount}
-                  position75X={position75X}
-                  materialTexture={materialTexture}
-                  selectedMaterialImage={selectedMaterialImage}
-                  depthScale={depthScale}
-                  width75Scale={width75Scale}
-                  heightScale={heightScale}
-                  scaleY={scaleY}
-                  selectedHandle={selectedHandle}
-                  isRackSelected={isRackSelected}
-                  isRailSelected={isRailSelected}
-                  isDoorSelected={isDoorSelected}
-                  visible2component={visible2component}
-                  selectedDrawer={selectedDrawer} frameId={0}                />
-              </group>
-
-            );
-          }
-          return null;
-        })}
-        {frames.map((frame) => {
-          if (frame.type === 'Frame (50x175 cm)') {
-            const originalScale = [2, 1.55, 1.1];
-            const baseY = frame.position[1];  // Use Y position from frame
-
-            return (
-
-              <group
-
-                ref={ref}
-                onClick={onModelClick}
-                key={frame.id}
-                position={frame.position}
-                rotation={[0, Math.PI * 2, 0]}
-                scale={[2 * frame.scale[0], 1.55 * frame.scale[1], 1.1 * frame.scale[2]]}
-              >
-                <Smallframe
-                  railPosition={railPosition}
-                  shelfPosition={shelfPosition}
-                  shelfCount={shelfCount}
-                  positionX={positionX}
-                  selectedMaterialImage={selectedMaterialImage}
-                  depthScale={depthScale}
-                  width50Scale={width50Scale}
-                  heightScale={heightScale}
-                  scaleY={frame.scale[1]} // Pass unique Y scale
-                  selectedHandle={selectedHandle}
-                  visibleComponent={visibleComponent}
-                  isRackSelected={isRackSelected}
-                  isRailSelected={isRailSelected}
-                  isDoorSelected={isDoorSelected}
-                  selectedDrawer={selectedDrawer}
-                  materialTexture={materialTexture}
-                  frameId={frame.id} updateFrameAttributes={function (frameId: number, attribute: 'hasDrawer' | 'hasRail' | 'hasShelf', value: boolean): void {
-                    throw new Error('Function not implemented.');
-                  } } />
-              </group>
-
-            );
-          }
-          return null;
-        })}
-
+{frames.map((frame) => (
+  frame.type === 'Frame (50x175 cm)' && (
+    <group
+      key={frame.id} // Use frame.id for a unique key
+      position={frame.position}
+      rotation={[0, Math.PI * 2, 0]} // Ensure rotation is applied if available
+      scale={[2 * frame.scale[0], 1.55 * frame.scale[1], 1.1 * frame.scale[2]]}
+      onClick={() => onModelClick(frame.id)}
+    >
+      <Smallframe
+        shelfClick={shelfClick}
+        railPosition={railPosition}
+        shelfPosition={shelfPosition}
+        shelfCount={shelfCount}
+        positionX={frame.position[0]} // Pass individual frame's positionX
+        rotationY={frame.rotation ? frame.rotation[1] : 0}
+        selectedMaterialImage={selectedMaterialImage}
+        depthScale={depthScale}
+        width50Scale={width50Scale}
+        heightScale={heightScale}
+        scaleY={frame.scale[1]} // Pass unique Y scale
+        selectedHandle={selectedHandle}
+        visibleComponent={visibleComponent}
+        isRackSelected={isRackSelected}
+        isRailSelected={isRailSelected}
+        isDoorSelected={isDoorSelected}
+        selectedDrawer={selectedDrawer}
+        materialTexture={materialTexture}
+        frameId={frame.id}
+        updateFrameAttributes={function (frameId: number, attribute: 'hasDrawer' | 'hasRail' | 'hasShelf', value: boolean): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+    </group>
+  )
+))}
       </group>
     </Canvas>
   );

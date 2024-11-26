@@ -58,9 +58,10 @@ type SmallframeProps = {
   railPosition: any;
   shelfPosition: any;
   scaleY:number;
+  shelfClick: (shelfId: string) => void;
   heightScale:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, railPosition,  shelfPosition, shelfCount, position75X, selectedMaterialImage, materialTexture,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, railPosition,   shelfClick, shelfPosition, shelfCount, position75X, selectedMaterialImage, materialTexture,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const baseWidth = 175;
@@ -68,6 +69,19 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, railPositio
   const size = bbox.getSize(new THREE.Vector3());
   const whiteMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
 
+  const [dragYStates, setDragYStates] = useState(Array(shelfCount.shelfCount75).fill(0));
+
+  useEffect(() => {
+    setDragYStates(Array(shelfCount.shelfCount75).fill(0));
+  }, [shelfCount.shelfCount75]);
+  
+  const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = parseFloat(event.target.value);
+    const scaledValue = newValue * 0.1; // Scale the value to make it less sensitive
+    const newDragYStates = [...dragYStates];
+    newDragYStates[index] = scaledValue;
+    setDragYStates(newDragYStates);
+  };
   return (
     <group >
     <group {...props} dispose={null} position={[position75X, -0.46, (Math.max(0, depthScale/35 - 1)/2 ) + 1.2]} scale={[0.12 * width75Scale/75, 0.15,  depthScale/35 * 0.13]}>
@@ -185,12 +199,60 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, railPositio
          <mesh name="shelve4" geometry={nodes.shelve4.geometry} material={materials.shelve4} position={[-3.133, 9.011, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve4' }} />  
                 </>
       )}
-        {[...Array(shelfCount.shelfCount75)].map((_, index) => (
+    <>
+      {[...Array(shelfCount.shelfCount75)].map((_, index) => {
+        const shelfId = `shelf75-${index + 1}`;
+        const dragY = dragYStates[index];
+        console.log(`Shelf ${shelfId} Position:`, [-3.133, shelfPosition.shelfPosition75 + index * 6 + dragY, 0.541]);
+        console.log(`HTML Position:`, [0.375, shelfPosition.shelfPosition50 - 4 + dragY, 0.175]);
+
+        return (
           <mesh
-          key={index}
-           name={`shelve${index + 4}`}
-            geometry={nodes.shelve1.geometry} material={materials.shelve1} position={[-3.133, shelfPosition.shelfPosition75 + index * 6, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve1' }} />
-        ))}
+            key={shelfId}
+            name={`shelve${index + 4}`}
+            geometry={nodes.shelve1.geometry}
+            material={materials.shelve1}
+            position={[-3.133, shelfPosition.shelfPosition75 + index * 6 + dragY, 0.541]}
+            rotation={[-Math.PI, 0, -Math.PI]}
+            scale={[-6.938, -0.196, -5.481]}
+            userData={{ name: 'shelve1' }}
+          >
+            <Html position={[1, shelfPosition.shelfPosition75 - 4 + dragY, 0.541]} center>
+              <div
+                style={{
+                  color: '#333',
+                  background: 'rgba(255, 255, 255, 0.7)',
+                  padding: '4px 8px',
+                  borderRadius: '4px',
+                  fontSize: '12px',
+                  fontFamily: 'Arial, sans-serif',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                  transform: 'translate(-50%, -50%)',
+                  whiteSpace: 'nowrap',
+                }}
+                title={shelfId}
+              >
+                {shelfId}
+                <input
+                  type="range"
+                  min="-10" // Adjust min value
+                  max="10" // Adjust max value
+                  value={dragY / 0.1} // Scale the value back for the input range
+                  onChange={(e) => handleInputChange(index, e)}
+                  style={{
+                    marginLeft: '8px',
+                    width: '100px', // Increase width for better control
+                    padding: '2px',
+                    fontSize: '12px',
+                  }}
+                />
+              </div>
+            </Html>
+          </mesh>
+        );
+      })}
+    </>
+
       {visible2component === 'shelves' && (
     <>
       <mesh name="shelve1" geometry={nodes.shelve1.geometry} material={materials.shelve1} position={[-3.133, 24.133, 0.541]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-6.938, -0.196, -5.481]} userData={{ name: 'shelve1' }} />
