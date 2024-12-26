@@ -58,10 +58,11 @@ type SmallframeProps = {
   railPosition: any;
   shelfPosition: any;
   scaleY:number;
+  setPlinthVisible: any;
   shelfClick: (shelfId: string) => void;
   heightScale:number;
 } & JSX.IntrinsicElements['group'];
-const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, railPosition,   shelfClick, shelfPosition, shelfCount, position75X, selectedMaterialImage, materialTexture,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Mediumframe: React.FC<SmallframeProps> = ({     setPlinthVisible, visible2component, railPosition,   shelfClick, shelfPosition, shelfCount, position75X, selectedMaterialImage, materialTexture,  width75Scale, depthScale, heightScale, selectedHandle, selectedDrawer,isRackSelected,  isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/75cmframefull.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const baseWidth = 175;
@@ -86,7 +87,7 @@ const Mediumframe: React.FC<SmallframeProps> = ({ visible2component, railPositio
     <group >
     <group {...props} dispose={null} position={[position75X, -0.46, (Math.max(0, depthScale/35 - 1)/2 ) + 1.2]} scale={[0.12 * width75Scale/75, 0.15,  depthScale/35 * 0.13]}>
    {isRailSelected && (<Clotherail  position={[-3,  railPosition.railPosition75, 3]} scale={[2.1 * width75Scale/75, 1.8, 1.5]}/>)}
-   <Plinth position={[-3.3, -1, 3.9]} scale={[18.2, 14, 20]} materialTexture={materialTexture} />
+   { setPlinthVisible && (<Plinth position={[-3.3, -1, 3.9]} scale={[18.2, 14, 20]} materialTexture={materialTexture} />)}
         
      {isRackSelected && (<Rack position={[-3.2, -0.8, 3]} scale={[5.5* width75Scale/75, 6, 3.7]}/>)}
 

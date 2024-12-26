@@ -125,6 +125,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [selectedMaterialImage, setSelectedMaterialImage] = useState<string | null>(null);
   const [drawerPosition, setDrawerPosition] = useState(0);
   const [materialTexture, setMaterialTexture] = useState<THREE.Texture | null>(null);
+  const [plinthCustomisation, setPlinthCusomisation] = useState(false);
+  const [plinthVisible, setPlinthVisible] = useState(true);
   const textureLoader = new THREE.TextureLoader();
   const handleMaterialClick = (imagePath: string) => {
     const texture = textureLoader.load(imagePath);
@@ -202,6 +204,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [scaleY, setScaleY] = useState(1);
   const [scaleZ, setScaleZ] = useState(1);
   const [positionX, setPositionX] = useState(-3);
+  const [positionY, setPositionY] = useState(-3);
   const [position75X, setPosition75X] = useState(-1.6);
   const [rackCustomisation, setRackCustomisation] = useState({
     rackPosition50: 3.2,
@@ -258,6 +261,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       setIsFrame2CustomisationVisible(false);
       setIsFrame3CustomisationVisible(false);
       setFrameVisible(false);
+      setNumberOfFrames(1)
 
       // Ensure the maximum number of frames is 4
       if (frames.length < 4) {
@@ -288,6 +292,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
       setIsFrame2CustomisationVisible(true);
       setIsFrame3CustomisationVisible(false);
       setFrameVisible(false);
+      setNumberOf75Frames(1)
       if (frames.length < 3) {
 
         const baseX = 0;
@@ -411,12 +416,14 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
   const [rotateFrame, setRotateFrame] = useState(0);
   const handlePositionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newPositionX = parseFloat(event.target.value);
+    const newPositiony = parseFloat(event.target.value);
     setFrames((prevFrames) =>
       prevFrames.map((frame) =>
         frame.id === selectedFrameId ? { ...frame, position: [newPositionX, frame.position[1], frame.position[2]] } : frame
       )
     );
     setPositionX(newPositionX); // Update the positionX state
+    setPositionY(newPositiony); // Update the positionX state
   };
 
   const handleModelClick = (frameId: number) => {
@@ -433,7 +440,16 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
 
     setHeight(validatedValue);
   }
+  const handleWidth50Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newWidth = parseFloat(event.target.value);
+    setwidth50(newWidth); // Update the width state
 
+    setFrames((prevFrames) =>
+      prevFrames.map((frame) =>
+        frame.id === selectedFrameId ? { ...frame, scale: [newWidth / 50, frame.scale[1], frame.scale[2]] } : frame
+      )
+    );
+  };
 
   const handleRotationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newRotation = parseFloat(event.target.value);
@@ -825,7 +841,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     Number of 50cm frames:
                     <input
                       type="number"
-                      min="0"
+                      min="1"
                       max="10"
                       step="1"
                       value={numberOfFrames} // bind this to state
@@ -834,23 +850,22 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                   </label>
 
                   <label>
-                    Width (cm):
-                    <input
-                      type="number"
-                      min="50"
-                      max="74"
-                      step="1"
-                      value={width50}
-                      onChange={(e) => setwidth50(parseFloat(e.target.value))}
-                    />
-                    <button >Apply</button> {/* Button to apply the new height */}
-                    {`${width50.toFixed(1)} cm`} {/* Display the height in cm */}
-                  </label>
+        Width (cm):
+        <input
+          type="number"
+          min="30"
+          max="74"
+          step="1"
+          value={width50}
+          onChange={handleWidthChange}
+        />
+        {`${width50.toFixed(1)} cm`} {/* Display the width in cm */}
+      </label>
                   <label>
                     Height (cm):
                     <input
                       type="number"
-                      min="175"
+                      min="100"
                       max="280"
                       step="1"
                       value={height} // Bind the input value to the state
@@ -864,7 +879,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     Depth (cm):
                     <input
                       type="number"
-                      min="35"
+                      min="20"
                       max="50"
                       step="1"
                       value={depth50}
@@ -887,6 +902,22 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                       onChange={handlePositionChange}
                     />
                     {`${positionX.toFixed(1)} units`}
+                  </label>
+                  <label>
+                    Move Part along y-axis:
+                    <input
+                      type="range"
+                      min="-3"
+                      max="10"
+                      step="0.1"
+                      value={
+                        selectedFrameId !== null
+                          ? frames.find(frame => frame.id === selectedFrameId)?.position[0] || 0
+                          : 0
+                      }
+                      onChange={handlePositionChange}
+                    />
+                    {`${positionY.toFixed(1)} units`}
                   </label>
                   <label>
                     Rotate Frame
@@ -940,7 +971,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     Number of 75cm frames:
                     <input
                       type="number"
-                      min="0"
+                      min=" 1"
                       max="2"
                       step="1"
                       value={numberOf75Frames} // bind this to state
@@ -952,7 +983,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     Width (cm):
                     <input
                       type="number"
-                      min="75"
+                      min="40"
                       max="100"
                       step="1"
                       value={width75} // Bind the input value to the state
@@ -965,7 +996,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     Height (cm):
                     <input
                       type="number"
-                      min="175"
+                      min="100"
                       max="280"
                       step="1"
                       value={height.toFixed(1)}
@@ -977,7 +1008,7 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                     Depth (cm):
                     <input
                       type="number"
-                      min="35"
+                      min="20"
                       max="50"
                       step="1"
                       value={depth50}
@@ -1176,15 +1207,25 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
                         title={card.title}
                         image={card.image}
                         width={card.width}
-                        height={card.height} onClick={function (): void {
-                          throw new Error('Function not implemented.');
-                        }}
+                        height={card.height} 
+                        onClick={() => setPlinthCusomisation(prevState => !prevState)}
                       />
                     ))}
                 </div>
 
               </div>
+              
             )}
+             {plinthCustomisation && (
+  <div className={styles.frame}>
+    <FaArrowLeft className={styles.backarrow} onClick={() => setPlinthCusomisation(prevState => !prevState)} />
+    <h3 className={styles.frametext}>plinth</h3>
+    <div className={styles.cardframe}>
+    <button onClick={() => setPlinthVisible(false)}> Delete Plinth </button>
+    </div>
+  </div>
+)}
+
             <div className={styles['components-selection']} onClick={RailVisible}>
               <GiClothesline className={styles['rail-icon']} />
               <p className={styles.door}>Kledinghanger</p>
@@ -1380,7 +1421,8 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
         </div>
         <div className={styles['canva-div']}>
           <Scene
-          shelfClick={handleShelfClick}
+          setPlinthVisible={plinthVisible}
+            shelfClick={handleShelfClick}
             rotationFrame={handleRotationChange}
             selectedFrameId={selectedFrameId}
             railPosition={railPosition}
@@ -1399,11 +1441,12 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             scaleX={scaleX}
             scaleY={scaleY}
             scaleZ={scaleZ}
+            positionY={positionY}
             positionX={positionX}
             position75X={position75X}
             materialTexture={materialTexture}
             width75Scale={width75}
-            width50Scale={width50}
+            width50={handleWidth50Change}
             heightScale={height}
             selectedDrawer={selectedDrawers}
             selectedProduct={selectedProduct}
@@ -1417,13 +1460,13 @@ export const Configuratorpage = ({ className }: ConfiguratorpageProps) => {
             visibleComponent={visiblesSubComponent} // Correct prop name
             onScaleChange={function (event: ChangeEvent<HTMLInputElement>): void {
               throw new Error('Function not implemented.');
-            }} frameId={0}
+            } } frameId={0}
             onModelClick={handleModelClick}
             isRackSelected={isRackSelected}
             isRailSelected={isRailSelected}
             isDoorSelected={isDoorSelected}
             setIsFrame2CustomisationVisible={setIsFrame2CustomisationVisible}
-            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0} setFrames={setFrames} />
+            setIsFrame3CustomisationVisible={setIsFrame3CustomisationVisible} setScaleY={0} setFrames={setFrames} width50Scale={0} />
         </div>
       </div>
     </div>

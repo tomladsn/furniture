@@ -87,11 +87,13 @@ type SmallframeProps = {
   railPosition: any;
   shelfPosition: any;
   rotationY: any;
+  width50: any;
+  setPlinthVisible: any;
   updateFrameAttributes: (frameId: number, attribute: 'hasDrawer' | 'hasRail' | 'hasShelf', value: boolean) => void;
 } & JSX.IntrinsicElements['group'];
 
 
-const Smallframe: React.FC<SmallframeProps> = ({   shelfClick, rotationY, shelfPosition, railPosition, visibleComponent, positionX, shelfCount, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({   setPlinthVisible, width50, shelfClick, rotationY, shelfPosition, railPosition, visibleComponent, positionX, shelfCount, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
@@ -139,12 +141,12 @@ const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElem
 
     <group {...props} dispose={null}
       position={[positionX, -0.88, (Math.max(0, depthScale / 35 - 1) / -1.8 * 2.4) - 0.9]}
-      scale={[width50Scale / 50 * 0.077, 0.129, depthScale / 35 * 0.15]} rotation={[0, rotationY, 0]}>
+      scale={[width50 / 50 * 0.077, 0.129, depthScale / 35 * 0.15]} rotation={[0, rotationY, 0]}>
       {isRailSelected && (<Clotherail position={[0.1, railPosition.railPosition50, 13]} scale={[width50Scale / 50 * 2.3, 2, 1.5]} />)}
       {isRackSelected && (<Rack position={[-0.2, 3.2, 16]} scale={[width50Scale / 50 * 6.2, 7, 3]} />)}
-      <group ><Plinth
+     { setPlinthVisible && ( <group ><Plinth
         position={[-1.1, 2.2, 17.8]}
-        scale={[21.2, 12, 20]} materialTexture={materialTexture} />  </group>
+        scale={[21.2, 12, 20]} materialTexture={materialTexture} />  </group>)}
       {false && (<Handle1 />)}
       {false && (<Handle2 />)}
       {false && (<Handle3 />)}

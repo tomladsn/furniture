@@ -59,6 +59,8 @@ interface SceneProps {
   numberOf75Frames:any;
   railPosition: any;
   position75X: any;
+  width50: any;
+  positionY: any;
   shelfClick: any;
   selectedFrameId: Number | null;
   shelfPosition: any;
@@ -72,8 +74,10 @@ interface SceneProps {
   setFrames: React.Dispatch<React.SetStateAction<Frame[]>>;
   frameId: number;
   depthScale: number;
+  setPlinthVisible: any;
 }
 const Scene = forwardRef<THREE.Group, SceneProps>(({
+  setPlinthVisible,
   shelfClick,
   rotationFrame,
   numberOfFrames,
@@ -103,6 +107,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   visible2component,
   visible3component,
   frames,
+  positionY,
   position75X,
   selectedFrameId,
   materialTexture,
@@ -110,7 +115,8 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
   isRackSelected,
   isRailSelected,
   isDoorSelected,
-  heightScale
+  heightScale,
+  width50
 }, ref) => {
 
   const [activeFrames, setActiveFrames] = useState<string[]>([]);
@@ -167,7 +173,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
         <PerspectiveCamera
           makeDefault
-          position={[0, 1, 7]}  // Adjust the position as needed
+          position={[-30, 3, 4]}  // Adjust the position as needed
           fov={40}
           near={1}
           far={10000}
@@ -268,6 +274,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
         ]}
       >
         <Mediumframe
+         setPlinthVisible={setPlinthVisible}
          shelfClick={shelfClick}
           railPosition={railPosition}
           shelfPosition={shelfPosition}
@@ -302,10 +309,12 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
       onClick={() => onModelClick(frame.id)}
     >
       <Smallframe
+       setPlinthVisible={setPlinthVisible}
         shelfClick={shelfClick}
         railPosition={railPosition}
         shelfPosition={shelfPosition}
         shelfCount={shelfCount}
+        positionY={frame.positionY}
         positionX={frame.position[0]} // Pass individual frame's positionX
         rotationY={frame.rotation ? frame.rotation[1] : 0}
         selectedMaterialImage={selectedMaterialImage}
@@ -323,8 +332,7 @@ const Scene = forwardRef<THREE.Group, SceneProps>(({
         frameId={frame.id}
         updateFrameAttributes={function (frameId: number, attribute: 'hasDrawer' | 'hasRail' | 'hasShelf', value: boolean): void {
           throw new Error('Function not implemented.');
-        }}
-      />
+        } } width50={undefined}      />
     </group>
   )
 ))}
