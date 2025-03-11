@@ -21,6 +21,7 @@ const clotherail = React.lazy(() => import('../../modelcomponent/clotherail'));
 import { Physics } from '@react-three/cannon';
 import { is } from '@react-three/fiber/dist/declarations/src/core/utils';
 interface Frame {
+  [x: string]: any;
   id: number;
   type: string;
   scale: [number, number, number];
