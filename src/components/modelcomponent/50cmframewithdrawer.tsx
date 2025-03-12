@@ -88,12 +88,13 @@ type SmallframeProps = {
   shelfPosition: any;
   rotationY: any;
   width50: any;
+  positionY: any;
   setPlinthVisible: any;
   updateFrameAttributes: (frameId: number, attribute: 'hasDrawer' | 'hasRail' | 'hasShelf', value: boolean) => void;
 } & JSX.IntrinsicElements['group'];
 
 
-const Smallframe: React.FC<SmallframeProps> = ({   setPlinthVisible, width50, shelfClick, rotationY, shelfPosition, railPosition, visibleComponent, positionX, shelfCount, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
+const Smallframe: React.FC<SmallframeProps> = ({       positionY, setPlinthVisible, width50, shelfClick, rotationY, shelfPosition, railPosition, visibleComponent, positionX, shelfCount, selectedMaterialImage, materialTexture, depthScale, heightScale, width50Scale, selectedHandle, selectedDrawer, isRackSelected, isRailSelected, isDoorSelected, scaleY, ...props }) => {
   const { nodes, materials } = useGLTF('/50cmframewithdrawer.glb') as GLTFResult
   const [showDimensions, setShowDimensions] = useState(false);
   const { nodes: cdNodes, materials: cdMaterials } = useGLTF('/Cdrawer.glb') as CdrawerGLTFResult;
